@@ -1,4 +1,5 @@
-# Colorado School of Mines ![alt text](https://2nw91d3tlfon31ahm02yqp2t-wpengine.netdna-ssl.com/wp-content/uploads/2016/11/CSM-Logo-1.gif "Colorado School of Mines Logo")
+# Colorado School of Mines 
+![alt text](https://2nw91d3tlfon31ahm02yqp2t-wpengine.netdna-ssl.com/wp-content/uploads/2016/11/CSM-Logo-1.gif "Colorado School of Mines Logo")
 ## _Collection of code produced while attending Colorado School of Mines_
 ### **Courses:**
 1. CSCI252: Building a Sensor
