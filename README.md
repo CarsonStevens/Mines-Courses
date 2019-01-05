@@ -3,8 +3,8 @@
 1. CSCI252: Building a Sensor
 1. CSCI261: Programming Concepts
 1. CSCI262: Data Structures
-CSCI303: Intro to Data Science
-CSCI306: Software Engineering
-CSCI406: Algorithms
-CSCI423: Computer Simulations
-CSCI442: Operating Systems
+1. CSCI303: Intro to Data Science
+1. CSCI306: Software Engineering
+1. CSCI406: Algorithms
+1. CSCI423: Computer Simulations
+1. CSCI442: Operating Systems
