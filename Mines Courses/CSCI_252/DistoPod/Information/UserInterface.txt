@@ -1,0 +1,4 @@
+Options before scan:
+    1. Open application
+    2. Ask user for Cave (file) name
+    3. Ask user for theta and phi resolution

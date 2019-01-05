@@ -1,0 +1,190 @@
+
+
+n = 10000
+
+Testing NearestNeighbor:
+        Distance: 109032699
+        Duration: 1730603125 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 109032699
+        Duration: 2651688 nanoseconds
+        
+Testing NearestNeighbor:
+        Distance: 109032699
+        Duration: 1675373014 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 109032699
+        Duration: 2480036 nanoseconds
+        
+Testing NearestNeighbor:
+        Distance: 109032699
+        Duration: 1662666665 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 109032699
+        Duration: 2417809 nanoseconds
+
+n = 20000
+
+Testing NearestNeighbor:
+        Distance: 109517519
+        Duration: 2447553040 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 161143806
+        Duration: 6212230 nanoseconds
+        
+        
+Testing NearestNeighbor:
+        Distance: 109517519
+        Duration: 2005400712 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 161143806
+        Duration: 4779645 nanoseconds
+        
+Testing NearestNeighbor:
+        Distance: 109517519
+        Duration: 1987677853 nanoseconds
+
+
+Testing Exhaustive:
+        Distance: 161143806
+        Duration: 5102996 nanoseconds
+        
+n = 100000
+
+Testing NearestNeighbor:
+        Distance: 841197532
+        Duration: 132024895779 nanoseconds
+        Route: 
+
+
+Testing Exhaustive:
+        Distance: -314457494
+        Duration: 26036786 nanoseconds
+        Route: 
+        
+Testing NearestNeighbor:
+        Distance: 841197532
+        Duration: 131316874211 nanoseconds
+        Route: 
+
+
+Testing Exhaustive:
+        Distance: -314457494
+        Duration: 27286240 nanoseconds
+        Route: 
+
+Testing NearestNeighbor:
+        Distance: 841197532
+        Duration: 132979381224 nanoseconds
+        Route: 
+
+
+Testing Exhaustive:
+        Distance: -314457494
+        Duration: 27920844 nanoseconds
+        Route: 
+    
+    
+    
+Input 1: 
+
+10
+59 39
+10 46
+82 95
+0 67
+90 84
+4 49
+28 51
+65 2
+51 13
+92 87
+
+Input 2:
+
+75
+86 27
+0 46
+93 45
+83 22
+62 38
+71 48
+29 77
+68 56
+51 83
+30 77
+26 70
+52 40
+13 98
+19 4
+22 48
+48 80
+48 89
+41 90
+27 86
+24 90
+37 38
+28 10
+12 54
+40 76
+22 98
+70 23
+69 17
+16 57
+40 34
+5 76
+91 72
+64 0
+49 48
+96 32
+71 48
+42 34
+51 47
+60 13
+59 8
+44 6
+85 48
+94 45
+42 40
+75 91
+91 86
+67 93
+78 41
+4 35
+35 18
+97 99
+75 26
+71 84
+52 27
+67 30
+37 30
+81 1
+74 69
+78 92
+11 42
+5 30
+41 71
+5 17
+32 78
+85 11
+24 96
+23 31
+17 11
+43 82
+37 67
+82 69
+74 4
+29 53
+48 21
+24 36
+98 85

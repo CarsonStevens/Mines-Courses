@@ -1,0 +1,36 @@
+Game Flow:
+    Prompt at any time to display rules
+    Deal 7 cards
+    Check to see if any player has 0 cards (while loop)
+    Check to see if draw pile is empty
+        if yes, shuffle discard and set it to the draw pile. clear discard.
+        if no, continue
+    Check if discard empty
+        if yes, remove top draw pile and give to discard pile
+    change player
+    Display human players cards after each play (use a sleep command to add fluidity)
+    Check to see if human player (Maybe by player index)
+        if yes,
+            Ask to choose a card (index based?)
+                check that if any card is valid:
+                    if no, add cards until valid card appears(sleep command to not overwhelm user)
+                    if yes, let user choose card
+                    add card to discard and remove from player hand
+        if no,
+            check to see if any valid cards:
+            if yes, randomly choose a valid card
+            if no, pull from draw pile until a valid card is reached.
+                print to user that card is being drawn.
+                if draw pile empty, reshuffle discard and continue to draw
+            check to see if one card left
+                if yes, cout "UNO"
+                if no, continue
+        
+        
+Classes:
+    Game Class: Handles Dealer functions, game checks, printing, etc
+
+    Player Class: contains the players cards and abilities to get cards
+       
+    Card Class: contains card printing and card attributes
+    

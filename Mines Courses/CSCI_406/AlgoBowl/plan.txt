@@ -1,0 +1,14 @@
+    //Load valid entries from pq1 into pq2 (sort by largest to smallest length)
+        //while pq2 ! empty(){
+            // add pq2 entries to workstations by one with smallest size
+            // check for valid add
+                // if state not running and addition is valid (no same index at time for the smallest current workstation job_index.size())
+                    // update start time for job
+                // if not valid, pop and push back to end of pq1
+            //if no valid add loop (create check bool check maybe), add white space to end until valid add (swap == length on same workstation, create permuations)
+    //Use find cluster to find null spaces and see if a possible substitution can be made.
+    //Use Validation Algorithm to check work
+
+
+    //Create loop for each workstation that when a job is added, a timer is added to a loop that decreaments as
+    //  main time continues. valid adds are only possible when timer == 0. at end up of loop, update state and end time for job

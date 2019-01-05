@@ -1,0 +1,29 @@
+***********************************************
+Notes to run SFML if problems occur
+***********************************************
+
+
+
+I've seen three problems with SFML that seems to keep recurring, I thought I would give a writeup for each...
+
+Problem:  I made a change in the code, but it doesn't seem to change anything.   
+    Solution:   The problem may be that you did not get the executable (a.out) rebuilt.   To test this, the easiest way it to delete a.out (right click on a.out and select delete) and see if it get's rebuilt.   If that is the problem, see @544.
+ 
+Problem: I do a "run with/c9vnc" and nothing seems to happen.   I don't get the link displayed that I am expecting.
+    Solution:  The problem seems to be c9vnc cannot be found.   This should work...
+    Hit alt-t and a new window should open up.
+    Type in 
+    cp /opt/c9vnc/c9vnc.sh .
+    and hit enter.  (note the '.'  in the last line)
+    For those that are curious what this command is, it says copy c9vnc.sh from the directory /opt/c9vnc into the current directory (that's what the . means).
+    Type in 
+    c9vnc 
+    and hit enter.
+    The link along with some other info should be displayed.
+ 
+Problem:   I go to the link for the new window, and all I get is dots crossing the screen.
+    Solution:  Open up an alternate browser than the one you are using, and enter the link in that browser.    That usually works (note, the most problematic browser seems to be Chrome)
+    
+    
+    
+    

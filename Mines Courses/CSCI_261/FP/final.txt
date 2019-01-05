@@ -1,0 +1,86 @@
+NAME: Carson Stevens
+ID: 10758778
+SECTION E
+TITLE: Pong with a Twist
+
+PROBLEM DESCRIPTION:
+    The idea was to create a game of pong, but add a few features that make the game a little more
+fun. The game works by creating levels. Each time the user scores, they are awarded 1 point. Every ten
+points the user progresses a level. The first level adds a barricade randomly on the game field every
+time the user scores. The second level removes the earliest created barricade and creates a new one,
+but now the barricade moves at a random speed. The third level adds a splash of color. It makes the 
+ball change to a random color every frame and is quite distracting. The fourth level adds a little bit
+of speed to the ball every time the user scores. The fifth level speeds up the barricades every time 
+user scores. After that, it is a matter of how long the user can last in the continually speeding 
+environment.
+
+PROGRAM DOCUMENTATION:
+
+    To run the program:
+        (1) Run the program with a makefile to get the a.out file
+        (2) Run the program with C9vnc
+        (3) Follow the unbuntu link
+        (4) Right click to go to Applications -> Shells -> Bash
+        (5) Type in "cd FP" and then enter
+        (6) Type in "./a.out"
+    
+    This will run the SFML associated with the program. Instruction will appear on the screen explaining
+    how to play the game and what the controls are. To recap, Space bar will start the game, the 'Up'
+    arrow will move your paddle up, and the 'Down' will move it down.
+    
+    Possible things that could be added in the future could be more levels that change the difficulty.
+    An idea for that could be adding sound. Each time you score or the ball hit a barricade it could make
+    an annoying sound that would distract the user. Other cool ideas would be power ups. This could be done
+    by the ball touching a randomly appearing unique box (which would then be destroyed) that the user knows
+    is a power up. Some ideas there could be giving the user an extra life or slowing the ball or speeding 
+    up the user's paddle. Most the power ups have easily accessable variables within the classes or main. 
+    Background music would be a nice touch also. ***Note that const was not used for shape sizes or almost
+    anywhere in the program to make the variable more modular for add more levels (like changing the size of
+    the barricades, paddle, or radius of the ball).
+    
+TESTS:
+
+    Since the program has very little user input, each was tested thouroughly;
+    
+    (1)The program starts when the space bar is pressed. I have tried pressing every other key
+       and can't get the program to start until the space bar is pressed.
+       
+    (2)The paddle only moves up when the up arrow is pressed. I have tried every other key and
+       nothing else will make the paddle move up.
+    
+    (3)The paddle only moves down when the down arrow is pressed. I have treid every other key
+       and nothing else will make the paddle move down.
+    
+    (4)The paddle will never move off screen. It is bounded by the game board. I have tried to 
+       move the paddle above and below, but in both cases, it will stop.
+       
+    (5)The program will also only close if the X in the corner is clicked. Clicking anywhere else
+       will not close the program or do anything.
+       
+    (6)If the user pushes both the up and down arrows at the same time, the movements cancel each
+       other like expected. There is no negative consequence for doing so.
+       
+    (7)The program still works if the user maximizes the window.
+    
+    
+    ***Non-user input tests
+    
+    (8)There is an exit code if the font does not load in correctly. It will prompt the user. The 
+       font does not error and loads in correctly.
+       
+    (9)Through out the code there are tests that are labled. These mostly test to make sure the objects
+       of the class I want are being created with unique traits. They print to the consol. They will be
+       commented out. 
+       
+       
+REFLECTIONS:
+    During this project I learned a great deal about how SFML produces images and how shapes interact with
+each other. I learned that the clear and display function is clearing the last frame, then we draw to it, and
+then it is display. The process is then repeated. Finally realizing this helped me create the intro page,
+update the game, and display the gameover page. I also learned the importance of scope as to where objects should
+be created when trying to created new and unique objects during loops. Another thing was the placement of the
+seed for the rand function. It doesn't belong in fuctions, but in the main. If I had to do another project, it
+would be super helpful to understand all of the datatypes and functionality included in SFML. Knowing the
+different functions and datatypes associated with each makes each problem so much easier. I also wish that I had
+spent more time on trying to figure out the sound effects because it would have made the game alot more fun.
+Overall I had a ton of fun creating the project though.

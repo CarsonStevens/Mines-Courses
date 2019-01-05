@@ -1,0 +1,38 @@
+KEY:
+    > : straight input
+    < : straight output
+    [ : inside class functions
+
+OVERVIEW:
+    >1. Open application
+    >2. Name file                                                               X
+        2a. Select Filter Type
+    >3. Choose resolution                                                       X
+        <3b. Give time estimate
+        <3c. Provide start button
+    4. Create default offsets for (x,y,z,theta,phi) = 0                         X
+    5. <Power Laser
+    6. >Begin data collection
+        >6a.Read distance(rho)
+        >6b.Read theta/Correct
+        >6c.Read Phi/Correct
+        [6d.Convert to x,y,z
+        6e.Create Coordinate object with offset constructor
+        [6f.Correct x,y,z from offset (in setter)
+        <6g.change theta(x180)
+        <6h.change phi(x180)
+        [6i.store x,y,z into data[] using getter
+    >7. Option to move sensor
+        7a. Start imu data collection (add time to each member) (start timer)
+            7aprologue. turn off laser
+            >7ai. Create start reference time
+            >7aii. Collect acc data and relative times
+        7b. Stop imu data collection (end timer)
+        [7c. Apply filter and store in new data[] (pass in time difference)
+        [7c. Get new x,y,z,theta,phi offset
+            7ci.Acceleration = midpoint RMS *2 (step amount = time difference)
+            7cii.Gryro = midpoint RMS *1 (step amount = time difference)
+        [7d. store to correct next dataset and future offsets
+        7e.resume at 6
+    8. Stop
+        8a. Pass data[] to csv function

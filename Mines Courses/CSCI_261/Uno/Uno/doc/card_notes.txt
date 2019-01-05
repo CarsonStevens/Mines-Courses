@@ -1,0 +1,182 @@
+There are four suits, Red, Green, Yellow and Blue, 
+    each consisting of one 0 card, two 1 cards, two 2s, 3s, 4s, 5s, 6s, 7s, 8s and 9s; 
+    two Draw Two cards; 
+    two Skip cards; 
+    and two Reverse cards. 
+    In addition there are four Wild cards and four Wild Draw Four cards.
+    
+If the top discard is a word card then play begins as follows:
+
+    Wild Draw Four Card - Another card is turned over on top of this by the
+                          dealer.
+    Wild Card - The player to the right (left) of the dealer declares the colour.
+    Draw Two Card - The player to the right (left) of the dealer draws two cards
+                    from the stock and loses her turn.
+    Skip Card - The player to the right (left) of the dealer loses her turn.
+    Reverse Card - Turn passes to the left (right), starting with the player on
+                   the left (right) of the dealer
+
+If normal play then play is as follows:
+    Draw Two - When a Draw Two Card is played, the next player must draw two
+               cards from the stock and forfeit her turn. Play then continues
+               with the next player according to the direction of play.
+    Reverse - Reverses the direction of play.
+    Skip- Causes the next player to lose her turn.
+    Wild cards - The cards marked "Wild" may be played on any colour or type of
+                 card. The player playing a Wild card may change the colour of
+                 play to any colour at all, even the colour used before the Wild
+                 card was played. Apart from changing the colour, Wild cards have
+                 no effect on the next player's turn. A Wild card can be played
+                 under all circumstances, regardless of other cards the player
+                 may hold. Furthermore, Wild cards do not have to be played
+                 before a Draw Four can be played.
+    Wild Draw Four cards - The playing of these cards not only gives the player
+                           the right to call the colour of play, but also forces
+                           her opponent to draw four cards from the stock and
+                           forfeit their turn. This card can only legally be
+                           played when you have no other card matching the colour
+                           of the current top discard. Draw Four cards can be
+                           played when the player has a matching word or number
+                           card, or has a Wild card in her hand, however.
+
+FOR OUTPUT:
+        foreground background
+black        30         40
+red          31         41
+green        32         42
+yellow       33         43
+blue         34         44
+magenta      35         45
+cyan         36         46
+white        37         47
+
+Additionally, you can use these:
+reset             0  (everything back to normal)
+bold/bright       1  (often a brighter shade of the same colour)
+underline         4
+inverse           7  (swap foreground and background colours)
+bold/bright off  21
+underline off    24
+inverse off      27
+
+Clear Screen: \u001b[{n}J clears the screen
+n=0 clears from cursor until end of screen,
+n=1 clears from cursor to beginning of screen
+n=2 clears entire screen
+
+
+    FORMAT:
+        \033[(effect);(color)m(text)\033[0m
+ _________
+|   UNO   |
+| 0       |
+|         |
+|         |
+|       0 |
+|_________| 
+
+ _________
+|   UNO   |
+| 1       |
+|         |
+|         |
+|       1 |
+|_________|
+
+ _________
+|   UNO   |
+| 2       |
+|         |
+|         |
+|       2 |
+|_________|
+
+ _________
+|   UNO   |
+| 3       |
+|         |
+|         |
+|       3 |
+|_________|
+
+ _________
+|   UNO   |
+| 4       |
+|         |
+|         |
+|       4 |
+|_________|
+
+ _________
+|   UNO   |
+| 5       |
+|         |
+|         |
+|       5 |
+|_________|
+
+ _________
+|   UNO   |
+| 6       |
+|         |
+|         |
+|       6 |
+|_________|
+
+ _________
+|   UNO   |
+| 8       |
+|         |
+|         |
+|       8 |
+|_________|
+ _________
+|   UNO   |
+| 9       |
+|         |
+|         |
+|       9 |
+|_________|
+
+ _________
+|   UNO   |
+|         |
+|  DRAW   |
+|  TWO    |
+|         |
+|_________|
+
+ _________
+|   UNO   |
+|         |
+|  SKIP   |
+|         |
+|         |
+|_________|
+
+ _________
+|   UNO   |
+|         |
+|   -->   |
+| REVERSE |
+|   <--   |
+|_________|
+
+
+ _________
+|   UNO   |
+|         |
+|  WILD   |
+|         |
+|         |
+|_________|
+*Make Wild Card color of choice
+
+ _________
+|   UNO   |
+|         |
+|  WILD   |
+|  DRAW   |
+|  FOUR   |
+|_________|
+

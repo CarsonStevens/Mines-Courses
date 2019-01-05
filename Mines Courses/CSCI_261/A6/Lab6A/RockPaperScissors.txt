@@ -1,0 +1,3 @@
+Time: 1510365973 Human: Paper. Computer: R. = W
+Time: 1510365976 Human: Paper. Computer: R. = W
+Time: 1510365980 Human: Rock. Computer: P. = L

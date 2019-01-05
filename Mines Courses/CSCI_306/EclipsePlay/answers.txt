@@ -1,0 +1,18 @@
+Author: Carson Stevens
+CWID: 10758778
+Date: 8/27/2018
+
+Questions:
+
+	1. The revert button seems to undo the file to the previously saved file on local history.
+	2. As you step through the function, the program prints "Who's coming to the party". 
+		Then as it enters the loop and it prints:
+		 	Name: (The Friend's Name)
+			Email:(The Friend's Email)
+		This is as I formatted the toString() function to print the corresponding information
+	3. As you step through the function without the toString() function, the program prints "Who's coming to the party". 
+		Then as it enters the loop and it prints:
+		 	EclipsePlay.src.Friend@70dea4e
+			EclipsePlay.src.Friend@5c647e05
+			EclipsePlay.src.Friend@33909752
+		This is because the Party Class doesn't know how to Print the Friend Object.
