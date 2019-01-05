@@ -1,8 +1,8 @@
 # Mines-Courses
-Courses:
-CSCI252: Building a Sensor
-CSCI261: Programming Concepts
-CSCI262: Data Structures
+**Courses:**
+1. CSCI252: Building a Sensor
+1. CSCI261: Programming Concepts
+1. CSCI262: Data Structures
 CSCI303: Intro to Data Science
 CSCI306: Software Engineering
 CSCI406: Algorithms
