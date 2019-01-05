@@ -6,7 +6,7 @@
 1. CSCI262: Data Structures
 1. CSCI303: Intro to Data Science
 1. CSCI306: Software Engineering
-1. CSCI400: Programming Languages
+1. CSCI400: Programming Languages ( _Currently Enrolled_ )
 1. CSCI403: Database Management
 1. CSCI406: Algorithms
 1. CSCI423: Computer Simulations
