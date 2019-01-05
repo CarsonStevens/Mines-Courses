@@ -1,6 +1,6 @@
 # Mines-Courses
 _Collection of code produced while attending Colorado School of Mines_
-**Courses:**
+#**Courses:**
 1. CSCI252: Building a Sensor
 1. CSCI261: Programming Concepts
 1. CSCI262: Data Structures
