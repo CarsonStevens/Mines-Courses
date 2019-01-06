@@ -1,0 +1,6 @@
+main.o: main.cpp markov.h model.h
+markov.o: markov.cpp markov.h model.h brute_model.h map_model.h \
+ word_model.h
+brute_model.o: brute_model.cpp brute_model.h model.h
+map_model.o: map_model.cpp map_model.h model.h
+word_model.o: word_model.cpp word_model.h model.h
