@@ -1,0 +1,403 @@
+r
+CHEATSHEET.LNX
+Carson Stevens
+
+Vim basics:
+
+:w - write (save) the file, but don't exit
+:q - quit(fails if there are unsaved changes
+:q! - quites and throws away unsaved changes
+:x - saves and quits
+
+-find word in vim: type the / or ? key followed by the word youre looking for. Vi/Vim also allows you to launch a search on the word over which your cursor is positioned. To do this, place the cursor over the term, and then press * or # to look it up.
+
+
+man:
+	stands for manuel; tells what the command does an the options within it
+	FORMAT: man <command>
+
+apropos:
+	displays a list of all topics in the man pages
+	FORMAT: apropos <keywords>
+
+pwd:
+	prints the working directory
+	FORMAT: pwd
+
+ls:
+	list the files in the current directory
+	FORMAT: ls
+	useful options: [-a] lists all do not ignore entires staring with .
+			[-l] lists using long listing format	
+
+	Identify permissions, owners, and groups from ls -l output
+	first column: file permissions
+		first ‘-’: for file, d for directory
+		next 3: rwx for owner
+		next 3: rwx for group owner is in
+		last 3: rwx for others
+		second column: number of links
+		third column: owner name
+		fourth column: owner group
+		fifth column: file size
+		sixth column: time of last modify
+		seventh column: file/directory name
+	
+
+cd:
+	used to enter a directory through a path
+	FORMAT: cd <file_name>
+
+mkdir:
+	used to create a new directory
+	FORMAT: mkdir [opitons] <directory_name(s)>
+
+rmdir:
+	will remove an empty directory (will not do anything if the directory has content)
+	FORMAT: rmdir <directory_name(s)>
+
+mv:
+	moves one or more files or directories from one place to another
+	FORMAT: mv [options] <source> [source2 ...] <destination>
+
+cp:
+	copies files and directories
+	FORMAT: cp [option] <source> <destination>
+	useful options: [-r] copies recursively
+	
+less:
+	used to view the ocntents of a text file one screen at a time
+	FORMAT: less <file_name>
+
+alias:
+	used to rename functions
+	FORMAT: alias <command>="<command_renamed>"
+	to print all current alias
+	FORMAT: alias
+
+touch:
+	used to create new, empty files or change timestamps and times on existing files
+	FORMAT: touch [option] <file_names>
+
+rm:
+	used to removed files and directories
+	FORMAT: rm [options] <directory/path> <file_names>
+	useful options: [-f] ignore nonexistent file and arguements, never prompt
+			[-r] remove directories and their contents recursively 
+
+find:
+	used to locate a specific file by name or extension.
+	FORMAT: find [optoins] <directory/path> <expression>
+
+wget:
+	used to download from a URL
+	FORMAT: wget [options] <URL>
+
+tar:
+	used to compress and entrie firectory or a single file
+	FORMAT: tar [options] <name_of_new.tar.gz> <directory/path> <file_names>
+
+wc:
+	used to print a count of newlines, words, and bytes for each input file.
+	FORMAT: wc [options] <file_name>
+	useful options: [-c] prints the byte counts
+			[-w] prints the word counts
+			[-l] prints the newline counts
+			[-m] prints the char counts
+
+file:
+	used ot determine the file type
+	FORMAT: file [options] <file_name>
+
+stat:
+	used to display the details of a particular file
+	FORMAT: stat [options] <file_name>
+
+echo:
+	used to write arguements to standard output
+	FORMAT: echo [options] [arguement(s)]
+
+<:
+	used to give input to a command
+	FORMAT: command < <file_name>
+
+>: 
+	used to direct output of a command into a file
+	FORMAT: command > <file_name>
+
+<>:
+	used to give input to a command in read+write mode
+	FORMAT: command <> <file_name>
+
+>>:
+	used to direct output of a command into a file except if target file exists, the new data	 is appended.
+	FORMAT: command >> <file_name>
+
+2>:
+	used to director output of a command into a file twice
+	FORMAT: command 2> <file_name>
+
+|:
+	pipe operator:passes the output of one command as input to another
+	FORMAT: command1 |command2
+
+2>>:
+	used to direct output of a command into a file (like >>) but twice
+	FORMAT: command 2>> <file_name>
+
+/dev/null
+	used to dispose of unwaanted output of streams of a process
+	FORMAT: command > /dev/null
+
+Wild Cards:
+	* : Fills in a string\
+	? : Fills in a char
+	[]: Used for range of object EX [a-z]?
+
+Single Quote: Treats the object like a string
+Double Quote: Treats the object like a variable
+
+grep:
+	used to print lines mathcing a pattern
+	FORMAT: grep [OPTIONS] [FILE]
+	OPTIONS: -e: -e PATTERN
+		 -v: -select non-matching lines
+		 -c: suppress normal output and print number of matching lines
+
+head:
+	print the first 'n' lines (defaults to 10 lines)
+	FORMAT: head [OPTIONS] [FILE]
+	OPTIONS: -n NUM: output NUM lines
+		 -c NUM: output NUM bytes
+		 -q: never print headers
+		 -v: always print headers
+tail:
+	prints the last 'n' lines
+	FORMAT: tail [OPTIONS] [FILES]
+	OPTIONS: same as head
+
+sort:
+	sorts line of text files; doesn't modify place in file
+	FORMAT: sort [OPTIONS] [FILE]
+	OPTIONS: -u: prints unique values
+		 -n: compares according to string numerical value
+		 -r: reverse default sorting
+		 -R: randomly suffles lines
+
+uniq:
+	only removes consecutive deuplicate lines
+	FORMAT: uniq [OPTIONS] [FILE]
+	OPTIONS: -c: prefix lines with number of occurences
+		 -d: only prints duplicates
+		 -i: ignores case
+		 -u: only prints uniques
+
+tr:
+	used for translation or deletion
+	FORMAT: tr [OPTIONS] [set1] [set2]
+		*** replcaes set1 with set2 in place
+	OPTIONS: -d deletes characters
+		 -c takes the complement of set1
+
+cut:
+	remove sections from each line of file
+	FORMAT: cut [OPTIONS] [FILE]
+	OPTIONS: -cNUM: extracts only NUM column
+		 -cRANGE: extracts only RANGE columns
+		 -CNUM: extracts columns from NUM to end of line
+		 -d'DELIMITER' -fNUM: the NUMth field separated by the DELIMITER
+		 print Nth word: cut -d " " -f NUM
+
+sed:
+	replace pattern input
+	FORMAT: sed [OPTIONS] 'PATTERN' [FILE]
+		EX: sed [OPTIONS] 's/word1/word2/' [FILE]
+			's/word1/word2/g' (replaces globally'
+	OPTIONS: -f: use sed script
+		 -n: suppress printing of pattern space
+			sed -n '$p' (prints last line)
+			sed -n '1p' (prints first line)
+			sed -n 'Np' (prints N line)
+
+chmod:
+	specidy permissions
+	FORMAT: chmod [OPTIONS] [PERMISSIONS] [FILE]
+		EX: chmod [OPTIONS] u=rwx,g=rx,o=r [FILE]
+		EX: chmod [OPTIONS] [OCTAL] [FILE]
+	OPTIONS: -R: recursive: use on directory to change each file contained
+
+How to umask:
+	-new file permissions are determined by umask
+	-When a new file is created, each digit of the umask is subtracted formt eh default values to arrive at the default value you defined
+	_EX default permission for directories are 777 and deault umask is 022, so permissions become 755p
+	default umask: 022  
+	default directory: 777
+	default file: 666
+
+
+ln:
+	creates a link (default hard link)
+	FORMAT: ln [OPTION] [TARGET FILE] [LINK NAME]
+	OPTIONS: -s: creates soft link
+
+
+Inode/Linking
+	-hard
+		-cannot link directories
+		-cannot cross file system boundaries
+		-possible to associate multiple file system entities with a single inode
+		-create with 'ln'
+	-soft
+		-links that refer to other links
+		-can link directories
+		-can corss file system boundaries
+	
+
+Variable Assignment
+
+#!/bin/bash
+# Naked variables
+
+echo
+
+# When is a variable "naked", i.e., lacking the '$' in front?
+# When it is being assigned, rather than referenced.
+
+# Assignment
+a=879
+echo "The value of \"a\" is $a."
+
+# Assignment using 'let'
+let a=16+5
+echo "The value of \"a\" is now $a."
+
+echo
+
+# In a 'for' loop (really, a type of disguised assignment):
+echo -n "Values of \"a\" in the loop are: "
+for a in 7 8 9 11
+do
+  echo -n "$a "
+done
+
+echo
+echo
+
+# In a 'read' statement (also a type of assignment):
+echo -n "Enter \"a\" "
+read a
+echo "The value of \"a\" is now $a."
+
+#!/bin/bash
+
+a=23              # Simple case
+echo $a
+b=$a
+echo $b
+
+# Now, getting a little bit fancier (command substitution).
+
+a=`echo Hello!`   # Assigns result of 'echo' command to 'a' ...
+echo $a
+#  Note that including an exclamation mark (!) within a
+#+ command substitution construct will not work from the command-line,
+#+ since this triggers the Bash "history mechanism."
+#  Inside a script, however, the history functions are disabled by default.
+
+a=`ls -l`         # Assigns result of 'ls -l' command to 'a'
+echo $a           # Unquoted, however, it removes tabs and newlines.
+echo
+echo "$a"         # The quoted variable preserves whitespace.
+                  # (See the chapter on "Quoting.")
+
+While-loops FORMAT:
+
+	while [[ cond ]];
+	do
+		...
+	done
+
+
+Conditionals:
+	eq- equal to ==
+	gt- greater than
+	lt- less than
+	gte- greater than or equal to
+	lte- less than or equal to
+	ne- not equla to !=
+
+while-loop with conditional exit status example
+	while [[ $? -eq 0 ]];
+	do
+		...
+	done
+
+while-loop with condtional number
+	while [[ $"var" -lt 4 ]];
+	do
+		echo $"var"
+		var=(( $"var" + 1 ))
+	done
+
+To view exit status:
+	echo $?
+
+Control Signals:
+	CTRL-C: Kills the current process 
+	CTRL-D: Close the bash shell; send an eof marker to bash and bash exits(similar to exit command)
+	CTRL-L: Clears the screan (similar to clear command)
+	CTRL-Z: Suspends the current process
+	CTRL-R: Recall command from history by start typing the search for the command.
+
+ ~: user's home directory
+ .: current directory
+..: parent directory
+
+
+FINAL NOTES:
+
+1. Keystrokes to delete from the current cursor position to the end of line?
+	d$
+
+2. Kyestroke to change workto LINUX
+	cwLINUX
+
+3. Keystrokes to replace all instances of WINDOWS with LINUX in current buffer
+	%s/WINDOWS/LINUX/g
+
+4. Keystrokes to close editor wihtout saving
+	:q!
+
+5. cat file.txt | grep '^$' |wc -l
+	cat file.txt: prints the file.txt
+	grep '^$': keeps just empty lines
+	wc -l: prints the number of lines
+	OVERALL: prints the number of empty lines in the file
+
+6. cat wonderland.txt | grep -v ALICE |wc -l
+	cat wonderland.txt: prints the wonderland.txt
+	grejp -v ALICE: deletes lines with ALICE
+	wc -l: prints the count of remaining lines
+	OVERALL: Prints the count of lines not including the word ALICE
+
+7. cat file.txt |sort |uniq -c | sort -n | sed -n '$p'
+	cat file.txt: prints the file.txt
+	sort: sorts the file.txt
+	uniq -c: delete repeated lines and prints count
+	sort -n: prints the number of repeated lines in order
+	sed -n '$p': prints the last line
+	OVERALL: prints the most common line and the number of times it appears
+
+8. 
+
+There are 4 lines in computers.txt. == echo "There are $(wc -l <$1) lines in $1."
+There are 10 words in computers.txt. == echo "There are $(wc -w <$1) words in $1."
+The most frequent word is Macintosh. == echo "The most frequent word is $(<$1 tr ' ' '\n' | sort | uniq -c | sort -n | tail -1 | cut -b9-)."
+
+
+explain pipes
+	grep ‘^$’: empty lines
+	uniq -c: deletes repeated lines and prints how many times they occured
+	sort -n: sort numerically
+	sed -n ‘$p’: print last line
+
