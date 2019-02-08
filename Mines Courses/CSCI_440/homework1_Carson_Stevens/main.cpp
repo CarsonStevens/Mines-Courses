@@ -60,7 +60,7 @@ int main( int argc, char* argv[] ){
     //sizeof(random_numbers[])/sizeof(random_numbers[0]);               // Get the size of each array element
 
 
-
+    cout << n << endl;
     //BASELINE
     //Generating random numbers and storing in array. 'cilk_for' used to generate multiple threads.
     cilk_for(int i = 0; i < n; i++){
