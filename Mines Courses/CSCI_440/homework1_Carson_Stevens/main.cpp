@@ -47,7 +47,7 @@ string speedup(double baseline_duration, double duration, int repetitions){
 //Main for testing different parallel methods
 int main( int argc, char* argv[] ){
     if(strol(argv[2], nullptr, 0) != nullptr){
-        int repetitions = strol(argv[2], nullptr, 0);
+        int repetitions = strtol(argv[2], nullptr, 0);
     }
     else{
         int repetitions = 100000;
