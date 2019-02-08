@@ -25,16 +25,16 @@ int add(int randoms[], int size, int sum){
         return sum;
     }
     else{
-        return sum += add(randoms, size-1, sum);
+        return sum += add(randoms[size-1], size-1, sum);
     }
 }
 
 // Recursive loop to find the max value
-int find_max(int random[], int size, int max_number){
+int find_max(int randoms[], int size, int max_number){
     // if n = 0 means whole array has been traversed
     if (size == 1)
         return max_number;
-    return max_number = find_max(random[size-1], find_max(random, size-1, max_number));
+    return max_number = find_max(randoms, find_max(randoms, size-1, max_number));
 }
 
 string speedup(double baseline_duration, double duration, int repetitions){
@@ -98,7 +98,7 @@ int main( int argc, char* argv[] ){
         //Get sum recursion
         sum = cilk_spawn add(random_numbers, size, sum);
         //Get max recursion
-        max_number = find_max(random_numbers, size, max);
+        max_number = find_max(random_numbers, size, max_number);
         cilk_sync;
         sum = 0;
         stopper++;
@@ -125,10 +125,11 @@ int main( int argc, char* argv[] ){
         sum = 0;
         cilk_for(int i = 0; i < n; i++){
             sum += random_numbers[i];
-            if(random_numbers[i] > max_number){
+            if (random_numbers[i] > max_number) {
                 max_number = random_numbers[i];
             }
-        stopper++;
+            stopper++;
+        }
     }
     stop = chrono::high_resolution_clock::now();
     duration = stop - start;
