@@ -112,10 +112,10 @@ int main( int argc, char* argv[] ){
 
     //METHOD: Granulated cilk_for
     int grain_size = 5;
-    auto start = chrono::high_resolution_clock::now();
+    start = chrono::high_resolution_clock::now();
     granular_cilk_for(random_numbers, 0, n, grain_size, 0, 0);
-    auto stop = chrono::high_resolution_clock::now();
-    auto duration += stop - start;
+    stop = chrono::high_resolution_clock::now();
+    duration += stop - start;
     cout << "\n\tSpeedup: " << speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
             (duration).count()) << endl;
 
