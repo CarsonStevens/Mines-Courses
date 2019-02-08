@@ -65,10 +65,11 @@ int main( int argc, char* argv[] ){
     //Generating random numbers and storing in array. 'cilk_for' used to generate multiple threads.
     cilk_for(int i = 0; i < n; i++){
         random_numbers[i] = rand()%1000 + 1;
+        cout << random_numbers[i] << endl;
     }
     auto start = chrono::high_resolution_clock::now();
     while (stopper <= repetitions){
-        sum = 0;
+        baseline_sum = 0;
         for(int i = 0; i < n; i++){
             baseline_sum += random_numbers[i];
             if(random_numbers[i] > baseline_max){
@@ -129,6 +130,7 @@ int main( int argc, char* argv[] ){
                 max_number = random_numbers[i];
             }
             stopper++;
+
         }
     }
     stop = chrono::high_resolution_clock::now();
