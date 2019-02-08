@@ -82,8 +82,6 @@ int main( int argc, char* argv[] ){
     int baseline_max = 0;                                               // To test max accuracy
     int random_numbers[n];                                              // To hold the array of random numbers
     int size = n;
-    //sizeof(random_numbers[])/sizeof(random_numbers[0]);               // Get the size of each array element
-
 
     //BASELINE
     //Generating random numbers and storing in array. 'cilk_for' used to generate multiple threads.
@@ -172,7 +170,8 @@ int main( int argc, char* argv[] ){
 
     int grain_size = 5;
     while(stopper <= repetitions){
-        duration += granular_cilk_for(0, n, )
+        duration += granular_cilk_for(0, n, grain_size);
+        stopper++;
     }
     cout << "cilk_for with granularity(" << grain_size << ") stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
          speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
