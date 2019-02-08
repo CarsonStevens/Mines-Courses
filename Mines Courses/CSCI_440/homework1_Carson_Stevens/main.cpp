@@ -46,7 +46,7 @@ string speedup(double baseline_duration, double duration, int repetitions){
 
 //Main for testing different parallel methods
 int main( int argc, char* argv[] ){
-    int repetitions = 1000;                                             // Variable to define number of simulation runs                                                     // Iterator to stop simulation repetitions
+    int repetitions = 1;                                             // Variable to define number of simulation runs                                                     // Iterator to stop simulation repetitions
     int stopper = 0;
     srand(time(0));                                                     // Set random generator seed to time
     int n = atoi(argv[0]);                                              // Get user input for number of random numbers
