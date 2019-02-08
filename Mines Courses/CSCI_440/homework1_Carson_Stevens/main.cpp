@@ -19,23 +19,23 @@
 
 using namespace std;
 
-// Recursive addition function for recursion for Cilk Plus
-int add(int randoms[], int size, int sum){
-    if(size == 0){
-        return sum;
-    }
-    else{
-        return sum += add(randoms[size-1], size-1, sum);
-    }
-}
-
-// Recursive loop to find the max value
-int find_max(int randoms[], int size, int max_number){
-    // if n = 0 means whole array has been traversed
-    if (size == 1)
-        return max_number;
-    return max_number = max(randoms[size-1], find_max(randoms, size-1, max_number));
-}
+//// Recursive addition function for recursion for Cilk Plus
+//int sum_array(int randoms[], int size, int sum){
+//    if(size == 0){
+//        return sum;
+//    }
+//    else{
+//        return sum += add_array(randoms[size-1], size-1, sum);
+//    }
+//}
+//
+//// Recursive loop to find the max value
+//int find_max(int randoms[], int size, int max_number){
+//    // if n = 0 means whole array has been traversed
+//    if (size == 1)
+//        return max_number;
+//    return max_number = max(randoms[size-1], find_max(randoms, size-1, max_number));
+//}
 
 string speedup(double baseline_duration, double duration, int repetitions){
     double speedup = baseline_duration/duration;
@@ -91,30 +91,30 @@ int main( int argc, char* argv[] ){
     }
 
 
-    //METHOD: RECURSION
-    start = chrono::high_resolution_clock::now();
-    //Parallel, separate functions.
-    while(stopper <= repetitions){
-        //Get sum recursion
-        sum = cilk_spawn add(random_numbers, size, sum);
-        //Get max recursion
-        max_number = find_max(random_numbers, size, max_number);
-        cilk_sync;
-        sum = 0;
-        stopper++;
-    }
-    stop = chrono::high_resolution_clock::now();
-    auto duration = stop - start;
-    cout << "Recursion stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
-         speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
-         (duration).count(), repetitions) << endl;
-    //Reset values for next test.
-    sum = 0;
-    max_number = 0;
-    stopper = 0;
-    cilk_for(int i = 0; i < n; i++){
-        random_numbers[i] = rand()%1000 + 1;
-    }
+//    //METHOD: RECURSION
+//    start = chrono::high_resolution_clock::now();
+//    //Parallel, separate functions.
+//    while(stopper <= repetitions){
+//        //Get sum recursion
+//        sum = cilk_spawn add(random_numbers, size, sum);
+//        //Get max recursion
+//        max_number = find_max(random_numbers, size, max_number);
+//        cilk_sync;
+//        sum = 0;
+//        stopper++;
+//    }
+//    stop = chrono::high_resolution_clock::now();
+//    auto duration = stop - start;
+//    cout << "Recursion stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
+//         speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
+//         (duration).count(), repetitions) << endl;
+//    //Reset values for next test.
+//    sum = 0;
+//    max_number = 0;
+//    stopper = 0;
+//    cilk_for(int i = 0; i < n; i++){
+//        random_numbers[i] = rand()%1000 + 1;
+//    }
 
 
 
