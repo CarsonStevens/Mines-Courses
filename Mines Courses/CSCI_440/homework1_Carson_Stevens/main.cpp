@@ -46,10 +46,16 @@ string speedup(double baseline_duration, double duration, int repetitions){
 
 //Main for testing different parallel methods
 int main( int argc, char* argv[] ){
-    int repetitions = 1000;                                             // Variable to define number of simulation runs                                                     // Iterator to stop simulation repetitions
+    if(strol(argv[2], nullptr, 0) != nullptr){
+        int repetitions = strol(argv[2], nullptr, 0);
+    }
+    else{
+        int repetitions = 100000;
+    }
+    //int repetitions = 1000;                                             // Variable to define number of simulation runs                                                     // Iterator to stop simulation repetitions
     int stopper = 0;
     srand(time(0));                                                     // Set random generator seed to time
-    int n = strtol(argv[1], nullptr, 0);                                              // Get user input for number of random numbers
+    int n = strtol(argv[1], nullptr, 0);                                // Get user input for number of random numbers
                                                                         //  to generate
     int sum = 0;                                                        // To hold to sum of the array
     int baseline_sum = 0;                                               // To test sum accuracy
@@ -60,12 +66,10 @@ int main( int argc, char* argv[] ){
     //sizeof(random_numbers[])/sizeof(random_numbers[0]);               // Get the size of each array element
 
 
-    cout << n << endl;
     //BASELINE
     //Generating random numbers and storing in array. 'cilk_for' used to generate multiple threads.
     cilk_for(int i = 0; i < n; i++){
         random_numbers[i] = rand()%1000 + 1;
-        cout << random_numbers[i] << endl;
     }
     auto start = chrono::high_resolution_clock::now();
     while (stopper <= repetitions){
