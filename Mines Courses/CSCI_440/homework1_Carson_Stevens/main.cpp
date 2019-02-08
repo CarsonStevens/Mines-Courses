@@ -132,7 +132,7 @@ int main( int argc, char* argv[] ){
         }
     }
     stop = chrono::high_resolution_clock::now();
-    duration = stop - start;
+    auto duration = stop - start;
     cout << "ilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
          speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
          (duration).count(), repetitions) << endl;
