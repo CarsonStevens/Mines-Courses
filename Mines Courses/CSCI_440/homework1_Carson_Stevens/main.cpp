@@ -42,6 +42,31 @@ string speedup(double baseline_duration, double duration, int repetitions){
     return to_string(speedup) + " times";
 }
 
+double granular_cilk_for(int first, int last, int grain_size){
+    int sum = 0;
+    int max_number = 0;
+    if(last - first < grain_size){
+        //METHOD: cilk_for with larger granularity
+        auto start = chrono::high_resolution_clock::now();
+        // In parallel, but might lose efficiency depending on if it puts a locks on max when it doesn't need a lock.
+        cilk_for(int i = 0; i < n; i++){
+            sum += random_numbers[i];
+            if (random_numbers[i] > max_number) {
+                max_number = random_numbers[i];
+            }
+            stopper++;
+        }
+        auto stop = chrono::high_resolution_clock::now();
+        auto duration += stop - start;
+        return duration;
+    }
+    else{
+        int mid = (last+first/2);
+        cilk_spawn granular_cilk_for(first, mid, grain_size);
+        granular_cilk_for(mid, last, grain_size);
+    }
+}
+
 
 
 //Main for testing different parallel methods
@@ -133,7 +158,7 @@ int main( int argc, char* argv[] ){
     }
     stop = chrono::high_resolution_clock::now();
     auto duration = stop - start;
-    cout << "ilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
+    cout << "cilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
          speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
          (duration).count(), repetitions) << endl;
     //Reset values for next test.
@@ -144,6 +169,21 @@ int main( int argc, char* argv[] ){
         random_numbers[i] = rand()%1000 + 1;
     }
 
+
+    int grain_size = 5;
+    while(stopper <= repetitions){
+        duration += granular_cilk_for(0, n, )
+    }
+    cout << "cilk_for with granularity(" << grain_size << ") stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
+         speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
+                 (duration).count(), repetitions) << endl;
+    //Reset values for next test.
+    sum = 0;
+    max_number = 0;
+    stopper = 0;
+    cilk_for(int i = 0; i < n; i++){
+        random_numbers[i] = rand()%1000 + 1;
+    }
 
 
 
