@@ -49,7 +49,7 @@ int main( int argc, char* argv[] ){
     int repetitions = 1;                                             // Variable to define number of simulation runs                                                     // Iterator to stop simulation repetitions
     int stopper = 0;
     srand(time(0));                                                     // Set random generator seed to time
-    int n = strtol(argv[0]);                                              // Get user input for number of random numbers
+    int n = strtol(argv[0], nullptr, 0);                                              // Get user input for number of random numbers
                                                                         //  to generate
     int sum = 0;                                                        // To hold to sum of the array
     int baseline_sum = 0;                                               // To test sum accuracy
