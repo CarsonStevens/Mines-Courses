@@ -25,26 +25,26 @@ string speedup(double baseline_duration, double duration){
 }
 
 
-void granular_cilk_for(int random_numbers[], int first, int last, int grain_size, int sum, int max_number){
-    if(last - first < grain_size){
-        //METHOD: cilk_for with larger granularity
-
-        // In parallel, but might lose efficiency depending on if it puts a locks on max when it doesn't need a lock.
-        cilk_for(int i = first; i < last; i++){
-            sum += random_numbers[i];
-            if (random_numbers[i] > max_number) {
-                max_number = random_numbers[i];
-            }
-        }
-        cout << "cilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number;
-        return;
-    }
-    else{
-        int mid = (last+first/2);
-        cilk_spawn granular_cilk_for(random_numbers, first, mid, grain_size, sum, max_number);
-        granular_cilk_for(random_numbers, mid, last, grain_size, sum, max_number);
-    }
-}
+//void granular_cilk_for(int random_numbers[], int first, int last, int grain_size, int sum, int max_number){
+//    if(last - first < grain_size){
+//        //METHOD: cilk_for with larger granularity
+//
+//        // In parallel, but might lose efficiency depending on if it puts a locks on max when it doesn't need a lock.
+//        cilk_for(int i = first; i < last; i++){
+//            sum += random_numbers[i];
+//            if (random_numbers[i] > max_number) {
+//                max_number = random_numbers[i];
+//            }
+//        }
+//        return "cilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number;
+//
+//    }
+//    else{
+//        int mid = (last+first/2);
+//        cilk_spawn granular_cilk_for(random_numbers, first, mid, grain_size, sum, max_number);
+//        granular_cilk_for(random_numbers, mid, last, grain_size, sum, max_number);
+//    }
+//}
 
 
 //Main for testing different parallel methods
@@ -110,14 +110,14 @@ int main( int argc, char* argv[] ){
     }
 
 
-    //METHOD: Granulated cilk_for
-    int grain_size = 5;
-    start = chrono::high_resolution_clock::now();
-    granular_cilk_for(random_numbers, 0, n, grain_size, 0, 0);
-    stop = chrono::high_resolution_clock::now();
-    duration += stop - start;
-    cout << "\n\tSpeedup: " << speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
-            (duration).count()) << endl;
+//    //METHOD: Granulated cilk_for
+//    int grain_size = 5;
+//    start = chrono::high_resolution_clock::now();
+//    granular_cilk_for(random_numbers, 0, n, grain_size, 0, 0);
+//    stop = chrono::high_resolution_clock::now();
+//    duration += stop - start;
+//    cout << "\n\tSpeedup: " << speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
+//            (duration).count()) << endl;
 
 
     //METHOD: Built-in functions
