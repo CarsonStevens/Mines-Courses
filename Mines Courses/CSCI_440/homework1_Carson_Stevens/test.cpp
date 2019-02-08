@@ -42,9 +42,7 @@ string speedup(double baseline_duration, double duration, int repetitions){
     return to_string(speedup) + " times";
 }
 
-double granular_cilk_for(int first, int last, int grain_size){
-    int sum = 0;
-    int max_number = 0;
+double granular_cilk_for(int first, int last, int grain_size, int sum, int max_number, double baseline_duration){
     if(last - first < grain_size){
         //METHOD: cilk_for with larger granularity
         auto start = chrono::high_resolution_clock::now();
@@ -58,6 +56,9 @@ double granular_cilk_for(int first, int last, int grain_size){
         }
         auto stop = chrono::high_resolution_clock::now();
         auto duration += stop - start;
+        cout << "cilk_for stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
+             speedup(chrono::duration <double, milli> (baseline_duration).count(), chrono::duration <double, milli>
+             (duration).count(), repetitions) << endl;
         return duration;
     }
     else{
@@ -170,7 +171,7 @@ int main( int argc, char* argv[] ){
 
     int grain_size = 5;
     while(stopper <= repetitions){
-        duration += granular_cilk_for(0, n, grain_size);
+        duration += granular_cilk_for(0, n, grain_size, 0, 0, baseline_duration);
         stopper++;
     }
     cout << "cilk_for with granularity(" << grain_size << ") stats:\n\tSum: " << sum << "\n\tMax: " << max_number << "\n\tSpeedup: " <<
