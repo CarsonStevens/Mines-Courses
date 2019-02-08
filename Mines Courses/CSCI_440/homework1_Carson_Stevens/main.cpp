@@ -34,7 +34,7 @@ int find_max(int randoms[], int size, int max_number){
     // if n = 0 means whole array has been traversed
     if (size == 1)
         return max_number;
-    return max_number = find_max(randoms, find_max(randoms, size-1, max_number));
+    return max_number = max(randoms, find_max(randoms, size-1, max_number));
 }
 
 string speedup(double baseline_duration, double duration, int repetitions){
