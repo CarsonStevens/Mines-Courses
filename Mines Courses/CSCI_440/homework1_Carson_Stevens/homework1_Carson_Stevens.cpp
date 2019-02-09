@@ -49,7 +49,7 @@ int main( int argc, char* argv[] ){
 
     // (5)
     //Print output results
-    cout << "Maximum: " << max_number << " Sum: " << sum << endl;
+    cout << "Maximum: " << max_number << "; Sum: " << sum << endl;
 
     return 0;
 }
