@@ -1,0 +1,12 @@
+>>> from slyther.builtins import *
+
+``code`` is a ``String`` containing a single thing once parsed, such as an
+s-expression, or a symbol. Simply just lex it, parse it and return it!
+Woo-hoo!
+
+>>> from slyther.types import *
+>>> parse_string(String("(print x)"))
+(list print x)
+
+Note that the ``BuiltinFunction`` decorator takes care of downgrading an
+``SExpression`` to a ``ConsList`` for you.

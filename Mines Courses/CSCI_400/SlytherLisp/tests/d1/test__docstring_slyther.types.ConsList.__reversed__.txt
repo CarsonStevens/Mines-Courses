@@ -1,0 +1,19 @@
+>>> from slyther.types import *
+
+Iterate over the elements of our list, reversed.
+
+>>> lst = [1, 1, 2, 3, 5, 8]
+>>> clst = ConsList.from_iterable(lst)
+>>> for x in reversed(clst):
+...     print(x)
+8
+5
+3
+2
+1
+1
+
+Note: Your implementation is subject to the following constraints:
+
+:Time complexity: O(n), where n is the length of the list.
+:Space complexity: O(n)

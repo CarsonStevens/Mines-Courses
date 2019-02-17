@@ -1,0 +1,23 @@
+>>> from slyther.types import *
+
+Return ``True`` if the list contains an element ``p``, ``False``
+otherwise. A list is said to contain an element ``p`` iff there is any
+element ``a`` in the list such that ``a == p``.
+
+>>> lst = [1, 1, 2, 3, 5, 8]
+>>> clst = ConsList.from_iterable(lst)
+>>> 1 in clst
+True
+>>> 3 in clst
+True
+>>> 8 in clst
+True
+>>> NIL in clst
+False
+>>> 9 in clst
+False
+
+Note: Your implementation is subject to the following constraints:
+
+:Time complexity: O(n), where n is the length of the list.
+:Space complexity: O(1)

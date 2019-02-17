@@ -1,0 +1,15 @@
+>>> from slyther.types import *
+
+>>> from slyther.parser import lisp
+>>> f = UserFunction(
+...     params=lisp('(a b c)'),
+...     body=lisp('((print a b) (print c))'),
+...     environ={})
+>>> f
+(lambda (a b c) (print a b) (print c))
+>>> f.params
+(a b c)
+>>> f.body
+((print a b) (print c))
+>>> f.environ
+{}

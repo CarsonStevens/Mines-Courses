@@ -1,0 +1,14 @@
+>>> from slyther.types import *
+
+A ``ConsList`` inherits from a ``ConsCell``, but the ``cdr`` must
+be a ``ConsList`` or any structure which inherits from that.
+
+>>> cell = ConsList(1, ConsList(2, NIL))
+>>> cell.car
+1
+>>> cell.cdr.car
+2
+>>> cell = ConsList(1, 2)
+Traceback (most recent call last):
+    ...
+TypeError: cdr must be a ConsList

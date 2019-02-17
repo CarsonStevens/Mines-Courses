@@ -1,0 +1,8 @@
+>>> from slyther.types import *
+
+Storage for lexically scoped variables. Has two parts:
+
+* An ``environ`` part: a dictionary of the containing
+  environment (closure).
+* A ``local`` part: a dictionary of the local variables
+  in the function.

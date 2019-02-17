@@ -1,0 +1,26 @@
+>>> from slyther.builtins import *
+
+An ``if`` expression looks like this::
+
+    (if <predicate> <consequent> <alternative>)
+
+If the predicate evaluates to something truthy, return the
+consequent, otherwise return the alternative. An example::
+
+    (if (< x 10)
+      (print "x is less than 10")
+      (print "x is greater than or equal to 10"))
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> se = lisp('((< x 10)'
+...           ' (print "x is less than 10")'
+...           ' (print "x is greater than or equal to 10"))')
+>>> stg = LexicalVarStorage({})
+>>> stg.put('<', lt)
+>>> stg.put('x', 9)
+>>> if_expr(se, stg)
+(print "x is less than 10")
+>>> stg['x'].set(10)
+>>> if_expr(se, stg)
+(print "x is greater than or equal to 10")

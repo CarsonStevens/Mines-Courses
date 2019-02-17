@@ -1,0 +1,11 @@
+>>> from slyther.builtins import *
+
+``(/ a b c)`` computes ``a / b / c``, but ``(/ a)`` computes
+``1 / a``.
+
+>>> div(1, 2)
+0.5
+>>> div(1, 2, 2)
+0.25
+>>> div(2)
+0.5

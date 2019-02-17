@@ -1,0 +1,14 @@
+>>> from slyther.types import *
+
+Factory for cons cell like things. Tries to make a ``ConsList`` or
+``SExpression`` if it can (if ``cdr`` is...), otherwise makes a
+plain old ``ConsCell``.
+
+>>> cons(5, ConsList(4, NIL))
+(list 5 4)
+>>> cons(5, NIL)
+(list 5)
+>>> cons(5, 4)
+(cons 5 4)
+>>> cons(5, SExpression(4, NIL))
+(5 4)

@@ -1,0 +1,7 @@
+>>> from slyther.types import *
+
+ConsList which we use to store s-expressions. Has an alternate
+representation.
+
+>>> SExpression(4)
+(4)

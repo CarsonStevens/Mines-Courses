@@ -1,0 +1,64 @@
+>>> from slyther.parser import *
+
+This function is a helper method for ``lex``. It takes a string literal,
+raw, just like it is in the source code, and converts it to a
+``slyther.types.String``.
+
+It should support the following translations:
+
++-----------------+--------------------+
+| Escape Sequence | Resulting Output   |
++=================+====================+
+| ``\0``          | ASCII Value 0      |
++-----------------+--------------------+
+| ``\a``          | ASCII Value 7      |
++-----------------+--------------------+
+| ``\b``          | ASCII Value 8      |
++-----------------+--------------------+
+| ``\e``          | ASCII Value 27     |
++-----------------+--------------------+
+| ``\f``          | ASCII Value 12     |
++-----------------+--------------------+
+| ``\n``          | ASCII Value 10     |
++-----------------+--------------------+
+| ``\r``          | ASCII Value 13     |
++-----------------+--------------------+
+| ``\t``          | ASCII Value 9      |
++-----------------+--------------------+
+| ``\v``          | ASCII Value 11     |
++-----------------+--------------------+
+| ``\"``          | ASCII Value 34     |
++-----------------+--------------------+
+| ``\\``          | ASCII Value 92     |
++-----------------+--------------------+
+| ``\x##``        | Hex value ``##``   |
++-----------------+--------------------+
+| ``\0##``        | Octal value ``##`` |
++-----------------+--------------------+
+
+>>> parse_strlit(r'"\0"')
+"\x00"
+>>> parse_strlit(r'"\e"')
+"\x1b"
+>>> parse_strlit(r'"\x41"')
+"A"
+>>> parse_strlit(r'"\x53\x6c\x79\x74\x68\x65\x72\x4C\x69\x73\x70"')
+"SlytherLisp"
+>>> parse_strlit(r'"this is my\" fancy\n\estring literal"')
+"this is my\" fancy\n\x1bstring literal"
+
+Patterns which do not match the translations should be left alone:
+
+>>> parse_strlit(r'"\c\d\xzz"')
+"\\c\\d\\xzz"
+
+Octal values should only expand when octal digits (0-7) are used:
+
+>>> parse_strlit(r'"\077"')
+"?"
+>>> parse_strlit(r'"\088"') # a \0, followed by two 8's
+"\x0088"
+
+Even though this is similar to Python's string literal format,
+you should not use any of Python's string literal processing
+utilities for this: tl;dr do it yourself.

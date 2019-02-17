@@ -1,0 +1,19 @@
+>>> from slyther.builtins import *
+
+Define an anonymous function and return the ``UserFunction``
+object.
+
+>>> from slyther.types import *
+>>> stg = LexicalVarStorage({})
+>>> stg.put('x', 20)
+>>> f = lambda_func(
+...     SExpression.from_iterable([
+...         SExpression.from_iterable(map(Symbol, ['a', 'b', '.', 'c'])),
+...         SExpression.from_iterable(map(Symbol, ['print', 'a'])),
+...         SExpression.from_iterable(map(Symbol, ['print', 'b'])),
+...         SExpression.from_iterable(map(Symbol, ['print', 'c']))]),
+...     stg)
+>>> f
+(lambda (a b . c) (print a) (print b) (print c))
+>>> f.environ['x'].value
+20

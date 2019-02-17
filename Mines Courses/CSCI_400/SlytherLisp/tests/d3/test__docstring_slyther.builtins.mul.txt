@@ -1,0 +1,12 @@
+>>> from slyther.builtins import *
+
+Compute the product.
+
+>>> mul(2, 3)
+6
+>>> mul(2, 3, 3)
+18
+>>> mul(2)
+2
+>>> mul()
+1

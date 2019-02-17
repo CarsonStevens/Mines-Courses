@@ -1,0 +1,38 @@
+>>> from slyther.builtins import *
+
+Compute an ``and`` expression, like this::
+
+    (and (< x 10) (> y 15) (foo? z))
+
+Evaluate left to right, and return the first result which produces
+a falsy value. Note that the result need not be a boolean, but you
+should test its falsiness, and return the result (even if it's not
+a boolean).
+
+Note that you could return the last expression unevaluated if all
+the previous are truthy, as your ``lisp_eval`` should eval it for
+you. This could be useful for tail call optimization.
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> from slyther.evaluator import lisp_eval
+>>> stg = LexicalVarStorage(
+...         {'and': Variable(and_),
+...          '#f': Variable(Boolean(False)),
+...          '#t': Variable(Boolean(True)),
+...          'print': Variable(print_),
+...          '+': Variable(add),
+...          'x': Variable(0),
+...          'y': Variable(1),
+...          'z': Variable(2)})
+>>> lisp_eval(lisp('(and #t (print (+ x y z)) #f)'), stg)
+3
+NIL
+>>> lisp_eval(lisp('(and #f (print (+ x y z)) #f)'), stg)
+#f
+>>> lisp_eval(lisp('(and #t x (print (+ x y z)) y foo)'), stg)
+0
+>>> lisp_eval(lisp('(and (+ x y) y z)'), stg)
+2
+>>> lisp_eval(lisp('(and)'), stg)
+NIL

@@ -1,0 +1,11 @@
+>>> from slyther.types import *
+
+Call the function with arguments ``args``.
+
+Make use of ``lisp_eval``. Note that a fully working ``lisp_eval``
+implementation will require this function to work properly, and this
+will require a working ``lisp_eval`` to work properly, so you must
+write both before you can test it.
+
+Warning: Do not make any attempt to modify ``environ`` here. That is
+not how lexical scoping works.

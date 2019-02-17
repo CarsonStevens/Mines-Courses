@@ -1,0 +1,12 @@
+>>> from slyther.builtins import *
+
+Sum each of the arguments
+
+>>> add(1, 2, 3, 4)
+10
+>>> add()
+0
+
+.. hint::
+
+    Use ``sum`` or ``reduce``.

@@ -1,0 +1,29 @@
+>>> from slyther.builtins import *
+
+Similar to ``and`` above, but compute an ``or`` instead. Return
+the first truthy value rather than falsy.
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> from slyther.evaluator import lisp_eval
+>>> stg = LexicalVarStorage(
+...         {'or': Variable(or_),
+...          '#f': Variable(Boolean(False)),
+...          '#t': Variable(Boolean(True)),
+...          'print': Variable(print_),
+...          '+': Variable(add),
+...          'x': Variable(0),
+...          'y': Variable(1),
+...          'z': Variable(2)})
+>>> lisp_eval(lisp('(or #t (print (+ x y z)) #f)'), stg)
+#t
+>>> lisp_eval(lisp('(or #f (print (+ x y z)) #f)'), stg)
+3
+#f
+>>> lisp_eval(lisp('(or #f x (print (+ x y z)) y foo)'), stg)
+3
+1
+>>> lisp_eval(lisp('(or (+ y -1) x z)'), stg)
+2
+>>> lisp_eval(lisp('(or)'), stg)
+NIL

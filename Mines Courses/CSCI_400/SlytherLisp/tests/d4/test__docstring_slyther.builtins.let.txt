@@ -1,0 +1,36 @@
+>>> from slyther.builtins import *
+
+The ``let`` macro binds variables to a local scope: the expressions
+inside the macro. Like a function, a ``let`` returns the last
+expression in its body. Once the ``let`` returns, the variables are
+unbound, and cannot be accessed anymore. For example::
+
+    (let ((a (+ f g))
+          (b 11)
+          (c 12))
+      (+ a (- b c)))
+
+In the example above, ``a`` was bound to whatever ``(+ f g)``
+evaluates to, b to ``11``, and ``c`` to ``12``.
+
+Notice how the above was equivalent to another expression::
+
+    ((lambda (a b c)
+       (+ a (- b c))) (+ f g) 11 12)
+
+You should do a syntax translation from the input to something like that.
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> from slyther.evaluator import lisp_eval
+>>> stg = LexicalVarStorage(
+...         {'let': Variable(let),
+...          'lambda': Variable(lambda_func),
+...          'print': Variable(print_),
+...          'x': Variable(10)})
+>>> lisp_eval(lisp('(let ((x 20) (y 30)) (print x) (print y))'), stg)
+20
+30
+NIL
+>>> lisp_eval(Symbol('x'), stg)
+10

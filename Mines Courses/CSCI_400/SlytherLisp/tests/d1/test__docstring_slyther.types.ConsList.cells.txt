@@ -1,0 +1,18 @@
+>>> from slyther.types import *
+
+Iterate over eaCh cell (rather that the ``car`` of each):
+
+>>> lst = [1, 1, 2, 3, 5, 8]
+>>> for cell in ConsList.from_iterable(lst).cells():
+...     print(cell.car)
+1
+1
+2
+3
+5
+8
+
+Note: Your implementation is subject to the following constraints:
+
+:Time complexity: O(1) for each yield
+:Space complexity: O(1)

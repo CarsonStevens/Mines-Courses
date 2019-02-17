@@ -1,0 +1,3 @@
+>>> from slyther.builtins import *
+
+Get the ``cdr`` of a cons cell.

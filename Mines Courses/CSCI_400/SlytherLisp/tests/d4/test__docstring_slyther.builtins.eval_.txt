@@ -1,0 +1,37 @@
+>>> from slyther.builtins import *
+
+::
+
+    (eval <expr>)
+
+Evaluate ``expr``, if it produces a ``ConsList``, then upgrade that
+``ConsList`` to an ``SExpression`` (recursively) and return it. Your
+``lisp_eval`` will take care of actually evaluating the expression,
+as this is a macro.
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> from slyther.evaluator import lisp_eval
+>>> stg = LexicalVarStorage(
+...         {'eval': Variable(eval_),
+...          '#t': Variable(Boolean(True)),
+...          'print': Variable(print_),
+...          'x': Variable(0),
+...          'y': Variable(1),
+...          'z': Variable(lisp("(print x)"))})
+>>> lisp_eval(lisp("(eval '(print x))"), stg)
+0
+NIL
+>>> lisp_eval(lisp("(eval ''(print x))"), stg)
+(list print x)
+>>> lisp_eval(lisp('(eval #t)'), stg)
+#t
+>>> lisp_eval(lisp("(eval '''#t)"), stg)
+'#t
+>>> lisp_eval(lisp("(eval 'y)"), stg)
+1
+>>> lisp_eval(lisp("(eval ''y)"), stg)
+y
+>>> lisp_eval(lisp("(eval z)"), stg)
+0
+NIL
