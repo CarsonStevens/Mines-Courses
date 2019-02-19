@@ -16,9 +16,13 @@ class ConsCell:
     >>> cell.car
     4
     """
+# DONE
     def __init__(self, car, cdr):
+        self.car = car
+        self.cdr = cdr
         raise NotImplementedError("Deliverable 1")
 
+# DONE
     def __eq__(self, other):
         """
         Two cons cells are equal if each of their ``car`` and
@@ -42,8 +46,13 @@ class ConsCell:
         Should return ``False`` if ``other`` is not an instance of a
         ``ConsCell``.
         """
-        raise NotImplementedError("Deliverable 1")
+        if(self.car == other.car and self.cdr == other.cdr):
+            return True
+        else:
+            return False
 
+        raise NotImplementedError("Deliverable 1")
+# DONE (NEEDS CHECK)
     def __repr__(self):
         """
         A cons cell should ``repr`` itself in a format that would
@@ -59,10 +68,17 @@ class ConsCell:
             The string formatting specifier ``!r`` will get you the
             ``repr`` of an object.
         """
+        result = "(cons "
+        if(isinstance(self.car, ConsCell)) result += __repr__(self.car);
+        elif(isinstance(self.cdr, ConsCell)) result += __repr__(self.cdr);
+        else:
+            result += self.car + " " + self.cdr + ")"
+
+        return result
         raise NotImplementedError("Deliverable 1")
 
 
-class ConsList(ConsCell, abc.Sequence):
+class ConsList(ConsCell, abc.Sequence):3
     """
     A ``ConsList`` inherits from a ``ConsCell``, but the ``cdr`` must
     be a ``ConsList`` or any structure which inherits from that.
@@ -77,6 +93,8 @@ class ConsList(ConsCell, abc.Sequence):
         ...
     TypeError: cdr must be a ConsList
     """
+
+# DONE
     def __init__(self, car, cdr=None):
         """
         If the ``cdr`` was not provided, assume to be ``NIL``.
@@ -85,8 +103,13 @@ class ConsList(ConsCell, abc.Sequence):
         >>> cell.cdr
         NIL
         """
+        self.car = car
+        if(cdr == None) self.cdr = 'NIL'
+        else self.cdr = cdr
+
         raise NotImplementedError("Deliverable 1")
 
+# DONE (NEEDS CHECK)
     @classmethod
     def from_iterable(cls, it):
         """
@@ -105,8 +128,29 @@ class ConsList(ConsCell, abc.Sequence):
         :Space complexity: O(n) ``ConsList`` objects,
                            O(1) everything else (including stack frames!)
         """
+
+        # To handle empty lists
+        if(bool(next(it,False))):
+            return NIL
+
+        #Need to return list of ConCells
+        for i, value in enumerate(it):
+            cell_list = ConsList(value)
+            try:
+                cell_list.cdr = cls[i-1]
+            except:
+                cell_list.cdr = NIL
+
+            cls.append(cell_list)
+
+
+        #might need to reverse list or add elements backward from size of iter
+        return cls
+
+
         raise NotImplementedError("Deliverable 1")
 
+# DONE
     def __getitem__(self, idx):
         """
         Get item at index ``idx``:
@@ -116,8 +160,10 @@ class ConsList(ConsCell, abc.Sequence):
         >>> [lst[i] == clst[i] for i in range(len(lst))]
         [True, True, True, True, True, True]
         """
+        return self.cls[idx]
         raise NotImplementedError("Deliverable 1")
 
+# TODO
     def __iter__(self):
         """
         Iterate over the ``car`` of each cell:
@@ -139,6 +185,7 @@ class ConsList(ConsCell, abc.Sequence):
         """
         raise NotImplementedError("Deliverable 1")
 
+# TODO
     def cells(self):
         """
         Iterate over each cell (rather that the ``car`` of each):
@@ -158,8 +205,12 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(1) for each yield
         :Space complexity: O(1)
         """
+        for element in cls:
+            yield element
+
         raise NotImplementedError("Deliverable 1")
 
+# DONE
     def __len__(self):
         """
         Return the number of elements in the list:
@@ -173,8 +224,14 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(1)
         """
+        length = 0
+        for i in self.cls:
+            length += 1
+
+        return length
         raise NotImplementedError("Deliverable 1")
 
+# TODO (1/2)
     def __contains__(self, p):
         """
         Return ``True`` if the list contains an element ``p``, ``False``
@@ -199,8 +256,15 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(1)
         """
+        #Need to figure out how to get .cdr.cdr.car probably through recursion
+        for element in cls:
+            if element.car != p:
+                return False
+        return True
+
         raise NotImplementedError("Deliverable 1")
 
+# DONE
     def __reversed__(self):
         """
         Iterate over the elements of our list, reversed.
@@ -221,12 +285,16 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(n)
         """
+        for element in cls[::-1]:
+            yield element
+
         raise NotImplementedError("Deliverable 1")
 
     def __bool__(self):
         """ NilType overrides this to be ``False``. """
         return True
 
+# TODO (1/2)
     def __eq__(self, other):
         """
         Test if two lists have the same elements in the same order.
@@ -256,8 +324,17 @@ class ConsList(ConsCell, abc.Sequence):
         >>> SExpression.from_iterable(l2) == NIL
         False
         """
+        #Check if lengths of lists are the same
+        if(len(self.cls) != len(other.cls)): return False
+        #Might need to check if list or sexpression here
+        else:
+            for idx, element in enumerate(self.cls):
+                if(self.cls[idx].car != other.cls[idx]) return False
+
+        return True
         raise NotImplementedError("Deliverable 1")
 
+# DONE
     def __repr__(self):
         """
         Represent ourselves in a format evaluable in SlytherLisp.
@@ -265,6 +342,12 @@ class ConsList(ConsCell, abc.Sequence):
         >>> ConsList.from_iterable([1, 2, 3])
         (list 1 2 3)
         """
+        result = "(list"
+        for element in cls:
+            result += " " + str(element.car)
+        result += ")"
+
+        return result
         raise NotImplementedError("Deliverable 1")
 
 
@@ -352,7 +435,7 @@ class SExpression(ConsList):
     def __repr__(self):
         return '({})'.format(' '.join(map(repr, self)))
 
-
+# TODO
 def cons(car, cdr) -> ConsCell:
     """
     Factory for cons cell like things. Tries to make a ``ConsList`` or
@@ -368,6 +451,8 @@ def cons(car, cdr) -> ConsCell:
     >>> cons(5, SExpression(4, NIL))
     (5 4)
     """
+    if cdr == NIL:
+        return '(list ' + str(car) + ')'
     raise NotImplementedError("Deliverable 1")
 
 
