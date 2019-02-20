@@ -1,0 +1,5 @@
+flake8>=3.5
+flake8-pep3101>=1.2.1
+pep8-naming>=0.7
+pytest>=3.8
+hypothesis>=3.70

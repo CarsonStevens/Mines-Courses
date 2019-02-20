@@ -9,6 +9,11 @@ SlytherLisp
 
 :Implemented By:
    * Carson Stevens <carsonstevens@Mines.EDU>
+<<<<<<< HEAD
+=======
+   * Partner Two <partnertwo@Mines.EDU>
+   * Partner Three <partnerthree@Mines.EDU>
+>>>>>>> d094d53a4565e8016d1f2d070246cb2e35633369
 
 .. Replace with the current deliverable you are working on. For example, if you
    are submitting the first deliverable, this should be 1 (as shown).

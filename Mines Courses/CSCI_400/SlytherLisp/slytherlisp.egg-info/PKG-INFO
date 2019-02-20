@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: slytherlisp
+Version: 1.2.0-devel
+Summary: Scheme like programming language for CSCI-400 at Mines
+Home-page: https://lambda.mines.edu
+Author: Jack Rosenthal
+Author-email: jrosenth@Mines.EDU
+License: Closed source; do not share with other students in (or who will be in) this course.
+Description: UNKNOWN
+Keywords: scheme
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6, <4
