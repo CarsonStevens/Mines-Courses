@@ -1,5 +1,5 @@
 SlytherLisp
-===========
+
 
 .. This README is in reStructuredText format. If you have Docutils installed,
    you can validate the format and make an HTML copy by typing:
@@ -9,6 +9,7 @@ SlytherLisp
 
 :Implemented By:
    * Carson Stevens <carsonstevens@Mines.EDU>
+
 
 
 .. Replace with the current deliverable you are working on. For example, if you

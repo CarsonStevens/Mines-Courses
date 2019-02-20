@@ -1,0 +1,9 @@
+[submodule "Mines Courses/CSCI_477/csci-477"]
+	path = Mines Courses/CSCI_477/csci-477
+	url = https://github.com/danielpersonius/csci-477.git
+[submodule "Mines Courses/CSCI_477/--name"]
+	path = Mines Courses/CSCI_477/--name
+	url = https://github.com/danielpersonius/csci-477.git
+[submodule "Mines Courses/CSCI_477/Miner Conflict"]
+	path = Mines Courses/CSCI_477/Miner Conflict
+	url = https://github.com/danielpersonius/csci-477.git
