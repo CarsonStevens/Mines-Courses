@@ -9,8 +9,7 @@ SlytherLisp
 
 :Implemented By:
    * Carson Stevens <carsonstevens@Mines.EDU>
-   * Partner Two <partnertwo@Mines.EDU>
-   * Partner Three <partnerthree@Mines.EDU>
+
 
 .. Replace with the current deliverable you are working on. For example, if you
    are submitting the first deliverable, this should be 1 (as shown).

@@ -6,6 +6,7 @@ slyther/__main__.py
 slyther/builtins.py
 slyther/evaluator.py
 slyther/interpreter.py
+slyther/linked_list.py
 slyther/parser.py
 slyther/repl.py
 slyther/types.py
