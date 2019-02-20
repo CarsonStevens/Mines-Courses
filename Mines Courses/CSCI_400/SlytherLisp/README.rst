@@ -8,9 +8,7 @@ SlytherLisp
 .. Replace with your own names and Mines email addresses.
 
 :Implemented By:
-   * Partner One <partnerone@Mines.EDU>
-   * Partner Two <partnertwo@Mines.EDU>
-   * Partner Three <partnerthree@Mines.EDU>
+   * Carson Stevens <carsonstevens@Mines.EDU>
 
 .. Replace with the current deliverable you are working on. For example, if you
    are submitting the first deliverable, this should be 1 (as shown).
