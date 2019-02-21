@@ -16,18 +16,11 @@ class ConsCell:
     >>> cell.car
     4
     """
-# Falsifying example: test_cons_init(car=None, cdr=None)
+
     def __init__(self, car, cdr):
-        if car is not None: self.car = car
-        else: self.car = NIL
+        self.car = car
+        self.cdr = cdr
 
-        if cdr is not None: self.cdr = cdr
-        else: self.cdr = NIL
-
-        raise NotImplementedError("Deliverable 1")
-
-# Falsifying example: test_cons_eq_self(car=None, cdr=None)
-# Falsifying example: test_cons_eq_noncell(car=None, cdr=None, other=None)
     def __eq__(self, other):
         """
         Two cons cells are equal if each of their ``car`` and
@@ -51,15 +44,13 @@ class ConsCell:
         Should return ``False`` if ``other`` is not an instance of a
         ``ConsCell``.
         """
-        if (isinstance(other, ConsCell)):
-            if(self.car == other.car and self.cdr == other.cdr):
+        if isinstance(other, ConsCell):
+            if self.car == other.car and self.cdr == other.cdr:
                 return True
 
         return False
 
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_cons_repr(car=None, cdr=None)
     def __repr__(self):
         """
         A cons cell should ``repr`` itself in a format that would
@@ -76,14 +67,8 @@ class ConsCell:
             ``repr`` of an object.
         """
         result = "(cons "
-        # result += self.car
-        # if(isinstance(self.cdr, ConsCell)):
-        #     result += __repr_(self.cdr)
-        # else:
-        result += str(self.car) + " " + str(self.cdr) + ")"
-
+        result += repr(self.car) + " " + repr(self.cdr) + ")"
         return result
-        raise NotImplementedError("Deliverable 1")
 
 
 class ConsList(ConsCell, abc.Sequence):
@@ -103,10 +88,6 @@ class ConsList(ConsCell, abc.Sequence):
     """
 
 
-# Falsifying example: test_init_fail(car=None, cdr=False)
-# Falsifying example: test_init_nil(car=None)
-# Falsifying example: test_twolist_init(car=None, cadr=None)
-# Falsifying example: test_nestlist_init(car=None)
     def __init__(self, car, cdr=None):
         """
         If the ``cdr`` was not provided, assume to be ``NIL``.
@@ -116,13 +97,14 @@ class ConsList(ConsCell, abc.Sequence):
         NIL
         """
         self.car = car
-        if(cdr is None): self.cdr = NIL
-        else: self.cdr = cdr
+        if cdr is None:
+            self.cdr = NIL
+        elif not isinstance(cdr, ConsList):
+            raise TypeError("cdr must be a ConsList")
+        else:
+            self.cdr = cdr
 
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_fromiterable(lst=[])
-# Falsifying example: test_fromiterable_set(s={None})
     @classmethod
     def from_iterable(cls, it):
         """
@@ -155,25 +137,20 @@ class ConsList(ConsCell, abc.Sequence):
         # except:
         #     return NIL
 
-        if(next(it, None)):
-            cls = NIL
-            return cls
+        temp = NIL
+        item = NIL
 
-        try:
-            for i, value in enumerate(reversed(it)):
-                if i == 0:
-                    cls = ConsList(value)
-                else:
-                    cls = ConsList(value, cls)
-        except:
-            cls = NIL
+        for value in it:
+            if temp == NIL:
+                item = cls(value)
+                temp = item
+            else:
+                temp.cdr = cls(value)
+                temp = temp.cdr
 
-        return cls
+        # Return Nil if list is empty (doesn't go through for loop at all
+        return item
 
-
-        raise NotImplementedError("Deliverable 1")
-
-# Falsifying example: test_getitem(lst=[None])
     def __getitem__(self, idx):
         """
         Get item at index ``idx``:
@@ -184,18 +161,14 @@ class ConsList(ConsCell, abc.Sequence):
         [True, True, True, True, True, True]
         """
         item = self
-        for i in range(idx):
+        i = 0
+        while not isinstance(item, NilType):
             if i == idx:
                 return item.car
-            if item.cdr == NIL:
-                break;
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
+            i += 1
+        return NIL
 
-
-        raise NotImplementedError("Deliverable 1")
-
-# Falsifying example: test_iter(lst=[])
     def __iter__(self):
         """
         Iterate over the ``car`` of each cell:
@@ -216,14 +189,13 @@ class ConsList(ConsCell, abc.Sequence):
         :Space complexity: O(1)
         """
         item = self
-        while(item.cdr != NIL):
+        while item.cdr != NIL:
+            if item.car is None:
+                break
             yield item.car
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
 
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_cells(lst=[])
     def cells(self):
         """
         Iterate over each cell (rather that the ``car`` of each):
@@ -244,13 +216,10 @@ class ConsList(ConsCell, abc.Sequence):
         :Space complexity: O(1)
         """
         item = self
-        while(item.cdr != NIL):
+        while not isinstance(item, NilType):
             yield item
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_len(lst=[])
     def __len__(self):
         """
         Return the number of elements in the list:
@@ -264,17 +233,15 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(1)
         """
+
         item = self
-        length = 0
-        while(item.cdr != NIL):
+        length = 1
+        while not isinstance(item.cdr, NilType):
             length += 1
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
 
         return length
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_contains(lst=[], other=None)
     def __contains__(self, p):
         """
         Return ``True`` if the list contains an element ``p``, ``False``
@@ -300,17 +267,12 @@ class ConsList(ConsCell, abc.Sequence):
         :Space complexity: O(1)
         """
         item = self
-
-        while(item.cdr != NIL):
+        while item != NIL:
             if item.car == p:
                 return True
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
         return False
 
-        raise NotImplementedError("Deliverable 1")
-
-# CHECK
     def __reversed__(self):
         """
         Iterate over the elements of our list, reversed.
@@ -331,18 +293,19 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(n)
         """
+        item = self
+        reversed_list = []
+        while not isinstance(item, NilType):
+            reversed_list.append(item.car)
+            item = item.cdr
 
-        for element in self[::-1]:
-            yield element.car
-
-
-        raise NotImplementedError("Deliverable 1")
+        for element in reversed(reversed_list):
+            yield element
 
     def __bool__(self):
         """ NilType overrides this to be ``False``. """
         return True
 
-# TODO (1/2)
     def __eq__(self, other):
         """
         Test if two lists have the same elements in the same order.
@@ -372,18 +335,23 @@ class ConsList(ConsCell, abc.Sequence):
         >>> SExpression.from_iterable(l2) == NIL
         False
         """
-        #Check if lengths of lists are the same
-        if(len(self.cls) != len(other.cls)): return False
-        #Might need to check if list or sexpression here
-        else:
-            for idx, element in enumerate(self.cls):
-                if(self[idx].car != other[idx]):
-                    return False
+        # # Check if lengths of lists are the same
+        # if len(self) != len(other):
+        #     return False
 
+        item1 = self
+        item2 = other
+        while not isinstance(item1, NilType) and not isinstance(item2, NilType):
+            if item1.car != item2.car:
+                return False
+            item1 = item1.cdr
+            item2 = item2.cdr
+
+        if(isinstance(item1, NilType) and not isinstance(item2, NilType)) or (not isinstance(item1, NilType)
+                                                                              and isinstance(item2, NilType)):
+            return False
         return True
-        raise NotImplementedError("Deliverable 1")
 
-# Falsifying example: test_repr(lst=[None])
     def __repr__(self):
         """
         Represent ourselves in a format evaluable in SlytherLisp.
@@ -393,14 +361,10 @@ class ConsList(ConsCell, abc.Sequence):
         """
         result = "(list"
         item = self
-        while(item.cdr != NIL):
+        while not isinstance(item, NilType):
             result += " " + str(item.car)
-            #item = ConsList(item.cdr.car, item.cdr)
             item = item.cdr
-        result += ")"
-
-        return result
-        raise NotImplementedError("Deliverable 1")
+        return result + ")"
 
 
 class NilType(ConsList):
@@ -487,11 +451,7 @@ class SExpression(ConsList):
     def __repr__(self):
         return '({})'.format(' '.join(map(repr, self)))
 
-# TODO
-# Falsifying example: test_cons_onto_nil(car=None)
-# Falsifying example: test_cons_onto_conscell(car=None, cadr=None, cddr=None)
-# Falsifying example: test_cons_onto_conslist(car=None, cadr=None)
-# Falsifying example: test_cons_onto_noncons(car=None, cdr=None)
+
 def cons(car, cdr) -> ConsCell:
     """
     Factory for cons cell like things. Tries to make a ``ConsList`` or
@@ -507,10 +467,14 @@ def cons(car, cdr) -> ConsCell:
     >>> cons(5, SExpression(4, NIL))
     (5 4)
     """
-    if isinstance(ConsList, cdr) or cdr == NIL:
-        return '(list ' + str(car) + ')'
-    raise NotImplementedError("Deliverable 1")
-
+    if isinstance(car, SExpression) and (isinstance(cdr, NilType) or cdr is None):
+        return SExpression(cdr)
+    elif isinstance(cdr, SExpression) or isinstance(car, SExpression):
+        return SExpression(car, cdr)
+    elif isinstance(cdr, ConsList) or isinstance(cdr, NilType):
+        return ConsList(car, cdr)
+    else:
+        return ConsCell(car, cdr)
 
 class Variable:
     """
@@ -544,8 +508,6 @@ class LexicalVarStorage:
         self.environ = environ
         self.local = {}
 
-# TODO
-# Falsifying example: test_fork(environ={}, local={})
     def fork(self) -> Dict[str, Variable]:
         """
         Return the union of the ``local`` part and the ``environ``
@@ -561,7 +523,9 @@ class LexicalVarStorage:
         y 12
         z 13
         """
-        raise NotImplementedError("Deliverable 1")
+        combined_dict = dict(self.environ, **self.local)
+        return combined_dict
+
 
     def put(self, name: str, value) -> None:
         """
@@ -570,7 +534,7 @@ class LexicalVarStorage:
         """
         self.local[name] = Variable(value)
 
-# TODO
+
     def __getitem__(self, key: str) -> Variable:
         """
         Return a Variable object, first checking the local
@@ -597,7 +561,14 @@ class LexicalVarStorage:
             ...
         KeyError: "Undefined variable 'bar'"
         """
-        raise NotImplementedError("Deliverable 1")
+        for k,v in self.local.items():
+            if k == key:
+                return self.local[k]
+        for k,v in self.environ.items():
+            if k == key:
+                return self.environ[k]
+        error = "Undefined variable " + str(key)
+        raise KeyError("Undefined variable '{0}'".format(key))
 
 
 class Quoted:
