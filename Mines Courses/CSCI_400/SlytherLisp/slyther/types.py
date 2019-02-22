@@ -50,7 +50,6 @@ class ConsCell:
 
         return False
 
-
     def __repr__(self):
         """
         A cons cell should ``repr`` itself in a format that would
@@ -87,7 +86,6 @@ class ConsList(ConsCell, abc.Sequence):
     TypeError: cdr must be a ConsList
     """
 
-
     def __init__(self, car, cdr=None):
         """
         If the ``cdr`` was not provided, assume to be ``NIL``.
@@ -103,7 +101,6 @@ class ConsList(ConsCell, abc.Sequence):
             raise TypeError("cdr must be a ConsList")
         else:
             self.cdr = cdr
-
 
     @classmethod
     def from_iterable(cls, it):
@@ -123,19 +120,6 @@ class ConsList(ConsCell, abc.Sequence):
         :Space complexity: O(n) ``ConsList`` objects,
                            O(1) everything else (including stack frames!)
         """
-
-        # try:
-        #     #Need to return list of ConCells
-        #     for i, value in enumerate(it):
-        #         cell_list = ConsList(value)
-        #         try:
-        #             cell_list.cdr = cls[i-1]
-        #         except:
-        #             cell_list.cdr = NIL
-        #
-        #         cls.append(cell_list)
-        # except:
-        #     return NIL
 
         temp = NIL
         item = NIL
@@ -188,13 +172,11 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(1) for each yield
         :Space complexity: O(1)
         """
+
         item = self
-        while item.cdr != NIL:
-            if item.car is None:
-                break
+        while not isinstance(item, NilType):
             yield item.car
             item = item.cdr
-
 
     def cells(self):
         """
@@ -233,7 +215,8 @@ class ConsList(ConsCell, abc.Sequence):
         :Time complexity: O(n), where n is the length of the list.
         :Space complexity: O(1)
         """
-
+        if not self:
+            return 0
         item = self
         length = 1
         while not isinstance(item.cdr, NilType):
@@ -335,20 +318,19 @@ class ConsList(ConsCell, abc.Sequence):
         >>> SExpression.from_iterable(l2) == NIL
         False
         """
-        # # Check if lengths of lists are the same
-        # if len(self) != len(other):
-        #     return False
 
         item1 = self
         item2 = other
-        while not isinstance(item1, NilType) and not isinstance(item2, NilType):
+        while not isinstance(item1, NilType) and not \
+                isinstance(item2, NilType):
             if item1.car != item2.car:
                 return False
             item1 = item1.cdr
             item2 = item2.cdr
 
-        if(isinstance(item1, NilType) and not isinstance(item2, NilType)) or (not isinstance(item1, NilType)
-                                                                              and isinstance(item2, NilType)):
+        if(isinstance(item1, NilType) and not isinstance(item2, NilType)) or\
+                (not isinstance(item1, NilType) and
+                 isinstance(item2, NilType)):
             return False
         return True
 
@@ -359,10 +341,11 @@ class ConsList(ConsCell, abc.Sequence):
         >>> ConsList.from_iterable([1, 2, 3])
         (list 1 2 3)
         """
+
         result = "(list"
         item = self
         while not isinstance(item, NilType):
-            result += " " + str(item.car)
+            result += " " + repr(item.car)
             item = item.cdr
         return result + ")"
 
@@ -467,14 +450,16 @@ def cons(car, cdr) -> ConsCell:
     >>> cons(5, SExpression(4, NIL))
     (5 4)
     """
-    if isinstance(car, SExpression) and (isinstance(cdr, NilType) or cdr is None):
-        return SExpression(cdr)
+    if isinstance(cdr, SExpression) and (isinstance(cdr, NilType) or
+                                         cdr is None):
+        return SExpression(car)
     elif isinstance(cdr, SExpression) or isinstance(car, SExpression):
         return SExpression(car, cdr)
     elif isinstance(cdr, ConsList) or isinstance(cdr, NilType):
         return ConsList(car, cdr)
     else:
         return ConsCell(car, cdr)
+
 
 class Variable:
     """
@@ -526,14 +511,12 @@ class LexicalVarStorage:
         combined_dict = dict(self.environ, **self.local)
         return combined_dict
 
-
     def put(self, name: str, value) -> None:
         """
         Put a **new** variable in the local environment, giving
         it a value ``value``.
         """
         self.local[name] = Variable(value)
-
 
     def __getitem__(self, key: str) -> Variable:
         """
@@ -561,13 +544,12 @@ class LexicalVarStorage:
             ...
         KeyError: "Undefined variable 'bar'"
         """
-        for k,v in self.local.items():
+        for k, v in self.local.items():
             if k == key:
                 return self.local[k]
-        for k,v in self.environ.items():
+        for k, v in self.environ.items():
             if k == key:
                 return self.environ[k]
-        error = "Undefined variable " + str(key)
         raise KeyError("Undefined variable '{0}'".format(key))
 
 
