@@ -64,7 +64,7 @@ int main( int argc, char* argv[] ) {
             matrix[width][height] = entry;
         }
     }
-
+    cout << "done with loop" << endl;
     int size = sizeof(int);
 
     //Allocate CUDA space
