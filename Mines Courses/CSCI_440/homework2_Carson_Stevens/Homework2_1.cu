@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 
 __global__ void find_ones(int *matrix, int *result, int width, int height);
 

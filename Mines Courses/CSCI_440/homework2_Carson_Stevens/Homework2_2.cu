@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 
 __global__ void transpose_matrix(int *transpose, int *matrix, width, height){
 
