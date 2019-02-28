@@ -59,7 +59,7 @@ int main( int argc, char* argv[] ) {
     for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
             data >> entry;
-            matrix[width][height] = entry;
+            dev_matrix[width][height] = entry;
         }
     }
 
@@ -69,16 +69,16 @@ int main( int argc, char* argv[] ) {
     cudaMalloc((void **) &matrix, width * height * size);
     cudaMalloc((void **) &transpose, width * height * size);
 
-    cudaMemcpy(dev_matrix, matrix, width * height * size, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_transpose, transpose, width * height * size, cudaMemcpyHostToDevice);
+    cudaMemcpy(matrix, dev_matrix, width * height * size, cudaMemcpyHostToDevice);
+    //cudaMemcpy(transpose, dev_transpose, width * height * size, cudaMemcpyHostToDevice);
 
     dim3 dimThreadsPerBlock(width, height, 1);
     dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y), 1);
 
     transpose_matrix<<<numBlock, dimThreadsPerBlock>>>(transpose, matrix, width, height);
     cudaMemcpy(dev_transpose, transpose, size, cudaMemcpyDeviceToHost);
-    cudaFree(dev_matrix);
-    cudaFree(dev_transpose);
+    cudaFree(matrix);
+    cudaFree(transpose);
 
     //Print results to output
     cout << width << " " << height << endl;
