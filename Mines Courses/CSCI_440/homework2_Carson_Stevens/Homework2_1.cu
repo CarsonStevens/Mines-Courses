@@ -20,6 +20,7 @@ __global__ void find_ones(int *matrix, int *answer, int width){
     int col = threadIdx.x + blockIdx.x * blockDim.x;
     int row = threadIdx.y + blockIdx.y * blockDim.y;
 
+    cout << "iteration" << endl;
     if(matrix[row*width + col] == 1){
         atomicAdd(answer, 1);
     }
@@ -60,7 +61,7 @@ int main( int argc, char* argv[] ) {
     for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
             data >> entry;
-            cout << entry << endl;
+            //cout << entry << endl;
             matrix[width][height] = entry;
         }
     }
