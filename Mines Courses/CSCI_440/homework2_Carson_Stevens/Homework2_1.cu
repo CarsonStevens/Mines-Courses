@@ -15,10 +15,10 @@
 
 using namespace std;
 
-__global__ void find_ones(int *matrix, int *answer, int width, int height){
+__global__ void find_ones(int *matrix, int *answer, int width){
 
-    int col = threadIdx.x + blockDim.x * blockIdx.x;
-    int row = threadIdx.y + blockDim.y * blockIdx.y;
+    int col = threadIdx.x + blockIdx.x * blockDim.x;
+    int row = threadIdx.y + blockIdx.y * blockDim.y;
 
     if(matrix[row*width + col] == 1){
         atomicAdd(answer, 1);
@@ -64,7 +64,7 @@ int main( int argc, char* argv[] ) {
             matrix[width][height] = entry;
         }
     }
-    cout << "done with loop" << endl;
+    //cout << "done with loop" << endl;
     int size = sizeof(int);
 
     //Allocate CUDA space
@@ -79,7 +79,7 @@ int main( int argc, char* argv[] ) {
     dim3 dimThreadsPerBlock(width, height, 1);
     dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y), 1);
 
-    find_ones <<<numBlock, dimThreadsPerBlock>>> (gpu_matrix, answer, width, height);
+    find_ones <<<numBlock, dimThreadsPerBlock>>> (gpu_matrix, answer, width);
 
     //return to memory
     cudaMemcpy(&result, answer, 1*size, cudaMemcpyDeviceToHost);
