@@ -42,22 +42,21 @@ int main( int argc, char* argv[] ) {
         }
     }
 
-    int size = width * height * sizeof(int);
+    int size = sizeof(int);
 
     //Allocate CUDA space
-    cudaMalloc((void **) &gpu_matrix, size);
-    cudaMalloc((void **) &answer, size);
-    cudaMalloc((void **) width, size);
-    cudaMalloc((void **) height, size);
+    cudaMalloc((void **) &gpu_matrix, width*height*size);
+    cudaMalloc((void **) &answer, 1*size);
+
 
     //Move to GPU
-    cudaMemcpy(gpu_matrix, matrix, size, cudaMemcpyHostToDevice);
-    cudaMemcpy(answer, result, size, cudaMemcpyHostToDevice);
+    cudaMemcpy(gpu_matrix, matrix, width*height*size, cudaMemcpyHostToDevice);
+    cudaMemcpy(answer, &result, size, cudaMemcpyHostToDevice);
 
-    dim3 dimGrid(1, 1);
-    dim3 dimBlock(width, height);
+    dim3 dimThreadsPerBlock(width, height, 1);
+    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/threadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/threadsPerBlock.y), 1);
 
-    find_ones << < dimGrid, dimBlock >>> (gpu_matrix, answer, width, height);
+    find_ones << < numBlock, dimThreadPerBlock>>> (gpu_matrix, answer, width, height);
 
     //return to memory
     cudaMemcpy(result, cudaMemcpyDeviceToHost);
@@ -70,7 +69,6 @@ int main( int argc, char* argv[] ) {
 }
 
 __global__ void find_ones(int *matrix, int *result, int width, int height){
-    result = 0;
 
     int col = threadIdx.x + blockDim.x * blockIdx.x;
     int row = threadIdx.y + blockDim.y * blockIdx.y;
@@ -78,7 +76,7 @@ __global__ void find_ones(int *matrix, int *result, int width, int height){
     for(int k = 0; k < width; k++){
         for(int l = 0; l < height; l++){
             if(matrix[k][l] == 1){
-                result++;
+                atomicAdd(result,1);
             }
         }
     }

@@ -10,18 +10,21 @@
 #include <sstream>
 #include <fstream>
 
-__global__ void transpose_matrix(float *transpose, const float *matrix){
+__global__ void transpose_matrix(int *transpose, int *matrix, width, height){
 
     int x = threadIdx.x + blockDim.x * blockIdx.x;
     int y = threadIdx.y + blockDim.y * blockIdx.y;
-    int width = gridDim.x * blockDim.x;
+    int width_block = threadsPerBlock.x * blockDim.x;
 
-    for (int j = 0; j < blockDim.x; j+= BLOCK_ROWS)
-        transpose[x*width + (y+j)] = matrix[(y+j)*width + x];
+    // Mapping for transpose
+    for (int j = 0; j < blockDim.x; j+= width) {
+        transpose[x * width_block + (y + j)] = matrix[(y + j) * width_block + x];
+    }
 }
 
 
 int main( int argc, char* argv[] ) {
+
     //grab file name from input
     string file = argv[1];
 
@@ -42,6 +45,7 @@ int main( int argc, char* argv[] ) {
 
     data >> width >> height;
 
+    // Define matrices for original and transpose
     int dev_matrix[width][height];
     int dev_transpose[height][width];
     int *transpose;
@@ -55,27 +59,27 @@ int main( int argc, char* argv[] ) {
         }
     }
 
-    int size = width * height * sizeof(int);
+    int size = sizeof(int);
 
     //Allocate CUDA space
-    cudaMalloc((void **) &matrix, size);
-    cudaMalloc((void **) &transpose, size);
+    cudaMalloc((void **) &matrix, width * height * size);
+    cudaMalloc((void **) &transpose, width * height * size);
 
-    cudaMemcpy(dev_matrix, matrix, size, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_transpose, transpose, size, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_matrix, matrix, width * height * size, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_transpose, transpose, width * height * size, cudaMemcpyHostToDevice);
 
-    dim3 dimGrid(1, 1);
-    dim3 dimBlock(width, height);
+    dim3 dimThreadsPerBlock(width, height, 1);
+    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/threadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/threadsPerBlock.y), 1);
 
-    transpose_matrix<<<dimGrid, dimBlock>>>(transpose, matrix);
+    transpose_matrix<<<numBlock, dimThreadsPerBlock>>>(transpose, matrix, width, height);
     cudaMemcpy(dev_transpose, transpose, size, cudaMemcpyDeviceToHost);
     cudaFree(dev_matrix);
     cudaFree(dev_transpose);
 
     //Print results to output
     cout << width << " " << height << endl;
-    for(int i = 0; i < width; i ++){
-        for(int j = 0; j < height; j++){
+    for(int i = 0; i < height; i ++){
+        for(int j = 0; j < width; j++){
             cout << dev_transpose[i][j];
             if(i != width-1){
                 cout << " ";
