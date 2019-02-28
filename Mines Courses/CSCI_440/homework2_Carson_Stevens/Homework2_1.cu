@@ -88,12 +88,11 @@ int main( int argc, char* argv[] ) {
 
     //return to memory
     cudaMemcpy(&result, answer, 1*size, cudaMemcpyDeviceToHost);
-    cudaFree(gpu_matrix);
-    cudaFree(answer);
-
 
     //print answer
     cout << result << endl;
+    cudaFree(gpu_matrix);
+    cudaFree(answer);
 }
 
 
