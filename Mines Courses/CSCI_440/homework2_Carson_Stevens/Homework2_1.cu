@@ -15,7 +15,23 @@
 
 using namespace std;
 
-__global__ void find_ones(int *matrix, int *result, int width, int height);
+__global__ void find_ones(int *matrix, int *answer, int width, int height){
+
+    int col = threadIdx.x + blockDim.x * blockIdx.x;
+    int row = threadIdx.y + blockDim.y * blockIdx.y;
+
+    if(matrix[row*width + col] == 1){
+        atomicAdd(answer, 1);
+    }
+
+//    for(int k = 0; k < width; k++){
+//        for(int l = 0; l < height; l++){
+//            if(matrix[row][col] == 1){
+//                atomicAdd(result,1);
+//            }
+//        }
+//    }
+}
 
 int main( int argc, char* argv[] ) {
     //grab file name from input
@@ -44,6 +60,7 @@ int main( int argc, char* argv[] ) {
     for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
             data >> entry;
+            cout << entry << endl;
             matrix[width][height] = entry;
         }
     }
@@ -74,23 +91,7 @@ int main( int argc, char* argv[] ) {
     cout << result << endl;
 }
 
-__global__ void find_ones(int *matrix, int *answer, int width, int height){
 
-    int col = threadIdx.x + blockDim.x * blockIdx.x;
-    int row = threadIdx.y + blockDim.y * blockIdx.y;
-
-    if(matrix[row*width + col] == 1){
-        atomicAdd(answer, 1);
-    }
-
-//    for(int k = 0; k < width; k++){
-//        for(int l = 0; l < height; l++){
-//            if(matrix[row][col] == 1){
-//                atomicAdd(result,1);
-//            }
-//        }
-//    }
-}
 
 
 
