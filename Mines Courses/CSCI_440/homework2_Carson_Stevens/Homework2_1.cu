@@ -19,12 +19,12 @@ __global__ void find_ones(int *matrix, int *result, int width, int height);
 
 int main( int argc, char* argv[] ) {
     //grab file name from input
-    string file = argv[1];
+//    string file = argv[1];
 
     //Load file
     //Declare ifstream object for .txt file parsing.
     //open the file from which to read the data
-    ifstream data(file);
+    ifstream data(argv[1]);
     if (!data) {
         cerr << "Error opening input." << endl;
         return (1);
