@@ -60,9 +60,9 @@ int main( int argc, char* argv[] ) {
     cudaMemcpy(answer, &result, size, cudaMemcpyHostToDevice);
 
     dim3 dimThreadsPerBlock(width, height, 1);
-    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/threadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/threadsPerBlock.y), 1);
+    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y), 1);
 
-    find_ones << < numBlock, dimThreadPerBlock>>> (gpu_matrix, answer, width, height);
+    find_ones <<<numBlock, dimThreadPerBlock>>> (gpu_matrix, answer, width, height);
 
     //return to memory
     cudaMemcpy(&result, answer, 1*size, cudaMemcpyDeviceToHost);
