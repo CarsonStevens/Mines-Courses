@@ -20,8 +20,7 @@ __global__ void find_ones(int *matrix, int *answer, int width){
     int col = threadIdx.x + blockIdx.x * blockDim.x;
     int row = threadIdx.y + blockIdx.y * blockDim.y;
 
-    cout << "iteration" << endl;
-    if(matrix[row*width + col] == 1){
+    if(matrix[row*width+col] == 1){
         atomicAdd(answer, 1);
     }
 
@@ -78,7 +77,9 @@ int main( int argc, char* argv[] ) {
     cudaMemcpy(answer, &result, size, cudaMemcpyHostToDevice);
 
     dim3 dimThreadsPerBlock(width, height, 1);
-    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y), 1);
+    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x),
+            ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y),
+            1);
 
     find_ones <<<numBlock, dimThreadsPerBlock>>> (gpu_matrix, answer, width);
 
