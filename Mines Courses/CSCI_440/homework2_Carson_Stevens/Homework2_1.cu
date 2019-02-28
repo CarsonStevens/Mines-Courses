@@ -61,6 +61,9 @@ int main( int argc, char* argv[] ) {
         for(int j = 0; j < height; j++){
             data >> entry;
             //cout << entry << endl;
+            if(entry == 1){
+                cout << "found a one" << endl;
+            }
             matrix[width][height] = entry;
         }
     }
