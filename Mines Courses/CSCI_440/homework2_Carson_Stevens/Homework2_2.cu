@@ -82,15 +82,31 @@ int main( int argc, char* argv[] ) {
 
     //Print results to output
     cout << width << " " << height << endl;
-    for(int i = 0; i < height; i ++){
+
+    cout << "original" << endl << width << " " << height << endl;
+    for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
-            cout << dev_transpose[i][j];
-            if(i != width-1){
-                cout << " ";
-            }
+            cout << dev_matrix[i][j] << " ";
         }
         cout << endl;
     }
+    cout << "transpose" << endl;
+    for (int i = 0; i < width; i++){
+        for(int j = 0; j < height; j++){
+            cout << dev_transpose[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+//    for(int i = 0; i < height; i ++){
+//        for(int j = 0; j < width; j++){
+//            cout << dev_transpose[i][j];
+//            if(i != width-1){
+//                cout << " ";
+//            }
+//        }
+//        cout << endl;
+//    }
 }
 
 
