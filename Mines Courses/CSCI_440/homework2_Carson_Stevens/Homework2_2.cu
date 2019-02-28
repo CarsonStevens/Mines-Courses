@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string>
 
+using namespace std;
+
 __global__ void transpose_matrix(int *transpose, int *matrix, width, height){
 
     int x = threadIdx.x + blockDim.x * blockIdx.x;

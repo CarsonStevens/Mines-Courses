@@ -20,17 +20,17 @@ __global__ void find_ones(int *matrix, int *answer, int width, int height){
     int col = threadIdx.x + blockIdx.x * blockDim.x;
     int row = threadIdx.y + blockIdx.y * blockDim.y;
 
-//    if(matrix[row*width+col] == 1){
-//        atomicAdd(answer, 1);
-//    }
-
-    for(int k = 0; k < width; k++){
-        for(int l = 0; l < height; l++){
-            if(matrix[row][col] == 1){
-                atomicAdd(answer,1);
-            }
-        }
+    if(matrix[row*width+col] == 1){
+        atomicAdd(answer, 1);
     }
+
+//    for(int k = 0; k < width; k++){
+//        for(int l = 0; l < height; l++){
+//            if(matrix[row][col] == 1){
+//                atomicAdd(answer,1);
+//            }
+//        }
+//    }
 }
 
 int main( int argc, char* argv[] ) {
