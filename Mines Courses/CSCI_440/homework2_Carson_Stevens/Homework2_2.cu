@@ -59,8 +59,16 @@ int main( int argc, char* argv[] ) {
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             data >> entry;
-            cout << entry << " ";
+            //cout << entry << " ";
             dev_matrix[width][height] = entry;
+        }
+        //cout << endl;
+    }
+    cout << "original" << endl << width << " " << height << endl;
+
+    for (int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            cout << dev_matrix[i][j] << " ";
         }
         cout << endl;
     }
