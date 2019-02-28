@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <string>
 
+using namespace std;
+
 __global__ void find_ones(int *matrix, int *result, int width, int height);
 
 int main( int argc, char* argv[] ) {
