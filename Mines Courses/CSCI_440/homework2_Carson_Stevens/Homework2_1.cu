@@ -8,6 +8,9 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 __global__ void find_ones(int *matrix, int *result, int width, int height);
 

@@ -9,6 +9,9 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 __global__ void transpose_matrix(int *transpose, int *matrix, width, height){
 
