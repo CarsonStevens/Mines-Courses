@@ -45,8 +45,7 @@ int main( int argc, char* argv[] ) {
     int width = 0;
     int height = 0;
     int entry = 0;
-    int result = 0;
-    int *answer;
+
 
     data >> width >> height;
 
