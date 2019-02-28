@@ -57,8 +57,8 @@ int main( int argc, char* argv[] ) {
     int *gpu_matrix;
 
     //Read values into the matrix
-    for(int i = 0; i < width; i++){
-        for(int j = 0; j < height; j++){
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
             data >> entry;
             //cout << entry << endl;
             if(entry == 1){

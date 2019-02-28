@@ -56,8 +56,8 @@ int main( int argc, char* argv[] ) {
     int *matrix;
 
     //Read values into the matrix
-    for(int i = 0; i < width; i++){
-        for(int j = 0; j < height; j++){
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
             data >> entry;
             dev_matrix[width][height] = entry;
         }
@@ -81,9 +81,11 @@ int main( int argc, char* argv[] ) {
     cudaFree(transpose);
 
     //Print results to output
-    cout << width << " " << height << endl;
+
+
 
     cout << "original" << endl << width << " " << height << endl;
+
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             cout << dev_matrix[i][j] << " ";
@@ -97,7 +99,7 @@ int main( int argc, char* argv[] ) {
         }
         cout << endl;
     }
-
+//    cout << width << " " << height << endl;
 //    for(int i = 0; i < height; i ++){
 //        for(int j = 0; j < width; j++){
 //            cout << dev_transpose[i][j];
