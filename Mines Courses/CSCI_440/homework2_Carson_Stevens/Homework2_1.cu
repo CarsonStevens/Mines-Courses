@@ -77,13 +77,17 @@ __global__ void find_ones(int *matrix, int *result, int width, int height){
     int col = threadIdx.x + blockDim.x * blockIdx.x;
     int row = threadIdx.y + blockDim.y * blockIdx.y;
 
-    for(int k = 0; k < width; k++){
-        for(int l = 0; l < height; l++){
-            if(matrix[k][l] == 1){
-                atomicAdd(result,1);
-            }
-        }
+    if(matrix[row*width + col] == 1){
+        atomicAdd(result, 1);
     }
+
+//    for(int k = 0; k < width; k++){
+//        for(int l = 0; l < height; l++){
+//            if(matrix[row][col] == 1){
+//                atomicAdd(result,1);
+//            }
+//        }
+//    }
 }
 
 
