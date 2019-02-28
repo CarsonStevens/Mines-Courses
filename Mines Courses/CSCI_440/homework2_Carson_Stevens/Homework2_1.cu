@@ -67,6 +67,18 @@ int main( int argc, char* argv[] ) {
             matrix[width][height] = entry;
         }
     }
+
+    //Print results to output
+    cout << width << " " << height << endl;
+    for(int i = 0; i < width; i ++){
+        for(int j = 0; j < height; j++){
+            cout << matrix[i][j];
+            if(i != width-1){
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
     //cout << "done with loop" << endl;
     int size = sizeof(int);
 
