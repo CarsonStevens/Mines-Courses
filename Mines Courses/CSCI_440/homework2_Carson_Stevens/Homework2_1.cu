@@ -27,7 +27,7 @@ __global__ void find_ones(int *matrix, int *answer, int width, int height){
     for(int k = 0; k < width; k++){
         for(int l = 0; l < height; l++){
             if(matrix[row][col] == 1){
-                atomicAdd(result,1);
+                atomicAdd(answer,1);
             }
         }
     }
