@@ -36,41 +36,28 @@ int main( int argc, char* argv[] ) {
     //Load file
     //Declare ifstream object for .txt file parsing.
     //open the file from which to read the data
-    ifstream data(argv[1]);
-    if (!data) {
+    ifstream file(argv[1]);
+    if (!file) {
         cerr << "Error opening input." << endl;
         return (1);
     }
 
+    // for reading in values from .txt
     int width = 0;
     int height = 0;
-    int entry = 0;
 
-
-    data >> width >> height;
-
+    file >> width >> height;
     // Define matrices for original and transpose
     int dev_matrix[width][height];
     int dev_transpose[height][width];
     int *transpose;
     int *matrix;
 
-    //Read values into the matrix
-    for(int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
-            data >> entry;
-            //cout << entry << " ";
-            dev_matrix[width][height] = entry;
-        }
-        //cout << endl;
-    }
-    cout << "original" << endl << width << " " << height << endl;
-
     for (int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
-            cout << dev_matrix[i][j] << " ";
+        for (int j = 0; j < width; j++){
+            file >> matrix[i][j];
+            //cout << "(" << i << "," << j << ")\t" << dev_matrix[i][j] << endl;
         }
-        cout << endl;
     }
 
     int size = sizeof(int);
@@ -91,9 +78,6 @@ int main( int argc, char* argv[] ) {
     cudaFree(transpose);
 
     //Print results to output
-
-
-
     cout << "original" << endl << width << " " << height << endl;
 
     for (int i = 0; i < height; i++){
@@ -102,6 +86,7 @@ int main( int argc, char* argv[] ) {
         }
         cout << endl;
     }
+
     cout << "transpose" << endl;
     for (int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
@@ -109,16 +94,7 @@ int main( int argc, char* argv[] ) {
         }
         cout << endl;
     }
-//    cout << width << " " << height << endl;
-//    for(int i = 0; i < height; i ++){
-//        for(int j = 0; j < width; j++){
-//            cout << dev_transpose[i][j];
-//            if(i != width-1){
-//                cout << " ";
-//            }
-//        }
-//        cout << endl;
-//    }
+
 }
 
 

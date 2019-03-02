@@ -34,52 +34,34 @@ __global__ void find_ones(int *matrix, int *answer, int width, int height){
 }
 
 int main( int argc, char* argv[] ) {
-    //grab file name from input
-//    string file = argv[1];
 
     //Load file
     //Declare ifstream object for .txt file parsing.
     //open the file from which to read the data
-    ifstream data(argv[1]);
-    if (!data) {
+    ifstream file(argv[1]);
+    if (!file) {
         cerr << "Error opening input." << endl;
         return (1);
     }
+
+    // for reading in values from .txt
     int width = 0;
     int height = 0;
-    int entry = 0;
     int result = 0;
     int *answer;
 
-    data >> width >> height;
-
+    file >> width >> height;
     int matrix[width][height];
     int *gpu_matrix;
 
-    //Read values into the matrix
-    for(int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
-            data >> entry;
-            //cout << entry << endl;
-            if(entry == 1){
-                cout << "found a one" << endl;
-            }
-            matrix[width][height] = entry;
+
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
+            file >> matrix[i][j];
+            //cout << "(" << i << "," << j << ")\t" << dev_matrix[i][j] << endl;
         }
     }
 
-    //Print results to output
-    cout << width << " " << height << endl;
-    for(int i = 0; i < width; i ++){
-        for(int j = 0; j < height; j++){
-            cout << matrix[i][j];
-            if(i != width-1){
-                cout << " ";
-            }
-        }
-        cout << endl;
-    }
-    //cout << "done with loop" << endl;
     int size = sizeof(int);
 
     //Allocate CUDA space
