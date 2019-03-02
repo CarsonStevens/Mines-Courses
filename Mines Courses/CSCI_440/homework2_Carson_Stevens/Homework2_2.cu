@@ -55,7 +55,7 @@ int main( int argc, char* argv[] ) {
 
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
-            file >> matrix[i][j];
+            file >> dev_matrix[i][j];
             //cout << "(" << i << "," << j << ")\t" << dev_matrix[i][j] << endl;
         }
     }
