@@ -18,16 +18,26 @@ using namespace std;
 
 __global__ void transpose_matrix(int *transpose, int *matrix, int width, int height){
 
-    int x = threadIdx.x + blockDim.x * blockIdx.x;
-    int y = threadIdx.y + blockDim.y * blockIdx.y;
-    int width_block = dimThreadsPerBlock.x * blockDim.x;
+//    int x = threadIdx.x + blockDim.x * blockIdx.x;
+//    int y = threadIdx.y + blockDim.y * blockIdx.y;
+//    int width_block = blockDim.x * blockDim.y;
 
     //transpose[x*height + y] = matrix[y*width + x];
 
-    //Mapping for transpose
-    for (int j = 0; j < blockDim.x; j+= width){
-        transpose[x * width_block + (y + j)] = matrix[(y + j) * width_block + x];
+    int xIndex = blockIdx.x*blockDim.x+ threadIdx.x;
+    int yIndex = blockIdx.y*blockDim.y + threadIdx.y;
+    int index_in = xIndex + width * yIndex;
+    int index_out = yIndex + height * xIndex;
+
+    for (int i=0; i<blockDim.x; i+=blockDim.y){
+        transpose[index_out+i] = matrix[index_in+i*width];
     }
+
+    
+    //Mapping for transpose
+//    for (int j = 0; j < blockDim.x; j+= width){
+//        transpose[x * width_block + (y + j)] = matrix[(y + j) * width_block + x];
+//    }
 }
 
 
