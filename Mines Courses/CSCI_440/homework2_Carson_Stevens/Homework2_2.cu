@@ -73,7 +73,7 @@ int main( int argc, char* argv[] ) {
     dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x), ((height+dimBlock.y-1)/dimBlock.y), 1);
 
     transpose_matrix<<<numBlock, dimBlock>>>(dev_transpose, dev_matrix, width, height);
-    cudaMemcpy(transpose, dev_transpose, size, cudaMemcpyDeviceToHost);
+    cudaMemcpy(dev_transpose, &transpose, size, cudaMemcpyDeviceToHost);
 
 
     //Print results to output
