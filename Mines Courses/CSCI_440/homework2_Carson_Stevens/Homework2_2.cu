@@ -16,13 +16,13 @@
 
 using namespace std;
 
-__global__ void transpose_matrix(int *transpose, int *matrix, int width, int height){
+__global__ void transpose_matrix(int *dev_transpose, int *dev_matrix, int width, int height){
 
     int x = threadIdx.x + blockDim.x * blockIdx.x;
     int y = threadIdx.y + blockDim.y * blockIdx.y;
 //    int width_block = blockDim.x * blockDim.y;
 
-    transpose[x*height + y] = matrix[y*width + x];
+    dev_transpose[x*height + y] = dev_matrix[y*width + x];
 
     //Mapping for transpose
 //    for (int j = 0; j < blockDim.x; j+= width){
@@ -73,7 +73,7 @@ int main( int argc, char* argv[] ) {
     dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x), ((height+dimBlock.y-1)/dimBlock.y), 1);
 
     transpose_matrix<<<numBlock, dimBlock>>>(dev_transpose, dev_matrix, width, height);
-    cudaMemcpy(dev_transpose, &transpose, size, cudaMemcpyDeviceToHost);
+    cudaMemcpy(dev_transpose, &transpose, size*width*height, cudaMemcpyDeviceToHost);
 
 
     //Print results to output
