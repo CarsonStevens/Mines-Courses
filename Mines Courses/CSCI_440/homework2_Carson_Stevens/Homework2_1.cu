@@ -23,14 +23,6 @@ __global__ void find_ones(int *matrix, int *answer, int width, int height){
     if(matrix[row*width+col] == 1){
         atomicAdd(answer, 1);
     }
-
-//    for(int k = 0; k < width; k++){
-//        for(int l = 0; l < height; l++){
-//            if(matrix[row][col] == 1){
-//                atomicAdd(answer,1);
-//            }
-//        }
-//    }
 }
 
 int main( int argc, char* argv[] ) {
@@ -73,12 +65,12 @@ int main( int argc, char* argv[] ) {
     cudaMemcpy(gpu_matrix, matrix, width*height*size, cudaMemcpyHostToDevice);
     cudaMemcpy(answer, &result, size, cudaMemcpyHostToDevice);
 
-    dim3 dimThreadsPerBlock(width, height, 1);
-    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x),
-            ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y),
+    dim3 dimBlock(width, height, 1);
+    dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x),
+            ((height+dimBlock.y-1)/dimBlock.y),
             1);
 
-    find_ones <<<numBlock, dimThreadsPerBlock>>> (gpu_matrix, answer, width, height);
+    find_ones <<<numBlock, dimBlock>>> (gpu_matrix, answer, width, height);
 
     //return to memory
     cudaMemcpy(&result, answer, 1*size, cudaMemcpyDeviceToHost);

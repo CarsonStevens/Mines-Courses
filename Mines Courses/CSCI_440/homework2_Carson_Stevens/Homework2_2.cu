@@ -48,31 +48,31 @@ int main( int argc, char* argv[] ) {
 
     file >> width >> height;
     // Define matrices for original and transpose
-    int dev_matrix[width][height];
-    int dev_transpose[height][width];
-    int *transpose;
-    int *matrix;
+    int matrix[width][height];
+    int transpose[height][width];
+    int *dev_transpose;
+    int *dev_matrix;
 
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
-            file >> dev_matrix[i][j];
-            //cout << "(" << i << "," << j << ")\t" << dev_matrix[i][j] << endl;
+            file >> matrix[i][j];
+            //cout << "(" << i << "," << j << ")\t" << matrix[i][j] << endl;
         }
     }
 
     int size = sizeof(int);
 
     //Allocate CUDA space
-    cudaMalloc((void **) &matrix, width * height * size);
-    cudaMalloc((void **) &transpose, width * height * size);
+    cudaMalloc((void **) &dev_matrix, width * height * size);
+    cudaMalloc((void **) &dev_transpose, width * height * size);
 
-    cudaMemcpy(matrix, dev_matrix, width * height * size, cudaMemcpyHostToDevice);
-    cudaMemcpy(transpose, dev_transpose, width * height * size, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_matrix, matrix, width * height * size, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_transpose, transpose, width * height * size, cudaMemcpyHostToDevice);
 
-    dim3 dimThreadsPerBlock(width, height, 1);
-    dim3 numBlock(((width+dimThreadsPerBlock.x-1)/dimThreadsPerBlock.x), ((height+dimThreadsPerBlock.y-1)/dimThreadsPerBlock.y), 1);
+    dim3 dimBlock(width, height, 1);
+    dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x), ((height+dimBlock.y-1)/dimBlock.y), 1);
 
-    transpose_matrix<<<numBlock, dimThreadsPerBlock>>>(transpose, matrix, width, height);
+    transpose_matrix<<<numBlock, dimBlock>>>(dev_transpose, dev_matrix, width, height);
     cudaMemcpy(transpose, dev_transpose, size, cudaMemcpyDeviceToHost);
 
 
@@ -81,7 +81,7 @@ int main( int argc, char* argv[] ) {
 
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
-            cout << dev_matrix[i][j] << " ";
+            cout << matrix[i][j] << " ";
         }
         cout << endl;
     }
@@ -89,13 +89,13 @@ int main( int argc, char* argv[] ) {
     cout << "transpose" << endl;
     for (int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
-            cout << dev_transpose[i][j] << " ";
+            cout << transpose[i][j] << " ";
         }
         cout << endl;
     }
 
-    cudaFree(matrix);
-    cudaFree(transpose);
+    cudaFree(dev_matrix);
+    cudaFree(dev_transpose);
 
 }
 
