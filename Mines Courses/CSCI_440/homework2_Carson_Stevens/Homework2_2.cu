@@ -20,14 +20,14 @@ __global__ void transpose_matrix(int *transpose, int *matrix, int width, int hei
 
     int x = threadIdx.x + blockDim.x * blockIdx.x;
     int y = threadIdx.y + blockDim.y * blockIdx.y;
-    //int width_block = dimThreadsPerBlock.x * blockDim.x;
+    int width_block = dimThreadsPerBlock.x * blockDim.x;
 
-    transpose[x*height + y] = matrix[y*width + x];
+    //transpose[x*height + y] = matrix[y*width + x];
 
-    // Mapping for transpose
-//    for (int j = 0; j < blockDim.x; j+= width) {
-//        transpose[x * width_block + (y + j)] = matrix[(y + j) * width_block + x];
-//    }
+    //Mapping for transpose
+    for (int j = 0; j < blockDim.x; j+= width){
+        transpose[x * width_block + (y + j)] = matrix[(y + j) * width_block + x];
+    }
 }
 
 
