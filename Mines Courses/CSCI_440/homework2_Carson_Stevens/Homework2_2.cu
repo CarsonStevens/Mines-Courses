@@ -177,8 +177,8 @@ int main(int argc, char* argv[]){
 
     //file >> col >> row;
     // Define matrices for original and transpose
-    int matrix[col][row];
-    int transpose[row][col];
+    int matrix[row][col];
+    int transpose[col][row];
     int *dev_transpose;
     int *dev_matrix;
     for(int i=0;i<row;i++){
