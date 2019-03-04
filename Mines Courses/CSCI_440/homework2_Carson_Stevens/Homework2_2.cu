@@ -168,7 +168,7 @@ int main(int argc, char* argv[]){
 
     int col,row;
     string str;
-    int temp;
+    //int temp;
     file >> str;
     col = atoi(str.c_str());
     file >> str;
