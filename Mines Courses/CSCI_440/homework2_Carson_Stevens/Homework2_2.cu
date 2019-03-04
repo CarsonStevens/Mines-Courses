@@ -17,12 +17,12 @@
 using namespace std;
 
 __global__ void transpose_matrix(int *dev_transpose, int *dev_matrix, int width, int height){
-    int col = threadIdx.x + blockIdx.x * blockDim.x;
-    int row = threadIdx.y + blockIdx.y * blockDim.y;
 
-    // accessing 2d array as a 1d array
-    // e.g : matrix_d[2] = transposed_d[4] where matrix_d is 4col3row and transposed_d is 3col4row
-    dev_transpose[col*height + row] = dev_matrix[row*width + col];
+    int row = threadIdx.x + blockDim.x * blockIdx.x;
+    int col = threadIdx.y + blockDim.y * blockIdx.y;
+//    int width_block = blockDim.x * blockDim.y;
+
+    dev_transpose[row*height + col] = dev_matrix[col*width + row];
 
     //Mapping for transpose
 //    for (int j = 0; j < blockDim.x; j+= width){
@@ -86,14 +86,21 @@ int main( int argc, char* argv[] ) {
         }
         cout << endl;
     }
-
-    cout << "transpose" << endl;
-    for (int i = 0; i < width; i++){
-        for(int j = 0; j < height; j++){
-            cout << transpose[i][j] << " ";
+    // print result
+    cout << "\n transposed" << endl;
+    for(int i=0;i<width;i++){
+        cout << "\n";
+        for(int j=0;j<height;j++){
+            cout << transposed[i][j] << " ";
         }
-        cout << endl;
     }
+//    cout << "transpose" << endl;
+//    for (int i = 0; i < width; i++){
+//        for(int j = 0; j < height; j++){
+//            cout << transpose[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
 
     cudaFree(dev_matrix);
     cudaFree(dev_transpose);
