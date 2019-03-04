@@ -167,12 +167,13 @@ int main(int argc, char* argv[]){
     }
 
     int col,row;
+    string str;
+    int temp;
     file >> str;
     col = atoi(str.c_str());
     file >> str;
     row = atoi(str.c_str());
-    string str;
-    int temp;
+
 
     //file >> col >> row;
     // Define matrices for original and transpose
