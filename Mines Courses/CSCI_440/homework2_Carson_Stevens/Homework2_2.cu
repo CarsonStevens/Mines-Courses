@@ -179,8 +179,8 @@ int main(int argc, char* argv[]){
     int *dev_transpose;
     int *dev_matrix;
 
-    for (int i = 0; i < height; i++){
-        for (int j = 0; j < width; j++){
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < col; j++){
             file >> str;
             temp = atoi(str.c_str());
             matrix[i][j] = temp;
