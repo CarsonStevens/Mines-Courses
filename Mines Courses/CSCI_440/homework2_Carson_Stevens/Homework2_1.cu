@@ -53,6 +53,7 @@ int main( int argc, char* argv[] ) {
             //cout << "(" << i << "," << j << ")\t" << dev_matrix[i][j] << endl;
         }
     }
+    file.close();
 
     int size = sizeof(int);
 

@@ -18,11 +18,11 @@ using namespace std;
 
 __global__ void transpose_matrix(int *dev_transpose, int *dev_matrix, int width, int height){
 
-    int x = threadIdx.x + blockDim.x * blockIdx.x;
-    int y = threadIdx.y + blockDim.y * blockIdx.y;
+    int row = threadIdx.x + blockDim.x * blockIdx.x;
+    int col = threadIdx.y + blockDim.y * blockIdx.y;
 //    int width_block = blockDim.x * blockDim.y;
 
-    dev_transpose[x*height + y] = dev_matrix[y*width + x];
+    dev_transpose[row*height + col] = dev_matrix[col*width + row];
 
     //Mapping for transpose
 //    for (int j = 0; j < blockDim.x; j+= width){
@@ -59,6 +59,7 @@ int main( int argc, char* argv[] ) {
             //cout << "(" << i << "," << j << ")\t" << matrix[i][j] << endl;
         }
     }
+    file.close();
 
     int size = sizeof(int);
 
@@ -67,13 +68,13 @@ int main( int argc, char* argv[] ) {
     cudaMalloc((void **) &dev_transpose, width * height * size);
 
     cudaMemcpy(dev_matrix, matrix, width * height * size, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_transpose, transpose, width * height * size, cudaMemcpyHostToDevice);
+    //cudaMemcpy(dev_transpose, transpose, width * height * size, cudaMemcpyHostToDevice);
 
     dim3 dimBlock(width, height, 1);
     dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x), ((height+dimBlock.y-1)/dimBlock.y), 1);
 
     transpose_matrix<<<numBlock, dimBlock>>>(dev_transpose, dev_matrix, width, height);
-    cudaMemcpy(dev_transpose, &transpose, size*width*height, cudaMemcpyDeviceToHost);
+    cudaMemcpy(transpose, &dev_transpose, size*width*height, cudaMemcpyDeviceToHost);
 
 
     //Print results to output
