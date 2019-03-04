@@ -61,7 +61,7 @@ int main( int argc, char* argv[] ) {
     }
     file.close();
 
-    int size = sizeof(int);
+    //int size = sizeof(int);
 
     // allocate memory on device
     cudaMalloc((void **)&dev_matrix,height*width*sizeof(int));
