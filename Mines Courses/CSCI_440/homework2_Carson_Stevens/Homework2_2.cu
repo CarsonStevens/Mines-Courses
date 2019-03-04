@@ -18,11 +18,11 @@ using namespace std;
 
 __global__ void matrix_transpose(int* dev_transpose, const int* dev_matrix, int width, int height){
 
-    int col = threadIdx.x + blockIdx.x * blockDim.x;
-    int row = threadIdx.y + blockIdx.y * blockDim.y;
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
 
     //Mapping
-    dev_transpose[col*height + row] = dev_matrix[row*width + col];
+    dev_transpose[x*height + y] = dev_matrix[y*width + x];
 }
 
 int main(int argc, char* argv[]){
@@ -52,42 +52,39 @@ int main(int argc, char* argv[]){
         }
     }
     file.close();
+
     int size = sizeof(int)*width*height;
-    // allocate memory on device
+
+    // Allocate memory on GPU
     cudaMalloc((void **)&dev_matrix, size);
     cudaMalloc((void **)&dev_transpose, size);
 
-    // copy host data to device using cudaMemcpy
+    // copy data to device
     cudaMemcpy(dev_matrix, matrix, size, cudaMemcpyHostToDevice);
 
-    // kernel call
+    // Establish thread and block size
     dim3 threadsPerBlock(width, height, 1);
     dim3 numBlocks((width+threadsPerBlock.x-1)/threadsPerBlock.x, (height+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
 
+    //Call function
     matrix_transpose<<<numBlocks, threadsPerBlock>>>(dev_transpose,dev_matrix,width,height);
 
-    // copy result from device to host
+    // copy result back
     cudaMemcpy(transpose, dev_transpose, size, cudaMemcpyDeviceToHost);
 
-    cout << "\n original"<<endl;
-    for(int i=0;i<height;i++){
-        cout << "\n";
-        for(int j=0;j<width;j++){
-            cout << matrix[i][j] << " ";
-        }
-    }
-
     // print result
-    cout << "\n transposed" << endl;
+    cout <<  height << " " << width << endl;
     for(int i=0;i<width;i++){
-        cout << "\n";
         for(int j=0;j<height;j++){
-            cout << transpose[i][j] << " ";
+            cout << transpose[i][j];
+            if(j != height){
+                cout << " ";
+            }
         }
+        cout << endl;
     }
-    cout << endl;
 
-    // free memory on device
+    // free memory
     cudaFree(dev_matrix);
     cudaFree(dev_transpose);
 
