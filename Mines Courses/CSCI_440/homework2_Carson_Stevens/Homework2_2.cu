@@ -166,13 +166,15 @@ int main(int argc, char* argv[]){
         return (1);
     }
 
-    // for reading in values from .txt
-    int col = 0;
-    int row = 0;
+    int col,row;
+    file >> str;
+    col = atoi(str.c_str());
+    file >> str;
+    row = atoi(str.c_str());
     string str;
     int temp;
 
-    file >> col >> row;
+    //file >> col >> row;
     // Define matrices for original and transpose
     int matrix[col][row];
     int transpose[row][col];
