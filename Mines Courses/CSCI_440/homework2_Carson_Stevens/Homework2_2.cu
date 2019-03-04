@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
 
     // kernel call
     dim3 threadsPerBlock(width, height, 1);
-    dim3 numBlocks((col+threadsPerBlock.x-1)/threadsPerBlock.x, (row+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
+    dim3 numBlocks((width+threadsPerBlock.x-1)/threadsPerBlock.x, (height+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
 
     matrix_transpose<<<numBlocks, threadsPerBlock>>>(dev_transpose,dev_matrix,width,height);
 
