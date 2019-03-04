@@ -128,35 +128,67 @@ __global__ void matrix_transpose(int* dev_transpose, const int* dev_matrix, int 
 }
 
 int main(int argc, char* argv[]){
-    ifstream file;
+//    ifstream file;
+//    string str;
+//    file.open(argv[1]); // create stream to read txt file
+//
+//    int col,row;
+//    file >> str;
+//    col = atoi(str.c_str());
+//    file >> str;
+//    row = atoi(str.c_str());
+//
+//    // host variables
+//    int matrix[row][col];
+//    int transpose[col][row];
+//
+//    // device variables
+//    int *dev_matrix;
+//    int *dev_transpose;
+//
+//    int temp;
+//    // populate host matrix from text file
+//    for(int i=0;i<row;i++){
+//        for(int j=0;j<col;j++){
+//            file >> str;
+//            temp = atoi(str.c_str());
+//            matrix[i][j] = temp;
+//        }
+//    }
+//    file.close();
+
+    //Load file
+    //Declare ifstream object for .txt file parsing.
+    //open the file from which to read the data
+    ifstream file(argv[1]);
+    if (!file) {
+        cerr << "Error opening input." << endl;
+        return (1);
+    }
+
+    // for reading in values from .txt
+    int col = 0;
+    int row = 0;
     string str;
-    file.open(argv[1]); // create stream to read txt file
-
-    int col,row;
-    file >> str;
-    col = atoi(str.c_str());
-    file >> str;
-    row = atoi(str.c_str());
-
-    // host variables
-    int matrix[row][col];
-    int transpose[col][row];
-
-    // device variables
-    int *dev_matrix;
-    int *dev_transpose;
-
     int temp;
-    // populate host matrix from text file
-    for(int i=0;i<row;i++){
-        for(int j=0;j<col;j++){
+
+    file >> col >> row;
+    // Define matrices for original and transpose
+    int matrix[col][row];
+    int transpose[row][col];
+    int *dev_transpose;
+    int *dev_matrix;
+
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
             file >> str;
             temp = atoi(str.c_str());
             matrix[i][j] = temp;
+            //file >> matrix[i][j];
+            //cout << "(" << i << "," << j << ")\t" << matrix[i][j] << endl;
         }
     }
     file.close();
-
     // allocate memory on device
     cudaMalloc((void **)&dev_matrix,row*col*sizeof(int));
     cudaMalloc((void **)&dev_transpose,row*col*sizeof(int));
