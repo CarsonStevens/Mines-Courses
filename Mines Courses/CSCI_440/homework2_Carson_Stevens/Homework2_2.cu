@@ -120,13 +120,11 @@ using namespace std;
 //    cudaFree(dev_transpose);
 //
 //}
-__global__ void kernel_transpose(int* transposed_d, const int* matrix_d, int width, int height){
+__global__ void matrix_transpose(int* dev_transpose, const int* dev_matrix, int width, int height){
     int col = threadIdx.x + blockIdx.x * blockDim.x;
     int row = threadIdx.y + blockIdx.y * blockDim.y;
-
-    // accessing 2d array as a 1d array
-    // e.g : matrix_d[2] = transposed_d[4] where matrix_d is 4col3row and transposed_d is 3col4row
-    transposed_d[col*height + row] = matrix_d[row*width + col];
+    //Mapping (2d array to 1D)
+    dev_transpose[col*height + row] = dev_matrix[row*width + col];
 }
 
 int main(int argc, char* argv[]){
@@ -142,11 +140,11 @@ int main(int argc, char* argv[]){
 
     // host variables
     int matrix[row][col];
-    int transposed[col][row];
+    int transpose[col][row];
 
     // device variables
-    int *matrix_d;
-    int *transposed_d;
+    int *dev_matrix;
+    int *dev_transpose;
 
     int temp;
     // populate host matrix from text file
@@ -160,21 +158,21 @@ int main(int argc, char* argv[]){
     file.close();
 
     // allocate memory on device
-    cudaMalloc((void **)&matrix_d,row*col*sizeof(int));
-    cudaMalloc((void **)&transposed_d,row*col*sizeof(int));
+    cudaMalloc((void **)&dev_matrix,row*col*sizeof(int));
+    cudaMalloc((void **)&dev_transpose,row*col*sizeof(int));
 
     // copy host data to device using cudaMemcpy
-    cudaMemcpy(matrix_d,matrix,row*col*sizeof(int),cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_matrix,matrix,row*col*sizeof(int),cudaMemcpyHostToDevice);
 
     // kernel call
     dim3 threadsPerBlock(col,row,1);
     dim3 numBlocks((col+threadsPerBlock.x-1)/threadsPerBlock.x,
                    (row+threadsPerBlock.y-1)/threadsPerBlock.y,1);
 
-    kernel_transpose<<<numBlocks, threadsPerBlock>>>(transposed_d,matrix_d,col,row);
+    kernel_transpose<<<numBlocks, threadsPerBlock>>>(dev_transpose,dev_matrix,col,row);
 
     // copy result from device to host
-    cudaMemcpy(transposed,transposed_d,row*col*sizeof(int),cudaMemcpyDeviceToHost);
+    cudaMemcpy(transpose,dev_transpose,row*col*sizeof(int),cudaMemcpyDeviceToHost);
 
     cout << "\n original"<<endl;
     for(int i=0;i<row;i++){
@@ -189,14 +187,14 @@ int main(int argc, char* argv[]){
     for(int i=0;i<col;i++){
         cout << "\n";
         for(int j=0;j<row;j++){
-            cout << transposed[i][j] << " ";
+            cout << transpose[i][j] << " ";
         }
     }
     cout << endl;
 
     // free memory on device
-    cudaFree(matrix_d);
-    cudaFree(transposed_d);
+    cudaFree(dev_matrix);
+    cudaFree(dev_transpose);
 
     return 0;
 }
