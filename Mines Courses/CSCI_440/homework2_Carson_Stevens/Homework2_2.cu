@@ -169,7 +169,7 @@ int main(int argc, char* argv[]){
     dim3 numBlocks((col+threadsPerBlock.x-1)/threadsPerBlock.x,
                    (row+threadsPerBlock.y-1)/threadsPerBlock.y,1);
 
-    kernel_transpose<<<numBlocks, threadsPerBlock>>>(dev_transpose,dev_matrix,col,row);
+    matrix_transpose<<<numBlocks, threadsPerBlock>>>(dev_transpose,dev_matrix,col,row);
 
     // copy result from device to host
     cudaMemcpy(transpose,dev_transpose,row*col*sizeof(int),cudaMemcpyDeviceToHost);
