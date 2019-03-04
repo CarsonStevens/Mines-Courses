@@ -36,7 +36,8 @@ int main(int argc, char* argv[]){
         return (1);
     }
 
-    int width,height;
+    int width;
+    int height;
     file >> width >> height;
 
     // Define matrices for original and transpose
@@ -45,6 +46,7 @@ int main(int argc, char* argv[]){
     int *dev_transpose;
     int *dev_matrix;
 
+    //Read values into matrix
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
             file >> matrix[i][j];
@@ -74,8 +76,8 @@ int main(int argc, char* argv[]){
 
     // print result
     cout <<  height << " " << width << endl;
-    for(int i=0;i<width;i++){
-        for(int j=0;j<height;j++){
+    for(int i = 0; i < width; i++){
+        for(int j = 0; j < height; j++){
             cout << transpose[i][j];
             if(j != height){
                 cout << " ";

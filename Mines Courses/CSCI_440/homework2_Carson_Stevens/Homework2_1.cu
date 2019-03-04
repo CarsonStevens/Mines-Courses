@@ -67,9 +67,7 @@ int main( int argc, char* argv[] ) {
     cudaMemcpy(answer, &result, size, cudaMemcpyHostToDevice);
 
     dim3 dimBlock(width, height, 1);
-    dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x),
-            ((height+dimBlock.y-1)/dimBlock.y),
-            1);
+    dim3 numBlock(((width+dimBlock.x-1)/dimBlock.x), ((height+dimBlock.y-1)/dimBlock.y), 1);
 
     find_ones <<<numBlock, dimBlock>>> (gpu_matrix, answer, width, height);
 
