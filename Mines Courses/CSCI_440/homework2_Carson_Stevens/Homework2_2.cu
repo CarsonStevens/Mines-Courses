@@ -181,24 +181,17 @@ int main(int argc, char* argv[]){
     int transpose[col][row];
     int *dev_transpose;
     int *dev_matrix;
-    for(int i=0;i<row;i++){
-        for(int j=0;j<col;j++){
+
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < col; j++){
             file >> str;
             temp = atoi(str.c_str());
             matrix[i][j] = temp;
+            //file >> matrix[i][j];
+            //cout << "(" << i << "," << j << ")\t" << matrix[i][j] << endl;
         }
     }
     file.close();
-//    for (int i = 0; i < row; i++){
-//        for (int j = 0; j < col; j++){
-//            file >> str;
-//            temp = atoi(str.c_str());
-//            matrix[i][j] = temp;
-//            //file >> matrix[i][j];
-//            //cout << "(" << i << "," << j << ")\t" << matrix[i][j] << endl;
-//        }
-//    }
-//    file.close();
     // allocate memory on device
     cudaMalloc((void **)&dev_matrix,row*col*sizeof(int));
     cudaMalloc((void **)&dev_transpose,row*col*sizeof(int));
