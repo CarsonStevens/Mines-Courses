@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="http://buildserver" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="POSTPONE_SUITABLE_CONFIGURATIONS_SEARCH" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="SHOW_CLOSE_PROMPT" value="true" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+    <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_440/homework1_Carson_Stevens/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_477/Miner Conflict" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_477/Miner Conflict/src/Miner Conflict.yyp" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict/src/Miner Conflict.yyp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,27 +47,62 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Mines Courses" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="4752">
+              <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+              <folding>
+                <element signature="e#217#226#0" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4" />
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-20" />
-    <option name="y" value="77" />
-    <option name="width" value="1956" />
-    <option name="height" value="2099" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-14" />
+    <option name="y" value="82" />
+    <option name="width" value="1950" />
+    <option name="height" value="2093" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -44,7 +110,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -74,11 +139,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -105,18 +171,22 @@
       <workItem from="1551793776588" duration="1201000" />
       <workItem from="1551996170436" duration="234000" />
       <workItem from="1552068445745" duration="1838000" />
+      <workItem from="1552751502551" duration="25790000" />
+      <workItem from="1553996297560" duration="599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3273000" />
+    <option name="totallyTimeSpent" value="29662000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="24" width="1409" height="768" extended-state="7" />
+    <frame x="-5" y="30" width="709" height="761" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22172949" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.23277183" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Favorites" order="2" sideWeight="0.5007825" side_tool="true" weight="0.11086474" />
+      <window_info anchor="bottom" id="TeamCity" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -130,29 +200,20 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="LuaJ" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="R Packages" order="5" weight="0.32963786" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32963786" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10220">
-          <caret line="511" column="28" selection-start-line="511" selection-start-column="28" selection-end-line="511" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -173,14 +234,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2160" />
+        <state relative-caret-position="-273" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="348" column="27" lean-forward="true" selection-start-line="348" selection-start-column="27" selection-end-line="348" selection-end-column="27" />
+          <folding>
+            <element signature="e#122#1565#0" />
+            <element signature="e#122#293#1" />
+            <element signature="e#337#374#0" />
+            <element signature="e#413#1051#0" />
+            <element signature="e#413#897#1" />
+            <element signature="e#950#1029#0" />
+            <element signature="e#1085#1565#0" />
+            <element signature="e#1085#1455#1" />
+            <element signature="e#1612#1973#1" />
+            <element signature="e#2022#2378#0" />
+            <element signature="e#2022#2165#1" />
+            <element signature="e#2437#3384#0" />
+            <element signature="e#2437#3046#1" />
+            <element signature="e#3124#3289#0" />
+            <element signature="e#3156#3201#0" />
+            <element signature="e#3236#3289#0" />
+            <element signature="e#3426#3865#0" />
+            <element signature="e#3426#3663#1" />
+            <element signature="e#3755#3846#0" />
+            <element signature="e#3899#4414#0" />
+            <element signature="e#3899#4293#1" />
+            <element signature="e#4372#4414#0" />
+            <element signature="e#4445#4988#0" />
+            <element signature="e#4445#4872#1" />
+            <element signature="e#4950#4988#0" />
+            <element signature="e#5021#5561#0" />
+            <element signature="e#5021#5356#1" />
+            <element signature="e#5499#5538#0" />
+            <element signature="e#5602#6419#0" />
+            <element signature="e#5602#6265#1" />
+            <element signature="e#6325#6398#0" />
+            <element signature="e#6457#7150#0" />
+            <element signature="e#6457#6912#1" />
+            <element signature="e#7017#7075#0" />
+            <element signature="e#7184#7251#0" />
+            <element signature="e#7290#8048#1" />
+            <element signature="e#8204#8319#0" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="4752">
+          <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+          <folding>
+            <element signature="e#217#226#0" expanded="true" />
+          </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4" />
       </provider>
     </entry>
   </component>

@@ -329,8 +329,8 @@ class ConsList(ConsCell, abc.Sequence):
             item2 = item2.cdr
 
         if(isinstance(item1, NilType) and not isinstance(item2, NilType)) or\
-                (not isinstance(item1, NilType) and
-                 isinstance(item2, NilType)):
+                (not isinstance(item1, NilType) and isinstance(item2,
+                                                               NilType)):
             return False
         return True
 
@@ -450,8 +450,8 @@ def cons(car, cdr) -> ConsCell:
     >>> cons(5, SExpression(4, NIL))
     (5 4)
     """
-    if isinstance(cdr, SExpression) and (isinstance(cdr, NilType) or
-                                         cdr is None):
+    if isinstance(cdr, SExpression) and (isinstance(cdr,
+                                                    NilType) or cdr is None):
         return SExpression(car)
     elif isinstance(cdr, SExpression) or isinstance(car, SExpression):
         return SExpression(car, cdr)

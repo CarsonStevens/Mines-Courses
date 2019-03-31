@@ -9,6 +9,7 @@
     <mapping directory="$PROJECT_DIR$/CSCI_306/LevelGame" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CSCI_306/LevelGame/bin" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CSCI_306/Stove" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CSCI_477/Miner Conflict" vcs="Git" />
   </component>
 </project>
