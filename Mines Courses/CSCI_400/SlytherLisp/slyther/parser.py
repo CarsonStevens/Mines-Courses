@@ -209,55 +209,52 @@ def lex(code):
     >>> list(lex("'"))
     [Quote]
     """
-    p = re.compile(r"""
-        (?:\A('\#!)[.]*)                    # Don't capture shebang line 
-                                                # \#! finds shebang
-                                                # [.]* matches the rest of the shebang line (to ignore)
-                                                # \A matches only beginning; MULTILINE combo
-        (?:(;*))                            # Don't capture comments
-                                                # ;* captures to rest of the line
-        (?:(\s))                            # Don't capture any whitespace
-                                                # ?: do not capture
-                                                # \s captures white space character
-        (?P<LParen>(\())                    # Capture LParen
-                                                # \( captures (
-        (?P<RParen>(\())                    # Capture RParen
-                                                # \) captures )
-        (?P<quotes>('|"|^(?!\\")))    # Capture Quotes
-                                                # ' captures '
-                                                # " captures "
-                                                # doesn't capture \"
-        (?P<strings>(\"[.|\\"]*\"\Z))     # Capture Any String
-                                                # \" captures start "
-                                                # . captures anything inside quotes
-                                                # \\" don't exit on quotes in strings (4 \ due to regex inception)
-                                                # \"\s captures end "
-                                                # \Z only matches at end of string
-        (?P<symbols>(\b?!([\.]|[0-9])[.]*\b)) # Capture Symbol (anything that doesn't start with . or 0-9
-                                                # \b marks beginning of word
-                                                # ?! doesn't start with
-                                                # [.] doesn't start with period
-                                                # [0-9] doesn't start with 0-9
-                                                # [.]*\b everything else in the symbol till space
-        """, re.VERBOSE | re.MULTILINE)
 
-    it = re.findall(p, code)
-    tokens = []
-    for match in it:
-        #if string group, send to parse_strlit and then append
-        #if LParen, create LParen and append
-        #if RParen, create RParen and append
-        #if Symbol, create Symbol and append.
+    patterns = r'''
+        (^\#\![^\n]*\n)                                       # Shebang lines
+        | ([()'])                                             # Control Tokens
+        | ("(?:[^\\"]|\\.)*")                                 # String Literals
+        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
+        | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)                 # Symbols
+        | (;.*)                                               # Comments
+        | (\s)                                                # Whitespace
+        | (.)                                                 # Errors
+        '''
 
-
-    #need to add groups to list in order (by span??)
-    #convert groups to correct type
-    #send strings to parse_strlit
-
-    for group in tokens:
-        yield group
-
-    raise NotImplementedError("Deliverable 2")
+    p = re.compile(patterns, re.VERBOSE)
+    for pattern in p.finditer(code):
+        # Ignore group 1 (shebang lines)
+        # If a Control Token, find which one
+        if pattern.group(2):
+            if pattern[0] == '(':
+                yield LParen()
+            elif pattern[0] == ')':
+                yield RParen()
+            else:
+                yield Quote()
+        # If a String Literal, send to parse_strlit first
+        elif pattern.group(3):
+            yield parse_strlit(pattern[0])
+        # If is a number
+        elif pattern.group(4):
+            # Error if can't interpret number
+            try:
+                float(pattern[0])
+                if pattern[0].isdigit():
+                    yield int(pattern[0])
+                else:
+                    yield float(pattern[0])
+            except ValueError:
+                print("Value Error")
+        # If token was a Symbol
+        elif pattern.group(5):
+            yield Symbol(pattern[0])
+        elif pattern.group(6):
+            pass
+        elif pattern.group(7):
+            pass
+        else:
+            raise SyntaxError("malformed tokens in input")
 
 
 def parse_strlit(tok):
@@ -326,36 +323,25 @@ def parse_strlit(tok):
     utilities for this: tl;dr do it yourself.
     """
 
-    # case \x## : Hex Value
-        # replace with char(x##)
-    re.sub(r'\\x[0-9A-F]{2}', chr(), tok)
-    # case \0## : Octal Value
-        #replace with char(0##)
-    re.sub(r'\\0[0-9A-F]{2}', chr(), tok)
-    # case \0   : ASCII Value 0
-    re.sub(r'\\0', '0', tok)
-    # case \a   : ASCII Value 7
-    re.sub(r'\\a', '7', tok)
-    # case \b   : ASCII Value 8
-    re.sub(r'\\b', '8', tok)
-    # case \e   : ASCII Value 27
-    re.sub(r'\\e', '27', tok)
-    # case \f   : ASCII Value 12
-    re.sub(r'\\f', '12', tok)
-    # case \n   : ASCII Value 10
-    re.sub(r'\\n', '10', tok)
-    # case \r   : ASCII Value 13
-    re.sub(r'\\r', '13', tok)
-    # case \t   : ASCII Value 9
-    re.sub(r'\\t', '9', tok)
-    # case \v   : ASCII Value 11
-    re.sub(r'\\v', '11', tok)
-    # case \"   : ASCII Value 34
-    re.sub(r'\\"', '34', tok)
-    # case \\   : ASCII Value 92
-    re.sub(r'\\\\', '92', tok)
+    """Regex sub for each of the listed possibilities in the table above"""
+    re.sub(r'\\x[0-9A-F]{2}', chr(), tok)    # case \x## : Hex Value
+                                                # replace with char(x##)
+    re.sub(r'\\0[0-9A-F]{2}', chr(), tok)    # case \0## : Octal Value
+                                                #replace with char(0##)
+    re.sub(r'\\0', '0', tok)        # case \0   : ASCII Value 0
+    re.sub(r'\\a', '7', tok)        # case \a   : ASCII Value 7
+    re.sub(r'\\b', '8', tok)        # case \b   : ASCII Value 8
+    re.sub(r'\\e', '27', tok)       # case \e   : ASCII Value 27
+    re.sub(r'\\f', '12', tok)       # case \f   : ASCII Value 12
+    re.sub(r'\\n', '10', tok)       # case \n   : ASCII Value 10
+    re.sub(r'\\r', '13', tok)       # case \r   : ASCII Value 13
+    re.sub(r'\\t', '9', tok)        # case \t   : ASCII Value 9
+    re.sub(r'\\v', '11', tok)       # case \v   : ASCII Value 11
+    re.sub(r'\\"', '34', tok)       # case \"   : ASCII Value 34
+    re.sub(r'\\\\', '92', tok)      # case \\   : ASCII Value 92
 
-    #Convert to string
+
+    """Convert to SlytherLisp String data type and return"""
     return String(tok)
 
 
@@ -476,9 +462,77 @@ def parse(tokens):
     SyntaxError: invalid quotation
     """
 
+    result = []
 
+    for item in tokens:
+        """ If the element isn't a RParen, add it to the result.
+            closed parens counted in the else"""
+        if not isinstance(item, RParen):
+            result.append(item)
+        else:
+            # Start of new list
+            cdr = NIL
 
-    raise NotImplementedError("Deliverable 2")
+            # Process Contents inside Parenthesis
+            while True:
+
+                """ Save contents of last entry and process them below or 
+                    raise error of too many closing parens"""
+                if len(result) > 0:
+                    previous_token = result[-1]
+                    del result[-1]
+                else:
+                    raise SyntaxError("too many closing parens")
+
+                # Put contents between both parens together
+                if isinstance(previous_token, LParen):
+                    result.append(cdr)
+                    break
+
+                # Case to make sure that quote isn't followed by RParen
+                elif isinstance(previous_token, Quote):
+                    raise SyntaxError("invalid quotation")
+
+                # If the previous token wasn't a Control Token, then create
+                # an SExpression for it
+                else:
+                    cdr = SExpression(last_item, cdr)
+
+            """ If unprocessed symbols still inside parenthesis,
+                process insides"""
+            if len(result) > 1:
+                # Get the quote in a result list
+                while isinstance(result[len(result) - 2], Quote):
+                    # Breaks the while loop
+                    if len(result) < 2:
+                        break
+                    previous_token = result[-1]
+                    del result[-1]
+                    # Delete the quote from the result list
+                    del result[-1]
+                    result.append(Quoted(previous_token))
+            # Pop extra parenthesis if there is one
+            if len(result) == 1:
+                yield result.pop()
+        # When the Quote shows up outside the first paren,
+        # we need to process this first.
+        # After process the content inside ()
+        if not isinstance(item, ControlToken):
+            if len(result) > 1:
+                while isinstance(result[len(result) - 2], Quote):
+                    if len(result) < 2:
+                        break
+                    previous_token = result[-1]
+                    # Delete the quote from the result list
+                    del result[-1]
+                    del result[-1]
+                    result.append(Quoted(previous_token))
+            # Pop extra parenthesis if there is one
+            if len(result) == 1:
+                yield result.pop()
+    # Input was invalid
+    if len(result) != 0:
+        raise SyntaxError("incomplete parse")
 
 
 def lisp(code: str):

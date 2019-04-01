@@ -32,14 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_477/Miner Conflict" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_477/Miner Conflict/src/Miner Conflict.yyp" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict/src/Miner Conflict.yyp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,43 +62,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4752">
-              <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+            <state relative-caret-position="-487">
+              <caret line="500" column="16" selection-start-line="500" selection-start-column="16" selection-end-line="500" selection-end-column="16" />
               <folding>
                 <element signature="e#217#226#0" expanded="true" />
+                <element signature="e#1372#7765#1" />
+                <element signature="e#9606#13124#0" />
+                <element signature="e#13150#16492#1" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4" />
-          </provider>
+          <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" />
         <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-14" />
-    <option name="y" value="82" />
-    <option name="width" value="1950" />
-    <option name="height" value="2093" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-17" />
+    <option name="y" value="79" />
+    <option name="width" value="1953" />
+    <option name="height" value="2096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -173,20 +171,20 @@
       <workItem from="1552068445745" duration="1838000" />
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
+      <workItem from="1554058841696" duration="12175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29662000" />
+    <option name="totallyTimeSpent" value="41837000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="30" width="709" height="761" extended-state="1" />
+    <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.23277183" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.116038434" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5007825" side_tool="true" weight="0.11086474" />
-      <window_info anchor="bottom" id="TeamCity" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -200,7 +198,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="right" id="LuaJ" />
+      <window_info anchor="bottom" id="TeamCity" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -208,21 +206,13 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32963786" />
       <window_info anchor="right" id="Database" order="6" weight="0.32963786" />
+      <window_info anchor="right" id="LuaJ" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/interpreter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8400">
@@ -232,14 +222,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-589">
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-273" />
+        <state relative-caret-position="-2209" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-189" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="-6689">
           <caret line="348" column="27" lean-forward="true" selection-start-line="348" selection-start-column="27" selection-end-line="348" selection-end-column="27" />
           <folding>
             <element signature="e#122#1565#0" />
@@ -283,19 +287,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-4" />
+      </provider>
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4752">
-          <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+        <state relative-caret-position="-487">
+          <caret line="500" column="16" selection-start-line="500" selection-start-column="16" selection-end-line="500" selection-end-column="16" />
           <folding>
             <element signature="e#217#226#0" expanded="true" />
+            <element signature="e#1372#7765#1" />
+            <element signature="e#9606#13124#0" />
+            <element signature="e#13150#16492#1" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4" />
       </provider>
     </entry>
   </component>
