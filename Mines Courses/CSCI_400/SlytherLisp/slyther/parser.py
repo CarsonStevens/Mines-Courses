@@ -214,7 +214,7 @@ def lex(code):
         (^\#\![^\n]*\n)                                       # Shebang lines
         | ([()'])                                             # Control Tokens
         | ("(?:[^\\"]|\\.)*")                                 # String Literals
-        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
+        | ([+-]?(?:\d*(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
         | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)                 # Symbols
         | (;.*)                                               # Comments
         | (\s)                                                # Whitespace
@@ -239,10 +239,11 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
-                if isinstance(pattern[0], float):
-                    yield pattern[0]
-                else:
+                float(pattern[0])
+                if pattern[0].isdigit():
                     yield int(pattern[0])
+                else:
+                    yield float(pattern[0])
             except ValueError:
                 print("Value Error")
         # If token was a Symbol
