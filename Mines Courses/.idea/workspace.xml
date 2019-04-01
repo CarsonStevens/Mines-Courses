@@ -32,10 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_477/Miner Conflict" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_477/Miner Conflict" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,17 +63,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-487">
-              <caret line="500" column="16" selection-start-line="500" selection-start-column="16" selection-end-line="500" selection-end-column="16" />
+            <state relative-caret-position="491">
+              <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
               <folding>
                 <element signature="e#217#226#0" expanded="true" />
                 <element signature="e#1372#7765#1" />
-                <element signature="e#9606#13124#0" />
                 <element signature="e#13150#16492#1" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/README.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -98,9 +112,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-17" />
-    <option name="y" value="79" />
-    <option name="width" value="1953" />
-    <option name="height" value="2096" />
+    <option name="y" value="66" />
+    <option name="width" value="1950" />
+    <option name="height" value="2093" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -171,12 +185,12 @@
       <workItem from="1552068445745" duration="1838000" />
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
-      <workItem from="1554058841696" duration="12175000" />
+      <workItem from="1554058841696" duration="13668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41837000" />
+    <option name="totallyTimeSpent" value="43330000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
@@ -287,22 +301,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
+          <folding>
+            <element signature="e#217#226#0" expanded="true" />
+            <element signature="e#1372#7765#1" />
+            <element signature="e#13150#16492#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-4" />
       </provider>
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="500" column="16" selection-start-line="500" selection-start-column="16" selection-end-line="500" selection-end-column="16" />
-          <folding>
-            <element signature="e#217#226#0" expanded="true" />
-            <element signature="e#1372#7765#1" />
-            <element signature="e#9606#13124#0" />
-            <element signature="e#13150#16492#1" />
-          </folding>
+        <state relative-caret-position="100">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
         </state>
       </provider>
     </entry>

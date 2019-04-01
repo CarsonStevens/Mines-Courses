@@ -323,26 +323,67 @@ def parse_strlit(tok):
     utilities for this: tl;dr do it yourself.
     """
 
-    """Regex sub for each of the listed possibilities in the table above"""
-    re.sub(r'\\x[0-9A-F]{2}', chr(), tok)    # case \x## : Hex Value
-                                                # replace with char(x##)
-    re.sub(r'\\0[0-9A-F]{2}', chr(), tok)    # case \0## : Octal Value
-                                                #replace with char(0##)
-    re.sub(r'\\0', '0', tok)        # case \0   : ASCII Value 0
-    re.sub(r'\\a', '7', tok)        # case \a   : ASCII Value 7
-    re.sub(r'\\b', '8', tok)        # case \b   : ASCII Value 8
-    re.sub(r'\\e', '27', tok)       # case \e   : ASCII Value 27
-    re.sub(r'\\f', '12', tok)       # case \f   : ASCII Value 12
-    re.sub(r'\\n', '10', tok)       # case \n   : ASCII Value 10
-    re.sub(r'\\r', '13', tok)       # case \r   : ASCII Value 13
-    re.sub(r'\\t', '9', tok)        # case \t   : ASCII Value 9
-    re.sub(r'\\v', '11', tok)       # case \v   : ASCII Value 11
-    re.sub(r'\\"', '34', tok)       # case \"   : ASCII Value 34
-    re.sub(r'\\\\', '92', tok)      # case \\   : ASCII Value 92
+    """Regex pattern for each of the listed possibilities in the table above"""
+    result = ""
+    token = tok[1:-1]
+    pattern = r"""
+                  (\\a)                                 # ASCII Value 7
+                | (\\b)                                 # ASCII Value 8
+                | (\\e)                                 # ASCII Value 27    
+                | (\\f)                                 # ASCII Value 12
+                | (\\n)                                 # ASCII Value 10
+                | (\\r)                                 # ASCII Value 13
+                | (\\t)                                 # ASCII Value 9
+                | (\\v)                                 # ASCII Value 11
+                | (\\\")                                # ASCII Value 34
+                | (\\\\)                                # ASCII Value 92
+                | (\\x([0-9a-fA-F][0-9a-fA-F]))         # Hex Value 
+                | (\\0([0-7][0-7]))                     # Octal Value
+                | (\\0)                                 # ASCII Value 0
+                | (\\)                                  # Unused
+                | (.)                                   # Others
+                """
+    p = re.compile(pattern, re.VERBOSE)
 
+    # Apply pattern to resulting string
+    for x in p.finditer(token):
+        if x.group(1):
+            result += "\x07"
+        elif x.group(2):
+            result += "\x08"
+        elif x.group(3):
+            result += "\x1b"
+        elif x.group(4):
+            result += "\x0c"
+        elif x.group(5):
+            result += "\x0a"
+        elif x.group(6):
+            result += "\x0d"
+        elif x.group(7):
+            result += "\x09"
+        elif x.group(8):
+            result += "\x0b"
+        elif x.group(9):
+            result += "\x22"
+        elif x.group(10):
+            result += "\x5c"
+        elif x.group(11):
+            n = int(x.group(12), 16)
+            temp = chr(n)
+            result += temp
+        elif x.group(13):
+            n = int(x.group(14), 8)
+            temp = chr(n)
+            result += temp
+        elif x.group(15):
+            result += "\x00"
+        elif x.group(16):
+            result += "\\"
+        elif x.group(17):
+            result += x.group(17)
 
     """Convert to SlytherLisp String data type and return"""
-    return String(tok)
+    return String(result)
 
 
 def parse(tokens):
