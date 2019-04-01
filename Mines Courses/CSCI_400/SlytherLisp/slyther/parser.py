@@ -332,7 +332,7 @@ def parse_strlit(tok):
     pattern = r"""
                   (\\a)                                 # ASCII Value 7
                 | (\\b)                                 # ASCII Value 8
-                | (\\e)                                 # ASCII Value 27    
+                | (\\e)                                 # ASCII Value 27
                 | (\\f)                                 # ASCII Value 12
                 | (\\n)                                 # ASCII Value 10
                 | (\\r)                                 # ASCII Value 13
@@ -340,7 +340,7 @@ def parse_strlit(tok):
                 | (\\v)                                 # ASCII Value 11
                 | (\\\")                                # ASCII Value 34
                 | (\\\\)                                # ASCII Value 92
-                | (\\x([0-9a-fA-F]{2}))                 # Hex Value 
+                | (\\x([0-9a-fA-F]{2}))                 # Hex Value
                 | (\\0([0-7]{2}))                       # Octal Value
                 | (\\0)                                 # ASCII Value 0
                 | (\\)                                  # Unused
@@ -506,8 +506,8 @@ def parse(tokens):
 
     result = []
 
-    """ Length of result is used to keep track of parenthesis in both 
-        directions and if in between two parenthesis, process into the AST. 
+    """ Length of result is used to keep track of parenthesis in both
+        directions and if in between two parenthesis, process into the AST.
         If uneven parenthesis, raise error based on rule invalidated."""
     for item in tokens:
         """ If the element isn't a RParen, add it to the result.
@@ -520,7 +520,7 @@ def parse(tokens):
             # Process Contents inside Parenthesis
             while True:
 
-                """ Save contents of last entry and process them below or 
+                """ Save contents of last entry and process them below or
                     raise error of too many closing parens"""
                 if len(result) > 0:
                     previous_token = result[-1]
@@ -547,7 +547,8 @@ def parse(tokens):
             if len(result) > 1:
                 # Get the quote in a result list
                 while isinstance(result[len(result)-2], Quote):
-                    # Breaks while if(
+                    # Breaks while if less than two args left in result
+                    # Should be the quotes
                     if len(result) < 2:
                         break
                     # Grab next token to append and remove from result
@@ -561,10 +562,12 @@ def parse(tokens):
             if len(result) == 1:
                 yield result.pop()
 
-        """ Case for if a Quote shows up before a paren. Should process 
+        """ Case for if a Quote shows up before a paren. Should process
             quote first and then the contents in the paren"""
         if not isinstance(item, ControlToken):
             if len(result) > 1:
+                # Breaks while if less than two args left in result
+                # Should be the quotes
                 while isinstance(result[len(result)-2], Quote):
                     if len(result) < 2:
                         break
