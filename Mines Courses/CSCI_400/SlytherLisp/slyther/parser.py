@@ -211,14 +211,17 @@ def lex(code):
     """
 
     patterns = r'''
-        (^\#\![^\n]*\n)                                       # Shebang lines
-        | ([()'])                                             # Control Tokens
-        | ("(?:[^\\"]|\\.)*")                                 # String Literals
-        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
-        | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)                 # Symbols
-        | (;.*)                                               # Comments
-        | (\s)                                                # Whitespace
-        | (.)                                                 # Errors
+        (^\#\![^\n]*\n)                                   # Shebang lines(at
+                                                          #     start)
+        | ([()'])                                         # Control Tokens
+        | ("(?:[^\\"]|\\.)*")                             # String Literals
+        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?) # Floating Point/
+                                                          #     Integer Literal
+        | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)             # Symbols
+        | (;.*)                                           # Comments
+        | (\s)                                            # Whitespace
+        | (.)                                             # Errors/Anything
+                                                          #     else
         '''
 
     p = re.compile(patterns, re.VERBOSE)
@@ -239,12 +242,13 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
+                # See if number was int, else yield float
                 if isinstance(pattern[0], int):
                     yield pattern[0]
                 else:
                     yield float(pattern[0])
             except ValueError:
-                print("Value Error")
+                print("Value Error with value: ", pattern[0])
         # If token was a Symbol
         elif pattern.group(5):
             yield Symbol(pattern[0])
@@ -323,8 +327,8 @@ def parse_strlit(tok):
     """
 
     """Regex pattern for each of the listed possibilities in the table above"""
-    result = ""
-    token = tok[1:-1]
+    result = ""         # Final String to return/convert to String type
+    token = tok[1:-1]   # Inverse list for iterating, because appends reversed
     pattern = r"""
                   (\\a)                                 # ASCII Value 7
                 | (\\b)                                 # ASCII Value 8
@@ -344,7 +348,7 @@ def parse_strlit(tok):
                 """
     p = re.compile(pattern, re.VERBOSE)
 
-    # Apply pattern to resulting string
+    # Apply pattern to resulting string; tokens in reverse for append
     for item in p.finditer(token):
         if item.group(1):
             result += "\x07"
@@ -366,14 +370,11 @@ def parse_strlit(tok):
             result += "\x22"
         elif item.group(10):
             result += "\x5c"
+        # For next two cases, chr(int) returns unicode 16=HEX, 8=OCTAL
         elif item.group(11):
-            n = int(item.group(12), 16)
-            temp = chr(n)
-            result += temp
+            result += chr(int(item.group(12), 16))
         elif item.group(13):
-            n = int(item.group(14), 8)
-            temp = chr(n)
-            result += temp
+            result += chr(int(item.group(14), 8))
         elif item.group(15):
             result += "\x00"
         elif item.group(16):
@@ -505,6 +506,9 @@ def parse(tokens):
 
     result = []
 
+    """ Length of result is used to keep track of parenthesis in both 
+        directions and if in between two parenthesis, process into the AST. 
+        If uneven parenthesis, raise error based on rule invalidated."""
     for item in tokens:
         """ If the element isn't a RParen, add it to the result.
             closed parens counted in the else"""
@@ -513,7 +517,6 @@ def parse(tokens):
         else:
             # Start of new list
             cdr = NIL
-
             # Process Contents inside Parenthesis
             while True:
 
@@ -543,10 +546,12 @@ def parse(tokens):
                 process insides"""
             if len(result) > 1:
                 # Get the quote in a result list
-                while isinstance(result[len(result) - 2], Quote):
-                    # Breaks the while loop
+                while isinstance(result[-2], Quote):
+                    # Breaks while if(
                     if len(result) < 2:
                         break
+                    # Grab next token to append and remove from result
+                    # for reassigning as Quoted
                     previous_token = result[-1]
                     del result[-1]
                     # Delete the quote from the result list
@@ -555,17 +560,18 @@ def parse(tokens):
             # Pop extra parenthesis if there is one
             if len(result) == 1:
                 yield result.pop()
-        # When the Quote shows up outside the first paren,
-        # we need to process this first.
-        # After process the content inside ()
+
+        """ Case for if a Quote shows up before a paren. Should process 
+            quote first and then the contents in the paren"""
         if not isinstance(item, ControlToken):
             if len(result) > 1:
-                while isinstance(result[len(result) - 2], Quote):
+                while isinstance(result[-2], Quote):
                     if len(result) < 2:
                         break
+                    # Grab next token to append/remove & reassign as Quoted
                     previous_token = result[-1]
-                    # Delete the quote from the result list
                     del result[-1]
+                    # Delete the quote from the result list
                     del result[-1]
                     result.append(Quoted(previous_token))
             # Pop extra parenthesis if there is one
