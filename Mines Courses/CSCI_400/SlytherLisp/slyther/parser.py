@@ -546,7 +546,7 @@ def parse(tokens):
                 process insides"""
             if len(result) > 1:
                 # Get the quote in a result list
-                while isinstance(result[len(result)-2], Quote):
+                while isinstance(result[len(result) - 2], Quote):
                     # Breaks while if less than two args left in result
                     # Should be the quotes
                     if len(result) < 2:
@@ -568,7 +568,7 @@ def parse(tokens):
             if len(result) > 1:
                 # Breaks while if less than two args left in result
                 # Should be the quotes
-                while isinstance(result[len(result)-2], Quote):
+                while isinstance(result[len(result) - 2], Quote):
                     if len(result) < 2:
                         break
                     # Grab next token to append/remove & reassign as Quoted
