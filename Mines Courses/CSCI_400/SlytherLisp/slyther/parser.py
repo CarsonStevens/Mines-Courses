@@ -368,11 +368,11 @@ def parse_strlit(tok):
         elif item.group(10):
             result += "\x5c"
         elif item.group(11):
-            n = int(x.group(12), 16)
+            n = int(item.group(12), 16)
             temp = chr(n)
             result += temp
         elif item.group(13):
-            n = int(x.group(14), 8)
+            n = int(item.group(14), 8)
             temp = chr(n)
             result += temp
         elif item.group(15):

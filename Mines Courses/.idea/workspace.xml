@@ -32,10 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/hw-2.rkt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="540" column="52" selection-start-line="540" selection-start-column="52" selection-end-line="540" selection-end-column="52" />
+            <state relative-caret-position="16">
+              <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
               <folding>
                 <element signature="e#217#226#0" expanded="true" />
                 <element signature="e#13150#16492#1" />
@@ -2315,12 +2312,20 @@
       <workItem from="1552068445745" duration="1838000" />
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
-      <workItem from="1554058841696" duration="15206000" />
+      <workItem from="1554058841696" duration="15410000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated variable name error">
+      <created>1554082064368</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554082064368</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44868000" />
+    <option name="totallyTimeSpent" value="45072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
@@ -2340,7 +2345,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.19248827" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13771518" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="TeamCity" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -2355,6 +2360,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated variable name error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated variable name error" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py">
@@ -4581,8 +4590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="540" column="52" selection-start-line="540" selection-start-column="52" selection-end-line="540" selection-end-column="52" />
+        <state relative-caret-position="16">
+          <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
           <folding>
             <element signature="e#217#226#0" expanded="true" />
             <element signature="e#13150#16492#1" />
