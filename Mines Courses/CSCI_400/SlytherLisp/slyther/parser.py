@@ -346,43 +346,44 @@ def parse_strlit(tok):
     p = re.compile(pattern, re.VERBOSE)
 
     # Apply pattern to resulting string
-    for x in p.finditer(token):
-        if x.group(1):
+    for item in p.finditer(token):
+        if item.group(1):
             result += "\x07"
-        elif x.group(2):
+        elif item.group(2):
             result += "\x08"
-        elif x.group(3):
+        elif item.group(3):
             result += "\x1b"
-        elif x.group(4):
+        elif item.group(4):
             result += "\x0c"
-        elif x.group(5):
+        elif item.group(5):
             result += "\x0a"
-        elif x.group(6):
+        elif item.group(6):
             result += "\x0d"
-        elif x.group(7):
+        elif item.group(7):
             result += "\x09"
-        elif x.group(8):
+        elif item.group(8):
             result += "\x0b"
-        elif x.group(9):
+        elif item.group(9):
             result += "\x22"
-        elif x.group(10):
+        elif item.group(10):
             result += "\x5c"
-        elif x.group(11):
+        elif item.group(11):
             n = int(x.group(12), 16)
             temp = chr(n)
             result += temp
-        elif x.group(13):
+        elif item.group(13):
             n = int(x.group(14), 8)
             temp = chr(n)
             result += temp
-        elif x.group(15):
+        elif item.group(15):
             result += "\x00"
-        elif x.group(16):
+        elif item.group(16):
             result += "\\"
-        elif x.group(17):
-            result += x.group(17)
+        # Anything else
+        elif item.group(17):
+            result += item.group(17)
 
-    """Convert to SlytherLisp String data type and return"""
+    # Convert to SlytherLisp String data type and return
     return String(result)
 
 
@@ -537,7 +538,7 @@ def parse(tokens):
                 # If the previous token wasn't a Control Token, then create
                 # an SExpression for it
                 else:
-                    cdr = SExpression(last_item, cdr)
+                    cdr = SExpression(previous_token, cdr)
 
             """ If unprocessed symbols still inside parenthesis,
                 process insides"""
