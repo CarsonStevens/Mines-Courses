@@ -546,7 +546,7 @@ def parse(tokens):
                 process insides"""
             if len(result) > 1:
                 # Get the quote in a result list
-                while isinstance(result[-2], Quote):
+                while isinstance(result[len(result)-2], Quote):
                     # Breaks while if(
                     if len(result) < 2:
                         break
@@ -565,7 +565,7 @@ def parse(tokens):
             quote first and then the contents in the paren"""
         if not isinstance(item, ControlToken):
             if len(result) > 1:
-                while isinstance(result[-2], Quote):
+                while isinstance(result[len(result)-2], Quote):
                     if len(result) < 2:
                         break
                     # Grab next token to append/remove & reassign as Quoted
