@@ -239,8 +239,7 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
-                float(pattern[0])
-                if pattern[0].isdigit():
+                if isinstance(pattern[0], int):
                     yield int(pattern[0])
                 else:
                     yield float(pattern[0])
@@ -337,8 +336,8 @@ def parse_strlit(tok):
                 | (\\v)                                 # ASCII Value 11
                 | (\\\")                                # ASCII Value 34
                 | (\\\\)                                # ASCII Value 92
-                | (\\x([0-9a-fA-F][0-9a-fA-F]))         # Hex Value 
-                | (\\0([0-7][0-7]))                     # Octal Value
+                | (\\x([0-9a-fA-F]{2}))                 # Hex Value 
+                | (\\0([0-7]{2}))                       # Octal Value
                 | (\\0)                                 # ASCII Value 0
                 | (\\)                                  # Unused
                 | (.)                                   # Others

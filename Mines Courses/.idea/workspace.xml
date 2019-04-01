@@ -62,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
+            <state relative-caret-position="-534">
+              <caret line="216" column="78" selection-start-line="216" selection-start-column="78" selection-end-line="216" selection-end-column="78" />
               <folding>
                 <element signature="e#217#226#0" expanded="true" />
                 <element signature="e#13150#16492#1" />
@@ -2312,7 +2312,7 @@
       <workItem from="1552068445745" duration="1838000" />
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
-      <workItem from="1554058841696" duration="15410000" />
+      <workItem from="1554058841696" duration="15860000" />
     </task>
     <task id="LOCAL-00001" summary="Updated variable name error">
       <created>1554082064368</created>
@@ -2325,7 +2325,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45072000" />
+    <option name="totallyTimeSpent" value="45522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
@@ -2345,7 +2345,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13771518" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23317684" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="TeamCity" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -4590,8 +4590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
+        <state relative-caret-position="-534">
+          <caret line="216" column="78" selection-start-line="216" selection-start-column="78" selection-end-line="216" selection-end-column="78" />
           <folding>
             <element signature="e#217#226#0" expanded="true" />
             <element signature="e#13150#16492#1" />
