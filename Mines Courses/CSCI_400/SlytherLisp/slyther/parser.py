@@ -214,7 +214,7 @@ def lex(code):
         (^\#\![^\n]*\n)                                       # Shebang lines
         | ([()'])                                             # Control Tokens
         | ("(?:[^\\"]|\\.)*")                                 # String Literals
-        | ([+-]?(?:\d+^.)|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
+        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)     # Floating Point
         | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)                 # Symbols
         | (;.*)                                               # Comments
         | (\s)                                                # Whitespace
