@@ -239,10 +239,10 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
-                if isinstance(pattern[0], int):
+                if isinstance(pattern[0], float):
                     yield pattern[0]
                 else:
-                    yield float(pattern[0])
+                    yield int(pattern[0])
             except ValueError:
                 print("Value Error")
         # If token was a Symbol
