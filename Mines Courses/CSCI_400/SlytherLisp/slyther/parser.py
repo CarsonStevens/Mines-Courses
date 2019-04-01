@@ -239,9 +239,8 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
-                float(pattern[0])
-                if pattern[0].isdigit():
-                    yield int(pattern[0])
+                if isinstance(pattern[0], int):
+                    yield pattern[0]
                 else:
                     yield float(pattern[0])
             except ValueError:
