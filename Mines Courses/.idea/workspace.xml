@@ -32,8 +32,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/test.2" beforeDir="false" />
@@ -64,11 +64,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7540">
-              <caret line="691" column="14" selection-start-line="691" selection-start-column="14" selection-end-line="691" selection-end-column="14" />
+            <state relative-caret-position="120">
+              <caret line="655" column="17" lean-forward="true" selection-start-line="655" selection-start-column="17" selection-end-line="655" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="471">
+              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -76,7 +85,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2209" />
+            <state relative-caret-position="551">
+              <caret line="175" column="42" selection-start-line="175" selection-start-column="42" selection-end-line="175" selection-end-column="42" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -95,8 +106,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" />
-        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
         <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" />
       </list>
     </option>
   </component>
@@ -176,7 +189,7 @@
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
       <workItem from="1554058841696" duration="21218000" />
-      <workItem from="1554172674092" duration="1522000" />
+      <workItem from="1554172674092" duration="2998000" />
     </task>
     <task id="LOCAL-00001" summary="Updated variable name error">
       <created>1554082064368</created>
@@ -189,7 +202,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52402000" />
+    <option name="totallyTimeSpent" value="53878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
@@ -237,11 +250,6 @@
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html">
@@ -2403,11 +2411,6 @@
       </provider>
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2209" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3780">
@@ -2420,8 +2423,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7540">
-          <caret line="691" column="14" selection-start-line="691" selection-start-column="14" selection-end-line="691" selection-end-column="14" />
+        <state relative-caret-position="120">
+          <caret line="655" column="17" lean-forward="true" selection-start-line="655" selection-start-column="17" selection-end-line="655" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="175" column="42" selection-start-line="175" selection-start-column="42" selection-end-line="175" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
         </state>
       </provider>
     </entry>
