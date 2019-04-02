@@ -1,0 +1,31 @@
+compiled
+drracket
+README.html
+
+#instructor's solution
+*solution.rkt
+
+# A couple of operating system files, really you should
+# setup a global gitignore (Google it) if you depend on
+# this... not all projects will have these listed.
+TAGS
+.DS_Store
+Thumbs.db
+.Trashes
+*.swp
+*.swo
+*.lock
+*~
+.netrwhist
+\#*
+\#*\#
+/.emacs.desktop
+*.elc
+*.bak
+*.sav
+auto-save-list
+tramp
+.\#*
+.idea
+.metadata
+.vscode
