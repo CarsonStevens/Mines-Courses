@@ -30,7 +30,7 @@ __global__ void spmv(const int num_rows, const int *ptr, const int *indices,
         int row_end = ptr[row+1];
 
         for(int jj = row_start; jj < row_end; jj++){
-            dot += data[jj] * mult_data[indices[jj]]
+            dot += data[jj] * mult_data[indices[jj]];
         }
         result[row] += dot;
     }
@@ -71,8 +71,8 @@ int main(int argc, char* argv[]){
         result[i] = 0.0;
     }
     //Initialize the multiply vector with data
-    for(i = 0; i < num_cols; i++){
-        mult_data[i] = random.random()/1111111111;
+    for(int i = 0; i < num_cols; i++){
+        mult_data[i] = float(random.random())/1111111111;
     }
 
     //Markers for keeping track of data
@@ -119,7 +119,7 @@ int main(int argc, char* argv[]){
 
     // Establish thread and block size
     dim3 threadsPerBlock(num_cols, num_rows, 1);
-    dim3 numBlocks((numcols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
+    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
 
     // Call function
     spmv<<<numBlocks, threadsPerBlock>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
