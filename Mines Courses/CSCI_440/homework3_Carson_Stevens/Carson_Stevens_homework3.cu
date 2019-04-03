@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
     }
     //Initialize the multiply vector with data
     for(int i = 0; i < num_cols; i++){
-        mult_data[i] = rand() % 100000 / 1111111111;
+        mult_data[i] = (rand() % 100000) / 1111111;
     }
 
     //Markers for keeping track of data
