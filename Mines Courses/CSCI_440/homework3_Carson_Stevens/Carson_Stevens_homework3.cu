@@ -31,7 +31,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     int warp_id = thread_id/32;
 
     // thread index inside warp
-    int lane = thread_id &(32 -1);
+    int lane = thread_id % (32 -1);
 
     // one warp per row
     int row = warp_id;
@@ -159,6 +159,7 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_data, data, size_float*number_of_entries, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_mult_data, mult_data, size_float*num_cols, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
+
 
     // Establish thread and block size
     dim3 threadsPerBlock(num_cols, 1, 1);
