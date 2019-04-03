@@ -38,6 +38,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
 
 int main(int argc, char* argv[]){
 
+    srand(0);
     //Load file
     //Declare ifstream object for .txt file parsing.
     //open the file from which to read the data
@@ -71,7 +72,7 @@ int main(int argc, char* argv[]){
     }
     //Initialize the multiply vector with data
     for(int i = 0; i < num_cols; i++){
-        mult_data[i] = (rand() % 100000) / 1111111;
+        mult_data[i] = (rand() % 100000000) / 111111111.0;
     }
 
     //Markers for keeping track of data
