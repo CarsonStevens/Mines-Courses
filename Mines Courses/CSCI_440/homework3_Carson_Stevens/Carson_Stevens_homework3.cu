@@ -33,6 +33,8 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     if( row < num_rows){
         cache[threadIdx.x] = mult_data[row];
     }
+
+    //Sync threads before doing new sum
     __syncthreads();
 
     if(row < num_rows){
