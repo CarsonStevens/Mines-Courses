@@ -21,17 +21,53 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
-    int row = blockDim.x * blockIdx.x + threadIdx.x;
+
+    __shared__ float vals[];
+
+    // global thread indexes
+    int thread_id = blockDim.x * blockIdx.x + threadIdx.x;
+
+    // global warp index
+    int warp_id = thread_id/32;
+
+    // thread index inside warp
+    int lane = thread_id &(32 -1);
+
+    // one warp per row
+    int row = warp_id;
+
     if (row < num_rows){
-        float dot = 0;
 
         int row_start = ptr[row];
         int row_end = ptr[row+1];
 
-        for(int jj = row_start; jj < row_end; jj++){
-            dot += data[jj] * mult_data[indices[jj]];
+        // Compute sum per thread
+        for(int i = row_start + lane; i < row_end; i++){
+            vals[threadIdx.x] += data[i] * mult_data[indices[i]];
         }
-        result[row] += dot;
+
+        //Synchronization for shared memory
+        if(lane < 16){
+            vals[threadIdx.x] += vals[threadIdx.x + 16];
+        }
+        if(lane < 8){
+            vals[threadIdx.x] += vals[threadIdx.x + 8];
+        }
+        if(lane < 4){
+            vals[threadIdx.x] += vals[threadIdx.x + 4];
+        }
+        if(lane < 2){
+            vals[threadIdx.x] += vals[threadIdx.x + 2];
+        }
+        if(lane < 1){
+            vals[threadIdx.x] += vals[threadIdx.x + 1];
+        }
+
+        // first thread writes the result
+        if(lane == 0){
+            result[row] += vals[threadIdx.x];
+        }
+
     }
 
 }
