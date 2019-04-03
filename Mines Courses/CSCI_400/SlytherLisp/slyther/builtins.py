@@ -22,7 +22,7 @@ def add(*args):
 
         Use ``sum`` or ``reduce``.
     """
-    raise NotImplementedError("Deliverable 3")
+    return sum(args)
 
 
 @BuiltinFunction('-')
@@ -44,7 +44,13 @@ def sub(*args):
 
         Use ``reduce``.
     """
-    raise NotImplementedError("Deliverable 3")
+    if len(args) == 1:
+        return -args[0]
+    elif len(args) > 1:
+        return reduce(lambda a, b: a - b, args)
+    else:
+        return 0
+
 
 
 @BuiltinFunction('*')
@@ -61,7 +67,11 @@ def mul(*args):
     >>> mul()
     1
     """
-    raise NotImplementedError("Deliverable 3")
+    # Starts at one incase no elements in args
+    product = 1
+    for elem in args:
+        product *= elem
+    return product
 
 
 @BuiltinFunction('/')
@@ -77,7 +87,13 @@ def div(*args):
     >>> div(2)
     0.5
     """
-    raise NotImplementedError("Deliverable 3")
+    if len(args) == 1:
+        return 1.0/float(args[0])
+        # return operator.truediv(1, args[0])
+    elif len(args) > 1:
+        return reduce(lambda a, b: float(a)/float(b), args)
+    else:
+        return 0
 
 
 @BuiltinFunction
@@ -94,7 +110,12 @@ def floordiv(*args):
     >>> floordiv(2)
     0
     """
-    raise NotImplementedError("Deliverable 3")
+    if len(args) == 1:
+        return operator.floordiv(1, args[0])
+    elif len(args) > 1:
+        return reduce(lambda a, b: operator.floordiv(a, b), args)
+    else:
+        return 0
 
 
 # IO
@@ -118,7 +139,7 @@ def list_(*args) -> ConsList:
     >>> list_()
     NIL
     """
-    raise NotImplementedError("Deliverable 3")
+    return ConsList.from_iterable(args)
 
 
 # Comparators
@@ -150,7 +171,7 @@ def car(cell: ConsCell):
     """
     Get the ``car`` of a cons cell.
     """
-    raise NotImplementedError("Deliverable 3")
+    return cell.car
 
 
 @BuiltinFunction
@@ -158,7 +179,7 @@ def cdr(cell: ConsCell):
     """
     Get the ``cdr`` of a cons cell.
     """
-    raise NotImplementedError("Deliverable 3")
+    return cell.cdr
 
 
 @BuiltinFunction('nil?')
@@ -166,7 +187,7 @@ def is_nil(cell: ConsCell) -> bool:
     """
     Return ``True`` if the cell is ``NIL``, ``False`` otherwise.
     """
-    raise NotImplementedError("Deliverable 3")
+    return cell.car == NIL
 
 
 @BuiltinMacro

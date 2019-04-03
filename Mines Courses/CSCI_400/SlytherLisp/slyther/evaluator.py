@@ -131,4 +131,63 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     3
 
     """
-    raise NotImplementedError("Deliverable 3")
+    """ Handle each part of the types of expressions that can be passed in.
+        The types are listed above. Some have additional cases once identified.
+    """
+    while True:
+
+        # NIL Case
+        if expr is NIL:
+            return NIL
+
+        # Quoted Case
+        elif isinstance(expr, Quoted):
+            # Get the content from inside the quoted expression
+            content = expr.elem  # access the content after the quote
+
+            # Case that quoted content is an SExpression
+            if isinstance(content, SExpression):
+                s_expr_content = []
+                for expr_content in content:
+                    s_expr_content.append(lisp_eval(Quoted(expr_content), stg))
+                return ConsList.from_iterable(s_expr_content)
+            else:
+                return content
+
+        # Case Symbol: return symbol key value
+        elif isinstance(expr, Symbol):
+            return stg[expr].value
+
+        # Case SExpression (not in quoted
+        elif isinstance(expr, SExpression):
+            evaluator = lisp_eval(expr.car, stg)
+
+            # Handle Macro SExpression
+            if isinstance(evaluator, Macro):
+                # Hold contents of macro
+                contents = []
+                for macro_item in expr.cdr:
+                    contents.append(macro_item)
+
+                # Convert contents using the lisp_eval object
+                expr = evaluator(macro_item.cdr, stg)
+
+            # Handle FUnction SExpression
+            elif isinstance(evaluator, Function):
+                contents = []
+                for func_item in expr.cdr:
+                    contents.append(lisp_eval(func_item, stg))
+
+                # Convert contents using the lisp_eval
+                eval_contents = evaluator(*contents)
+                if isinstance(eval_contents, tuple):
+                    expr = eval_contents[0]
+                    stg = eval_contents[1]
+                else:
+                    return eval_contents
+            else:
+                raise TypeError("'Symbol' object is not callable")
+
+        # No case, just return original
+        else:
+            return expr

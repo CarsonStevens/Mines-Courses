@@ -624,7 +624,9 @@ class UserFunction(Function):
         >>> f.environ
         {}
         """
-        raise NotImplementedError("Deliverable 3")
+        self.params = params
+        self.body = body
+        self.environ = environ
 
     def __call__(self, *args):
         """
@@ -642,7 +644,18 @@ class UserFunction(Function):
         # avoid circular imports
         from slyther.evaluator import lisp_eval
 
-        raise NotImplementedError("Deliverable 3")
+        storage = LexicalVarStorage(self.environ)
+
+        for x, y in zip(args, self.params):
+            storage.put(y, x)
+        r = NIL
+        length = len(self.body)
+        for index, z in enumerate(self.body):
+            if index == length - 1:
+                return (z, storage)
+            else:
+                r = lisp_eval(z, storage)
+        return r
 
     def __repr__(self):
         """

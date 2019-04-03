@@ -32,9 +32,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6f397f-b9e7-4f30-99ce-ec4d260fe131" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/CSCI_477/Game Map/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/test.2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSCI_400/hw-2-starter-code/test.rkt" beforeDir="false" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,29 +71,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/CSCI_440/homework2_Carson_Stevens/Homework2_2.cu">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="713">
               <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+=======
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="655" column="17" lean-forward="true" selection-start-line="655" selection-start-column="17" selection-end-line="655" selection-end-column="17" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1669">
               <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+=======
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="471">
+              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/CSCI_440/homework3_Carson_Stevens/sm1.txt">
           <provider selected="true" editor-type-id="text-editor" />
+=======
+        <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="175" column="42" selection-start-line="175" selection-start-column="42" selection-end-line="175" selection-end-column="42" />
+            </state>
+          </provider>
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Deliverable</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -93,17 +130,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
         <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu" />
+=======
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py" />
+        <option value="$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-17" />
+    <option name="x" value="-20" />
     <option name="y" value="66" />
-    <option name="width" value="1950" />
-    <option name="height" value="2093" />
+    <option name="width" value="1953" />
+    <option name="height" value="2096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -167,9 +210,14 @@
       <workItem from="1552068445745" duration="1838000" />
       <workItem from="1552751502551" duration="25790000" />
       <workItem from="1553996297560" duration="599000" />
+<<<<<<< HEAD
       <workItem from="1554058841696" duration="19719000" />
       <workItem from="1554089103140" duration="2720000" />
       <workItem from="1554231912375" duration="8024000" />
+=======
+      <workItem from="1554058841696" duration="21218000" />
+      <workItem from="1554172674092" duration="2998000" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
     </task>
     <task id="LOCAL-00001" summary="Updated variable name error">
       <created>1554082064368</created>
@@ -182,13 +230,21 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="60125000" />
+=======
+    <option name="totallyTimeSpent" value="53878000" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.022172948" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.11751663" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5007825" side_tool="true" weight="0.11086474" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -202,7 +258,11 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13928013" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.90923315" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="TeamCity" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -223,15 +283,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated variable name error" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8400">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-589">
@@ -241,6 +292,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2209" />
@@ -252,6 +304,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst" />
+=======
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/report.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -2391,23 +2445,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6580">
-          <caret line="359" column="44" selection-start-line="359" selection-start-column="44" selection-end-line="359" selection-end-column="44" />
+        <state relative-caret-position="267">
+          <caret line="570" column="54" selection-start-line="570" selection-start-column="54" selection-end-line="570" selection-end-column="54" />
+          <folding>
+            <element signature="e#217#226#0" expanded="true" />
+            <element signature="e#13150#16492#1" />
+          </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8411">
           <caret line="593" selection-start-line="593" selection-end-line="593" />
           <folding>
             <element signature="e#217#226#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/hw-2-starter-code/README.rst">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-4" />
+      </provider>
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3780">
+          <caret line="189" column="26" selection-start-line="189" selection-start-column="26" selection-end-line="189" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/README.rst">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -2425,6 +2502,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1669">
           <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+=======
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/types.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="655" column="17" lean-forward="true" selection-start-line="655" selection-start-column="17" selection-end-line="655" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/evaluator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="175" column="42" selection-start-line="175" selection-start-column="42" selection-end-line="175" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSCI_400/SlytherLisp/slyther/repl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+>>>>>>> 15840f00c0ee22236fff35e2cb0ecf3d8ee12f1b
         </state>
       </provider>
     </entry>

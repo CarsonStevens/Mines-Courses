@@ -30,4 +30,12 @@ def repl(interpreter, debug=False):
     is set to ``True``, as it allows for easy post-mortem debugging with pdb
     or pudb.
     """
-    raise NotImplementedError("Deliverable 3")
+    while True:
+        expr = input(">")
+        if expr == "^D":
+            exit(0)
+        if expr == "^C":
+            print("<-- ^C resulted in new prompt line")
+            exit(0)
+        else:
+            exec(expr)
