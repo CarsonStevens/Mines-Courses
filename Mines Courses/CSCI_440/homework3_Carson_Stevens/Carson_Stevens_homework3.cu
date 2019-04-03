@@ -22,29 +22,42 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
     // WORKING
-    extern __shared__ float cache[];       // Cache the rows of mult_data[] corresponding to this block.
+    // Cache the rows of mult_data[] corresponding to this block.
+    extern __shared__ float cache[];
+
     int block_begin = blockIdx.x * blockDim.x;
     int block_end = block_begin + blockDim.x;
     int row = block_begin + threadIdx.x;
-    // Fetch and cache our window of [].
+
+    // Fetch and cache window of mult_data[].
     if( row < num_rows){
         cache[threadIdx.x] = mult_data[row];
     }
     __syncthreads();
 
-    if( row < num_rows ){
+    if(row < num_rows){
+
         int row_begin = ptr[row];
         int row_end = ptr[row+1];
-        float x_j = 0;
+        float mult_temp = 0;
         float sum = 0 ;
-        for(int col=row_begin; col<row_end; ++col){
+
+        for(int col = row_begin; col < row_end; ++col){
             int j = indices[col];
-            if( j>=block_begin && j<block_end ) // Fetch x_j from our cache when possible
-                x_j = cache[j-block_begin];
-            else
-                x_j = mult_data[j];
-            sum += data[col] * x_j;
+
+            // Fetch updated mult_temp from our cache when possible
+            if(j >= block_begin && j < block_end) {
+                mult_temp = cache[j-block_begin];
+            }
+            else {
+                mult_temp = mult_data[j];
+            }
+
+            //Sum the dot product
+            sum += data[col] * mult_temp;
         }
+
+        //Send updated sum to the result matrix when all threads done.
         result[row] = sum;
     }
 
@@ -65,7 +78,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     }
     */
 
-    /* WORKING
+    /* NOT WORKING
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -93,28 +106,22 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         //Synchronization for shared memory
         if(lane < 16){
             vals[threadIdx.x] += vals[threadIdx.x + 16];
-            __syncwarp();
         }
         if(lane < 8){
             vals[threadIdx.x] += vals[threadIdx.x + 8];
-            __syncwarp();
         }
         if(lane < 4){
             vals[threadIdx.x] += vals[threadIdx.x + 4];
-            __syncwarp();
         }
         if(lane < 2){
             vals[threadIdx.x] += vals[threadIdx.x + 2];
-            __syncwarp();
         }
         if(lane < 1){
             vals[threadIdx.x] += vals[threadIdx.x + 1];
-            __syncwarp();
         }
 
         // first thread writes the result
         if(lane == 0){
-            __syncwarp();
             result[row] += vals[threadIdx.x];
         }
 
