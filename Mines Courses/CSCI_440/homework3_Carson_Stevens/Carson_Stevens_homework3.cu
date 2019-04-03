@@ -28,12 +28,12 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         int row_end = ptr[row + 1];
 
         // Compute sum per thread
-        for (int i = row_start + lane; i < row_end; i++) {
+        for (int i = row_start; i < row_end; i++) {
             dot += data[i] * mult_data[indices[i]];
         }
 
         result[row] = dot;
-    }    
+    }
 
 /*
     extern __shared__ float vals[];
