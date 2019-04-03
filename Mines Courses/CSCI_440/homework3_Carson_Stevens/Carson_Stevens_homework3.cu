@@ -23,7 +23,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
 
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows) {
-        float dot
+        float dot = 0.0;
         int row_start = ptr[row];
         int row_end = ptr[row + 1];
 
