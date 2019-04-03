@@ -22,7 +22,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
 
-    __shared__ float vals[];
+    __shared__ float vals[num_rows];
 
     // global thread indexes
     int thread_id = blockDim.x * blockIdx.x + threadIdx.x;
