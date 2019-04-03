@@ -161,7 +161,7 @@ int main(int argc, char* argv[]){
 
     // Establish thread and block size
     dim3 threadsPerBlock(num_cols, 1, 1);
-    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
+    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, 1, 1);
 
     // Call function
     spmv<<<numBlocks, threadsPerBlock>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
