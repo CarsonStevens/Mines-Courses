@@ -221,7 +221,7 @@ int main(int argc, char* argv[]){
     gridSize = (number_of_entries + blockSize - 1) / blockSize;
     // Call function
     cout << blockSize << " " << gridSize << endl;
-    spmv<<<gridSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
+    spmv<<<gridSize, blockSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
 
     // copy result back
     cudaMemcpy(result, dev_result, size_float*num_rows, cudaMemcpyDeviceToHost);
