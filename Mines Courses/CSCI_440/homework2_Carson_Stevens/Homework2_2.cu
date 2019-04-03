@@ -58,11 +58,8 @@ int main(int argc, char* argv[]){
     int size = sizeof(int)*width*height;
 
 
-    for(auto i : data){
-        cout << i << " ";
-    }
-    cout << endl;
-    
+
+
     // Allocate memory on GPU
     cudaMalloc((void **)&dev_matrix, size);
     cudaMalloc((void **)&dev_transpose, size);

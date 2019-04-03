@@ -99,6 +99,12 @@ int main(int argc, char* argv[]){
     row_ptr[num_rows] = number_of_entries;
     file.close();
 
+    for(auto i : data){
+        cout << i << " ";
+    }
+    cout << endl;
+
+
     int size_int = sizeof(int);
     int size_float = sizeof(float);
 
