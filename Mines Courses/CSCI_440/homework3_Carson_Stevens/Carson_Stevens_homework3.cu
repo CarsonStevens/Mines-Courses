@@ -21,6 +21,31 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
+
+    __shared__ volatile scalar_t sums[THREADS_PER_BLOCK * 2];
+    const int row_start = rows[blockIdx.x];
+    const int row_end   = rows[blockIdx.x+1];
+
+    scalar_t sum = 0.0f;
+    for(int i = row_start + threadIdx.x; i < row_end; i += THREADS_PER_BLOCK){
+        sum += data[i] * mult_data[indices[i]];
+    }
+
+    sums[threadIdx.x] = sum;
+    __syncthreads();
+
+    /* hardcoded reduction for 32 threads */
+    sums[threadIdx.x] += sums[threadIdx.x + 16];
+    sums[threadIdx.x] += sums[threadIdx.x +  8];
+    sums[threadIdx.x] += sums[threadIdx.x +  4];
+    sums[threadIdx.x] += sums[threadIdx.x +  2];
+    sums[threadIdx.x] += sums[threadIdx.x +  1];
+
+    if(threadIdx.x == 0)
+        result[row] = sums[0];
+    }
+
+    /* WORKING
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows) {
         float dot = 0.0;
@@ -34,8 +59,9 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
 
         result[row] = dot;
     }
+    */
 
-/*
+    /* NOT WORKING
     extern __shared__ float vals[];
 
     // global thread indexes
