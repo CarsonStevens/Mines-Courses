@@ -173,7 +173,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 expr = evaluator(macro_item.cdr, stg)
 
             # Handle FUnction SExpression
-            elif isinstance(evaluator, UserFunction):
+            elif isinstance(evaluator, Function):
                 contents = []
                 for func_item in expr.cdr:
                     contents.append(lisp_eval(func_item, stg))
