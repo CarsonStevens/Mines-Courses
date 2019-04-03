@@ -31,11 +31,12 @@ def repl(interpreter, debug=False):
     or pudb.
     """
     while True:
-        expr = input(">")
+        expr = input("> ")
         if expr == "^D":
             exit(0)
-        if expr == "^C":
-            print("<-- ^C resulted in new prompt line")
+        elif expr == "^C":
+            # This may not need to be printed
+            print("                  <-- ^C resulted in new prompt line")
             exit(0)
         else:
             exec(expr)
