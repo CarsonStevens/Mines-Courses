@@ -70,8 +70,8 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
 
         // first thread writes the result
         if(lane == 0){
-            result[row] += vals[threadIdx.x];
             __syncwarp();
+            result[row] += vals[threadIdx.x];
         }
 
     }
