@@ -244,7 +244,7 @@ def lex(code):
             try:
                 # See if number was int, else yield float
                 if isinstance(pattern[0], int):
-                    yield pattern[0]
+                    yield int(pattern[0])
                 else:
                     yield float(pattern[0])
             except ValueError:
