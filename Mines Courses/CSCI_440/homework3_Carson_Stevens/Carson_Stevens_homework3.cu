@@ -93,6 +93,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     // one warp per row
     int row = warp_id;
 
+    __syncthreads();
     if (row < num_rows){
 
         int row_start = ptr[row];
