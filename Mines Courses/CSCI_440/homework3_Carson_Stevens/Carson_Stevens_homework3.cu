@@ -22,7 +22,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
 
-    __shared__ volatile scalar_t sums[THREADS_PER_BLOCK * 2];
+    extern __shared__ sums[THREADS_PER_BLOCK * 2];
     const int row_start = rows[blockIdx.x];
     const int row_end   = rows[blockIdx.x+1];
 
