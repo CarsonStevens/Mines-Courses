@@ -31,7 +31,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     int warp_id = thread_id/32;
 
     // thread index inside warp
-    int lane = thread_id % (32 -1);
+    int lane = thread_id % 32;
 
     // one warp per row
     int row = warp_id;
@@ -49,28 +49,22 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         //Synchronization for shared memory
         if(lane < 16){
             vals[threadIdx.x] += vals[threadIdx.x + 16];
-            __syncwarp();
         }
         if(lane < 8){
             vals[threadIdx.x] += vals[threadIdx.x + 8];
-            __syncwarp();
         }
         if(lane < 4){
             vals[threadIdx.x] += vals[threadIdx.x + 4];
-            __syncwarp();
         }
         if(lane < 2){
             vals[threadIdx.x] += vals[threadIdx.x + 2];
-            __syncwarp();
         }
         if(lane < 1){
             vals[threadIdx.x] += vals[threadIdx.x + 1];
-            __syncwarp();
         }
 
         // first thread writes the result
         if(lane == 0){
-            __syncwarp();
             result[row] += vals[threadIdx.x];
         }
 
@@ -142,6 +136,11 @@ int main(int argc, char* argv[]){
     row_ptr[num_rows] = number_of_entries;
     file.close();
 
+    for(int i = 0; i < num_rows; i++){
+        cout << mult_data[i] << " ";
+    }
+    cout << endl;
+
 
     int size_int = sizeof(int);
     int size_float = sizeof(float);
@@ -160,10 +159,9 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_mult_data, mult_data, size_float*num_cols, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
 
-
     // Establish thread and block size
-    dim3 threadsPerBlock(num_cols, 1, 1);
-    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, 1, 1);
+    dim3 threadsPerBlock(num_cols, num_rows, 1);
+    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
 
     // Call function
     spmv<<<numBlocks, threadsPerBlock>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
