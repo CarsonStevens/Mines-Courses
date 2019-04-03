@@ -641,11 +641,10 @@ class UserFunction(Function):
         not how lexical scoping works. Instead, construct a new
         ``LexicalVarStorage`` from the existing environ.
         """
+
         # avoid circular imports
         from slyther.evaluator import lisp_eval
-
         storage = LexicalVarStorage(self.environ)
-
         for x, y in zip(args, self.params):
             storage.put(y, x)
         r = NIL

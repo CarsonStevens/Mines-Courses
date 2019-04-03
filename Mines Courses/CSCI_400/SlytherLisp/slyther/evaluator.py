@@ -1,5 +1,5 @@
 from slyther.types import (Quoted, NIL, SExpression, ConsList, Symbol,
-                           Macro, NilType, LexicalVarStorage)
+                           Macro, Function, NilType, LexicalVarStorage)
 
 
 def lisp_eval(expr, stg: LexicalVarStorage):
@@ -173,7 +173,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 expr = evaluator(macro_item.cdr, stg)
 
             # Handle FUnction SExpression
-            elif isinstance(evaluator, Function):
+            elif isinstance(evaluator, UserFunction):
                 contents = []
                 for func_item in expr.cdr:
                     contents.append(lisp_eval(func_item, stg))
@@ -188,6 +188,6 @@ def lisp_eval(expr, stg: LexicalVarStorage):
             else:
                 raise TypeError("'Symbol' object is not callable")
 
-        # No case, just return original
+        # No case, just return 'as is'
         else:
             return expr
