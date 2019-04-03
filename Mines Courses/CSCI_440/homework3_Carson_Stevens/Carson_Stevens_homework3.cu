@@ -80,7 +80,6 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     */
 
     // WORKING
-    // Shared current sums of dot products in vals[]
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -134,6 +133,9 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
 
     }
+
+
+
 }
 
 int main(int argc, char* argv[]){
@@ -200,6 +202,12 @@ int main(int argc, char* argv[]){
     row_ptr[num_rows] = number_of_entries;
     file.close();
 
+    for(int i = 0; i < num_rows; i++){
+        cout << mult_data[i] << " ";
+    }
+    cout << endl;
+
+
     int size_int = sizeof(int);
     int size_float = sizeof(float);
 
@@ -217,7 +225,9 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_mult_data, mult_data, size_float*num_cols, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
 
-    // Establish grid and thread and block size
+    // Establish thread and block size
+    //dim3 threadsPerBlock(num_cols, num_rows, 1);
+    //dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
     int minGridSize;
     int blockSize;
     int gridSize;
@@ -226,7 +236,7 @@ int main(int argc, char* argv[]){
     // Round up according to array size
     gridSize = (number_of_entries + blockSize - 1) / blockSize;
     // Call function
-    // Second blockSize used for shared memory
+    cout << blockSize << " " << gridSize << endl;
     spmv<<<gridSize, blockSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
 
     // copy result back
@@ -238,6 +248,15 @@ int main(int argc, char* argv[]){
     cudaFree(dev_data);
     cudaFree(dev_mult_data);
     cudaFree(dev_result);
+
+    // To Check
+    /*
+    for (i=0; i<nr; i++) {
+        for (j = ptr[i]; j<ptr[i+1]; j++) {
+            t[i] = t[i] + data[j] * b[indices[j]];
+        }
+    }
+     */
 
     //To Print result
     cout << "[ ";
