@@ -21,7 +21,7 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
-    _shared_float cache[blockDim.x];       // Cache the rows of x[] corresponding to this block.
+    _shared_float cache[];       // Cache the rows of x[] corresponding to this block.
     int block_begin = blockIdx.x * blockDim.x;
     int block_end = block_begin + blockDim.x;
     int row = block_begin + threadIdx.x;
@@ -29,7 +29,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     if( row < num_rows){
         cache[threadIdx.x] = mult_data[row];
     }
-    _syncthreads();
+    __syncthreads();
 
     if( row < num_rows ){
         int row_begin = ptr[row];
@@ -39,7 +39,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         for(int col=row_begin; col<row_end; ++col){
             int j = indices[col];
             if( j>=block_begin && j<block_end ) // Fetch x_j from our cache when possible
-                x_j = cache[j‐block_begin];
+                x_j = cache[j-block_begin];
             else
                 x_j = mult_data[j];
             sum += data[col] * x_j;
