@@ -201,11 +201,17 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
 
     // Establish thread and block size
-    dim3 threadsPerBlock(num_cols, num_rows, 1);
-    dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
+    //dim3 threadsPerBlock(num_cols, num_rows, 1);
+    //dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
+    int minGridSize;
+    int blockSize;
+    int gridSize;
+    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, spmv, 0, number_of_entries);
 
+    // Round up according to array size
+    gridSize = (number_of_entries + blockSize - 1) / blockSize;
     // Call function
-    spmv<<<numBlocks, threadsPerBlock>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
+    spmv<<<gridSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
 
     // copy result back
     cudaMemcpy(result, dev_result, size_float*num_rows, cudaMemcpyDeviceToHost);
