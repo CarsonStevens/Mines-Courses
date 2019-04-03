@@ -22,48 +22,34 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
     /* WORKING
-    // Cache the rows of mult_data[] corresponding to this block.
     extern __shared__ float cache[];
-
-    // Determine current block start and end
     int block_begin = blockIdx.x * blockDim.x;
     int block_end = block_begin + blockDim.x;
     int row = block_begin + threadIdx.x;
-
     // Fetch and cache window of mult_data[].
-    if(row < num_rows){
+    if( row < num_rows){
         cache[threadIdx.x] = mult_data[row];
     }
-
-    //Sync threads before updating cache
     __syncthreads();
 
-    if(row < num_rows){
-
+    if( row < num_rows ){
         int row_begin = ptr[row];
         int row_end = ptr[row+1];
-        float mult_temp = 0;
+        float x_j = 0;
         float sum = 0 ;
-
-        for(int col = row_begin; col < row_end; ++col){
+        for(int col=row_begin; col<row_end; ++col){
             int j = indices[col];
-
-            // Fetch mult_temp from our cache when possible
-            if(j >= block_begin && j < block_end){
-                mult_temp = cache[j-block_begin];
-            }
-            else{
-                mult_temp = mult_data[j];
-            }
-
-            //Add to the sum the dot product
-            sum += data[col] * mult_temp;
+            if( j>=block_begin && j<block_end ) // Fetch x_j from our cache when possible
+                x_j = cache[j-block_begin];
+            else
+                x_j = mult_data[j];
+            sum += data[col] * x_j;
         }
         result[row] = sum;
     }
     */
 
-    /* WORKING: No optimization
+    /* WORKING
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows) {
         float dot = 0.0;
