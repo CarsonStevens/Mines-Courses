@@ -99,8 +99,8 @@ int main(int argc, char* argv[]){
     row_ptr[num_rows] = number_of_entries;
     file.close();
 
-    for(int i = 0; i < number_of_entries; i++){
-        cout << data[i] << " ";
+    for(int i = 0; i < num_rows; i++){
+        cout << mult_data[i] << " ";
     }
     cout << endl;
 
