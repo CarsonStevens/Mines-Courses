@@ -22,7 +22,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
 
-    // WORKING
+    /* WORKING
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows) {
         float dot = 0.0;
@@ -36,8 +36,9 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
 
         result[row] = dot;
     }
+    */
 
-    /* NOT WORKING
+    // NOT WORKING
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -85,7 +86,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
 
     }
-    */
+    
 
 }
 
