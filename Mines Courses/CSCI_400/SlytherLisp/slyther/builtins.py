@@ -52,7 +52,6 @@ def sub(*args):
         return 0
 
 
-
 @BuiltinFunction('*')
 def mul(*args):
     """
@@ -88,10 +87,10 @@ def div(*args):
     0.5
     """
     if len(args) == 1:
-        return 1.0/float(args[0])
+        return 1.0 / float(args[0])
         # return operator.truediv(1, args[0])
     elif len(args) > 1:
-        return reduce(lambda a, b: float(a)/float(b), args)
+        return reduce(lambda a, b: float(a) / float(b), args)
     else:
         return 0
 

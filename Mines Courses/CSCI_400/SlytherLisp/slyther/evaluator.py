@@ -158,7 +158,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         elif isinstance(expr, Symbol):
             return stg[expr].value
 
-        # Case SExpression (not in quoted
+        # Case SExpression (not in quoted)
         elif isinstance(expr, SExpression):
             evaluator = lisp_eval(expr.car, stg)
 
@@ -172,7 +172,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 # Convert contents using the lisp_eval object
                 expr = evaluator(macro_item.cdr, stg)
 
-            # Handle FUnction SExpression
+            # Handle Function SExpression
             elif isinstance(evaluator, Function):
                 contents = []
                 for func_item in expr.cdr:
