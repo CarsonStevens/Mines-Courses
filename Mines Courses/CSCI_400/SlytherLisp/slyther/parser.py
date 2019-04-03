@@ -215,13 +215,14 @@ def lex(code):
                                                           #     start)
         | ([()'])                                         # Control Tokens
         | ("(?:[^\\"]|\\.)*")                             # String Literals
-        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?) # Floating Point/
+        | (-?\d+\.\d*)|(-?\d*\.\d+)(?:[eE][+-]?\d+)?) # Floating Point/
                                                           #     Integer Literal
         | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)             # Symbols
         | (;.*)                                           # Comments
         | (\s)                                            # Whitespace
         | (.)                                             # Errors/Anything
                                                           #     else
+        | (?:[-+]?[0-9]+)                                 # Integer Literal                 
         '''
 
     p = re.compile(patterns, re.VERBOSE)
@@ -242,11 +243,25 @@ def lex(code):
         elif pattern.group(4):
             # Error if can't interpret number
             try:
-                # See if number was int, else yield float
-                if isinstance(pattern[0], int):
-                    yield pattern[0]
-                else:
-                    yield float(pattern[0])
+                yield float(pattern[0])
+            # try:
+            #     # See if number was int, else yield float
+            #     if isinstance(pattern[0], int):
+            #         yield pattern[0]
+            #     else:
+            #         yield float(pattern[0])
+            except ValueError:
+                print("Value Error with value: ", pattern[0])
+        elif pattern.group(8):
+            # Error if can't interpret number
+            try:
+                yield int(pattern[0])
+            # try:
+            #     # See if number was int, else yield float
+            #     if isinstance(pattern[0], int):
+            #         yield pattern[0]
+            #     else:
+            #         yield float(pattern[0])
             except ValueError:
                 print("Value Error with value: ", pattern[0])
         # If token was a Symbol
