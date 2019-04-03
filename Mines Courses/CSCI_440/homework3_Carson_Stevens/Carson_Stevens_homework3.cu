@@ -49,23 +49,29 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         //Synchronization for shared memory
         if(lane < 16){
             vals[threadIdx.x] += vals[threadIdx.x + 16];
+            __syncwarp();
         }
         if(lane < 8){
             vals[threadIdx.x] += vals[threadIdx.x + 8];
+            __syncwarp();
         }
         if(lane < 4){
             vals[threadIdx.x] += vals[threadIdx.x + 4];
+            __syncwarp();
         }
         if(lane < 2){
             vals[threadIdx.x] += vals[threadIdx.x + 2];
+            __syncwarp();
         }
         if(lane < 1){
             vals[threadIdx.x] += vals[threadIdx.x + 1];
+            __syncwarp();
         }
 
         // first thread writes the result
         if(lane == 0){
             result[row] += vals[threadIdx.x];
+            __syncwarp();
         }
 
     }
@@ -135,11 +141,6 @@ int main(int argc, char* argv[]){
     }
     row_ptr[num_rows] = number_of_entries;
     file.close();
-
-    for(int i = 0; i < num_rows; i++){
-        cout << mult_data[i] << " ";
-    }
-    cout << endl;
 
 
     int size_int = sizeof(int);
