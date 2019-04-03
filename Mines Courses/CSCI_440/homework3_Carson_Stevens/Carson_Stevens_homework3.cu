@@ -21,7 +21,21 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
+    int row = blockDim.x * blockIdx.x + threadIdx.x;
+    if (row < num_rows) {
+        float dot
+        int row_start = ptr[row];
+        int row_end = ptr[row + 1];
 
+        // Compute sum per thread
+        for (int i = row_start + lane; i < row_end; i++) {
+            dot += data[i] * mult_data[indices[i]];
+        }
+
+        result[row] = dot;
+    }    
+
+/*
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -69,6 +83,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
 
     }
+    */
 
 }
 
