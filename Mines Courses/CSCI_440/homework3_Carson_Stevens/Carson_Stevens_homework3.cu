@@ -86,7 +86,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
 
     }
-    
+
 
 }
 
@@ -188,6 +188,7 @@ int main(int argc, char* argv[]){
     // Round up according to array size
     gridSize = (number_of_entries + blockSize - 1) / blockSize;
     // Call function
+    cout << blockSize << " " << gridSize << endl;
     spmv<<<gridSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
 
     // copy result back
