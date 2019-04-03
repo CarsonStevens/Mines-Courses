@@ -14,13 +14,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include <random>
-#include <ctime>
+
 
 using namespace std;
 
-__global__ void spmv(const int num_rows, const int *ptr, const int *indices,
-                     const float* data, const float *mult_data, float *result){
+__global__ void spmv(const int num_rows, const int* ptr, const int* indices,
+                     const float* data, const float* mult_data, float* result){
 
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows){
@@ -60,11 +59,11 @@ int main(int argc, char* argv[]){
     float mult_data[num_cols];
     float result[num_rows];
 
-    int *dev_columns;
-    int *dev_row_ptr;
-    float *dev_data;
-    float *dev_mult_data;
-    float *dev_result;
+    int* dev_columns;
+    int* dev_row_ptr;
+    float* dev_data;
+    float* dev_mult_data;
+    float* dev_result;
 
     //Initialize the result array to 0
     for(int i = 0; i < num_rows; i++){
