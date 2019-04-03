@@ -32,10 +32,14 @@ def repl(interpreter, debug=False):
     """
     while True:
         try:
+            # User input and send to interpreter
             expr = input("> ")
             print(interpreter.exec(expr))
+        # User hit control C, start new command line
         except KeyboardInterrupt:
             print()
             continue
+        # User hit control D, exit program
         except EOFError:
+            print(">>>\tEXITING\t<<<")
             exit(0)

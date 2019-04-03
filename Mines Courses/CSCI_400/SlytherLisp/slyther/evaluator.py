@@ -167,6 +167,8 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 # Hold contents of macro
                 contents = []
                 for macro_item in expr.cdr:
+
+                    # Separate contents of Macro
                     contents.append(macro_item)
 
                 # Convert contents using the lisp_eval object
@@ -176,6 +178,8 @@ def lisp_eval(expr, stg: LexicalVarStorage):
             elif isinstance(evaluator, Function):
                 contents = []
                 for func_item in expr.cdr:
+
+                    # use lisp_eval to evaluate each part of the Function
                     contents.append(lisp_eval(func_item, stg))
 
                 # Convert contents using the lisp_eval
@@ -186,6 +190,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 else:
                     return eval_contents
             else:
+                # Text from prompt above
                 raise TypeError("'Symbol' object is not callable")
 
         # No case, just return 'as is'

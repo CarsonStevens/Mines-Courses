@@ -644,17 +644,26 @@ class UserFunction(Function):
 
         # avoid circular imports
         from slyther.evaluator import lisp_eval
-        storage = LexicalVarStorage(self.environ)
-        for x, y in zip(args, self.params):
-            storage.put(y, x)
-        r = NIL
-        length = len(self.body)
-        for index, z in enumerate(self.body):
-            if index == length - 1:
-                return (z, storage)
+
+        # construct new environ from LexicalVarStorage environ
+        lex_stg = LexicalVarStorage(self.environ)
+
+        # Iterate through combine dictionary
+        for value, local in zip(args, self.params):
+            lex_stg.put(local, value)
+
+        # Iterate through body
+        final = NIL
+        for i, item in enumerate(self.body):
+
+            # If last item, return item and environ
+            if i == len(self.body) - 1:
+                return item, lex_stg
             else:
-                r = lisp_eval(z, storage)
-        return r
+                final = lisp_eval(item, lex_stg)
+
+        # Return NIL if body was empty
+        return final
 
     def __repr__(self):
         """
