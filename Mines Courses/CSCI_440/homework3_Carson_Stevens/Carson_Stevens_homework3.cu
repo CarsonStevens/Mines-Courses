@@ -160,7 +160,7 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
 
     // Establish thread and block size
-    dim3 threadsPerBlock(num_cols, num_rows, 1);
+    dim3 threadsPerBlock(num_cols, 1, 1);
     dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
 
     // Call function
