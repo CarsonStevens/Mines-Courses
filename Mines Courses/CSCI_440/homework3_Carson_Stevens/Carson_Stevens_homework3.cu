@@ -21,7 +21,7 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
-    _shared_float cache[];       // Cache the rows of x[] corresponding to this block.
+    __shared__ float cache[];       // Cache the rows of x[] corresponding to this block.
     int block_begin = blockIdx.x * blockDim.x;
     int block_end = block_begin + blockDim.x;
     int row = block_begin + threadIdx.x;
