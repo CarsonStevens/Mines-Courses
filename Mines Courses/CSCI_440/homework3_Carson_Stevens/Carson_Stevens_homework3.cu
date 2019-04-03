@@ -21,7 +21,7 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
-    /* WORKING
+    // WORKING
     // Cache the rows of mult_data[] corresponding to this block.
     extern __shared__ float cache[];
 
@@ -60,9 +60,8 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         //Send updated sum to the result matrix when all threads done.
         result[row] = sum;
     }
-    */
 
-    /* WORKING
+    /* WORKING: No optimization
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     if (row < num_rows) {
         float dot = 0.0;
@@ -78,7 +77,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     }
     */
 
-    // NOT WORKING
+    /* NOT WORKING
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -93,7 +92,6 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     // one warp per row
     int row = warp_id;
 
-    __syncthreads();
     if (row < num_rows){
 
         int row_start = ptr[row];
@@ -125,9 +123,9 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         if(lane == 0){
             result[row] += vals[threadIdx.x];
         }
-
     }
-    
+    */
+
 }
 
 int main(int argc, char* argv[]){
@@ -194,12 +192,6 @@ int main(int argc, char* argv[]){
     row_ptr[num_rows] = number_of_entries;
     file.close();
 
-    for(int i = 0; i < num_rows; i++){
-        cout << mult_data[i] << " ";
-    }
-    cout << endl;
-
-
     int size_int = sizeof(int);
     int size_float = sizeof(float);
 
@@ -218,17 +210,16 @@ int main(int argc, char* argv[]){
     cudaMemcpy(dev_result, result, size_float*num_rows, cudaMemcpyHostToDevice);
 
     // Establish thread and block size
-    //dim3 threadsPerBlock(num_cols, num_rows, 1);
-    //dim3 numBlocks((num_cols+threadsPerBlock.x-1)/threadsPerBlock.x, (num_rows+threadsPerBlock.y-1)/threadsPerBlock.y, 1);
     int minGridSize;
     int blockSize;
     int gridSize;
+    //Optimization function
     cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, spmv, 0, number_of_entries);
 
     // Round up according to array size
     gridSize = (number_of_entries + blockSize - 1) / blockSize;
     // Call function
-    cout << blockSize << " " << gridSize << endl;
+    // second blockSize for shared memory
     spmv<<<gridSize, blockSize, blockSize>>>(num_rows, dev_row_ptr, dev_columns, dev_data, dev_mult_data, dev_result);
 
     // copy result back
@@ -240,15 +231,6 @@ int main(int argc, char* argv[]){
     cudaFree(dev_data);
     cudaFree(dev_mult_data);
     cudaFree(dev_result);
-
-    // To Check
-    /*
-    for (i=0; i<nr; i++) {
-        for (j = ptr[i]; j<ptr[i+1]; j++) {
-            t[i] = t[i] + data[j] * b[indices[j]];
-        }
-    }
-     */
 
     //To Print result
     cout << "[ ";
