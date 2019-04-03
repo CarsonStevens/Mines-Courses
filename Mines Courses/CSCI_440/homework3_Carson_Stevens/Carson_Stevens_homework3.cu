@@ -21,6 +21,7 @@ using namespace std;
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
+    /* WORKING
     extern __shared__ float cache[];       // Cache the rows of x[] corresponding to this block.
     int block_begin = blockIdx.x * blockDim.x;
     int block_end = block_begin + blockDim.x;
@@ -46,6 +47,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
         result[row] = sum;
     }
+    */
 
     /* WORKING
     int row = blockDim.x * blockIdx.x + threadIdx.x;
@@ -63,7 +65,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
     }
     */
 
-    /* NOT WORKING
+    // NOT WORKING
     extern __shared__ float vals[];
 
     // global thread indexes
@@ -117,7 +119,7 @@ __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
         }
 
     }
-    */
+
 
 
 }
