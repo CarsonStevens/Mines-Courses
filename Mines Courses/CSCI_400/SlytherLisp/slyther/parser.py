@@ -271,7 +271,7 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
     """
-        regex_array = [
+    regex_array = [
         re.compile(r'\('),  # lparen 0
         re.compile(r'\)'),  # rparen 1
         re.compile(r'\''),  # quote 2
