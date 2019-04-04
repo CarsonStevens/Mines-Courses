@@ -209,7 +209,7 @@ def lex(code):
     >>> list(lex("'"))
     [Quote]
     """
-    """
+    r"""
     patterns = r'''
         (^\#\![^\n]*\n)                                   # Shebang lines(at
                                                           #     start)
@@ -223,7 +223,7 @@ def lex(code):
         | (.)                                             # Errors/Anything
                                                           #     else
         '''
-    """
+    
     patterns = r'''
         (^\\#\![^\n]*\n)                             # shebang line at start 1
         | (\\()                                  # lparen 2
@@ -337,9 +337,9 @@ def lex(code):
                     break
                 else:
                     raise SyntaxError("malformed tokens in input")
-        """
 
-    """ WORKS: minus float/int
+
+    r""" WORKS: minus float/int
     patterns = r'''
         (^\#\![^\n]*\n)                                   # Shebang lines(at
                                                           #     start)
@@ -388,7 +388,7 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
-    """
+        """
 
 def parse_strlit(tok):
     r"""
