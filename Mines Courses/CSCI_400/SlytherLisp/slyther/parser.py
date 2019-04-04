@@ -226,15 +226,15 @@ def lex(code):
     """
     patterns = r'''
         (^\#\![^\n]*\n)                             # shebang line at start 1
-        | (?:[(])                                  # lparen 2
-        | (?:[)])                                   # rparen 3
-        | (?:['])                                  # quote 4
+        | (\()                                  # lparen 2
+        | (\))                                   # rparen 3
+        | (\')                                  # quote 4
         | (\s)                                   # whitespace 5
         | ("(?:[^"\\]|\\.)*")                       # string 6
         | ([+-]?(?:\d+\.\d*)|([+-]?\d*\.\d+)       # float 7
         | (?:[-+]?[0-9]+)                           # int 8
         | ([^\s\d\.\'"\(\)\;][^\s\'"\(\);]*)        # symbol 9
-        | (;.*)                                     # comments 10
+        | (;.*$)                                     # comments 10
         | (.)                                       # errors 11
     '''
     p = re.compile(patterns, re.VERBOSE)
@@ -270,8 +270,74 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
+    """
+        regex_array = [
+        re.compile(r'\('),  # lparen 0
+        re.compile(r'\)'),  # rparen 1
+        re.compile(r'\''),  # quote 2
+        re.compile(r'\s+'),  # whitespace 3
+        re.compile(r'"([^"\\]|\\.)*"'),  # string 4
+        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),  # float 5
+        re.compile(r'[-+]?[0-9]+'),  # int 6
+        re.compile(r'^#.*?[$\n]'),  # shebang 7
+        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),  # symbol 8
+        re.compile(r';.*$', re.MULTILINE)  # comments 9
+    ]
 
-
+    position = 0
+    while (position < len(code)):
+        for i in range(0, len(regex_array)):
+            match = regex_array[i].match(code, position)
+            if i == 0:
+                if match is not None:
+                    yield LParen("LParen")
+                    position = match.end()
+                    break
+            if i == 1:
+                if match is not None:
+                    yield RParen("RParen")
+                    position = match.end()
+                    break
+            if i == 2:
+                if match is not None:
+                    yield Quote("Quote")
+                    position = match.end()
+                    break
+            if i == 3:
+                if match is not None:
+                    position = match.end()
+                    break
+            if i == 4:
+                if match is not None:
+                    yield parse_strlit(match.group(0))
+                    position = match.end()
+                    break
+            if i == 5:
+                if match is not None:
+                    yield float(match.group(0))
+                    position = match.end()
+                    break
+            if i == 6:
+                if match is not None:
+                    yield int(match.group(0))
+                    position = match.end()
+                    break
+            if i == 7:
+                if match is not None:
+                    position = match.end()
+                    break
+            if i == 8:
+                if match is not None:
+                    yield Symbol(match.group(0))
+                    position = match.end()
+                    break
+            if i == 9:
+                if match is not None:
+                    position = match.end()
+                    break
+                else:
+                    raise SyntaxError("malformed tokens in input")
+        """
 
     """ WORKS: minus float/int
     patterns = r'''
