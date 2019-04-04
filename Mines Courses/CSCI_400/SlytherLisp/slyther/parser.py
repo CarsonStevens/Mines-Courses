@@ -211,20 +211,6 @@ def lex(code):
     """
     r"""
     patterns = r'''
-        (^\#\![^\n]*\n)                                   # Shebang lines(at
-                                                          #     start)
-        | ([()'])                                         # Control Tokens
-        | ("(?:[^\\"]|\\.)*")                             # String Literals
-        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?) # Floating Point/
-                                                          #     Integer Literal
-        | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)             # Symbols
-        | (;.*)                                           # Comments
-        | (\s)                                            # Whitespace
-        | (.)                                             # Errors/Anything
-                                                          #     else
-        '''
-    
-    patterns = r'''
         (^\\#\![^\n]*\n)                             # shebang line at start 1
         | (\\()                                  # lparen 2
         | (\\))                                   # rparen 3
@@ -270,73 +256,87 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
-    """
-    regex_array = [
-        re.compile(r'\('),  # lparen 0
-        re.compile(r'\)'),  # rparen 1
-        re.compile(r'\''),  # quote 2
-        re.compile(r'\s+'),  # whitespace 3
-        re.compile(r'"([^"\\]|\\.)*"'),  # string 4
-        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),  # float 5
-        re.compile(r'[-+]?[0-9]+'),  # int 6
-        re.compile(r'^#.*?[$\n]'),  # shebang 7
-        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),  # symbol 8
-        re.compile(r';.*$', re.MULTILINE)  # comments 9
+    """                                                     # Pattern    |Index
+    patterns = [
+        re.compile(r'\('),                                  # LParen       | 0
+        re.compile(r'\)'),                                  # RParen       | 1
+        re.compile(r'\''),                                  # Quote        | 2
+        re.compile(r'\s+'),                                 # Whitespace   | 3
+        re.compile(r'"([^"\\]|\\.)*"'),                     # StringLit    | 4
+        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # FloatLit     | 5
+        re.compile(r'[-+]?[\d]+'),                         # IntegerLit   | 6
+        re.compile(r'^#.*?[$\n]'),                          # Shebang      | 7
+        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # Symbol       | 8
+        re.compile(r';.*$', re.MULTILINE)                   # Comments     | 9
     ]
 
-    position = 0
-    while (position < len(code)):
-        for i in range(0, len(regex_array)):
-            match = regex_array[i].match(code, position)
-            if i == 0:
-                if match is not None:
-                    yield LParen("LParen")
-                    position = match.end()
+    index = 0
+
+    # Go through each part of the input (index update through match.end() to
+    # find where the last match ended). if yielded, break from for loop to
+    # restart patterns at new updated index
+    while index < len(code):
+
+        # Compare to each of the patterns (pattern = index #)
+        for pattern in patterns:
+
+            # Get the match to compare
+            match = patterns[pattern].match(code, index)
+            if match is not None:
+                # LParen Pattern
+                if pattern == 0:
+                    yield LParen()
+                    index = match.end()
                     break
-            if i == 1:
-                if match is not None:
-                    yield RParen("RParen")
-                    position = match.end()
+
+                # RParen
+                elif pattern == 1:
+                    yield RParen()
+                    index = match.end()
                     break
-            if i == 2:
-                if match is not None:
-                    yield Quote("Quote")
-                    position = match.end()
+
+                # Quote
+                elif pattern == 2:
+                    yield Quote()
+                    index = match.end()
                     break
-            if i == 3:
-                if match is not None:
-                    position = match.end()
+
+                # Whitespace (ignore, but update index)
+                elif pattern == 3:
+                    index = match.end()
                     break
-            if i == 4:
-                if match is not None:
+
+                # String Literal
+                elif pattern == 4:
                     yield parse_strlit(match.group(0))
-                    position = match.end()
+                    index = match.end()
                     break
-            if i == 5:
-                if match is not None:
+
+                # Floating Point Literal
+                elif pattern == 5:
                     yield float(match.group(0))
-                    position = match.end()
+                    index = match.end()
                     break
-            if i == 6:
-                if match is not None:
+
+                # Integer Literal
+                elif pattern == 6:
                     yield int(match.group(0))
-                    position = match.end()
+                    index = match.end()
                     break
-            if i == 7:
-                if match is not None:
-                    position = match.end()
+
+                elif pattern == 7:
+                    index = match.end()
                     break
-            if i == 8:
-                if match is not None:
+                elif pattern == 8:
                     yield Symbol(match.group(0))
-                    position = match.end()
+                    index = match.end()
                     break
-            if i == 9:
-                if match is not None:
-                    position = match.end()
+                elif pattern == 9:
+                    #if match is not None:
+                    index = match.end()
                     break
-                else:
-                    raise SyntaxError("malformed tokens in input")
+            else:
+                raise SyntaxError("malformed tokens in input")
 
 
     r""" WORKS: minus float/int
