@@ -225,10 +225,10 @@ def lex(code):
         '''
     """
     patterns = r'''
-        (^\#\![^\n]*\n)                             # shebang line at start 1
-        | (\()                                  # lparen 2
-        | (\))                                   # rparen 3
-        | (\')                                  # quote 4
+        (^\\#\![^\n]*\n)                             # shebang line at start 1
+        | (\\()                                  # lparen 2
+        | (\\))                                   # rparen 3
+        | (\\')                                  # quote 4
         | (\s)                                   # whitespace 5
         | ("(?:[^"\\]|\\.)*")                       # string 6
         | ([+-]?(?:\d+\.\d*)|([+-]?\d*\.\d+)       # float 7
