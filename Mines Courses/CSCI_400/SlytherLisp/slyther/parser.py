@@ -211,6 +211,56 @@ def lex(code):
     """
 
     patterns = r'''
+        (^\#\![^\n]*\n)                             # shebang line at start 1
+        | (?:[\(])                                  # lparen 2
+        | (?:[\])                                   # rparen 3
+        | (?:[\'])                                  # quote 4
+        | ([\s+])                                   # whitespace 5
+        | ("(?:[^"\\]|\\.)*")                       # string 6
+        | ([+-]? (?:\d+\.\d*)|([+-]?\d*\.\d+)       # float 7
+        | (?:[-+]?[0-9]+)                           # int 8
+        | ([^\s\d\.\'"\(\)\;][^\s\'"\(\);]*)        # symbol 9
+        | (;.*)                                     # comments 10
+        | (.)                                       # errors 11
+    '''
+    p = re.compile(patterns, re.VERBOSE)
+    for pattern in p.finditer(code):
+        # Ignore group 1 (shebang lines)
+        if pattern.group(1):
+            pass
+        # If a Control Token, find which one
+        elif pattern.group(2):
+            yield LParen()
+        elif pattern.group(3):
+            yield RParen()
+        elif pattern.group(4):
+            yield Quote()
+        # Whitespace
+        elif pattern.group(5):
+            pass
+        elif pattern.group(6):
+            yield parse_strlit(pattern[0])
+        elif pattern.group(7):
+            try:
+                yield float(pattern[0])
+            except ValueError:
+                print("Value Error with value: ", pattern[0])
+        elif pattern.group(8):
+            try:
+                yield int(pattern[0])
+            except ValueError:
+                print("Value Error with value: ", pattern[0])
+        elif pattern.group(9):
+            yield Symbol(pattern[0])
+        elif pattern.group(10):
+            pass
+        else:
+            raise SyntaxError("malformed tokens in input")
+
+
+
+    """ WORKS: minus float/int
+    patterns = r'''
         (^\#\![^\n]*\n)                                   # Shebang lines(at
                                                           #     start)
         | ([()'])                                         # Control Tokens
@@ -258,7 +308,7 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
-
+    """
 
 def parse_strlit(tok):
     r"""
