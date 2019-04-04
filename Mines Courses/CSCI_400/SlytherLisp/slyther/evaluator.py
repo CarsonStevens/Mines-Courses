@@ -133,7 +133,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     """
     """ Handle each part of the types of expressions that can be passed in.
         The types are listed above. Some have additional cases once identified.
-    """
+    
     while True:
 
         # NIL Case
@@ -196,3 +196,39 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         # No case, just return 'as is'
         else:
             return expr
+        """
+    while True:
+        if expr is NIL:
+            return NIL  # if the expr is NIL then return NIL.
+        elif isinstance(expr, Quoted):  # if the expr with quote
+            y = expr.elem  # access the content after the quote
+            if isinstance(y, SExpression):
+                a = []
+                for x in y:
+                    a.append(lisp_eval(Quoted(x), stg))
+                return ConsList.from_iterable(a)  # return '(a,b,c)
+            else:
+                return y
+        elif isinstance(expr, Symbol):
+            return (stg[expr].value)
+        elif isinstance(expr, SExpression):
+            s = lisp_eval(expr.car, stg)
+            if isinstance(s, Macro):
+                a = []
+                for x in expr.cdr:
+                    a.append(x)
+                expr = s(expr.cdr, stg)
+            elif isinstance(s, Function):
+                a = []
+                for x in expr.cdr:
+                    a.append(lisp_eval(x, stg))
+                tup_holder = s(*a)
+                if isinstance(tup_holder, tuple):
+                    expr = tup_holder[0]
+                    stg = tup_holder[1]
+                else:
+                    return tup_holder
+            else:
+                raise TypeError("'Symbol' object is not callable")
+        else:
+        return expr
