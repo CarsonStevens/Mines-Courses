@@ -348,9 +348,8 @@ def lex(code):
                 raise SyntaxError("malformed tokens in input")
 
     r""" CHANGED TO ABOVE AT D3, D2 BELOW WORKS: minus float/int
-    # Error in pattern group(4). Everything interpreted as float; failed INT
-    # Conversion
-    
+    # Error in pattern group(4). Everything interpreted as float; 
+        # failed INT Conversion
     patterns = r'''
         (^\#\![^\n]*\n)                                   # Shebang lines(at
                                                           #     start)
@@ -400,6 +399,7 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
         """
+
 
 def parse_strlit(tok):
     r"""

@@ -196,4 +196,3 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         # No case, just return 'as is'
         else:
             return expr
-
