@@ -209,15 +209,29 @@ def lex(code):
     >>> list(lex("'"))
     [Quote]
     """
-
+    """
+    patterns = r'''
+        (^\#\![^\n]*\n)                                   # Shebang lines(at
+                                                          #     start)
+        | ([()'])                                         # Control Tokens
+        | ("(?:[^\\"]|\\.)*")                             # String Literals
+        | ([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?) # Floating Point/
+                                                          #     Integer Literal
+        | ([^\.\d\s;\'\"\(\)][^\s;\'\"\(\)]*)             # Symbols
+        | (;.*)                                           # Comments
+        | (\s)                                            # Whitespace
+        | (.)                                             # Errors/Anything
+                                                          #     else
+        '''
+    """
     patterns = r'''
         (^\#\![^\n]*\n)                             # shebang line at start 1
-        | (?:[\(])                                  # lparen 2
-        | (?:[\])                                   # rparen 3
-        | (?:[\'])                                  # quote 4
-        | ([\s+])                                   # whitespace 5
+        | (?:[(])                                  # lparen 2
+        | (?:[)])                                   # rparen 3
+        | (?:['])                                  # quote 4
+        | (\s)                                   # whitespace 5
         | ("(?:[^"\\]|\\.)*")                       # string 6
-        | ([+-]? (?:\d+\.\d*)|([+-]?\d*\.\d+)       # float 7
+        | ([+-]?(?:\d+\.\d*)|([+-]?\d*\.\d+)       # float 7
         | (?:[-+]?[0-9]+)                           # int 8
         | ([^\s\d\.\'"\(\)\;][^\s\'"\(\);]*)        # symbol 9
         | (;.*)                                     # comments 10
