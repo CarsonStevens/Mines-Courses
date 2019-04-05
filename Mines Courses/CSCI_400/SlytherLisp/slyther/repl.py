@@ -36,9 +36,6 @@ def repl(interpreter, debug=False):
 
     # ^C exits, so calls atexit which calls the interpreter again
     atexit.register(repl(interpreter))
-    t = WorkerThread()
-    t.daemon = True
-    t.start()
 
     # User input and send to interpreter
     try:
@@ -48,27 +45,3 @@ def repl(interpreter, debug=False):
     # User hit control D, exit program
     except EOFError:
         exit(0)
-
-class WorkerThread(threading.Thread):
-    def __init__(self):
-        super(WorkerThread, self).__init__()
-        self.quit = False
-
-    def run(self):
-        while not self.quit:
-            pass
-
-    def stop(self):
-        self.quit = True
-
-
-
-
-        # User hit control C, start new command line
-        # except KeyboardInterrupt:
-        #     print()
-        #     continue
-        # User hit control D, exit program
-        # except EOFError:
-        #     print(">>>\tEXITING\t<<<")
-        #     exit(0)
