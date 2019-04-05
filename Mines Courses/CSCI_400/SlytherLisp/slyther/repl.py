@@ -1,3 +1,6 @@
+import threading
+import atexit
+
 def repl(interpreter, debug=False):
     """
     Take an interpreter object (see ``slyther/interpreter.py``) and give a REPL
@@ -30,16 +33,38 @@ def repl(interpreter, debug=False):
     is set to ``True``, as it allows for easy post-mortem debugging with pdb
     or pudb.
     """
-    while True:
-        try:
-            # User input and send to interpreter
-            expr = input("> ")
-            print(interpreter.exec(expr))
+
+    # ^C exits, so calls atexit which calls the interpreter again
+    atexit.register(repl(interpreter))
+    t = WorkerThread()
+    t.daemon = True
+    t.start()
+
+    # User input and send to interpreter
+    expr = input("> ")
+    print(interpreter.exec(expr))
+    repl(interpreter)
+
+class WorkerThread(threading.Thread):
+    def __init__(self):
+        super(WorkerThread, self).__init__()
+        self.quit = False
+
+    def run(self):
+        while not self.quit:
+            pass
+
+    def stop(self):
+        self.quit = True
+
+
+
+
         # User hit control C, start new command line
-        except KeyboardInterrupt:
-            print()
-            continue
+        # except KeyboardInterrupt:
+        #     print()
+        #     continue
         # User hit control D, exit program
-        except EOFError:
-            print(">>>\tEXITING\t<<<")
-            exit(0)
+        # except EOFError:
+        #     print(">>>\tEXITING\t<<<")
+        #     exit(0)

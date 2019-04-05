@@ -261,23 +261,23 @@ def lex(code):
         re.compile(r'\('),                                  # LParen       | 0
         re.compile(r'\)'),                                  # RParen       | 1
         re.compile(r'\''),                                  # Quote        | 2
-        re.compile(r'\s+'),                                 # Whitespace   | 3
-        re.compile(r'"([^"\\]|\\.)*"'),                     # StringLit    | 4
-        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # FloatLit     | 5
-        re.compile(r'[-+]?[\d]+'),                          # IntegerLit   | 6
+        re.compile(r'\s'),                                 # Whitespace   | 3
+        re.compile(r'"([^"\\]|\\.)*"'),                     # Str Literal  | 4
+        re.compile(r'([-]?\d+\.\d*)|(-?\d*\.\d+)'),         # Float Literal| 5
+        re.compile(r'[-]?[\d]+'),                           # Int Literal  | 6
         re.compile(r'^#.*?[$\n]'),                          # Shebang      | 7
         re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # Symbol       | 8
         re.compile(r';.*$', re.MULTILINE)                   # Comments     | 9
     ]
-
-    # To keep track when in code the last match was yielded from
-    index = 0
 
     """ D3 Updated version
     Go through each part of the input code (index update through match.end() to
     find where the last match ended). if yielded, break from for loop to
     restart patterns at new updated index while there is still input left.
     """
+
+    # To keep track when in code the last match was yielded from
+    index = 0
 
     while index < len(code):
 
@@ -347,7 +347,7 @@ def lex(code):
             else:
                 raise SyntaxError("malformed tokens in input")
 
-    r"""# CHANGED TO ABOVE AT D3, D2 BELOW WORKS: minus float/int
+    r"""# CHANGED TO ABOVE AT D3. D2 BELOW. WORKS: minus float/int
     # Error in pattern group(4). Everything interpreted as float;
     # failed INT Conversion
 

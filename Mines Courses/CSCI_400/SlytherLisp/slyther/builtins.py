@@ -66,7 +66,7 @@ def mul(*args):
     >>> mul()
     1
     """
-    # Starts at one incase no elements in args
+    # Starts at one in case no elements in args
     product = 1
     for elem in args:
         product *= elem
