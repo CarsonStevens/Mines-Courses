@@ -1,6 +1,3 @@
-import threading
-import atexit
-
 def repl(interpreter, debug=False):
     """
     Take an interpreter object (see ``slyther/interpreter.py``) and give a REPL
@@ -33,7 +30,7 @@ def repl(interpreter, debug=False):
     is set to ``True``, as it allows for easy post-mortem debugging with pdb
     or pudb.
     """
-
+    import atexit
     # ^C exits, so calls atexit which calls the interpreter again
     atexit.register(repl(interpreter))
 
