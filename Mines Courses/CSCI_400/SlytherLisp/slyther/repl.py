@@ -41,9 +41,13 @@ def repl(interpreter, debug=False):
     t.start()
 
     # User input and send to interpreter
-    expr = input("> ")
-    print(interpreter.exec(expr))
-    repl(interpreter)
+    try:
+        expr = input("> ")
+        print(interpreter.exec(expr))
+        repl(interpreter)
+    # User hit control D, exit program
+    except EOFError:
+        exit(0)
 
 class WorkerThread(threading.Thread):
     def __init__(self):
