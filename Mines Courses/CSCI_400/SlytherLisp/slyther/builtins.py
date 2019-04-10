@@ -238,16 +238,22 @@ def define(se: SExpression, stg: LexicalVarStorage):
     KeyError: 'x'
     """
 
+    # Grab values to 'test'
     key = se.car
     value = se.cdr
 
+    # Test to see if an SExpression
     if isinstance(key, SExpression):
         function = UserFunction(params=key.cdr, body=value, environ=stg.fork())
         key = key.car
         function.environ[key] = Variable(function)
         stg.put(key, function)
+
+    # Test to see if a Symbol
     elif isinstance(key, Symbol):
         stg.put(key, lisp_eval(value.car, stg))
+
+    # Otherwise, just add to dictionary
     else:
         stg.put(key, value)
 
@@ -314,19 +320,26 @@ def let(se: SExpression, stg: LexicalVarStorage) -> SExpression:
     >>> lisp_eval(Symbol('x'), stg)
     10
     """
-    vals = []
-    ptrs = []
-    pred = se.car
-    con = se.cdr
-    for item in pred:
-        vals.append(item.car)
-        ptrs.append(item.cdr.car)
-    param = SExpression.from_iterable(vals)
-    ptrs = SExpression.from_iterable(ptrs)
-    function = UserFunction(params=param, body=con, environ=stg.fork())
-    res = SExpression(function, ptrs)
+    # Containers for Parsing
+    values = []
+    tail = []
 
-    return res
+    # Parsing se
+    for item in se.car:
+        values.append(item.car)
+        tail.append(item.cdr.car)
+
+    # Create SExpressions from containers
+    param = SExpression.from_iterable(values)
+    tail = SExpression.from_iterable(tail)
+
+    # Create new function with SExpressions
+    function = UserFunction(params=param, body=se.cdr, environ=stg.fork())
+
+    # Create final SExpression to return
+    expr = SExpression(function, tail)
+
+    return expr
 
 
 @BuiltinMacro('if')
@@ -399,16 +412,13 @@ def cond(se: SExpression, stg: LexicalVarStorage):
     >>> test_cond(15)
     (print "x >= 15")
     """
-    """
-    while se is not NIL:
-        if(lisp_eval(se.car.car, stg)):
-            return se.car.cdr.car
-        se = se.cdr
-    """
 
-    for statement in se:
-        if lisp_eval(statement.car, stg):
-            return statement.cdr.car
+    # Loop through all parts of se
+    while se is not NIL:
+        if lisp_eval(se.car.car, stg):
+            return se.car.cdr.car
+        # Update se to next value (to break loop)
+        se = se.cdr
 
 
 @BuiltinMacro('and')
@@ -451,20 +461,13 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    """
+
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
+        # Use and here because 'and' function
         result = result and lisp_eval(se.car, stg)
         se = se.cdr
-    return result
-    """
-
-    result = NIL
-    for expr in se:
-        result = lisp_eval(expr, stg)
-        if not result:
-            return result
     return result
 
 
@@ -499,20 +502,13 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    """
+
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
+        # Use 'or' here because or function
         result = result or lisp_eval(se.car, stg)
         se = se.cdr
-    return result
-    """
-
-    result = NIL
-    for expr in se:
-        result = lisp_eval(expr, stg)
-        if result:
-            return result
     return result
 
 
@@ -593,10 +589,12 @@ def eval_(se: SExpression, stg: LexicalVarStorage):
     0
     NIL
     """
+    # Send to lisp eval and see if a cons list
     expr = lisp_eval(se.car, stg)
+    # If a cons list, Break apart and eval
     if isinstance(expr, ConsList):
-        return SExpression.from_iterable(
-            eval_(SExpression(tok), stg) for tok in expr)
+        expr = SExpression.from_iterable(
+            eval_(SExpression(token), stg) for token in expr)
     return expr
 
 
