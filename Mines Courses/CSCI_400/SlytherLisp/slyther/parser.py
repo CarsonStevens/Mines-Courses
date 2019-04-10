@@ -282,7 +282,7 @@ def lex(code):
     while index < len(code):
 
         # Compare to each of the patterns (pattern = index #)
-        for pattern in patterns:
+        for pattern in range(len(patterns)):
 
             # Get the match to compare
             match = patterns[pattern].match(code, index)
