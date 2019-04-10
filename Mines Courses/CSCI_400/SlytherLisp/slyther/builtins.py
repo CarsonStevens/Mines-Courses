@@ -460,7 +460,6 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     return result
     """
 
-
     result = NIL
     for expr in se:
         result = lisp_eval(expr, stg)
@@ -509,7 +508,6 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     return result    
     """
 
-
     result = NIL
     for expr in se:
         result = lisp_eval(expr, stg)
@@ -552,9 +550,8 @@ def setbang(se: SExpression, stg: LexicalVarStorage):
     try:
         stg[se.car].set(lisp_eval(se.cdr.car, stg))
         return NIL
-    except:
+    except KeyError:
         raise KeyError("Undefined variable {}".format(str(se.car)))
-
 
 
 @BuiltinMacro('eval')
