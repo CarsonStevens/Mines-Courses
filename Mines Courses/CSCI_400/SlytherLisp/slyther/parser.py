@@ -401,7 +401,7 @@ def lex(code):
     ]
     position = 0
     while position < len(code):
-        for i in enumerate(patterns):
+        for i in range(patterns):
             match = patterns[i].match(code, position)
             if i == 0:
                 if match is not None:

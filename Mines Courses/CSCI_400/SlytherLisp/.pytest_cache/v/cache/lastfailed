@@ -1,1 +1,21 @@
-{}
+{
+  "tests/d2/test__docstring_slyther.parser.lex.txt::test__docstring_slyther.parser.lex.txt": true,
+  "tests/d2/test__docstring_slyther.parser.txt::test__docstring_slyther.parser.txt": true,
+  "tests/d2/test_lexer.py::test_fp_parse": true,
+  "tests/d2/test_lexer.py::test_invalid_period": true,
+  "tests/d2/test_lexer.py::test_unclosed_string": true,
+  "tests/d2/test_lexer_slow.py::test_token_sequences": true,
+  "tests/d3/test__docstring_slyther.evaluator.lisp_eval.txt::test__docstring_slyther.evaluator.lisp_eval.txt": true,
+  "tests/d3/test__docstring_slyther.types.UserFunction.__init__.txt::test__docstring_slyther.types.UserFunction.__init__.txt": true,
+  "tests/d3/test_user_function.py::test_function_args": true,
+  "tests/d3/test_user_function.py::test_function_return": true,
+  "tests/d4/test__docstring_slyther.builtins.and_.txt::test__docstring_slyther.builtins.and_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.cond.txt::test__docstring_slyther.builtins.cond.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.define.txt::test__docstring_slyther.builtins.define.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.eval_.txt::test__docstring_slyther.builtins.eval_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.if_expr.txt::test__docstring_slyther.builtins.if_expr.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.let.txt::test__docstring_slyther.builtins.let.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.or_.txt::test__docstring_slyther.builtins.or_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.parse_string.txt::test__docstring_slyther.builtins.parse_string.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.setbang.txt::test__docstring_slyther.builtins.setbang.txt": true
+}
