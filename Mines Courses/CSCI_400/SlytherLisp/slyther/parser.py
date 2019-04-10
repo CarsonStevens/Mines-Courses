@@ -257,17 +257,17 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
     """                                                     # Pattern    |Index
-    patterns = [
-        re.compile(r'\('),                                  # LParen       | 0
-        re.compile(r'\)'),                                  # RParen       | 1
-        re.compile(r'\''),                                  # Quote        | 2
-        re.compile(r'\s'),                                 # Whitespace   | 3
-        re.compile(r'"([^"\\]|\\.)*"'),                     # Str Literal  | 4
-        re.compile(r'([-]?\d+\.\d*)|(-?\d*\.\d+)'),         # Float Literal| 5
-        re.compile(r'[-]?[\d]+'),                           # Int Literal  | 6
-        re.compile(r'^#.*?[$\n]'),                          # Shebang      | 7
-        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # Symbol       | 8
-        re.compile(r';.*$', re.MULTILINE)                   # Comments     | 9
+    regex_array = [
+        re.compile(r'\('),                                  # lparen        0
+        re.compile(r'\)'),                                  # rparen        1
+        re.compile(r'\''),                                  # quote         2
+        re.compile(r'\s+'),                                 # whitespace    3
+        re.compile(r'"([^"\\]|\\.)*"'),                     # string        4
+        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # float         5
+        re.compile(r'[-+]?[0-9]+'),                         # int           6
+        re.compile(r'^#.*?[$\n]'),                          # shebang       7
+        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # symbol        8
+        re.compile(r';.*$', re.MULTILINE)                   # comments      9
     ]
 
     """ D3 Updated version
@@ -275,7 +275,7 @@ def lex(code):
     find where the last match ended). if yielded, break from for loop to
     restart patterns at new updated index while there is still input left.
     """
-
+"""
     # To keep track when in code the last match was yielded from
     index = 0
 
@@ -346,7 +346,7 @@ def lex(code):
             # No match means an invalid sequence that wasn't caught in regex
             else:
                 raise SyntaxError("malformed tokens in input")
-
+"""
     r"""# CHANGED TO ABOVE AT D3. D2 BELOW. WORKS: minus float/int
     # Error in pattern group(4). Everything interpreted as float;
     # failed INT Conversion
@@ -399,7 +399,61 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
-        """
+            """
+
+    position = 0
+    while (position < len(code)):
+        for i in range(0, len(regex_array)):
+            match = regex_array[i].match(code, position)
+            if i == 0:
+                if match is not None:
+                    yield LParen("LParen")
+                    position = match.end()
+                    break
+            if i == 1:
+                if match is not None:
+                    yield RParen("RParen")
+                    position = match.end()
+                    break
+            if i == 2:
+                if match is not None:
+                    yield Quote("Quote")
+                    position = match.end()
+                    break
+            if i == 3:
+                if match is not None:
+                    position = match.end()
+                    break
+            if i == 4:
+                if match is not None:
+                    yield parse_strlit(match.group(0))
+                    position = match.end()
+                    break
+            if i == 5:
+                if match is not None:
+                    yield float(match.group(0))
+                    position = match.end()
+                    break
+            if i == 6:
+                if match is not None:
+                    yield int(match.group(0))
+                    position = match.end()
+                    break
+            if i == 7:
+                if match is not None:
+                    position = match.end()
+                    break
+            if i == 8:
+                if match is not None:
+                    yield Symbol(match.group(0))
+                    position = match.end()
+                    break
+            if i == 9:
+                if match is not None:
+                    position = match.end()
+                    break
+                else:
+                    raise SyntaxError("malformed tokens in input")
 
 
 def parse_strlit(tok):
