@@ -279,7 +279,7 @@ def lambda_func(se: SExpression, stg: LexicalVarStorage) -> UserFunction:
     >>> f.environ['x'].value
     20
     """
-    raise UserFunction(se.car, se.cdr, stg)
+    return UserFunction(se.car, se.cdr, stg)
 
 
 @BuiltinMacro('let')
@@ -546,8 +546,8 @@ def setbang(se: SExpression, stg: LexicalVarStorage):
     try:
         stg[se.car].set(lisp_eval(se.cdr.car, stg))
         return NIL
-    except KeyError:
-        raise KeyError("Undefined variable ", (str(se.car)))
+    except KeyError as ex:
+        raise KeyError("Undefined variable {}".format(str(se.car))) from ex
 
 
 @BuiltinMacro('eval')
