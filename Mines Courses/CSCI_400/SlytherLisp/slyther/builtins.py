@@ -551,7 +551,7 @@ def setbang(se: SExpression, stg: LexicalVarStorage):
         stg[se.car].set(lisp_eval(se.cdr.car, stg))
         return NIL
     except KeyError:
-        raise KeyError("Undefined variable {}".format(str(se.car)))
+        raise KeyError("Undefined variable ", (str(se.car)))
 
 
 @BuiltinMacro('eval')
