@@ -387,6 +387,7 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
 """
+    # Newest implementation for d4
     patterns = [
         re.compile(r'\('),                                  # lparen        0
         re.compile(r'\)'),                                  # rparen        1
