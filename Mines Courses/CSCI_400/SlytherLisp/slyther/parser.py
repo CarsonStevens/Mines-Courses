@@ -257,25 +257,12 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
     """                                                     # Pattern    |Index
-    regex_array = [
-        re.compile(r'\('),                                  # lparen        0
-        re.compile(r'\)'),                                  # rparen        1
-        re.compile(r'\''),                                  # quote         2
-        re.compile(r'\s+'),                                 # whitespace    3
-        re.compile(r'"([^"\\]|\\.)*"'),                     # string        4
-        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # float         5
-        re.compile(r'[-+]?[0-9]+'),                         # int           6
-        re.compile(r'^#.*?[$\n]'),                          # shebang       7
-        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # symbol        8
-        re.compile(r';.*$', re.MULTILINE)                   # comments      9
-    ]
 
     """ D3 Updated version
     Go through each part of the input code (index update through match.end() to
     find where the last match ended). if yielded, break from for loop to
     restart patterns at new updated index while there is still input left.
-    """
-"""
+
     # To keep track when in code the last match was yielded from
     index = 0
 
@@ -346,8 +333,8 @@ def lex(code):
             # No match means an invalid sequence that wasn't caught in regex
             else:
                 raise SyntaxError("malformed tokens in input")
-"""
-    r"""# CHANGED TO ABOVE AT D3. D2 BELOW. WORKS: minus float/int
+
+    # CHANGED TO ABOVE AT D3. D2 BELOW. WORKS: minus float/int
     # Error in pattern group(4). Everything interpreted as float;
     # failed INT Conversion
 
@@ -399,10 +386,21 @@ def lex(code):
             pass
         else:
             raise SyntaxError("malformed tokens in input")
-            """
-
+"""
+    regex_array = [
+        re.compile(r'\('),                                  # lparen        0
+        re.compile(r'\)'),                                  # rparen        1
+        re.compile(r'\''),                                  # quote         2
+        re.compile(r'\s+'),                                 # whitespace    3
+        re.compile(r'"([^"\\]|\\.)*"'),                     # string        4
+        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # float         5
+        re.compile(r'[-+]?[0-9]+'),                         # int           6
+        re.compile(r'^#.*?[$\n]'),                          # shebang       7
+        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # symbol        8
+        re.compile(r';.*$', re.MULTILINE)                   # comments      9
+    ]
     position = 0
-    while (position < len(code)):
+    while position < len(code):
         for i in range(0, len(regex_array)):
             match = regex_array[i].match(code, position)
             if i == 0:
