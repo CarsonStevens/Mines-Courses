@@ -387,7 +387,7 @@ def lex(code):
         else:
             raise SyntaxError("malformed tokens in input")
 """
-    regex_array = [
+    patterns = [
         re.compile(r'\('),                                  # lparen        0
         re.compile(r'\)'),                                  # rparen        1
         re.compile(r'\''),                                  # quote         2
@@ -401,8 +401,8 @@ def lex(code):
     ]
     position = 0
     while position < len(code):
-        for i in range(0, len(regex_array)):
-            match = regex_array[i].match(code, position)
+        for i in enumerate(patterns):
+            match = patterns[i].match(code, position)
             if i == 0:
                 if match is not None:
                     yield LParen("LParen")
