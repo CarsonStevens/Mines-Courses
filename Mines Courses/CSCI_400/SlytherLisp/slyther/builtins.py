@@ -236,7 +236,20 @@ def define(se: SExpression, stg: LexicalVarStorage):
         ...
     KeyError: 'x'
     """
-    raise NotImplementedError("Deliverable 4")
+
+    key = se.car
+    value = se.cdr
+
+    if isinstance(key, SExpression):
+        function = UserFunction(params=key.cdr, body=value, environ=stg.fork())
+        key = key.car
+        function.environ[key] = Variable(function)
+        stg.put(key, function)
+    elif isinstance(key, Symbol):
+        stg.put(key, lisp_eval(value.car, stg))
+    else:
+        stg.put(key, value)
+
 
 
 @BuiltinMacro('lambda')
@@ -260,7 +273,7 @@ def lambda_func(se: SExpression, stg: LexicalVarStorage) -> UserFunction:
     >>> f.environ['x'].value
     20
     """
-    raise NotImplementedError("Deliverable 4")
+    raise UserFunction(se.car, se.cdr, stg)
 
 
 @BuiltinMacro('let')
@@ -301,7 +314,19 @@ def let(se: SExpression, stg: LexicalVarStorage) -> SExpression:
     >>> lisp_eval(Symbol('x'), stg)
     10
     """
-    raise NotImplementedError("Deliverable 4")
+    vals = []
+    ptrs = []
+    pred = se.car
+    con = se.cdr
+    for item in pred:
+        vals.append(item.car)
+        ptrs.append(item.cdr.car)
+    param = SExpression.from_iterable(vals)
+    ptrs = SExpression.from_iterable(ptrs)
+    function = UserFunction(params=param, body=con, environ=stg.fork())
+    res = SExpression(function, ptrs)
+
+    return res
 
 
 @BuiltinMacro('if')
@@ -332,7 +357,10 @@ def if_expr(se: SExpression, stg: LexicalVarStorage):
     >>> if_expr(se, stg)
     (print "x is greater than or equal to 10")
     """
-    raise NotImplementedError("Deliverable 4")
+    if lisp_eval(se.car, stg):
+        return se.cdr.car
+    else:
+        return se.cdr.cdr.car
 
 
 @BuiltinMacro('cond')
@@ -371,7 +399,16 @@ def cond(se: SExpression, stg: LexicalVarStorage):
     >>> test_cond(15)
     (print "x >= 15")
     """
-    raise NotImplementedError("Deliverable 4")
+    """
+    while se is not NIL:
+        if(lisp_eval(se.car.car, stg)):
+            return se.car.cdr.car
+        se = se.cdr
+    """
+
+    for statement in se:
+        if lisp_eval(statement.car, stg):
+            return statement.cdr.car
 
 
 @BuiltinMacro('and')
@@ -414,7 +451,22 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    raise NotImplementedError("Deliverable 4")
+    """
+    result = lisp_eval(se.car, stg)
+    se = se.cdr
+    while se is not NIL:
+        result = result and lisp_eval(se.car, stg)
+        se = se.cdr
+    return result
+    """
+
+
+    result = NIL
+    for expr in se:
+        result = lisp_eval(expr, stg)
+        if not result:
+            return result
+    return result
 
 
 @BuiltinMacro('or')
@@ -448,7 +500,22 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    raise NotImplementedError("Deliverable 4")
+    """
+    result = lisp_eval(se.car, stg)
+    se = se.cdr
+    while se is not NIL:
+        result = result or lisp_eval(se.car, stg)
+        se = se.cdr
+    return result    
+    """
+
+
+    result = NIL
+    for expr in se:
+        result = lisp_eval(expr, stg)
+        if result:
+            return result
+    return result
 
 
 @BuiltinMacro('set!')
@@ -481,7 +548,13 @@ def setbang(se: SExpression, stg: LexicalVarStorage):
         ...
     KeyError: 'Undefined variable baz'
     """
-    raise NotImplementedError("Deliverable 4")
+
+    try:
+        stg[se.car].set(lisp_eval(se.cdr.car, stg))
+        return NIL
+    except:
+        raise KeyError("Undefined variable {}".format(str(se.car)))
+
 
 
 @BuiltinMacro('eval')
@@ -523,7 +596,11 @@ def eval_(se: SExpression, stg: LexicalVarStorage):
     0
     NIL
     """
-    raise NotImplementedError("Deliverable 4")
+    expr = lisp_eval(se.car, stg)
+    if isinstance(expr, ConsList):
+        return SExpression.from_iterable(
+            eval_(SExpression(tok), stg) for tok in expr)
+    return expr
 
 
 @BuiltinFunction('parse')
@@ -540,4 +617,4 @@ def parse_string(code: String):
     Note that the ``BuiltinFunction`` decorator takes care of downgrading an
     ``SExpression`` to a ``ConsList`` for you.
     """
-    raise NotImplementedError("Deliverable 4")
+    return next(parse(lex(code)))
