@@ -1,9 +1,11 @@
+import hypothesis.strategies as st
 import pytest
 from hypothesis import given, settings
-import hypothesis.strategies as st
-from slyther.types import (Symbol as s, String as sl,       # noqa
-                           Quoted, SExpression, NIL)
-from slyther.parser import LParen, RParen, Quote, parse
+
+from slyther.parser import LParen, Quote, RParen, parse
+from slyther.types import NIL, Quoted, SExpression
+from slyther.types import String as sl
+from slyther.types import Symbol as s
 
 lp, rp, q = LParen(), RParen(), Quote()
 
@@ -17,16 +19,15 @@ def quoteds(strategy):
 
 
 symbols = st.builds(
-    s,
-    st.from_regex(r'''[^0-9"'();.\s][^"'();\s]*''', fullmatch=True))
+    s, st.from_regex(r'''[^0-9"'();.\s][^"'();\s]*''', fullmatch=True))
 strings = st.builds(sl, st.text())
-ast_objects = st.deferred(
-    lambda: (symbols
-             | strings
-             | st.integers()
-             | st.floats(allow_nan=False, allow_infinity=False)
-             | quoteds(ast_objects)
-             | s_expressions(ast_objects)))
+ast_objects = st.deferred(lambda: (symbols
+                                   | strings
+                                   | st.integers()
+                                   | st.floats(
+                                       allow_nan=False, allow_infinity=False)
+                                   | quoteds(ast_objects)
+                                   | s_expressions(ast_objects)))
 ast_lists = st.lists(ast_objects)
 
 
@@ -63,7 +64,7 @@ def test_missing_rp():
 
 def test_missing_lp():
     parser = parse(iter([10, rp]))
-    assert next(parser) is 10
+    assert next(parser) == 10
     with pytest.raises(SyntaxError):
         next(parser)
 
@@ -91,5 +92,18 @@ def test_many_quotes(quotes):
         assert isinstance(r, Quoted)
         r = r.elem
     assert r is NIL
+    with pytest.raises(StopIteration):
+        next(parser)
+
+
+@settings(deadline=None)
+@given(st.integers(min_value=1, max_value=10), s_expressions(ast_objects))
+def test_many_quote_nested(quotes, inner):
+    parser = parse(iter([q] * quotes + [lp, inner, rp]))
+    r = next(parser)
+    for _ in range(quotes):
+        assert isinstance(r, Quoted)
+        r = r.elem
+    assert r == SExpression(inner)
     with pytest.raises(StopIteration):
         next(parser)

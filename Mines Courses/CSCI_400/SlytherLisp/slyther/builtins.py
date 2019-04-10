@@ -2,7 +2,8 @@ import operator
 from functools import reduce
 from slyther.types import (BuiltinFunction, BuiltinMacro, Symbol,
                            UserFunction, SExpression, cons, String,
-                           ConsList, NIL, LexicalVarStorage, ConsCell)
+                           Variable, ConsList, NIL, LexicalVarStorage,
+                           ConsCell)
 from slyther.evaluator import lisp_eval
 from slyther.parser import lex, parse
 from math import floor, ceil, sqrt
@@ -249,7 +250,6 @@ def define(se: SExpression, stg: LexicalVarStorage):
         stg.put(key, lisp_eval(value.car, stg))
     else:
         stg.put(key, value)
-
 
 
 @BuiltinMacro('lambda')
@@ -505,7 +505,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     while se is not NIL:
         result = result or lisp_eval(se.car, stg)
         se = se.cdr
-    return result    
+    return result
     """
 
     result = NIL
