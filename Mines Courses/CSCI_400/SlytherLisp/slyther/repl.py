@@ -30,6 +30,7 @@ def repl(interpreter, debug=False):
     is set to ``True``, as it allows for easy post-mortem debugging with pdb
     or pudb.
     """
+    """
     import atexit
     # ^C exits, so calls atexit which calls the interpreter again
     atexit.register(repl(interpreter))
@@ -42,3 +43,14 @@ def repl(interpreter, debug=False):
     # User hit control D, exit program
     except EOFError:
         exit(0)
+    """
+    while True:
+        try:
+            expr = input(">")
+            print(interpreter.exec(expr))
+        except KeyboardInterrupt:
+            print("")
+            continue
+        except EOFError:
+            exit(0)
+
