@@ -46,10 +46,11 @@ def repl(interpreter, debug=False):
     """
     while True:
         try:
-            expr = input(">")
+            expr = input("> ")
             print(interpreter.exec(expr))
         except KeyboardInterrupt:
             continue
         except EOFError:
+            print(">>> EXITING <<<")
             exit(0)
 
