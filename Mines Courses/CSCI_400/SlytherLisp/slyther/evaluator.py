@@ -172,7 +172,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                     contents.append(macro_item)
 
                 # Convert contents using the lisp_eval object
-                expr = evaluator(macro_item.cdr, stg)
+                expr = evaluator(expr.cdr, stg)
 
             # Handle Function SExpression
             elif isinstance(evaluator, Function):
