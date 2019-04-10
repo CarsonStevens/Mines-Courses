@@ -51,6 +51,6 @@ def repl(interpreter, debug=False):
         except KeyboardInterrupt:
             continue
         except EOFError:
-            print(">>> EXITING <<<")
+            # print(">>> EXITING <<<")
             exit(0)
 
