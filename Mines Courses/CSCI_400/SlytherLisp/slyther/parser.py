@@ -388,15 +388,15 @@ def lex(code):
             raise SyntaxError("malformed tokens in input")
 """
     regex_array = [
-        re.compile(r'\\('),                                  # lparen        0
-        re.compile(r'\\)'),                                  # rparen        1
-        re.compile(r'\\''),                                  # quote         2
+        re.compile(r'\('),                                  # lparen        0
+        re.compile(r'\)'),                                  # rparen        1
+        re.compile(r'\''),                                  # quote         2
         re.compile(r'\s+'),                                 # whitespace    3
         re.compile(r'"([^"\\]|\\.)*"'),                     # string        4
-        re.compile(r'(-?\d+\\.\d*)|(-?\d*\\.\d+)'),         # float         5
+        re.compile(r'(-?\d+\.\d*)|(-?\d*\.\d+)'),           # float         5
         re.compile(r'[-+]?[0-9]+'),                         # int           6
         re.compile(r'^#.*?[$\n]'),                          # shebang       7
-        re.compile(r'[^\s\d\\.\\'"\\(\\)\\;][^\s\'"\\(\\);]*'# symbol        8
+        re.compile(r'[^\s\d\.\'"\(\)\;][^\s\'"\(\);]*'),    # symbol        8
         re.compile(r';.*$', re.MULTILINE)                   # comments      9
     ]
     position = 0
