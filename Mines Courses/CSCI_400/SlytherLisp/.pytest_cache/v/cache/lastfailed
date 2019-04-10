@@ -1,1 +1,12 @@
-{}
+{
+  "tests/d4/test__docstring_slyther.builtins.and_.txt::test__docstring_slyther.builtins.and_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.cond.txt::test__docstring_slyther.builtins.cond.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.define.txt::test__docstring_slyther.builtins.define.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.eval_.txt::test__docstring_slyther.builtins.eval_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.if_expr.txt::test__docstring_slyther.builtins.if_expr.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.lambda_func.txt::test__docstring_slyther.builtins.lambda_func.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.let.txt::test__docstring_slyther.builtins.let.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.or_.txt::test__docstring_slyther.builtins.or_.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.parse_string.txt::test__docstring_slyther.builtins.parse_string.txt": true,
+  "tests/d4/test__docstring_slyther.builtins.setbang.txt::test__docstring_slyther.builtins.setbang.txt": true
+}
