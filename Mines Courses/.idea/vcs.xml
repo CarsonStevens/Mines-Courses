@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/CSCI_400/Qiskit/qiskit-tutorials" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CSCI_400/hw-2-starter-code" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CSCI_477/Miner Conflict" vcs="Git" />
   </component>

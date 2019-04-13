@@ -1,0 +1,8 @@
+//
+// Created by steve on 4/13/2019.
+//
+
+#ifndef MINES_COURSES_BETAPLAYER_H
+#define MINES_COURSES_BETAPLAYER_H
+
+#endif //MINES_COURSES_BETAPLAYER_H
