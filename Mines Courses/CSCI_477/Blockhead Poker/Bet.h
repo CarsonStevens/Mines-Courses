@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-class Bet(){
+class Bet{
 public:
 
     //Constructor
@@ -25,5 +25,5 @@ public:
 private:
     int amount;
     int player;
-}
+};
 #endif //MINES_COURSES_BET_H

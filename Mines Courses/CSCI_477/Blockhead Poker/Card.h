@@ -11,11 +11,13 @@
 #include <iostream>
 #include <string>
 
-class Card(){
+using namespace std;
+
+class Card{
 public:
 
     //Constructor
-    Card(string cardName, int cardValue);
+    Card(string cardName, int cardValue, bool face);
 
     //Return name of Card
     string getName();
@@ -37,7 +39,7 @@ private:
     int value;
     bool faceUp;
     bool face;
-}
+};
 
 
 

@@ -18,6 +18,10 @@
 #include "Player.h"
 
 class HumanPlayer : public Player{
-    int getBet(Hand opponent, BetHistory bh, int bet2player, bool canRaise, int pot);
+public:
+    HumanPlayer(int id, int chips) : Player(id, chips){
+    }
+
+    int getBet(Hand opponent, BetHistory bh, int bet2player, bool canRaise, int pot) override;
 };
 #endif //MINES_COURSES_HUMANPLAYER_H

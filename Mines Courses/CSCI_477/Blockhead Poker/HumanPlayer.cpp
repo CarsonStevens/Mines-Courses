@@ -24,7 +24,7 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
          << "Bet: " << bet2player << endl
          << "Cards:\033[0m" << endl;
     cout << "\033[1;32m";
-    for(Card card : opponent){
+    for(Card card : opponent.getHand()){
         if(!card.isFaceup()){
             cout << "\t>>> FACE DOWN <<<" << endl;
         }
@@ -43,7 +43,7 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
     cout << "\033[1;34mYour stats:" << endl <<
          "Chips:\t" << chips << endl << "Cards:\033[0m" << endl;
     cout << "\033[1;32m";
-    for(Card card : hand){
+    for(Card card : hand.getHand()){
         if(card.getFace()){
             cout << "\t" << card.getName() << endl;
         }
@@ -70,7 +70,7 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                 cout << "Folded the hand." << endl;
                 return 0;
             }
-            else if (raise == bet2player) {
+            else if (raise1 == bet2player) {
                 cout << "Called the hand." << endl;
                 chips -= bet2player;
                 return bet2player;

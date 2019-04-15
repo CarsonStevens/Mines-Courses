@@ -15,10 +15,9 @@
 
 using namespace std;
 
-Player::Player(int id, int chips, PlayerType type){
+Player::Player(int id, int chips){
     this->id = id;
     this->chips = chips;
-    this->type = type;
 }
 
 int Player::getID(){
@@ -31,7 +30,7 @@ void Player::clearHand(){
 }
 
 void Player::dealCard(Card c){
-    hand.push_back(c);
+    hand.addCard(c);
 }
 
 Hand Player::getHand(){
@@ -48,7 +47,7 @@ int Player::getChips(){
 
 int Player::getHandValue(){
     int sum = 0;
-    for(Card card : this->hand){
+    for(Card card : this->hand.getHand()){
         sum += card.getValue();
     }
     return sum;

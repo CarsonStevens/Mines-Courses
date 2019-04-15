@@ -12,20 +12,27 @@
 
 
 #include "Game.h"
+#include "HumanPlayer.h"
+#include "AlphaPlayer.h"
 
 using namespace std;
 
 bool Game::playGame(PlayerType p0, PlayerType p1,
-        int &chips0, int &chips1, bool reportFlag){
+        int chips0, int chips1, bool reportFlag){
     int temp;
-    if(p0 == PlayerType::HUMAN){
-        HumanPlayer player0 = new HumanPlayer(0, chips0, PlayerType::HUMAN);
-        AlphaPlayer player1 = new AlphaPlayer(1, chips1, PlayerType::ALPHA);
-    }
-    else{
-        AlphaPlayer player0 = new AlphaPlayer(0, chips0, PlayerType::ALPHA);
-        BetaPlayer player1 = new BetaPlayer(1, chips1, PlayerType::BETA);
-    }
+    bool fold;
+    int player1Bet;
+    int player0Bet;
+    HumanPlayer player0(0,chips0);
+    AlphaPlayer player1(1, chips0);
+//    if(p0 == PlayerType::HUMAN){
+//        HumanPlayer player0(0, chips0);
+//        AlphaPlayer player1(1, chips1);
+//    }
+//    else{
+//        AlphaPlayer player0(0, chips0);
+//        //BetaPlayer player1(1, chips1);
+//    }
 
     while(handCounter < 20) {
         cout << "Hand #" << (handCounter+1) << "out of 20" << endl << endl;
@@ -44,7 +51,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 
                 // Values for each round
                 bool call = false;
-                bool fold = false;
+                fold = false;
                 bool start = true;
                 int raises = 0;
                 bool bet = true;
@@ -89,7 +96,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             call = true;
                             player0Bet = temp-player1Bet;
                             pot += temp;
-                            Bet player_bet = new Bet(temp, player0.getID());
+                            Bet player_bet(temp, player0.getID());
                             history.addBet(player_bet);
                             chips0 -= temp;
                             if(raises == 3){
@@ -121,7 +128,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player0Bet = temp - player1Bet;
                         pot += temp;
-                        Bet player_bet = new Bet(temp, player0.getID());
+                        Bet player_bet(temp, player0.getID());
                         history.addBet(player_bet);
                         chips0 -= temp;
                     }
@@ -143,7 +150,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     if (temp == player0Bet) {
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = new Bet(temp, player1.getID());
+                        Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                         if (call) {
@@ -171,7 +178,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = new Bet(temp, player1.getID());
+                        Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                     }
@@ -187,7 +194,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 
                 // Values for each round
                 bool call = false;
-                bool fold = false;
+                fold = false;
                 bool start = true;
                 int raises = 0;
                 bool bet = true;
@@ -227,7 +234,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             call = true;
                             player1Bet = temp - player0Bet;
                             pot += temp;
-                            Bet player_bet = new Bet(temp, player1.getID());
+                            Bet player_bet(temp, player1.getID());
                             history.addBet(player_bet);
                             chips1 -= temp;
                             if (raises == 3) {
@@ -258,7 +265,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = new Bet(temp, player1.getID());
+                        Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                     }
@@ -279,7 +286,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 if (temp == player1Bet) {
                     player0Bet = temp - player1Bet;
                     pot += temp;
-                    Bet player_bet = new Bet(temp, player0.getID());
+                    Bet player_bet(temp, player0.getID());
                     history.addBet(player_bet);
                     chips0 -= temp;
                     if (call) {
@@ -305,7 +312,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     raises++;
                     player0Bet = temp - player1Bet;
                     pot += temp;
-                    Bet player_bet = new Bet(temp, player0.getID());
+                    Bet player_bet(temp, player0.getID());
                     history.addBet(player_bet);
                     chips0 -= temp;
                 }
@@ -321,7 +328,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
             player0.addChips(pot);
             cout << endl << "\033[1;33m You won the pot of " << pot << " chips!\033[0m" << endl << endl;
             chips0 += pot;
-            pot = 0
+            pot = 0;
         }
         //For others
         else if(fold && player0Bet == 0){
@@ -348,7 +355,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
             pot = 0;
         }
     }
-
+    return true;
 }
 
 void Game::shuffleDeck(){
@@ -412,7 +419,7 @@ void Game::shuffleDeck(){
     return;
 }
 
-void Game::dealCards(int partOfRound, Player &p0, Player &p1)){
+void Game::dealCards(int partOfRound, Player &p0, Player &p1){
 
     if(partOfRound == 0){
         //Deal two face up and one down to each player

@@ -21,9 +21,9 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
     if(canRaise){
 
         //2. If there are still cards to draw…
-        if(this->hand.size() < 5){
+        if(this->hand.getCount() < 5){
             //a. If there have been no bets prior…
-            if(bh.size() == 0){
+            if(bh.getCount() == 0){
                 //i. If delta > 10, raise 10
                 if(delta > 10.0){
                     chips -= (10+bet2player);
@@ -118,7 +118,7 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
             //3. Else last betting round
         else{
             //a. If there have been no bets prior…
-            if(bh.size() == 0){
+            if(bh.getCount() == 0){
                 //i. If delta > 10, raise 10
                 if(delta > 10){
                     chips -= (10+bet2player);

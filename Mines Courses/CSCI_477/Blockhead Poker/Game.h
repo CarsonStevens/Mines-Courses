@@ -22,17 +22,17 @@
 #include "Player.h"
 #include "BetHistory.h"
 
-enum PlayerType{HUMAN, ALPHA, BETA};
 
-class Game(){
+
+class Game{
 public:
-    bool playGame(PlayerType p0, PlayerType p1, int &chips0, int &chips1, bool reportFlag);
+    bool playGame(PlayerType p0, PlayerType p1, int chips0, int chips1, bool reportFlag);
     void shuffleDeck();
-    void dealCards(int partOfRound, PlayerType &p0, PlayerType &p1);
+    void dealCards(int partOfRound, Player &p0, Player &p1);
 private:
-    vector<Card> deck = new vector<Card>;
+    vector<Card> deck;
     BetHistory history;
     int handCounter = 0;
     int pot = 0;
-}
+};
 #endif //MINES_COURSES_GAME_H

@@ -1,0 +1,3 @@
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/cmake-build-debug/CMakeFiles/Blockhead_Poker.dir
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/cmake-build-debug/CMakeFiles/rebuild_cache.dir

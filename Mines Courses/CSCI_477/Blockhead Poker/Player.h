@@ -21,14 +21,14 @@
 
 enum PlayerType{HUMAN, ALPHA, BETA};
 
-class Player(){
+class Player{
 public:
 
     /*
      * Constructor:  initialize the layer with id 0 or 1
      * and starting chips.
      */
-    Player(int id, int chips, PlayerType type);
+    Player(int id, int chips);
 
     /*
      * This should be an abstract method that passes all
@@ -68,11 +68,10 @@ public:
 
     // get the value of a player's hand
     int getHandValue();
-
-private:
+protected:
+    Hand hand;
     int id;
     int chips;
-    Hand hand;
-    PlayerType type;
-}
+
+};
 #endif //MINES_COURSES_PLAYER_H

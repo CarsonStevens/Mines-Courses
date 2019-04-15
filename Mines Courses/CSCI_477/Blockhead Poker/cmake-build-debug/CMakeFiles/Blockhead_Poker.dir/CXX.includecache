@@ -1,0 +1,82 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/AlphaPlayer.h
+Player.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Player.h
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Bet.h
+iostream
+-
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/BetHistory.h
+Bet.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Bet.h
+vector
+-
+string
+-
+iostream
+-
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Card.h
+iostream
+-
+string
+-
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Game.cpp
+Game.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Game.h
+HumanPlayer.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/HumanPlayer.h
+AlphaPlayer.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/AlphaPlayer.h
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Game.h
+iostream
+-
+algorithm
+-
+vector
+-
+ctime
+-
+cstdlib
+-
+Card.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Card.h
+Player.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Player.h
+BetHistory.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/BetHistory.h
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Hand.h
+iostream
+-
+string
+-
+vector
+-
+Card.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Card.h
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/HumanPlayer.h
+Player.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Player.h
+
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Player.h
+Bet.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Bet.h
+BetHistory.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/BetHistory.h
+Hand.h
+C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Blockhead Poker/Hand.h
+iostream
+-
+

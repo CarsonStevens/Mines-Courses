@@ -13,7 +13,9 @@
 #include <vector>
 #include "Card.h"
 
-class Hand(){
+using namespace std;
+
+class Hand{
 public:
 
     // clears the hand
@@ -34,7 +36,9 @@ public:
     // what is the value of the hand
     int evaluate();
 
+    vector<Card> getHand();
+
 private:
-    vector<Card> hand = new vector<Card>;
-}
+    vector<Card> hand;
+};
 #endif //MINES_COURSES_HAND_H

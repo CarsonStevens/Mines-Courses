@@ -14,11 +14,13 @@
 #include <string>
 #include <iostream>
 
-class BetHistory(){
+using namespace std;
+
+class BetHistory{
 public:
 
     // clears the bet history
-    void clearHistroy();
+    void clearHistory();
 
     // amount of bet
     void addBet(Bet bet);
@@ -30,7 +32,7 @@ public:
     Bet getBet(int n);
 
 private:
-    vector<Bet> betHistory = new vector<Bet>;
+    vector<Bet> betHistory;
 
-}
+};
 #endif //MINES_COURSES_BETHISTORY_H
