@@ -29,10 +29,14 @@ public:
     // Set faceup attribute to true
     void setFaceup(bool faceup);
 
+    // Get whether card is a face card
+    bool getFace();
+
 private:
     string name;
     int value;
     bool faceUp;
+    bool face;
 }
 
 

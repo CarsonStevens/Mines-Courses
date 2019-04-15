@@ -15,4 +15,9 @@
 #ifndef MINES_COURSES_HUMANPLAYER_H
 #define MINES_COURSES_HUMANPLAYER_H
 
+#include "Player.h"
+
+class HumanPlayer : public Player{
+    int getBet(Hand opponent, BetHistory bh, int bet2player, bool canRaise, int pot);
+};
 #endif //MINES_COURSES_HUMANPLAYER_H

@@ -15,39 +15,19 @@
 
 using namespace std;
 
-Player::Player(int id, int chips){
+Player::Player(int id, int chips, PlayerType type){
     this->id = id;
     this->chips = chips;
-}
-
-// TODO
-int Player::getBet(Hand opponent, BetHistory bh, int bet2player,
-           bool canRaise, int pot){
-
-    /*
- * This should be an abstract method that passes all
- * of the necessary domain information of the game to
- * the player. Other information about the player like
- * the players hand should already be part of the Player
- * object. The method should then return the bet made by
- * the player. This bet represents the amount to be put
- * in the pot, so it would include the amount bet2player
- * which is the previous players raise. A bet of -1 is a
- * command to quit (only comes from the human player).
- * A bet of 0 is a fold IF there is a bet to the player
- * (otherwise, it's just a call).
- * int getBet( Hand opponent, BetHistory bh, int bet2player,
- *              bool canRaise, int pot)
- */
-
+    this->type = type;
 }
 
 int Player::getID(){
-    return id;
+    return this->id;
 }
 
 void Player::clearHand(){
-    hand.clear();
+    this->hand.clear();
+    return;
 }
 
 void Player::dealCard(Card c){
@@ -55,7 +35,7 @@ void Player::dealCard(Card c){
 }
 
 Hand Player::getHand(){
-    return hand;
+    return this->hand;
 }
 
 void Player::addChips(int chips){
@@ -63,5 +43,13 @@ void Player::addChips(int chips){
 }
 
 int Player::getChips(){
-    return chips;
+    return this->chips;
+}
+
+int Player::getHandValue(){
+    int sum = 0;
+    for(Card card : this->hand){
+        sum += card.getValue();
+    }
+    return sum;
 }

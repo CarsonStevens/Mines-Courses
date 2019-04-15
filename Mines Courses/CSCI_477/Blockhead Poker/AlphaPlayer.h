@@ -12,4 +12,9 @@
 #ifndef MINES_COURSES_ALPHAPLAYER_H
 #define MINES_COURSES_ALPHAPLAYER_H
 
+#include "Player.h"
+
+class AlphaPlayer : public Player{
+    int getBet(Hand opponent, BetHistory bh, int bet2player, bool canRaise, int pot);
+};
 #endif //MINES_COURSES_ALPHAPLAYER_H

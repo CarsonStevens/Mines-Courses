@@ -9,10 +9,11 @@
 
 using namespace std;
 
-Card::Card(string cardName, int cardValue){
+Card::Card(string cardName, int cardValue, bool face){
     name = cardName;
     value = cardValue;
     faceUp = false;
+    this->face = face;
 }
 
 string Card::getName(){
@@ -29,4 +30,8 @@ bool Card::isFaceup(){
 
 void Card::setFaceup(bool faceup){
     faceUp = faceup;
+}
+
+bool Card:: getFace(){
+    return face;
 }

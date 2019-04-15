@@ -15,7 +15,11 @@
 #define MINES_COURSES_PLAYER_H
 
 #include "Bet.h"
+#include "BetHistory.h"
 #include "Hand.h"
+#include <iostream>
+
+enum PlayerType{HUMAN, ALPHA, BETA};
 
 class Player(){
 public:
@@ -24,7 +28,7 @@ public:
      * Constructor:  initialize the layer with id 0 or 1
      * and starting chips.
      */
-    Player(int id, int chips);
+    Player(int id, int chips, PlayerType type);
 
     /*
      * This should be an abstract method that passes all
@@ -41,8 +45,8 @@ public:
      * int getBet( Hand opponent, BetHistory bh, int bet2player,
      *              bool canRaise, int pot)
      */
-    int getBet(Hand opponent, BetHistory bh, int bet2player,
-            bool canRaise, int pot);
+    virtual int getBet(Hand opponent, BetHistory bh, int bet2player,
+            bool canRaise, int pot) = 0;
 
     // get id number
     int getID();
@@ -62,9 +66,13 @@ public:
     // get player's chip count
     int getChips();
 
+    // get the value of a player's hand
+    int getHandValue();
+
 private:
     int id;
     int chips;
     Hand hand;
+    PlayerType type;
 }
 #endif //MINES_COURSES_PLAYER_H

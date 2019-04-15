@@ -10,27 +10,37 @@
 using namespace std;
 
 void Hand::clear(){
-    hand.clear();
+    this->hand.clear();
 }
 
 void Hand::addCard(Card toAdd){
-    hand.push_back(toAdd);
+    this->hand.push_back(toAdd);
 }
 
 int Hand::getCount(){
-    return hand.size();
+    return this->hand.size();
 }
 
 Card Hand::getCard(int n){
-    return hand[n];
+    return this->hand[n];
 }
 
-// TODO
+
 Hand Hand::getVisible(){
-    // gets the visble part of a hand as a new hand
+    Hand visible;
+    for(Card card : this->hand){
+        if(card.isFaceup()){
+            visible.addCard(card);
+        }
+    }
+    return visible;
 }
 
-// TODO
+
 int Hand::evaluate(){
-    // what is the value of the hand
+    int sum = 0;
+    for(Card card : this->hand){
+        sum += card.getValue();
+    }
+    return sum;
 }

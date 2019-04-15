@@ -1,0 +1,51 @@
+Players start with 1000 chips
+
+Play for 20 hands
+
+reshuffle the deck after each hand
+
+deal 3 cards to each player, 2 face up and 1 face down
+Must pay 10 chips to buy into pot
+
+face up cards viewed by anyone
+face down cards only viewed by owner
+
+bidding round switches who starts every time
+
+another face is dealt face up to each player
+another bidding round with same person starting
+
+another card is dealt face up to each player
+another bidding round with the same person starting
+
+all cards are displayed and winner takes pot
+if tied, pot goes to next hand.
+
+Card points are as follows:
+Ace – 1
+2-10 – 2-10
+Jack, Queen, King – 10
+
+
+A bidding round is handled in the following manner.
+a. Players alternately raise/call/fold until one player folds or both players call one
+after the other.
+b. The opening player may open with a call (actually a check) or raise. A call at
+this point means that no bet is made. A raise may be of any value from 1 to 10.
+This amount is put into the pot.
+c. The next player may do one of the following if the prior player called:
+    i. Call, the round stops.
+    ii. Raise – The bet may from 1 to 10. That amount is put in the pot. Note,
+    a player may not raise if there have been three (3) prior raises in the
+    bidding round.
+d. The next player may do one of the following if the prior player raised:
+    i. Fold – The hand immediately ends and the pot goes to the prior player.
+    ii. Call – The player puts into the pot the number of chips equal to the
+    prior players raise.
+    iii. Raise – The player may raise any value from 1 to 10 chips. The amount
+    of the raise plus the amount of the prior players raise is put into the
+    pot. Note, a player may not raise if there have been three (3) prior
+    raises in the bidding round.
+    e. Note, for the purpose of this assignment, a player may have negative number of
+    chips (i.e. he borrows from the bank).
+
