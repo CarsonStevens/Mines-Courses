@@ -19,12 +19,12 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
         int &chips0, int &chips1, bool reportFlag){
     int temp;
     if(p0 == PlayerType::HUMAN){
-        HumanPlayer player0 = HumanPlayer(0, chips0, PlayerType::HUMAN);
-        AlphaPlayer player1 = AlphaPlayer(1, chips1, PlayerType::ALPHA);
+        HumanPlayer player0 = new HumanPlayer(0, chips0, PlayerType::HUMAN);
+        AlphaPlayer player1 = new AlphaPlayer(1, chips1, PlayerType::ALPHA);
     }
     else{
-        AlphaPlayer player0 = AlphaPlayer(0, chips0, PlayerType::ALPHA);
-        BetaPlayer player1 = BetaPlayer(1, chips1, PlayerType::BETA);
+        AlphaPlayer player0 = new AlphaPlayer(0, chips0, PlayerType::ALPHA);
+        BetaPlayer player1 = new BetaPlayer(1, chips1, PlayerType::BETA);
     }
 
     while(handCounter < 20) {
@@ -50,7 +50,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 bool bet = true;
                 player0Bet = 0;
                 player1Bet = 0;
-
+                this->history.clearHistory();
                 // Deal cards to Players for specific round
                 dealCards((round - 1), player0, player1);
 
@@ -89,7 +89,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             call = true;
                             player0Bet = temp-player1Bet;
                             pot += temp;
-                            Bet player_bet = Bet(temp, player0.getID());
+                            Bet player_bet = new Bet(temp, player0.getID());
                             history.addBet(player_bet);
                             chips0 -= temp;
                             if(raises == 3){
@@ -121,7 +121,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player0Bet = temp - player1Bet;
                         pot += temp;
-                        Bet player_bet = Bet(temp, player0.getID());
+                        Bet player_bet = new Bet(temp, player0.getID());
                         history.addBet(player_bet);
                         chips0 -= temp;
                     }
@@ -143,7 +143,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     if (temp == player0Bet) {
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = Bet(temp, player1.getID());
+                        Bet player_bet = new Bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                         if (call) {
@@ -171,7 +171,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = Bet(temp, player1.getID());
+                        Bet player_bet = new Bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                     }
@@ -193,7 +193,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 bool bet = true;
                 player0Bet = 0;
                 player1Bet = 0;
-
+                this->history.clearHistory();
                 // Deal cards to Players for specific round
                 dealCards((round - 1), player0, player1);
 
@@ -227,7 +227,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             call = true;
                             player1Bet = temp - player0Bet;
                             pot += temp;
-                            Bet player_bet = Bet(temp, player1.getID());
+                            Bet player_bet = new Bet(temp, player1.getID());
                             history.addBet(player_bet);
                             chips1 -= temp;
                             if (raises == 3) {
@@ -258,7 +258,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         raises++;
                         player1Bet = temp - player0Bet;
                         pot += temp;
-                        Bet player_bet = Bet(temp, player1.getID());
+                        Bet player_bet = new Bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                     }
@@ -279,7 +279,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 if (temp == player1Bet) {
                     player0Bet = temp - player1Bet;
                     pot += temp;
-                    Bet player_bet = Bet(temp, player0.getID());
+                    Bet player_bet = new Bet(temp, player0.getID());
                     history.addBet(player_bet);
                     chips0 -= temp;
                     if (call) {
@@ -305,7 +305,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     raises++;
                     player0Bet = temp - player1Bet;
                     pot += temp;
-                    Bet player_bet = Bet(temp, player0.getID());
+                    Bet player_bet = new Bet(temp, player0.getID());
                     history.addBet(player_bet);
                     chips0 -= temp;
                 }

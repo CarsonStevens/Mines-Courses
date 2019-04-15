@@ -27,7 +27,7 @@ Card Hand::getCard(int n){
 
 
 Hand Hand::getVisible(){
-    Hand visible;
+    Hand visible
     for(Card card : this->hand){
         if(card.isFaceup()){
             visible.addCard(card);
