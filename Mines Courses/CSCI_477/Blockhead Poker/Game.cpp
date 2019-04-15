@@ -18,7 +18,7 @@
 using namespace std;
 
 bool Game::playGame(PlayerType p0, PlayerType p1,
-        int chips0, int chips1, bool reportFlag){
+        int chips0, int chips1, bool report){
     int temp;
     bool fold;
     int player1Bet;
@@ -35,15 +35,17 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 //    }
 
     while(handCounter < 20) {
-        cout << "Hand #" << (handCounter+1) << "out of 20" << endl << endl;
+        cout << "Hand " << (handCounter+1) << " out of 20" << endl;
         int round = 1;
-
+        player0.clearHand();
+        player1.clearHand();
         //Reshuffle Deck for next hand.
         shuffleDeck();
 
         //Remove cost to enter pot: -10
         player0.addChips(-10);
         player1.addChips(-10);
+        pot += 20;
 
         //Player0 goes first for hand
         if(handCounter % 2 == 0) {
@@ -60,7 +62,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 this->history.clearHistory();
                 // Deal cards to Players for specific round
                 dealCards((round - 1), player0, player1);
-
+                cout << "Moving to bidding round " << round << endl << endl;
                 // Does 1 round
                 while (!fold) {
                     //Update if a player can bet
@@ -76,7 +78,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 
                     //If human player, to quit
                     if (temp == -1) {
-                        return false;
+                        return true;
                     }
                     // Handles check if first bet of round is 1.
                     else if (temp == 0 && start) {
@@ -90,7 +92,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     else if (temp == player1Bet && !start) {
                         if(call){
                             round++;
-                            continue;
+                            break;
                         }
                         else{
                             call = true;
@@ -101,13 +103,13 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             chips0 -= temp;
                             if(raises == 3){
                                 round++;
-                                continue;
+                                break;
                             }
                         }
                     }
                     else if (temp == 0 && call && !start){
                         round++;
-                        continue;
+                        break;
                     }
 
                     // Handles folding
@@ -117,7 +119,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         player0Bet = 0;
                         //To break out of loop for hand
                         round = 4;
-                        continue;
+                        break;
                     }
 
                     //Handle raising
@@ -148,28 +150,39 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 
                     // If both players call
                     if (temp == player0Bet) {
+
                         player1Bet = temp - player0Bet;
                         pot += temp;
                         Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
                         if (call) {
+                            if(report){
+                                cout << "Opponent also called your bet. Moving to next betting round." << endl;
+                            }
                             round++;
-                            continue;
+                            break;
                         }
                         else{
                             call = true;
                             if(raises == 3){
                                 round++;
-                                continue;
+                                if(report){
+                                    cout << "Oponent called your bet." << endl;
+                                    cout << "Moving to next betting round." << endl;
+                                }
+                                break;
                             }
                         }
                     }
                     else if (temp == 0) {
                         fold = true;
-                        player0Bet = 0;
+                        player1Bet = 0;
                         round = 4;
-                        continue;
+                        if(report){
+                            cout << "Opponent folded this round." << endl;
+                        }
+                        break;
                         // Pot goes to player 1
                     }
                     else {
@@ -181,6 +194,9 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
+                        if(report){
+                            cout << "Opponent raised your bet " << player1Bet << " chips." << endl;
+                        }
                     }
                 }
             }
@@ -203,13 +219,15 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                 this->history.clearHistory();
                 // Deal cards to Players for specific round
                 dealCards((round - 1), player0, player1);
+                cout << "Moving to bidding round " << round << endl << endl;
 
                 // Does 1 round
                 while (!fold) {
                     //Update if a player can bet
                     if (raises < 3) {
                         bet = true;
-                    } else {
+                    }
+                    else {
                         bet = false;
                     }
 
@@ -218,6 +236,9 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
 
                     // Handles check if first bet of round is 1.
                     if (temp == 0 && start) {
+                        if (report) {
+                            cout << "Opponent checked." << endl;
+                        }
                         call = true;
                         player1Bet = temp - player0Bet;
                         pot += temp;
@@ -227,8 +248,9 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         //Handle calling
                     else if (temp == player0Bet && !start) {
                         if (call) {
+                            cout << "Opponent also called. Moving to next betting round." << endl;
                             round++;
-                            continue;
+                            break;
                         }
                         else {
                             call = true;
@@ -238,23 +260,33 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             history.addBet(player_bet);
                             chips1 -= temp;
                             if (raises == 3) {
-                                continue;
+                                round++;
+                                if (report) {
+                                    cout << "Moving to next betting round." << endl;
+                                }
+                                break;
                             }
                         }
                     }
                     else if (temp == 0 && call && !start) {
+                        if (report) {
+                            cout << "Opponent also called. Moving to next bidding round." << endl;
+                        }
                         round++;
-                        continue;
+                        break;
                     }
 
-                    // Handles folding
+                        // Handles folding
                     else if (temp == 0 && !call && !start) {
                         //Folded: hand ends pot goes to player1
                         fold = true;
                         player1Bet = 0;
+                        if (report) {
+                            cout << "Opponent folded hand." << endl;
+                        }
                         //To break out of loop for hand
                         round = 4;
-                        continue;
+                        break;
                     }
 
                         //Handle raising
@@ -268,89 +300,101 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         Bet player_bet(temp, player1.getID());
                         history.addBet(player_bet);
                         chips1 -= temp;
-                    }
-                    start = false;
-                }
-                //Player1 Turn
-                //Update if the player can bet
-                if (raises < 3) {
-                    bet = true;
-                } else {
-                    bet = false;
-                }
-
-                //Get bet from player0
-                temp = player0.getBet(player1.getHand(), history, player1Bet, bet, pot);
-
-                // If both players call
-                if (temp == player1Bet) {
-                    player0Bet = temp - player1Bet;
-                    pot += temp;
-                    Bet player_bet(temp, player0.getID());
-                    history.addBet(player_bet);
-                    chips0 -= temp;
-                    if (call) {
-                        round++;
-                        continue;
-                    }
-                    else {
-                        call = true;
-                        if (raises == 3) {
-                            round++;
-                            continue;
+                        if (report) {
+                            cout << "Opponent raised " << player1Bet << " chips." << endl;
                         }
                     }
-                }
-                else if (temp == 0) {
-                    fold = true;
-                    round = 4;
-                    continue;
-                    // Pot goes to player 1
-                }
-                else {
-                    call = false;
-                    raises++;
-                    player0Bet = temp - player1Bet;
-                    pot += temp;
-                    Bet player_bet(temp, player0.getID());
-                    history.addBet(player_bet);
-                    chips0 -= temp;
+                    start = false;
+
+                    //Player0 Turn
+                    //Update if the player can bet
+                    if (raises < 3) {
+                        bet = true;
+                    }
+                    else {
+                        bet = false;
+                    }
+
+                    //Get bet from player0
+                    temp = player0.getBet(player1.getHand(), history, player1Bet, bet, pot);
+
+                    if(temp == -1){
+                        return true;
+                    }
+                    // If both players call
+                    else if (temp == player1Bet) {
+                        player0Bet = temp - player1Bet;
+                        pot += temp;
+                        Bet player_bet(temp, player0.getID());
+                        history.addBet(player_bet);
+                        chips0 -= temp;
+                        if (call) {
+                            round++;
+                            break;
+                        }
+                        else {
+                            call = true;
+                            if (raises == 3) {
+                                round++;
+                                break;
+                            }
+                        }
+                    }
+                    else if (temp == 0) {
+                        fold = true;
+                        player0Bet = 0;
+                        round = 4;
+                        break;
+                        // Pot goes to player 1
+                    }
+                    else {
+                        call = false;
+                        raises++;
+                        player0Bet = temp - player1Bet;
+                        pot += temp;
+                        Bet player_bet(temp, player0.getID());
+                        history.addBet(player_bet);
+                        chips0 -= temp;
+                    }
                 }
             }
         }
         //Hand over
         handCounter++;
-
+        if(report){
+            cout << "Your hand's total:\t" << player0.getHandValue() << endl;
+            cout << "OPPONENT hand's total:\t" << player1.getHandValue() << endl;
+        }
         //Determine winner and give pot;
 
         //For folds
         if(fold and player1Bet == 0){
             player0.addChips(pot);
-            cout << endl << "\033[1;33m You won the pot of " << pot << " chips!\033[0m" << endl << endl;
+            cout << endl << "You won the pot of " << pot << " chips!" << endl << endl;
             chips0 += pot;
             pot = 0;
         }
         //For others
         else if(fold && player0Bet == 0){
             player1.addChips(pot);
-            cout << endl << "\033[1;31m You lost the pot of " << pot << " chips to your opponent!\033[0m" << endl << endl;
+            cout << endl << "You lost the pot of " << pot << " chips to your opponent!" << endl << endl;
             chips1 += pot;
             pot = 0;
         }
         else if(player0.getHandValue() == player1.getHandValue()){
             //tie so pot continues.
-            cout << endl << "\033[1;32m You tied! The pot of " << pot << " chips will continue to the next hand!\033[0m" << endl << endl;
+            cout << endl << "You tied! The pot of " << pot << " chips will continue to the next hand!" << endl << endl;
             continue;
         }
         else if(player0.getHandValue() > player1.getHandValue()){
             player0.addChips(pot);
-            cout << endl << "\033[1;33m You won the pot of " << pot << " chips!\033[0m" << endl << endl;
+            cout << endl << "You won the pot of " << pot << " chips!" << endl << endl;
             chips0 += pot;
             pot = 0;
         }
         else{
             player1.addChips(pot);
-            cout << endl << "\033[1;31m You lost the pot of " << pot << " chips to your opponent!\033[0m" << endl << endl;
+            cout << endl << "You lost the pot of " << pot << " chips to your opponent!" << endl << endl;
             chips1 += pot;
             pot = 0;
         }

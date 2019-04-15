@@ -26,7 +26,7 @@
 
 class Game{
 public:
-    bool playGame(PlayerType p0, PlayerType p1, int chips0, int chips1, bool reportFlag);
+    bool playGame(PlayerType p0, PlayerType p1, int chips0, int chips1, bool Flag);
     void shuffleDeck();
     void dealCards(int partOfRound, Player &p0, Player &p1);
 private:
