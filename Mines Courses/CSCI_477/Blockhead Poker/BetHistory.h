@@ -32,7 +32,7 @@ public:
     Bet getBet(int n);
 
 private:
-    vector<Bet> betHistory;
 
+    vector<Bet> betHistory;
 };
 #endif //MINES_COURSES_BETHISTORY_H

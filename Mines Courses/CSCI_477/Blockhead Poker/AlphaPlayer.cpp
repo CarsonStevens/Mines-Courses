@@ -30,22 +30,22 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                     return 10+bet2player;
                 }
                 //ii. If delta > 5, raise 5
-                if(delta > 5.0){
+                else if(delta > 5.0){
                     chips -= (5+bet2player);
                     return 5+bet2player;
                 }
                 //iii. If delta > 0, raise 1
-                if(delta > 0.0){
+                else if(delta > 0.0){
                     chips -= (1+bet2player);
                     return 1+bet2player;
                 }
-                    //iv. Else call
+                //iv. Else call
                 else{
                     chips -= bet2player;
                     return bet2player;
                 }
             }
-                //b. Else there have been prior bets
+            //b. Else there have been prior bets
             else{
                 //i. Calculate a pot_factor which is the size of the pot divided by 10 (int value)
                 int pot_factor = pot/10;
@@ -58,11 +58,11 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                         return 10+bet2player;
                     }
                     //2. If delta > 0-pot_factor, raise 1
-                    if(delta > (0-pot_factor)){
+                    else if(delta > (0-pot_factor)){
                         chips -= (1+bet2player);
                         return 1+bet2player;
                     }
-                        //3. Else call
+                    //3. Else call
                     else{
                         chips -= bet2player;
                         return bet2player;
@@ -77,21 +77,21 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                         return 10+bet2player;
                     }
                     //2. If delta > -2-pot_factor, raise 1
-                    if(delta > (-2 - pot_factor)){
+                    else if(delta > (-2 - pot_factor)){
                         chips -= (1+bet2player);
                         return 1+bet2player;
                     }
                     //3. If delta > -4-pot_factor, call
-                    if(delta > (-4-pot_factor)){
+                    else if(delta > (-4-pot_factor)){
                         chips -= bet2player;
                         return bet2player;
                     }
-                        //4. Else fold
+                    //4. Else fold
                     else{
                         return 0;
                     }
                 }
-                    //iv. else
+                //iv. else
                 else{
                     //1. If delta > 10-pot_factor, raise 10
                     if(delta > (10 - pot_factor)){
@@ -99,12 +99,12 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                         return 10 + bet2player;
                     }
                     //2. If delta > 0-pot_factor, raise 1
-                    if(delta > (0-pot_factor)){
+                    else if(delta > (0-pot_factor)){
                         chips -= (1+bet2player);
                         return 1+bet2player;
                     }
                     //3. If delta > -2-pot_factor, call
-                    if(delta > (-2-pot_factor)){
+                    else if(delta > (-2-pot_factor)){
                         chips -= bet2player;
                         return bet2player;
                     }
@@ -115,7 +115,7 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                 }
             }
         }
-            //3. Else last betting round
+        //3. Else last betting round
         else{
             //a. If there have been no bets prior…
             if(bh.getCount() == 0){
@@ -125,17 +125,17 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                     return 10+bet2player;
                 }
                 //ii. If delta > 5, raise 5
-                if(delta > 5){
+                else if(delta > 5){
                     chips -= (5+bet2player);
                     return 5+bet2player;
                 }
-                    //iii. Else call
+                //iii. Else call
                 else{
                     chips -= bet2player;
                     return bet2player;
                 }
             }
-                //b. Else there have been prior bets
+            //b. Else there have been prior bets
             else{
                 //i. Calculate a pot_factor which is the size of the pot divided by 10 (int value)
                 int pot_factor = pot/10;
@@ -147,30 +147,30 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                         chips -= (10+bet2player);
                         return 10+bet2player;
                     }
-                        //2. Else call
+                    //2. Else call
                     else{
                         chips -= bet2player;
                         return bet2player;
                     }
                 }
                 //iii. If the prior bet is a raise and is less than 1+pot_factor*2
-                if(bet2player > 0 && bet2player < (1+pot_factor*2)){
+                else if(bet2player > 0 && bet2player < (1+pot_factor*2)){
                     //1. If delta > 6-pot_factor, raise 10
                     if(delta > (6-pot_factor)){
                         chips -= (10+bet2player);
                         return 10+bet2player;
                     }
                     //2. If delta > 2, call
-                    if(delta > 2){
+                    else if(delta > 2){
                         chips -= bet2player;
                         return bet2player;
                     }
-                        //3. Else fold
+                    //3. Else fold
                     else{
                         return 0;
                     }
                 }
-                    //iv. else
+                //iv. else
                 else{
                     //1. If delta > 8-pot_factor, raise 10
                     if(delta > (8-pot_factor)){
@@ -178,11 +178,11 @@ int AlphaPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
                         return 10+bet2player;
                     }
                     //2. If delta > 4, call
-                    if(delta > 4){
+                    else if(delta > 4){
                         chips -= bet2player;
                         return bet2player;
                     }
-                        //3. Else fold
+                    //3. Else fold
                     else{
                         return 0;
                     }

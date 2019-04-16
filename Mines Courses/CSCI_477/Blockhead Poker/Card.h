@@ -35,6 +35,7 @@ public:
     bool getFace();
 
 private:
+
     string name;
     int value;
     bool faceUp;

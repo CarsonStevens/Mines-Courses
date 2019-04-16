@@ -68,10 +68,11 @@ public:
 
     // get the value of a player's hand
     int getHandValue();
+
 protected:
+
     Hand hand;
     int id;
     int chips;
-
 };
 #endif //MINES_COURSES_PLAYER_H

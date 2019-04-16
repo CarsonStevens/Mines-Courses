@@ -27,12 +27,10 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
     for(Card card : opponent.getHand()){
         if(!card.isFaceup()){
             cout << "\t>>> FACE DOWN <<<" << endl;
-        }
-        else{
+        } else{
             if(card.getFace()){
                 cout << "\t" << card.getName() << endl;
-            }
-            else{
+            } else{
                 cout << "\t" << card.getValue() << " of " << card.getName() << endl;
             }
         }
@@ -45,8 +43,7 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
     for(Card card : hand.getHand()){
         if(card.getFace()){
             cout << "\t" << card.getName() << endl;
-        }
-        else{
+        } else{
             cout << "\t" << card.getValue() << " of " << card.getName() << endl;
         }
 
@@ -61,26 +58,21 @@ int HumanPlayer::getBet(Hand opponent, BetHistory bh, int bet2player, bool canRa
             cout << endl;
             if (raise1 > 10 + bet2player) {
                 cout << "That bet was too big. Maximum raise size is 10 chips." << endl;
-            }
-            else if (raise1 == -1) {
+            } else if (raise1 == -1) {
                 cout << ">>> QUITING <<<" << endl;
                 return -1;
-            }
-            else if (raise1 < bet2player && bet2player != 0) {
+            } else if (raise1 < bet2player && bet2player != 0) {
                 cout << "You folded the hand." << endl << endl;
                 return 0;
-            }
-            else if (raise1 == bet2player) {
+            } else if (raise1 == bet2player) {
                 if(bet2player == 0){
                     cout << "You checked the bet." << endl << endl;
-                }
-                else{
+                } else{
                     cout << "You called the bet." << endl << endl;
                 }
                 chips -= bet2player;
                 return bet2player;
-            }
-            else {
+            } else {
                 cout << "You raised a bet of: " << to_string(raise1 - bet2player) << " chips" << endl << endl;
                 chips -= (raise1 + bet2player);
                 return raise1 + bet2player;
