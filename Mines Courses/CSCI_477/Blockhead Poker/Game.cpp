@@ -25,13 +25,13 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
     int player0Bet;
     HumanPlayer player0(0,chips0);
     AlphaPlayer player1(1, chips0);
-//    if(p0 == PlayerType::HUMAN){
+//    if(p0 == HUMAN){
 //        HumanPlayer player0(0, chips0);
 //        AlphaPlayer player1(1, chips1);
 //    }
 //    else{
 //        AlphaPlayer player0(0, chips0);
-//        //BetaPlayer player1(1, chips1);
+//        BetaPlayer player1(1, chips1);
 //    }
 
     while(handCounter < 20) {
@@ -113,7 +113,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                     }
 
                     // Handles folding
-                    else if (temp == 0 && !call && !start) {
+                    else if (temp == 0 && !call && !start && player1Bet > 0) {
                         //Folded: hand ends pot goes to player1
                         fold = true;
                         player0Bet = 0;
@@ -175,7 +175,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                             }
                         }
                     }
-                    else if (temp == 0) {
+                    else if (temp == 0  && player0Bet > 0) {
                         fold = true;
                         player1Bet = 0;
                         round = 4;
@@ -271,7 +271,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                         }
                         round++;
                         break;
-                    } else if (temp == 0 && !call && !start) { //Handles Folds
+                    } else if (temp == 0 && !call && !start && player0Bet > 0) { //Handles Folds
                         //Folded: hand ends pot goes to player1
                         fold = true;
                         player1Bet = 0;
@@ -326,7 +326,7 @@ bool Game::playGame(PlayerType p0, PlayerType p1,
                                 break;
                             }
                         }
-                    } else if (temp == 0) {
+                    } else if (temp == 0 && player1Bet > 0) {
                         fold = true;
                         player0Bet = 0;
                         round = 4;

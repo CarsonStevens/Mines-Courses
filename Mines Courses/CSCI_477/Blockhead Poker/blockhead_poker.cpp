@@ -41,9 +41,10 @@ int main(){
             cout << endl << "Playing against Alpha AI" << endl;
             int chips1 = 1000;
             int chips0 = 1000;
+
             //Play game with alpha player
-            PlayerType p0 = PlayerType::HUMAN;
-            PlayerType p1 = PlayerType::ALPHA;
+            PlayerType p0 = HUMAN;
+            PlayerType p1 = ALPHA;
             quit = game.playGame(p0, p1, chips0, chips1, true);
 
         } else if (mode == "BETA_AI"){
