@@ -12,18 +12,19 @@ using namespace std;
 __device__ bool lastBlock(int* counter) {
     __threadfence(); //ensure that partial result is visible by all blocks
     int last = 0;
-    if (threadIdx.x == 0)
+    if (threadIdx.x == 0){
         last = atomicAdd(counter, 1);
+    }
     return __syncthreads_or(last == gridDim.x-1);
 }
 
 __global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
 
     int thIdx = threadIdx.x;
-    int gthIdx = thIdx + blockIdx.x*blockSize;
+    int gthIdx = thIdx + blockIdx.x*blockDim.x;
     const int gridSize = blockSize*gridDim.x;
     int sum = 0;
-    for (int i = gthIdx; i < arraySize; i += gridSize){
+    for (int i = gthIdx; i < N; i += gridSize){
         sum += sum_array[i];
     }
 
@@ -35,18 +36,23 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
             shArr[thIdx] += shArr[thIdx+size];
         __syncthreads();
     }
-    if (thIdx == 0)
+    if (thIdx == 0){
         A_gpu[blockIdx.x] = shArr[0];
+    }
+
     if (lastBlock(lastBlockCounter)) {
         shArr[thIdx] = thIdx<gridSize ? A_gpu[thIdx] : 0;
         __syncthreads();
         for (int size = blockSize/2; size>0; size/=2) { //uniform
-            if (thIdx<size)
+            if (thIdx<size){
                 shArr[thIdx] += shArr[thIdx+size];
+            }
             __syncthreads();
         }
-        if (thIdx == 0)
+        if (thIdx == 0){
             A_gpu[0] = shArr[0];
+        }
+
     }
 }
 
