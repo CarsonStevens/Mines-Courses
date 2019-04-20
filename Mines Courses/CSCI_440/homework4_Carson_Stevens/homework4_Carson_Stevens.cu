@@ -28,7 +28,7 @@ __global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu
         sum += sum_array[i];
     }
 
-    __shared__ int shArr[blockDim.x];
+    __shared__ int shArr[N];
     shArr[thIdx] = sum;
     __syncthreads();
     for (int size = blockDim.x/2; size>0; size/=2) { //uniform
