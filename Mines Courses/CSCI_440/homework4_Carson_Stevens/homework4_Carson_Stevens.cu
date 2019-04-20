@@ -18,7 +18,7 @@ __device__ bool lastBlock(int* counter) {
     return __syncthreads_or(last == gridDim.x-1);
 }
 
-__global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
+__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
 
     int thIdx = threadIdx.x;
     int gthIdx = thIdx + blockIdx.x*blockDim.x;
@@ -60,7 +60,7 @@ __global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    int N = (int)argv[1];
+    const int N = (int)argv[1];
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
