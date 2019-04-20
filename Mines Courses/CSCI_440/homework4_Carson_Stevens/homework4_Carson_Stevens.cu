@@ -12,7 +12,7 @@ using namespace std;
 __global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu) {
 
     int index = threadIdx.x;
-    int gthIdx = thIdx + blockIdx.x * blockSize;
+    int gthIdx = index + blockIdx.x * blockSize;
     const int gridSize = blockSize * gridDim.x;
     int sum = 0;
     for (int i = gthIdx; i < N; i += gridSize){
