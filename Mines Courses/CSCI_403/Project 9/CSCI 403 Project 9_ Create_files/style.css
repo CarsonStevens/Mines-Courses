@@ -1,0 +1,63 @@
+
+
+body {
+    background: #FFFFFF;
+    font: .90em "Trebuchet MS", Verdana, Arial, sans-serif;
+    line-height: 1.5em; 
+    color: #21314D;
+}
+
+tt {
+  font-size: 1.25em;
+}
+
+a {
+  color: #882244;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  height: 125px;
+  background: #FFFFFF
+}
+
+.header img {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.header table {
+	width: 100%;
+}
+
+.header table tr td { 
+  padding-left: 15px; 
+  padding-right: 15px; 
+  padding-top: 17px; 
+  font-size: 22px; 
+  line-height: 120%;
+  color: #21314D;; 
+  text-align:left;
+}
+
+.main {
+  float: left;
+  width: 70%;
+  margin: 0 10px;
+  padding: 1% 1%;
+}
+
+table {
+	margin-left: 50px;
+	border: solid 1px;
+}
+
+table tr td {
+	border-bottom: solid 1px;
+}
+
+
