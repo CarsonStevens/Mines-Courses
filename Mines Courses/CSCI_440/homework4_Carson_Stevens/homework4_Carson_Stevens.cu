@@ -34,7 +34,7 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    int N = argv[1];
+    int N = (int)argv[1];
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
