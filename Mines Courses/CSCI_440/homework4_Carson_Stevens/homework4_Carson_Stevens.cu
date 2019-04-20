@@ -31,7 +31,7 @@ __global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu
     __shared__ int shArr[blockDim.x];
     shArr[thIdx] = sum;
     __syncthreads();
-    for (int size = blockSize/2; size>0; size/=2) { //uniform
+    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
         if (thIdx<size){
             shArr[thIdx] += shArr[thIdx+size];
         }
@@ -44,7 +44,7 @@ __global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu
     if (lastBlock(lastBlockCounter)) {
         shArr[thIdx] = thIdx<gridSize ? A_gpu[thIdx] : 0;
         __syncthreads();
-        for (int size = blockSize/2; size>0; size/=2) { //uniform
+        for (int size = blockDim.x/2; size>0; size/=2) { //uniform
             if (thIdx<size){
                 shArr[thIdx] += shArr[thIdx+size];
             }
