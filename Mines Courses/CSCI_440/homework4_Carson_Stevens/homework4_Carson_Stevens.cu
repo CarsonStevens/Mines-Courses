@@ -9,25 +9,44 @@
 
 using namespace std;
 
-__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu) {
+__device__ bool lastBlock(int* counter) {
+    __threadfence(); //ensure that partial result is visible by all blocks
+    int last = 0;
+    if (threadIdx.x == 0)
+        last = atomicAdd(counter, 1);
+    return __syncthreads_or(last == gridDim.x-1);
+}
 
-    int index = threadIdx.x;
-    int gthIdx = index + blockIdx.x * blockSize;
-    const int gridSize = blockSize * gridDim.x;
+__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
+
+    int thIdx = threadIdx.x;
+    int gthIdx = thIdx + blockIdx.x*blockSize;
+    const int gridSize = blockSize*gridDim.x;
     int sum = 0;
-    for (int i = gthIdx; i < N; i += gridSize){
+    for (int i = gthIdx; i < arraySize; i += gridSize){
         sum += sum_array[i];
     }
-    __shared__ int cache[blockSize];
-    cache[index] = sum;
+
+    __shared__ int shArr[blockSize];
+    shArr[thIdx] = sum;
     __syncthreads();
-    for (int size = blockSize / 2; size > 0; size /= 2) { //uniform
-        if (index < size)
-            cache[index] += cache[index + size];
+    for (int size = blockSize/2; size>0; size/=2) { //uniform
+        if (thIdx<size)
+            shArr[thIdx] += shArr[thIdx+size];
         __syncthreads();
     }
-    if (index == 0){
-        A_gpu[blockIdx.x] = cache[0];
+    if (thIdx == 0)
+        A_gpu[blockIdx.x] = shArr[0];
+    if (lastBlock(lastBlockCounter)) {
+        shArr[thIdx] = thIdx<gridSize ? A_gpu[thIdx] : 0;
+        __syncthreads();
+        for (int size = blockSize/2; size>0; size/=2) { //uniform
+            if (thIdx<size)
+                shArr[thIdx] += shArr[thIdx+size];
+            __syncthreads();
+        }
+        if (thIdx == 0)
+            A_gpu[0] = shArr[0];
     }
 }
 
@@ -66,15 +85,21 @@ int main(int argc, char* argv[]) {
     int minGridSize;
     int blockSize;
     int gridSize;
+
+    int* dev_lastBlockCounter;
+    cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
+    cudaMemset(dev_lastBlockCounter, 0, sizeof(int));
+
     //Optimization function
     cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
     gridSize = (N + blockSize - 1) / blockSize;
+
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<gridSize, blockSize, blockSize>>>(N, dev_sum_array, dev_A_gpu);
-
+    scan_with_addition<<<gridSize, blockSize, blockSize>>>(N, dev_sum_array, dev_A_gpu, dev_lastBlockCounter);
+    cudaDeviceSynchronize();
 
     // copy result back
     cudaMemcpy(A_gpu, dev_A_gpu, sizeof(int)*N, cudaMemcpyDeviceToHost);
