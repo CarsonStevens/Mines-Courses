@@ -28,12 +28,13 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
         sum += sum_array[i];
     }
 
-    __shared__ int shArr[blockSize];
+    __shared__ int shArr[blockDim.x];
     shArr[thIdx] = sum;
     __syncthreads();
     for (int size = blockSize/2; size>0; size/=2) { //uniform
-        if (thIdx<size)
+        if (thIdx<size){
             shArr[thIdx] += shArr[thIdx+size];
+        }
         __syncthreads();
     }
     if (thIdx == 0){
@@ -59,7 +60,7 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    int N = (int)argv[1];
+    const int N = (int)argv[1];
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
