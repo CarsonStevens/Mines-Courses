@@ -18,11 +18,11 @@ __device__ bool lastBlock(int* counter) {
     return __syncthreads_or(last == gridDim.x-1);
 }
 
-__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
+__global__ void scan_with_addition(int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
 
     int thIdx = threadIdx.x;
     int gthIdx = thIdx + blockIdx.x*blockDim.x;
-    const int gridSize = blockSize*gridDim.x;
+    const int gridSize = blockDim.x*gridDim.x;
     int sum = 0;
     for (int i = gthIdx; i < N; i += gridSize){
         sum += sum_array[i];
@@ -37,7 +37,7 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
         }
         __syncthreads();
     }
-    if (thIdx == 0){
+    if(thIdx == 0){
         A_gpu[blockIdx.x] = shArr[0];
     }
 
@@ -60,7 +60,7 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    const int N = (int)argv[1];
+    int N = (int)argv[1];
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
@@ -89,19 +89,20 @@ int main(int argc, char* argv[]) {
 
 
     // Establish thread and block size
-    int minGridSize;
-    int blockSize;
-    int gridSize;
-
+//    int minGridSize;
+//    int blockSize;
+//    int gridSize;
+    static const int blockSize = 1024;
+    static const int gridSize = 24;
     int* dev_lastBlockCounter;
     cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
     cudaMemset(dev_lastBlockCounter, 0, sizeof(int));
 
     //Optimization function
-    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
+    //cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
-    gridSize = (N + blockSize - 1) / blockSize;
+    //gridSize = (N + blockSize - 1) / blockSize;
 
     // Call function
     // second blockSize for shared memory
