@@ -56,6 +56,64 @@ __global__ void scan_with_addition(const int N, const int* sum_array, const int*
 
     }
 }
+__device__ int sumCommSingleWarp(volatile int* shArr) {
+    int idx = threadIdx.x % warpSize; //the lane index in the warp
+    if (idx<16) {
+        shArr[idx] += shArr[idx+16];
+        shArr[idx] += shArr[idx+8];
+        shArr[idx] += shArr[idx+4];
+        shArr[idx] += shArr[idx+2];
+        shArr[idx] += shArr[idx+1];
+    }
+    return shArr[0];
+}
+/*
+ * The argument &r[idx & ~(warpSize-1)] is basically r + warpIdx*32.
+ * This effectively splits the r array into chunks of 32 elements,
+ * and each chunk is assigned to separate warp.
+ */
+__global__ void sumCommSingleBlockWithWarps(const int *a, int *out) {
+    int idx = threadIdx.x;
+    int sum = 0;
+    for (int i = idx; i < arraySize; i += blockSize)
+        sum += a[i];
+    __shared__ int r[blockSize];
+    r[idx] = sum;
+    sumCommSingleWarp(&r[idx & ~(warpSize-1)]);
+    __syncthreads();
+    if (idx<warpSize) { //first warp only
+        r[idx] = idx*warpSize<blockSize ? r[idx*warpSize] : 0;
+        sumCommSingleWarp(r);
+        if (idx == 0)
+            *out = r[0];
+    }
+}
+
+
+//static const int arraySize = 10000;
+//static const int blockSize = 1024;
+//
+//__global__ void sumCommSingleBlock(const int *a, int *out) {
+//    int idx = threadIdx.x;
+//    int sum = 0;
+//    for (int i = idx; i < arraySize; i += blockSize)
+//        sum += a[i];
+//    __shared__ int r[blockSize];
+//    r[idx] = sum;
+//    __syncthreads();
+//    for (int size = blockSize/2; size>0; size/=2) { //uniform
+//        if (idx<size)
+//            r[idx] += r[idx+size];
+//        __syncthreads();
+//    }
+//    if (idx == 0)
+//        *out = r[0];
+//}
+//
+//...
+//
+//sumCommSingleBlock<<<1, blockSize>>>(dev_a, dev_out);
+
 
 int main(int argc, char* argv[]) {
 
