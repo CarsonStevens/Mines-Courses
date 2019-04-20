@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Mines_Courses"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/steve/Mines-Courses/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Mines_Courses">
+				<Option output="C:/Users/steve/Mines-Courses/cmake-build-debug/Mines_Courses.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/steve/Mines-Courses/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/A4"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/A5"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/A6"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/A7"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7B"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8B"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/A9"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/Lab9A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/FP"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/Debug"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/Debug"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/evil_hangman/evil_hangman"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Postfix_Calculator"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/TSP"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/custom"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/xcode/Samples/FrameworkSample"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/flag_parser"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/frame"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page_table"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/physical_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/process"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/simulation"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/virtual_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/custom"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/xcode/Samples/FrameworkSample"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/flag_parser"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/frame"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page_table"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/physical_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/process"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/simulation"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 Mines_Courses"/>
+					<CompileFile command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Mines_Courses/fast">
+				<Option output="C:/Users/steve/Mines-Courses/cmake-build-debug/Mines_Courses.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/steve/Mines-Courses/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/A4"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/A5"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/A6"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/A7"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7B"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8B"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/A9"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/Lab9A"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/FP"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/Debug"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/Debug"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/evil_hangman/evil_hangman"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Postfix_Calculator"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/TSP"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/custom"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/xcode/Samples/FrameworkSample"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/flag_parser"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/frame"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page_table"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/physical_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/process"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/simulation"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/virtual_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/custom"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/xcode/Samples/FrameworkSample"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/flag_parser"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/frame"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page_table"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/physical_address"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/process"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/simulation"/>
+					<Add directory="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 Mines_Courses/fast"/>
+					<CompileFile command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/steve/Mines-Courses/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/steve/Mines-Courses/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/steve/Mines-Courses/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A1/A1/A1.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A1/Lab1A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A1/Lab1B/Lab1B.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A1/Lab1C/Lab1C.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A1/Lab1D/lab1D.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/A2/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/In-Class-Exercise/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/Lab2A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/Lab2B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/Lab2C/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A2/Lab2D/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A3/A3/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A3/Lab3A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A3/Lab3B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A3/Lab3C/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A3/Lab3D/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/A4/hangman.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/A4/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/Lab4A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/Lab4B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A4/Lab4C/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/A5/blackjack.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/A5/blackjack.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/A5/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/Lab5A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A5/Lab5B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/A6/greeneggsandham.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/A6/greeneggsandham.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/A6/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/Lab6A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A6/Lab6B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/A7/MagicItem.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/A7/MagicItem.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/A7/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7A/Money.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7A/Money.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7B/Triangle.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7B/Triangle.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A7/Lab7B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/Bunny.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/Bunny.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/MagicItem.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/MagicItem.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/MathPattern.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/MathPattern.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/class.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/class.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/A8/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8A/Date.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8A/Date.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8B/DateEvent.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8B/DateEvent.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A8/Lab8B/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/A9/bubble.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/A9/bubble.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/A9/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/Lab9A/bubble.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/Lab9A/bubble.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/A9/Lab9A/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Exam2/Problem1/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Exam2/Problem2/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Exam2/Problem3/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Exam2/Problem4/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Exam2/Problem5/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/FP/Pong.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/FP/Pong.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/FP/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/Uno/Uno/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/XC/AXC/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_261/XC/LabXC/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/Debug/binarytree.pch">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/binarytree.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/bintree.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/useful.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary Tree/useful.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/Debug/binarytree.pch">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/binarytree.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/bintree.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/useful.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Binary_Tree/Binary Tree/useful.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Postfix_Calculator/calculator_main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Postfix_Calculator/postfix_calculator.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/Postfix_Calculator/postfix_calculator.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/evil_hangman/evil_hangman/hangman.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/evil_hangman/evil_hangman/hangman.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/evil_hangman/evil_hangman/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/brute_model.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/brute_model.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/map_model.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/map_model.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/markov.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/markov.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/model.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/word_model.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_262/markov/markov/word_model.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/compare_arrival.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/compare_length.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/compare_processID.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/job.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/AlgoBowl/workstation.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/BinPacking/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/DP/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/Maze/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/TSP/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/TSP/point.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_406/TSP/test.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_423/Critical_Paths/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_423/NES_SIS/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_423/NES_SSQ/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_423/NES_TimeShareSystem/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_440/homework1_Carson_Stevens/homework1_Carson_Stevens.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_440/homework1_Carson_Stevens/test.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_440/homework1_Carson_Stevens/test2.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_0/part1.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_0/part2.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/CPU.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/burst.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/event.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/process.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D1/src/thread.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/CPU.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/burst.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/event.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/process.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-D2/src/thread.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/CPU.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/burst.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/event.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/process.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_1/carsonstevens-Final/src/thread.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/codegear/gtest_all.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/codegear/gtest_link.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-death-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-message.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-param-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-printers.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-spi.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-test-part.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest-typed-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest_pred_impl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/gtest_prod.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/custom/gtest-port.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/custom/gtest-printers.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/custom/gtest.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-filepath.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-internal.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-linked_ptr.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-param-util-generated.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-param-util.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-port-arch.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-port.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-string.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-tuple.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/include/gtest/internal/gtest-type-util.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/prime_tables.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample1.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample1.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample10_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample1_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample2.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample2.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample2_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample3-inl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample3_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample4.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample4.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample4_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample5_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample6_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample7_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample8_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/samples/sample9_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-all.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-death-test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-filepath.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-internal-inl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-port.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-printers.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-test-part.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest-typed-test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/src/gtest_main.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-death-test_ex_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-death-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-filepath_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-linked_ptr_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-listener_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-message_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-options_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-param-test2_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-param-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-param-test_test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-port_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-printers_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-test-part_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-tuple_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-typed-test2_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-typed-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-typed-test_test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest-unittest-api_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_all_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_break_on_failure_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_catch_exceptions_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_color_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_env_var_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_environment_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_filter_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_help_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_list_tests_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_main_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_no_test_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_output_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_pred_impl_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_premature_exit_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_prod_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_repeat_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_shuffle_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_sole_header_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_stress_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_throw_on_failure_ex_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_throw_on_failure_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_uninitialized_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_xml_outfile1_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_xml_outfile2_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/gtest_xml_output_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/production.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/test/production.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/xcode/Samples/FrameworkSample/widget.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/xcode/Samples/FrameworkSample/widget.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/googletest/googletest/xcode/Samples/FrameworkSample/widget_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/flag_parser/flag_parser.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/flag_parser/flag_parser.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/flag_parser/flag_parser_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/frame/frame.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/frame/frame.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/frame/frame_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page/page.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page/page.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page/page_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page_table/page_table.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page_table/page_table.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/page_table/page_table_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/physical_address/physical_address.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/physical_address/physical_address.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/physical_address/physical_address_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/process/process.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/process/process.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/process/process_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/simulation/simulation.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/simulation/simulation.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/virtual_address/virtual_address.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/virtual_address/virtual_address.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-D1/src/virtual_address/virtual_address_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/codegear/gtest_all.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/codegear/gtest_link.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-death-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-message.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-param-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-printers.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-spi.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-test-part.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest-typed-test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest_pred_impl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/gtest_prod.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/custom/gtest-port.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/custom/gtest-printers.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/custom/gtest.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-filepath.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-internal.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-linked_ptr.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-param-util-generated.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-param-util.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-port-arch.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-port.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-string.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-tuple.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/include/gtest/internal/gtest-type-util.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/prime_tables.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample1.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample1.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample10_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample1_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample2.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample2.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample2_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample3-inl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample3_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample4.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample4.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample4_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample5_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample6_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample7_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample8_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/samples/sample9_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-all.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-death-test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-filepath.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-internal-inl.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-port.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-printers.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-test-part.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest-typed-test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/src/gtest_main.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-death-test_ex_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-death-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-filepath_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-linked_ptr_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-listener_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-message_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-options_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-param-test2_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-param-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-param-test_test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-port_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-printers_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-test-part_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-tuple_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-typed-test2_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-typed-test_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-typed-test_test.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest-unittest-api_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_all_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_break_on_failure_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_catch_exceptions_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_color_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_env_var_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_environment_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_filter_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_help_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_list_tests_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_main_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_no_test_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_output_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_pred_impl_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_premature_exit_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_prod_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_repeat_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_shuffle_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_sole_header_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_stress_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_throw_on_failure_ex_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_throw_on_failure_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_uninitialized_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_unittest.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_xml_outfile1_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_xml_outfile2_test_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/gtest_xml_output_unittest_.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/production.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/test/production.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/xcode/Samples/FrameworkSample/widget.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/xcode/Samples/FrameworkSample/widget.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/googletest/googletest/xcode/Samples/FrameworkSample/widget_test.cc">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/flag_parser/flag_parser.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/flag_parser/flag_parser.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/flag_parser/flag_parser_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/frame/frame.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/frame/frame.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/frame/frame_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page/page.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page/page.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page/page_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page_table/page_table.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page_table/page_table.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/page_table/page_table_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/physical_address/physical_address.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/physical_address/physical_address.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/physical_address/physical_address_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/process/process.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/process/process.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/process/process_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/simulation/simulation.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/simulation/simulation.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address/virtual_address.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address/virtual_address.h">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address/virtual_address_tests.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/Game Map/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/Mines Courses/CSCI_477/carson_stevens_APR3_Dijkstra/main.cpp">
+			<Option target="Mines_Courses"/>
+		</Unit>
+		<Unit filename="C:/Users/steve/Mines-Courses/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

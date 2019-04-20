@@ -1,0 +1,3 @@
+C:/Users/steve/Mines-Courses/cmake-build-debug/CMakeFiles/Mines_Courses.dir
+C:/Users/steve/Mines-Courses/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/steve/Mines-Courses/cmake-build-debug/CMakeFiles/rebuild_cache.dir
