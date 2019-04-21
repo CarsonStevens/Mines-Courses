@@ -10,8 +10,8 @@
 using namespace std;
 
 template<unsigned int blockSize>
-__global__ void scan_with_addition(unsigned long long int* g_idata, unsigned long long int* g_odata, int n){
-    extern __shared__ unsigned long long int sdata[];
+__global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
+    extern __shared__ unsigned int sdata[];
     unsigned int tid = threadIdx.x;
     unsigned int i = blockIdx.x*(blockSize*2) + tid;
     unsigned int gridSize = blockSize*2*gridDim.x;
@@ -147,11 +147,11 @@ int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
     srand(time(0));
     int N = atoi(argv[1]);
-    unsigned long long int sum_array[N];
-    unsigned long long int A_cpu[N];
-    unsigned long long int A_gpu[N];
-    unsigned long long int *dev_sum_array;
-    unsigned long long int *dev_A_gpu;
+    unsigned int sum_array[N];
+    unsigned int A_cpu[N];
+    unsigned int A_gpu[N];
+    unsigned int *dev_sum_array;
+    unsigned int *dev_A_gpu;
 
 
     ///////////////////////////////////////////
@@ -176,10 +176,10 @@ int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
 
     // copy data to device
-    cudaMalloc((void **)&dev_sum_array, sizeof(unsigned long long int)*N);
-    cudaMalloc((void **)&dev_A_gpu, sizeof(unsigned long long int)*N);
-    cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
+    cudaMalloc((void **)&dev_sum_array, sizeof(unsigned int)*N);
+    cudaMalloc((void **)&dev_A_gpu, sizeof(unsigned int)*N);
+    cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
 
     int threads = 1;
     if(N>=2) threads = 2;
@@ -243,7 +243,7 @@ int main(int argc, char* argv[]) {
 //    }
 
     // copy result back
-    cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyDeviceToHost);
+    cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned int)*N, cudaMemcpyDeviceToHost);
 
     // free memory
     cudaFree(dev_sum_array);
