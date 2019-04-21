@@ -156,7 +156,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<blockSize, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<1, blockSize>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
