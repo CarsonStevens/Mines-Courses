@@ -10,7 +10,7 @@
 using namespace std;
 
 template<unsigned int blockSize>
-__global__ void scan_with_addition(unsigned long long int *g_idata, unsigned long long int *g_odata, int n){
+__global__ void scan_with_addition(unsigned long long int* g_idata, unsigned long long int* g_odata, int n){
     extern __shared__ unsigned long long int sdata[];
     unsigned int tid = threadIdx.x;
     unsigned int i = blockIdx.x*(blockSize*2) + tid;
