@@ -223,7 +223,7 @@ int main(int argc, char* argv[]) {
 
     // free memory
     cudaFree(dev_sum_array);
-    cudaFree(dev_A_gpu);S
+    cudaFree(dev_A_gpu);
 
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
