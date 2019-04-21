@@ -9,48 +9,97 @@
 
 using namespace std;
 
-
-__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
-
-    extern __shared__ int temp[];
-    int thIdx = threadIdx.x;
-    int offset = 1;
-
-    //load input into shared memory
-    temp[2*thIdx] = sum_array[2*thIdx];
-    temp[2*thIdx+1] = sum_array[2*thIdx+1];
-
-    //build sum inplace up the tree
-    for(int d = n; d > 0; d = 1){
-        __syncthreads();
-
-        if(thIdx < d){
-            int ai = offset * (2*thIdx+1)-1;
-            int bi = offset * (2*thIdx+2)-1;
-
-            temp[bi] += temp[ai];
-        }
-        offset *= 2;
+void scan_with_addition( int* input, int* output, int length)
+{
+    output[0] = 0; // since this is a prescan, not a scan
+    for(int j = 1; j < length; ++j)
+    {
+        output[j] = input[j-1] + output[j-1];
     }
-    // clear the last element
-    if(thIdx == 0){ temp[n-1] = 0; }
-    for(int d = 1; d < n; d *= 2){
-        offset = 1;
-        __syncthreads();
-        if(thIdx < d){
-            int ai = offset *(2*thIdx+1)-1;
-            int bi = offset *(2*thIdx+2)-1;
-
-            int t = temp[ai];
-            temp[ai] = temp[bi];
-            temp[bi] = t;
-        }
-    }
-    __syncthreads();
-
-    A_gpu[2*thIdx] = temp[2*thIdx];
-    A_gpu[2*thIdx+1] = temp[2*thIdx+1];
 }
+
+//__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
+//
+//    extern __shared__ int temp[];
+//    int thIdx = threadIdx.x;
+//    int offset = 1;
+//
+//    //load input into shared memory
+//    temp[2*thIdx] = sum_array[2*thIdx];
+//    temp[2*thIdx+1] = sum_array[2*thIdx+1];
+//
+//    //build sum inplace up the tree
+//    for(int d = n; d > 0; d = 1){
+//        __syncthreads();
+//
+//        if(thIdx < d){
+//            int ai = offset * (2*thIdx+1)-1;
+//            int bi = offset * (2*thIdx+2)-1;
+//
+//            temp[bi] += temp[ai];
+//        }
+//        offset *= 2;
+//    }
+//    // clear the last element
+//    if(thIdx == 0){ temp[n-1] = 0; }
+//    for(int d = 1; d < n; d *= 2){
+//        offset = 1;
+//        __syncthreads();
+//        if(thIdx < d){
+//            int ai = offset *(2*thIdx+1)-1;
+//            int bi = offset *(2*thIdx+2)-1;
+//
+//            int t = temp[ai];
+//            temp[ai] = temp[bi];
+//            temp[bi] = t;
+//        }
+//    }
+//    __syncthreads();
+//
+//    A_gpu[2*thIdx] = temp[2*thIdx];
+//    A_gpu[2*thIdx+1] = temp[2*thIdx+1];
+//}
+//__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
+//
+//    extern __shared__ int temp[];
+//    int thIdx = threadIdx.x;
+//    int offset = 1;
+//
+//    //load input into shared memory
+//    temp[2*thIdx] = sum_array[2*thIdx];
+//    temp[2*thIdx+1] = sum_array[2*thIdx+1];
+//
+//    //build sum inplace up the tree
+//    for(int d = n; d > 0; d = 1){
+//        __syncthreads();
+//
+//        if(thIdx < d){
+//            int ai = offset * (2*thIdx+1)-1;
+//            int bi = offset * (2*thIdx+2)-1;
+//
+//            temp[bi] += temp[ai];
+//        }
+//        offset *= 2;
+//    }
+//    // clear the last element
+//    if(thIdx == 0){ temp[n-1] = 0; }
+//    for(int d = 1; d < n; d *= 2){
+//        offset = 1;
+//        __syncthreads();
+//        if(thIdx < d){
+//            int ai = offset *(2*thIdx+1)-1;
+//            int bi = offset *(2*thIdx+2)-1;
+//
+//            int t = temp[ai];
+//            temp[ai] = temp[bi];
+//            temp[bi] = t;
+//        }
+//    }
+//    __syncthreads();
+//
+//    A_gpu[2*thIdx] = temp[2*thIdx];
+//    A_gpu[2*thIdx+1] = temp[2*thIdx+1];
+//}
 
 
 
