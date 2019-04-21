@@ -21,7 +21,7 @@ __global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
     temp[2*thIdx+1] = sum_array[2*thIdx+1];
 
     //build sum inplace up the tree
-    for(int d = n>>1; d > 0; d >>= 1){
+    for(int d = n; d > 0; d = 1){
         __syncthreads();
 
         if(thIdx < d){
@@ -35,7 +35,7 @@ __global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
     // clear the last element
     if(thIdx == 0){ temp[n-1] = 0; }
     for(int d = 1; d < n; d *= 2){
-        offset >>= 1;
+        offset = 1;
         __syncthreads();
         if(thIdx < d){
             int ai = offset *(2*thIdx+1)-1;
