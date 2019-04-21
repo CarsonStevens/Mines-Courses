@@ -181,8 +181,18 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
 
-    int blockDim = 512;
-    int gridSize = (N+blockSize -1)/blockDim;
+    int threads = 1;
+    if(N>=2) threads = 2;
+    if(N>=4) threads = 4;
+    if(N>=8) threads = 8;
+    if(N>=16) threads = 16;
+    if(N>=32) threads = 32;
+    if(N>=64) threads = 64;
+    if(N>=128) threads = 128;
+    if(N>=256) threads = 256;
+    if(N>=516) threads = 516;
+    int blockDim = threads;
+    int gridSize = (N+blockDim -1)/blockDim;
 
     // Establish thread and block size
 //    int blockSize;
@@ -197,18 +207,9 @@ int main(int argc, char* argv[]) {
 //
 //    // Call function
 //    // second blockSize for shared memory
-    scan_with_addition<<<gridSize, blockDim, blockDim>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<threads><<<gridSize, blockDim, blockDim>>>(dev_sum_array, dev_A_gpu, N);
 //    cudaDeviceSynchronize();
-//    int threads = 1;
-//    if(N>=2) threads = 2;
-//    if(N>=4) threads = 4;
-//    if(N>=8) threads = 8;
-//    if(N>=16) threads = 16;
-//    if(N>=32) threads = 32;
-//    if(N>=64) threads = 64;
-//    if(N>=128) threads = 128;
-//    if(N>=256) threads = 256;
-//    if(N>=516) threads = 516;
+
 //    switch (threads) {
 //        case 512:
 //            reduce5<512><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
