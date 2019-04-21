@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
         if(A_gpu[i] != A_cpu[i]){
             check = false;
             break_index = i;
-            break;
+
         }
     }
 
