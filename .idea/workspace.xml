@@ -30,29 +30,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="165" column="23" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+            <state relative-caret-position="306">
+              <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework2_Carson_Stevens/Homework2_1.cu">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="211" column="51" lean-forward="true" selection-start-line="211" selection-start-column="51" selection-end-line="211" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -77,10 +59,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1232" />
-    <option name="y" value="77" />
-    <option name="width" value="2574" />
-    <option name="height" value="2101" />
+    <option name="x" value="1905" />
+    <option name="y" value="82" />
+    <option name="width" value="1950" />
+    <option name="height" value="2093" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -175,18 +157,18 @@
       <workItem from="1555298700136" duration="656000" />
       <workItem from="1555721562430" duration="5155000" />
       <workItem from="1555803109515" duration="232000" />
-      <workItem from="1555804694183" duration="1297000" />
+      <workItem from="1555804694183" duration="2336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32111000" />
+    <option name="totallyTimeSpent" value="33150000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19068736" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.39509955" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -200,7 +182,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3286385" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1658842" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1658842" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3286385" />
       <window_info anchor="bottom" id="CMake" order="14" />
@@ -296,24 +278,24 @@
         <state relative-caret-position="-518" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework2_Carson_Stevens/Homework2_1.cu">
+    <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="36" />
+        <state relative-caret-position="1360">
+          <caret line="131" column="1" lean-forward="true" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework3_Carson_Stevens/Carson_Stevens_homework3.cu">
+    <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework2_Carson_Stevens/Homework2_1.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="211" column="51" lean-forward="true" selection-start-line="211" selection-start-column="51" selection-end-line="211" selection-end-column="51" />
+        <state relative-caret-position="1054">
+          <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="165" column="23" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+        <state relative-caret-position="306">
+          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
           <folding>
             <element signature="e#41#60#0" expanded="true" />
           </folding>

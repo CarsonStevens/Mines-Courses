@@ -97,26 +97,67 @@ using namespace std;
 //    }
 //}
 
+__global__ void scan_with_addition(int *sum_array, int *A_gpu, int N){
+
+    extern __shared__ int temp[];
+    int thIdx = threadIdx.x;
+    int offset = 1;
+
+    //load input into shared memory
+    temp[2*thIdx] = sum_array[2*thIdx];
+    temp[2*thIdx+1] = sum_array[2*thIdx+1];
+
+    //build sum inplace up the tree
+    for(int d = n>>1; d > 0; d >>= 1){
+        __syncthreads();
+
+        if(thIdx < d){
+            int ai = offset * (2*thIdx+1)-1;
+            int bi = offset * (2*thIdx+2)-1;
+
+            temp[bi] += temp[ai];
+        }
+        offset *= 2;
+    }
+    // clear the last element
+    if(thIdx == 0){ temp[n-1] = 0; }
+    for(int d = 1; d < n; d *= 2){
+        offset >>= 1;
+        __syncthreads();
+        if(thIdx < d){
+            int ai = offset *(2*thIdx+1)-1;
+            int bi = offset *(2*thIdx+2)-1;
+
+            int t = temp[ai];
+            temp[ai] = temp[bi];
+            temp[bi] = t;
+        }
+    }
+    __syncthreads();
+
+    A_gpu[2*thIdx] = temp[2*thIdx];
+    A_gpu[2*thIdx+1] = temp[2*thIdx+1];
+}
 
 //static const int arraySize = 10000;
 //static const int blockSize = 1024;
 //
-__global__ void scan_with_addition(int N, const int *a, int *out) {
-    int idx = threadIdx.x;
-    int sum = 0;
-    for (int i = idx; i < N; i += blockDim.x)
-        sum += a[i];
-    __shared__ int r[blockDim.x];
-    r[idx] = sum;
-    __syncthreads();
-    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
-        if (idx<size)
-            r[idx] += r[idx+size];
-        __syncthreads();
-    }
-    if (idx == 0)
-        *out = r[0];
-}
+//__global__ void scan_with_addition(int N, const int *a, int *out) {
+//    int idx = threadIdx.x;
+//    int sum = 0;
+//    for (int i = idx; i < N; i += blockDim.x)
+//        sum += a[i];
+//    __shared__ int r[blockDim.x];
+//    r[idx] = sum;
+//    __syncthreads();
+//    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
+//        if (idx<size)
+//            r[idx] += r[idx+size];
+//        __syncthreads();
+//    }
+//    if (idx == 0)
+//        *out = r[0];
+//}
 //
 //...
 //
@@ -162,21 +203,21 @@ int main(int argc, char* argv[]) {
 //    int blockSize;
 //    int gridSize;
 
-    dim3 blockSize(1024, 1);
+    int blockSize;
     //int gridSize = 24;
     //int* dev_lastBlockCounter;
     //cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
     //cudaMemset(dev_lastBlockCounter, 0, sizeof(int));
 
     //Optimization function
-    //cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
+    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
     //gridSize = (N + blockSize - 1) / blockSize;
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<1, blockSize>>>(dev_N, dev_sum_array, dev_A_gpu);
+    scan_with_addition<<<1, blockSize, blockSize>>>(dev_N, dev_sum_array, dev_A_gpu);
     cudaDeviceSynchronize();
 
     // copy result back
