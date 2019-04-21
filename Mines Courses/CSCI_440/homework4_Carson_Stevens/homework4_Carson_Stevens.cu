@@ -22,10 +22,12 @@ __global__ void scan_with_addition(int *g_idata, int *g_odata, int n)
     {
         pout = 1 - pout; // swap double buffer indices
         pin = 1 - pout;
-        if (thid >= offset)
-            temp[pout*n+thid] += temp[pin*n+thid - offset];
-        else
-            temp[pout*n+thid] = temp[pin*n+thid];
+        if (thid >= offset) {
+            temp[pout * n + thid] += temp[pin * n + thid - offset];
+        }
+        else {
+            temp[pout * n + thid] = temp[pin * n + thid];
+        }
         __syncthreads();
     }
     g_odata[thid] = temp[pout*n+thid1]; // write output
