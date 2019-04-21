@@ -161,7 +161,8 @@ int main(int argc, char* argv[]) {
 //    int minGridSize;
 //    int blockSize;
 //    int gridSize;
-    int blockSize = 1024;
+
+    dim3 blockSize(1024, 1);
     //int gridSize = 24;
     //int* dev_lastBlockCounter;
     //cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
@@ -184,7 +185,7 @@ int main(int argc, char* argv[]) {
     // free memory
     cudaFree(dev_sum_array);
     cudaFree(dev_A_gpu);
-    cudaFree(dev_N)
+    cudaFree(dev_N);
 
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
