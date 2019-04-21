@@ -44,7 +44,7 @@ __global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
     temp[2*thIdx+1] = sum_array[2*thIdx+1];
 
     //build sum inplace up the tree
-    for(int d = n>>1; d > 0; d = 1){
+    for(int d = n>>1; d > 0; d >>= 1){
         __syncthreads();
 
         if(thIdx < d){
