@@ -204,6 +204,7 @@ int main(int argc, char* argv[]) {
 //    int gridSize;
 
     int blockSize;
+    int minGridSize = N;
     //int gridSize = 24;
     //int* dev_lastBlockCounter;
     //cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
