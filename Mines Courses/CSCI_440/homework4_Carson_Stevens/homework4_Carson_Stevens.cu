@@ -97,7 +97,7 @@ using namespace std;
 //    }
 //}
 
-__global__ void scan_with_addition(int *sum_array, int *A_gpu, int N){
+__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
 
     extern __shared__ int temp[];
     int thIdx = threadIdx.x;
@@ -217,7 +217,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<1, blockSize, blockSize>>>(dev_N, dev_sum_array, dev_A_gpu);
+    scan_with_addition<<<1, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
