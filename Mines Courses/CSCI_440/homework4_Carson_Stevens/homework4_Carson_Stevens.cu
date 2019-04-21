@@ -9,9 +9,10 @@
 
 using namespace std;
 
-template<unsigned int blockSize>
+
 __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
     extern __shared__ unsigned int sdata[];
+    unsigned int blockSize = 512;
     unsigned int tid = threadIdx.x;
     unsigned int i = blockIdx.x*(blockSize*2) + tid;
     unsigned int gridSize = blockSize*2*gridDim.x;
@@ -194,53 +195,14 @@ int main(int argc, char* argv[]) {
     int blockDim = threads;
     int gridSize = (N+blockDim -1)/blockDim;
 
-    // Establish thread and block size
-//    int blockSize;
-    //int minGridSize;
-//    //int gridSize;
-//
-//    //Optimization function
-    //cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockDim, scan_with_addition, 0, N);
-//
-//    // Round up according to array size
-//    //gridSize = (N + blockSize - 1) / blockSize;
-//
-//    // Call function
-//    // second blockSize for shared memory
-    scan_with_addition<threads><<<gridSize, blockDim, blockDim>>>(dev_sum_array, dev_A_gpu, N);
-//    cudaDeviceSynchronize();
 
-//    switch (threads) {
-//        case 512:
-//            reduce5<512><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case 256:
-//            reduce5<256><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case 128:
-//            reduce5<128><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case 64:
-//            reduce5< 64><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case 32:
-//            reduce5< 32><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case 16: reduce5< 16><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case  8:
-//            reduce5<  8><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case  4:
-//            reduce5<  4><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case  2:
-//            reduce5< 2><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//        case  1:
-//            reduce5<  1><<< dimGrid, dimBlock, smemSize >>>(d_idata, d_odata);
-//            break;
-//    }
+    // Round up according to array size
+    //gridSize = (N + blockSize - 1) / blockSize;
+
+    // Call function
+    // second blockSize for shared memory
+    scan_with_addition<threads><<<gridSize, blockDim, blockDim>>>(dev_sum_array, dev_A_gpu, N);
+    cudaDeviceSynchronize();
 
     // copy result back
     cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned int)*N, cudaMemcpyDeviceToHost);
