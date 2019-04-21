@@ -181,8 +181,8 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
 
-    unsigned int blockSize = 512;
-    unsigned int gridSize = (N+blockSize -1)/blockSize;
+    int blockSize = 512;
+    int gridSize = (N+blockSize -1)/blockSize;
 
     // Establish thread and block size
 //    int blockSize;
