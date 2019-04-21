@@ -55,7 +55,9 @@ __global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
 
 
 int main(int argc, char* argv[]) {
-
+    ///////////////////////////////////////////
+    //SETUP
+    ///////////////////////////////////////////
     srand(time(0));
     int N = atoi(argv[1]);
     int sum_array[N];
@@ -63,6 +65,11 @@ int main(int argc, char* argv[]) {
     int A_gpu[N];
     int *dev_sum_array;
     int *dev_A_gpu;
+
+
+    ///////////////////////////////////////////
+    // Array Initialization
+    ///////////////////////////////////////////
 
     // Initialize array to be summed
     for(int i = 0; i < N; i++){
@@ -77,32 +84,30 @@ int main(int argc, char* argv[]) {
     }
 
 
-    cudaMalloc((void **)&dev_sum_array, sizeof(int)*N);
-    cudaMalloc((void **)&dev_A_gpu, sizeof(int)*N);
+    ///////////////////////////////////////////
+    // CUDA
+    ///////////////////////////////////////////
 
     // copy data to device
+    cudaMalloc((void **)&dev_sum_array, sizeof(int)*N);
+    cudaMalloc((void **)&dev_A_gpu, sizeof(int)*N);
     cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int)*N, cudaMemcpyHostToDevice);
 
-
     // Establish thread and block size
-//    int minGridSize;
-//    int blockSize;
-//    int gridSize;
-
     int blockSize;
     int minGridSize;
-    int gridSize;
+    //int gridSize;
 
     //Optimization function
     cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
-    gridSize = (N + blockSize - 1) / blockSize;
+    //gridSize = (N + blockSize - 1) / blockSize;
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<gridSize, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<blockSize, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
@@ -112,6 +117,10 @@ int main(int argc, char* argv[]) {
     cudaFree(dev_sum_array);
     cudaFree(dev_A_gpu);
 
+
+    /////////////////////////////////////////////////
+    // TESING/VALIDITY
+    /////////////////////////////////////////////////
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
     int break_index = 0;
@@ -120,10 +129,9 @@ int main(int argc, char* argv[]) {
         if(A_gpu[i] != A_cpu[i]){
             check = false;
             break_index = i;
-
+            //break;
         }
     }
-
     if(check){
         cout << "Tested arrays are equivalent." << endl;
     }
