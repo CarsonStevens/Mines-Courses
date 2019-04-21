@@ -126,7 +126,7 @@ __global__ void scan_with_addition(int N, const int *a, int *out) {
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    const int N = (int)argv[1];
+    int N = (int)argv[1];
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
