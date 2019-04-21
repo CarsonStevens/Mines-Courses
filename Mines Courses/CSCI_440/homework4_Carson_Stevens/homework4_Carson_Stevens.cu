@@ -11,7 +11,7 @@ using namespace std;
 
 template<unsigned int blockSize>
 __global__ void scan_with_addition(unsigned long long int *g_idata, unsigned long long int *g_odata, int n){
-    extern __shared__ int sdata[];
+    extern __shared__ unsigned long long int sdata[];
     unsigned int tid = threadIdx.x;
     unsigned int i = blockIdx.x*(blockSize*2) + tid;
     unsigned int gridSize = blockSize*2*gridDim.x;
@@ -186,7 +186,7 @@ int main(int argc, char* argv[]) {
 
     // Establish thread and block size
 //    int blockSize;
-//    int minGridSize;
+    unsigned int minGridSize;
 //    //int gridSize;
 //
 //    //Optimization function
