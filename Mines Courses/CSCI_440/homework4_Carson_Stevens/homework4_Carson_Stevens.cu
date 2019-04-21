@@ -121,17 +121,17 @@ int main(int argc, char* argv[]) {
     // Establish thread and block size
     int blockSize;
     int minGridSize;
-    //int gridSize;
+    int gridSize;
 
     //Optimization function
     cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
-    //gridSize = (N + blockSize - 1) / blockSize;
+    gridSize = (N + blockSize - 1) / blockSize;
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<blockSize, blockSize, N*sizeof(unsigned long long int)>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<gridSize, blockSize, N*sizeof(unsigned long long int)>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
