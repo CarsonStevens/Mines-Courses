@@ -182,15 +182,15 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
 
     int blockDim = 512;
-    int gridSize = (N+blockSize -1)/blockSize;
+    int gridSize = (N+blockSize -1)/blockDim;
 
     // Establish thread and block size
 //    int blockSize;
-    int minGridSize;
+    //int minGridSize;
 //    //int gridSize;
 //
 //    //Optimization function
-    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockDim, scan_with_addition, 0, N);
+    //cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockDim, scan_with_addition, 0, N);
 //
 //    // Round up according to array size
 //    //gridSize = (N + blockSize - 1) / blockSize;
