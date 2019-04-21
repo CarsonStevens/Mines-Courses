@@ -91,21 +91,18 @@ int main(int argc, char* argv[]) {
 //    int gridSize;
 
     int blockSize;
-    int minGridSize = N;
-    //int gridSize = 24;
-    //int* dev_lastBlockCounter;
-    //cudaMalloc((void**)&dev_lastBlockCounter, sizeof(int));
-    //cudaMemset(dev_lastBlockCounter, 0, sizeof(int));
+    int minGridSize;
+    int gridSize;
 
     //Optimization function
     cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
 
     // Round up according to array size
-    //gridSize = (N + blockSize - 1) / blockSize;
+    gridSize = (N + blockSize - 1) / blockSize;
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<1, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<gridSize, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
