@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
     int N = atoi(argv[1]);
     unsigned long long int sum_array[N];
     unsigned long long int A_cpu[N];
-    unsigned long long int int A_gpu[N];
+    unsigned long long int A_gpu[N];
     unsigned long long int *dev_sum_array;
     unsigned long long int *dev_A_gpu;
 
