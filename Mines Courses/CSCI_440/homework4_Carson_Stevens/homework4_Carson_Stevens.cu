@@ -9,9 +9,9 @@
 
 using namespace std;
 
-__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n)
+__global__ void scan_with_addition(unsigned long long int *sum_array, unsigned long long int *A_gpu, int n)
 {
-    extern __shared__ int cache[]; // allocated on invocation
+    extern __shared__ unsigned long long int cache[]; // allocated on invocation
     int thid = threadIdx.x;
     int pout = 0, pin = 1;
     // load input into shared memory.
