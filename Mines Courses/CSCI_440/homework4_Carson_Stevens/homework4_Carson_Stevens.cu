@@ -186,7 +186,7 @@ int main(int argc, char* argv[]) {
 
     // Establish thread and block size
 //    int blockSize;
-    unsigned int minGridSize;
+    int minGridSize;
 //    //int gridSize;
 //
 //    //Optimization function
