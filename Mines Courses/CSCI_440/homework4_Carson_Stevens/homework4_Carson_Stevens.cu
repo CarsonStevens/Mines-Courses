@@ -168,7 +168,6 @@ int main(int argc, char* argv[]) {
 
     srand(time(0));
     int N = (int)argv[1];
-    int *dev_N;
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
@@ -190,12 +189,10 @@ int main(int argc, char* argv[]) {
 
     cudaMalloc((void **)&dev_sum_array, sizeof(int)*N);
     cudaMalloc((void **)&dev_A_gpu, sizeof(int)*N);
-    cudaMalloc((void **)&dev_N, sizeof(int));
 
     // copy data to device
     cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int)*N, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_N, N, sizeof(int), cudaMemcpyHostToDevice);
 
 
     // Establish thread and block size
@@ -226,8 +223,7 @@ int main(int argc, char* argv[]) {
 
     // free memory
     cudaFree(dev_sum_array);
-    cudaFree(dev_A_gpu);
-    cudaFree(dev_N);
+    cudaFree(dev_A_gpu);S
 
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
