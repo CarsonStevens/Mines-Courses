@@ -57,7 +57,7 @@ __global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
 int main(int argc, char* argv[]) {
 
     srand(time(0));
-    int N = (int)argv[1];
+    int N = atoi(argv[1]);
     int sum_array[N];
     int A_cpu[N];
     int A_gpu[N];
