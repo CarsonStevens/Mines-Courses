@@ -9,10 +9,9 @@
 
 using namespace std;
 
-
+template <unsigned int blockSize>
 __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
     extern __shared__ unsigned int sdata[];
-    unsigned int blockSize = 512;
     unsigned int tid = threadIdx.x;
     unsigned int i = blockIdx.x*(blockSize*2) + tid;
     unsigned int gridSize = blockSize*2*gridDim.x;
@@ -201,7 +200,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition <<< gridSize, blockDim, blockDim >>> (dev_sum_array, dev_A_gpu, N);
+    scan_with_addition <threads> <<< gridSize, blockDim, blockDim >>> (dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back

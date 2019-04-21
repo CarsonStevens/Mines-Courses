@@ -18,6 +18,7 @@
 
 using namespace std;
 
+
 __global__ void spmv(const int num_rows, const int* ptr, const int* indices,
                      const float* data, const float* mult_data, float* result){
 
