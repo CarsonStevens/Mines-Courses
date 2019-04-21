@@ -9,7 +9,7 @@
 
 using namespace std;
 
-__global__ void scan_with_addition(float *g_idata, float *g_odata, int n)
+__global__ void scan_with_addition(int *g_idata, int *g_odata, int n)
 {
     extern __shared__ int temp[]; // allocated on invocation
     int thid = threadIdx.x;
