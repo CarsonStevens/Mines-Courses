@@ -8,8 +8,8 @@
 #include <ctime>
 
 using namespace std;
-global unsigned int blockSize = 512;
-//template<unsigned int blockSize>
+
+template<unsigned int blockSize>
 __global__ void scan_with_addition(unsigned long long int *g_idata, unsigned long long int *g_odata, int n){
     extern __shared__ unsigned long long int sdata[];
     unsigned int tid = threadIdx.x;
@@ -181,7 +181,7 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
 
-
+    int blockDim = 512;
     int gridSize = (N+blockSize -1)/blockSize;
 
     // Establish thread and block size
@@ -190,14 +190,14 @@ int main(int argc, char* argv[]) {
 //    //int gridSize;
 //
 //    //Optimization function
-    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, scan_with_addition, 0, N);
+    cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockDim, scan_with_addition, 0, N);
 //
 //    // Round up according to array size
 //    //gridSize = (N + blockSize - 1) / blockSize;
 //
 //    // Call function
 //    // second blockSize for shared memory
-    scan_with_addition<<<gridSize, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<gridSize, blockDim, blockDim>>>(dev_sum_array, dev_A_gpu, N);
 //    cudaDeviceSynchronize();
 //    int threads = 1;
 //    if(N>=2) threads = 2;
