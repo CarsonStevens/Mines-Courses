@@ -9,106 +9,114 @@
 
 using namespace std;
 
-__device__ bool lastBlock(int* counter) {
-    __threadfence(); //ensure that partial result is visible by all blocks
-    int last = 0;
-    if (threadIdx.x == 0){
-        last = atomicAdd(counter, 1);
-    }
-    return __syncthreads_or(last == gridDim.x-1);
-}
-
-__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
-
-    int thIdx = threadIdx.x;
-    int gthIdx = thIdx + blockIdx.x*blockDim.x;
-    const int gridSize = blockDim.x*gridDim.x;
-    int sum = 0;
-    for (int i = gthIdx; i < N; i += gridSize){
-        sum += sum_array[i];
-    }
-
-    __shared__ int shArr[N];
-    shArr[thIdx] = sum;
-    __syncthreads();
-    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
-        if (thIdx<size){
-            shArr[thIdx] += shArr[thIdx+size];
-        }
-        __syncthreads();
-    }
-    if(thIdx == 0){
-        A_gpu[blockIdx.x] = shArr[0];
-    }
-
-    if (lastBlock(lastBlockCounter)) {
-        shArr[thIdx] = thIdx<gridSize ? A_gpu[thIdx] : 0;
-        __syncthreads();
-        for (int size = blockDim.x/2; size>0; size/=2) { //uniform
-            if (thIdx<size){
-                shArr[thIdx] += shArr[thIdx+size];
-            }
-            __syncthreads();
-        }
-        if (thIdx == 0){
-            A_gpu[0] = shArr[0];
-        }
-
-    }
-}
-__device__ int sumCommSingleWarp(volatile int* shArr) {
-    int idx = threadIdx.x % warpSize; //the lane index in the warp
-    if (idx<16) {
-        shArr[idx] += shArr[idx+16];
-        shArr[idx] += shArr[idx+8];
-        shArr[idx] += shArr[idx+4];
-        shArr[idx] += shArr[idx+2];
-        shArr[idx] += shArr[idx+1];
-    }
-    return shArr[0];
-}
+//__device__ bool lastBlock(int* counter) {
+//    __threadfence(); //ensure that partial result is visible by all blocks
+//    int last = 0;
+//    if (threadIdx.x == 0){
+//        last = atomicAdd(counter, 1);
+//    }
+//    return __syncthreads_or(last == gridDim.x-1);
+//}
+//
+//__global__ void scan_with_addition(const int N, const int* sum_array, const int* A_gpu, int* lastBlockCounter) {
+//
+//    int thIdx = threadIdx.x;
+//    int gthIdx = thIdx + blockIdx.x*blockDim.x;
+//    const int gridSize = blockDim.x*gridDim.x;
+//    int sum = 0;
+//    for (int i = gthIdx; i < N; i += gridSize){
+//        sum += sum_array[i];
+//    }
+//
+//    __shared__ int shArr[N];
+//    shArr[thIdx] = sum;
+//    __syncthreads();
+//    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
+//        if (thIdx<size){
+//            shArr[thIdx] += shArr[thIdx+size];
+//        }
+//        __syncthreads();
+//    }
+//    if(thIdx == 0){
+//        A_gpu[blockIdx.x] = shArr[0];
+//    }
+//
+//    if (lastBlock(lastBlockCounter)) {
+//        shArr[thIdx] = thIdx<gridSize ? A_gpu[thIdx] : 0;
+//        __syncthreads();
+//        for (int size = blockDim.x/2; size>0; size/=2) { //uniform
+//            if (thIdx<size){
+//                shArr[thIdx] += shArr[thIdx+size];
+//            }
+//            __syncthreads();
+//        }
+//        if (thIdx == 0){
+//            A_gpu[0] = shArr[0];
+//        }
+//
+//    }
+//}
+//__device__ int sumCommSingleWarp(volatile int* shArr) {
+//    int idx = threadIdx.x % warpSize; //the lane index in the warp
+//    if (idx<16) {
+//        shArr[idx] += shArr[idx+16];
+//        shArr[idx] += shArr[idx+8];
+//        shArr[idx] += shArr[idx+4];
+//        shArr[idx] += shArr[idx+2];
+//        shArr[idx] += shArr[idx+1];
+//    }
+//    return shArr[0];
+//}
 /*
  * The argument &r[idx & ~(warpSize-1)] is basically r + warpIdx*32.
  * This effectively splits the r array into chunks of 32 elements,
  * and each chunk is assigned to separate warp.
  */
-__global__ void sumCommSingleBlockWithWarps(const int *a, int *out) {
-    int idx = threadIdx.x;
-    int sum = 0;
-    for (int i = idx; i < arraySize; i += blockSize)
-        sum += a[i];
-    __shared__ int r[blockSize];
-    r[idx] = sum;
-    sumCommSingleWarp(&r[idx & ~(warpSize-1)]);
-    __syncthreads();
-    if (idx<warpSize) { //first warp only
-        r[idx] = idx*warpSize<blockSize ? r[idx*warpSize] : 0;
-        sumCommSingleWarp(r);
-        if (idx == 0)
-            *out = r[0];
-    }
-}
-
-
-//static const int arraySize = 10000;
-//static const int blockSize = 1024;
-//
-//__global__ void sumCommSingleBlock(const int *a, int *out) {
+//__global__ void sumCommSingleBlockWithWarps(const int *a, int *out) {
 //    int idx = threadIdx.x;
 //    int sum = 0;
 //    for (int i = idx; i < arraySize; i += blockSize)
 //        sum += a[i];
 //    __shared__ int r[blockSize];
 //    r[idx] = sum;
+//    sumCommSingleWarp(&r[idx & ~(warpSize-1)]);
 //    __syncthreads();
-//    for (int size = blockSize/2; size>0; size/=2) { //uniform
-//        if (idx<size)
-//            r[idx] += r[idx+size];
-//        __syncthreads();
+//    if (idx<warpSize) { //first warp only
+//        r[idx] = idx*warpSize<blockSize ? r[idx*warpSize] : 0;
+//        //sumCommSingleWarp(r);
+//        int idx = threadIdx.x % warpSize; //the lane index in the warp
+//        if (idx<16) {
+//            shArr[idx] += shArr[idx+16];
+//            shArr[idx] += shArr[idx+8];
+//            shArr[idx] += shArr[idx+4];
+//            shArr[idx] += shArr[idx+2];
+//            shArr[idx] += shArr[idx+1];
+//        }
+//        if (idx == 0)
+//            *out = r[0];
 //    }
-//    if (idx == 0)
-//        *out = r[0];
 //}
+
+
+//static const int arraySize = 10000;
+//static const int blockSize = 1024;
+//
+__global__ void scan_with_addition(int N, const int *a, int *out) {
+    int idx = threadIdx.x;
+    int sum = 0;
+    for (int i = idx; i < N; i += blockSize)
+        sum += a[i];
+    __shared__ int r[blockSize];
+    r[idx] = sum;
+    __syncthreads();
+    for (int size = blockSize/2; size>0; size/=2) { //uniform
+        if (idx<size)
+            r[idx] += r[idx+size];
+        __syncthreads();
+    }
+    if (idx == 0)
+        *out = r[0];
+}
 //
 //...
 //

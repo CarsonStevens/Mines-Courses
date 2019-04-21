@@ -259,7 +259,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_442/Project_2/carsonstevens-Final/src/main.cpp.obj"
   "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/carson_stevens_APR3_Dijkstra/main.cpp.obj"
   "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.obj"
-  "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj"
   "Mines_Courses.pdb"
   "Mines_Courses.exe"
   "Mines_Courses.exe.manifest"

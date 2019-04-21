@@ -2363,33 +2363,6 @@ Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.cpp.s:
 	$(MAKE) -f CMakeFiles\Mines_Courses.dir\build.make CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.cpp.s
 .PHONY : Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.cpp.s
 
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.obj: Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj
-
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.obj
-
-# target to build an object file
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj:
-	$(MAKE) -f CMakeFiles\Mines_Courses.dir\build.make CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj
-
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.i: Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i
-
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.i
-
-# target to preprocess a source file
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i:
-	$(MAKE) -f CMakeFiles\Mines_Courses.dir\build.make CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i
-
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.s: Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s
-
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.s
-
-# target to generate assembly for a file
-Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s:
-	$(MAKE) -f CMakeFiles\Mines_Courses.dir\build.make CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s
-.PHONY : Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s
-
 Mines_Courses/CSCI_442/Project_0/part1.obj: Mines_Courses/CSCI_442/Project_0/part1.cpp.obj
 
 .PHONY : Mines_Courses/CSCI_442/Project_0/part1.obj
@@ -7427,9 +7400,6 @@ help:
 	@echo ... Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.obj
 	@echo ... Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.i
 	@echo ... Mines_Courses/CSCI_440/homework1_Carson_Stevens/test2.s
-	@echo ... Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.obj
-	@echo ... Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.i
-	@echo ... Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.s
 	@echo ... Mines_Courses/CSCI_442/Project_0/part1.obj
 	@echo ... Mines_Courses/CSCI_442/Project_0/part1.i
 	@echo ... Mines_Courses/CSCI_442/Project_0/part1.s

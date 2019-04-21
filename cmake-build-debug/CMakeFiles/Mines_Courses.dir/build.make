@@ -3696,20 +3696,6 @@ CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.s"
 	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\steve\Mines-Courses\Mines Courses\CSCI_477\Game Map\main.cpp" -o CMakeFiles\Mines_Courses.dir\Mines_Courses\CSCI_477\Game_Map\main.cpp.s
 
-CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj: CMakeFiles/Mines_Courses.dir/flags.make
-CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj: CMakeFiles/Mines_Courses.dir/includes_CXX.rsp
-CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj: ../Mines\ Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\steve\Mines-Courses\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_261) "Building CXX object CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Mines_Courses.dir\Mines_Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp.obj -c "C:\Users\steve\Mines-Courses\Mines Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp"
-
-CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.i"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\steve\Mines-Courses\Mines Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp" > CMakeFiles\Mines_Courses.dir\Mines_Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp.i
-
-CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.s"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\steve\Mines-Courses\Mines Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp" -o CMakeFiles\Mines_Courses.dir\Mines_Courses\CSCI_440\homework4_Carson_Stevens\homework4_Carson_Stevens.cpp.s
-
 # Object files for target Mines_Courses
 Mines_Courses_OBJECTS = \
 "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_261/A1/A1/A1.cpp.obj" \
@@ -3971,8 +3957,7 @@ Mines_Courses_OBJECTS = \
 "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_442/Project_2/carsonstevens-Final/src/virtual_address/virtual_address_tests.cpp.obj" \
 "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_442/Project_2/carsonstevens-Final/src/main.cpp.obj" \
 "CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/carson_stevens_APR3_Dijkstra/main.cpp.obj" \
-"CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.obj" \
-"CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj"
+"CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.obj"
 
 # External object files for target Mines_Courses
 Mines_Courses_EXTERNAL_OBJECTS =
@@ -4237,12 +4222,11 @@ Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_442/Project_2
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_442/Project_2/carsonstevens-Final/src/main.cpp.obj
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/carson_stevens_APR3_Dijkstra/main.cpp.obj
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_477/Game_Map/main.cpp.obj
-Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/Mines_Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cpp.obj
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/build.make
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/linklibs.rsp
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/objects1.rsp
 Mines_Courses.exe: CMakeFiles/Mines_Courses.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\steve\Mines-Courses\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_262) "Linking CXX executable Mines_Courses.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\steve\Mines-Courses\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_261) "Linking CXX executable Mines_Courses.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Mines_Courses.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,0 +1,124 @@
+
+<!-- saved from url=(0076)http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/create.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CSCI 403 Project 9: Create</title>
+    <link href="./CSCI 403 Project 9_ Create_files/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>CSCI 403 Database Management</h1>
+    <h4>Spring 2019</h4>
+    <h2>Project 9: Create</h2>
+    <p><a href="http://cs-courses.mines.edu/csci403/spring2019/projects.shtml">(Back to Projects)</a></p>
+    <h3>Purpose</h3>
+    <hr>
+    <ul>
+        <li>Work with real, raw data</li>
+        <li>Practice bulk-loading data into the database</li>
+        <li>Create something awesome</li>
+    </ul>
+    <br>
+
+    <h3>Overview</h3>
+    <hr>
+    <p>This is a fairly open-ended assignment. Ideally I want you to find an interesting dataset and do something creative and new with it. One possibility is to find one or more additional datasets that intersect with your original dataset in some interesting fashion, and do a "query mashup" with the datasets.</p>
+
+    <p>For an example of a query mashup, consider the university.universities table in the course database (this should now be available to you, along with all the supporting tables in the university schema; see the univ_field_descriptions for information about the table attributes). This table has information about all institutions of higher learning in the United States. One of the interesting pieces of data available is the location of the institution in latitude and longitude.</p>
+
+    <p>Another dataset which is available on the web (for research purposes only, alas), is data from
+        <a href="http://www.yelp.com/">Yelp</a>, the crowdsourced review site. Yelp data also has geographical location information. So (if the Yelp data were complete, which it is not) you could combine the Yelp dataset with the universities dataset to ask questions like, "What Indian restaurants with a rating of 4 stars or better are within 5 miles of Colorado School of Mines?".</p>
+
+    <p>Another possibility is to do some kind of data mining/machine learning on your dataset. This is a bit more research-y, and probably applies only if you have taken a course in statistical or machine learning previously.
+    </p>
+
+    <p>You could also consider doing some really interesting software based on your dataset. The important thing with this approach is to highlight the data and database aspects of the system as opposed to just your great programming skills!</p>
+
+    <p>Finally, you may consider doing a project using the graph database <a href="http://neo4j.com/">neo4j</a>. The neo4j database software can easily installed on your local machine, and from there you can access it through various APIs (read the <a href="http://neo4j.com/developer/get-started/">developer documentation</a> for more) or through a web-based query tool. If you choose this route, try to think about data and queries that make more sense on a graph database than on a relational database, and really illustrate that aspect in your project.</p>
+
+    <p>In general, use your imagination. If you have questions about a possible project, please ask.</p>
+
+    <br>
+    <h3>Datasets</h3>
+    <hr>
+    <p>The first goal of this project is to find an interesting dataset (or two) and load it into the course relational database. Here "interesting" is left vague - the dataset should contain some significant amount of data (but might be as small as a thousand rows) or some interesting facts that let you ask and answer interesting or involved questions.</p>
+
+    <p>There is an astonishing amount of data available on the internet today. For example, many governments provide public datasets on diverse topics; census data, highway transportation data, watershed data, and much more. Some businesses release partial datasets from their core business to academia to fuel research on topics of interest to the business (e.g., see <a href="https://en.wikipedia.org/wiki/Netflix_Prize">Netflix Prize</a> and <a href="http://www.yelp.com/dataset_challenge">Yelp Dataset Challenge</a>). Scientific data abounds. A list of websites linking to various data sources is given below, but there are surely more out there.</p>
+
+    <p>Real-world data poses multiple challenges, starting with the fact that it often isn't immediately apparent how the data will fit into a relational schema. (This factor together with the large volumes becoming typical in modern datasets has helped fuel the rise of NoSQL databases, a topic we'll touch on near the end of the semester.) One of your challenges, then, will be to design a schema and a plan for getting the data into the schema.</p>
+
+    <p>Real-world data is also messy, often containing bad data which violates the intuitive integrity constraints we wish to put on it. How will you deal with bad data when you encounter it? You might choose to correct the data, throw the data out, modify your schema to manage the data, etc.</p>
+
+    <p>Real-world data can be voluminous. Bulk-loading is a general term which refers to performing some initial load of data from an external source into a database. There are many facets to bulk-loading, e.g., you typically don't want to enforce constraints or update indexes while bulk-loading; rather, the data is typically loaded into some staging area prior to being cleaned up and reorganized into the schema proper. Bulk-loading can be done either using database tools such as the COPY command in PostgreSQL, or via custom programs of your own devising. Using the COPY command (you will need to use \COPY in psql) is often fastest, but requires you to first convert the data into a suitable format, such as .csv.</p>
+
+    <p>For this assignment, I ask that you keep your datasets to less than 10GB in size, although I will be happy to consider larger datasets if you provide a compelling reason to do so. You may also consider working with a large dataset, but loading only part of it to the database for this assignment.</p>
+
+    <br>
+    <h3>Data Sources</h3>
+    <hr>
+    <p>Here are links to a number of website that either provide datasets or link to other websites with data - you are not limited to these, of course! Take your time and browse quite a few of these before deciding on the data you want to work with. You may find that your first pick is problematic in some way, and may choose to look for something easier to work with. Note that not all of the datasets available are necessarily of interest for this course (e.g., there are many datasets which are of interest for machine learning research but not terribly interesting outside that realm).</p>
+
+    <p>Please note that many available datasets, particularly from commercial entities, are proprietary and licensed under specific terms. Please honor the licenses of any dataset you use. If you need assistance applying to use a particular dataset, I may be able to help.</p>
+
+<ul>
+    <li><a href="https://mran.revolutionanalytics.com/documents/data/">https://mran.revolutionanalytics.com/documents/data/</a></li>
+    <li><a href="http://www.census.gov/2010census/data/">http://www.census.gov/2010census/data/</a></li>
+    <li><a href="https://github.com/caesar0301/awesome-public-datasets">https://github.com/caesar0301/awesome-public-datasets</a></li>
+
+    <li><a href="http://data.denvergov.org/">http://data.denvergov.org/</a></li>
+    <li><a href="http://www.gapminder.org/data/">http://www.gapminder.org/data/</a></li>
+    <li><a href="http://www.pewinternet.org/datasets/">http://www.pewinternet.org/datasets/</a></li>
+    <li><a href="https://www.kaggle.com/datasets">https://www.kaggle.com/datasets</a></li>
+    <li><a href="https://data.fivethirtyeight.com/">https://data.fivethirtyeight.com/</a></li>
+</ul>
+
+    <br>
+    <h3>Examples of Past Projects</h3>
+    <hr>
+    <p>Here are some projects that I particularly enjoyed from past semesters:</p>
+    <ul>
+        <li><a href="http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/examples/ufo_wine.pdf">UFO Sightings and Wine Reviews</a></li>
+        <li><a href="http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/examples/movies_baby_names.pdf">Why Your Child's Name is Keanu</a></li>
+        <li><a href="http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/examples/game_of_thrones.pdf">Game of Thrones</a></li>
+        <li><a href="http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/examples/space.pdf">Studying Space</a></li>
+        <li><a href="http://cs-courses.mines.edu/csci403/spring2019/projects/9-create/examples/visualizer.pdf">Visualization of Box Office Data of Top Grossing Movies</a></li>
+    </ul>
+   
+            
+
+    <br>
+    <h3>Deliverables</h3>
+    <hr>
+    <p>This is a <b>group</b> assignment. My preference is for this project to be done in groups of 3 or 4. Please consider using Piazza to find teammates.</p>
+
+    <p>The deliverables for this project are the data, loaded into the database, plus any software or other artifacts you create for your project, plus a 5 - 10 page write-up (in PDF format, or if you are familiar with Jupyter notebooks, you can do your "write-up" in a notebook - note, however, that all of your data should still be stored in the database, and should be acquired from the database via SQL queries, not simply loaded in from a file). Only one team member needs to submit the write-up. The write-up should include at least the following:
+    </p>
+    <ul>
+        <li>The name of everyone in the group!</li>
+        <li>A section describing your dataset(s)</li>
+        <ul>
+            <li>What is interesting about this dataset?  (Note that this can mean a lot of things - the data was for an interesting/timely topic, the data was interesting (probably difficult) to work with, the applications of the this data are interesting, etc.)</li>
+            <li>Where was the data obtained?</li>
+            <li>What (if any) license restrictions are there on the use of the data?</li>
+            <li>Describe the table or tables and significant attributes as loaded into the database.</li>
+        </ul>
+        <li>A section describing the awesome cool thing you did with your data. This might include charts and data visualizations, screen captures of software, interesting queries, and text descriptions.</li>
+        <li>A section describing the technical challenges you dealt with in obtaining, manipulating, and loading the dataset(s).</li>
+    </ul>
+
+    <br>
+    <h3>Computing Innvovation Fair - Extra Credit!</h3>
+    <hr>
+    <p>If you would be willing to show off your project to the Mines CS community at the Computing Innovation Fair (along with projects by students in several other CS classes), you can earn 10 points extra credit.  You will need to submit your project earlier, and will probably need to create a poster for the fair itself.  More details to come...</p>
+
+    <br>
+    <h3>Grading</h3>
+    <hr>
+    <p>This assignment is worth 200 points - 50 for the data (this part is basically pass/fail), 100 for whatever cool stuff you do with the data (interesting queries, software, visualizations, etc.) and 50 for your write-up (40 points for content - including all the sections described above, and 10 points for style, grammar &amp; spelling, and general readability).</p>
+
+    <p>Please submit your write-up and any other artifacts to Canvas. Your data should be loaded under one team-member's schema into the csci403 database.</p><p>
+
+
+
+
+
+</p></body></html>
