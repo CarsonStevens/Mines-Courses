@@ -9,9 +9,10 @@
 
 using namespace std;
 
-__global__ void scan_with_addition(unsigned long long int *sum_array, unsigned long long int *A_gpu, int n)
-{
+__global__ void scan_with_addition(unsigned long long int *sum_array, unsigned long long int *A_gpu, int n){
+
     extern __shared__ unsigned long long int cache[]; // allocated on invocation
+
     int thid = threadIdx.x;
     int pout = 0, pin = 1;
     // load input into shared memory.
@@ -30,7 +31,7 @@ __global__ void scan_with_addition(unsigned long long int *sum_array, unsigned l
         }
         __syncthreads();
     }
-    A_gpu[thid] = cache[pout*n+thid-1]; // write output
+    A_gpu[thid] = cache[pout*n+thid]; // write output
 }
 
 //__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
@@ -130,7 +131,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<1, blockSize, blockSize>>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<<blockSize, blockSize, N*sizeof(unsigned long long int)>>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
