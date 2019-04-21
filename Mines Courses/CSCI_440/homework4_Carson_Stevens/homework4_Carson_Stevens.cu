@@ -30,7 +30,7 @@ __global__ void scan_with_addition(int *g_idata, int *g_odata, int n)
         }
         __syncthreads();
     }
-    g_odata[thid] = temp[pout*n+thid]; // write output
+    g_odata[thid] = temp[pout*n+thid+1]; // write output
 }
 //
 //__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
