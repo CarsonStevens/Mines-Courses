@@ -8,8 +8,8 @@
 #include <ctime>
 
 using namespace std;
-
-template<unsigned int blockSize>
+global unsigned int blockSize = 512;
+//template<unsigned int blockSize>
 __global__ void scan_with_addition(unsigned long long int *g_idata, unsigned long long int *g_odata, int n){
     extern __shared__ unsigned long long int sdata[];
     unsigned int tid = threadIdx.x;
@@ -181,7 +181,7 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned long long int)*N, cudaMemcpyHostToDevice);
 
-    int blockSize = 512;
+
     int gridSize = (N+blockSize -1)/blockSize;
 
     // Establish thread and block size
