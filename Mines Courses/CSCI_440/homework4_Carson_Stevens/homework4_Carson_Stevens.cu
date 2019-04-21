@@ -104,12 +104,12 @@ using namespace std;
 __global__ void scan_with_addition(int N, const int *a, int *out) {
     int idx = threadIdx.x;
     int sum = 0;
-    for (int i = idx; i < N; i += blockSize)
+    for (int i = idx; i < N; i += blockDim.x)
         sum += a[i];
-    __shared__ int r[blockSize];
+    __shared__ int r[blockDim.x];
     r[idx] = sum;
     __syncthreads();
-    for (int size = blockSize/2; size>0; size/=2) { //uniform
+    for (int size = blockDim.x/2; size>0; size/=2) { //uniform
         if (idx<size)
             r[idx] += r[idx+size];
         __syncthreads();
@@ -172,7 +172,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<<<gridSize, blockSize, blockSize>>>(N, dev_sum_array, dev_A_gpu, dev_lastBlockCounter);
+    scan_with_addition<<<gridSize, blockSize, blockSize>>>(N, dev_sum_array, dev_A_gpu);
     cudaDeviceSynchronize();
 
     // copy result back
