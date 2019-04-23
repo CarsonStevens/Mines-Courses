@@ -461,13 +461,25 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-
+    """ For previous implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
         # Use and here because 'and' function
         result = result and lisp_eval(se.car, stg)
         se = se.cdr
+    return result
+    """
+
+    # For Deliverable 5 TCO
+    result = NIL
+    for i, exp in enumerate(se):
+        if i == len(se)-1:
+            return exp
+        y = lisp_eval(exp, stg)
+        result = y
+        if not y:
+            return y
     return result
 
 
@@ -502,13 +514,25 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-
+    """ For first implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
         # Use 'or' here because or function
         result = result or lisp_eval(se.car, stg)
         se = se.cdr
+    return result
+    """
+
+    # For Deliverable 5 TCO
+    result = NIL
+    for i, exp in enumerate(se):
+        if i == len(se)-1:
+            return exp
+        y = lisp_eval(exp, stg)
+        result = y
+        if y:
+            return y
     return result
 
 
