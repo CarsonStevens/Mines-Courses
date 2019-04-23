@@ -461,7 +461,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    """ For previous implementation
+    # For previous implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
@@ -470,7 +470,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
         se = se.cdr
     return result
     """
-
+    
     # For Deliverable 5 TCO
     result = NIL
     for i, exp in enumerate(se):
@@ -481,6 +481,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
         if not y:
             return y
     return result
+    """
 
 
 @BuiltinMacro('or')
@@ -514,7 +515,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    """ For first implementation
+    # For first implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
@@ -534,7 +535,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
         if y:
             return y
     return result
-
+    """
 
 @BuiltinMacro('set!')
 def setbang(se: SExpression, stg: LexicalVarStorage):
