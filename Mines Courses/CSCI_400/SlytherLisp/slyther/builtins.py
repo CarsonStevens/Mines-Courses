@@ -279,7 +279,7 @@ def lambda_func(se: SExpression, stg: LexicalVarStorage) -> UserFunction:
     >>> f.environ['x'].value
     20
     """
-    return UserFunction(se.car, se.cdr, stg)
+    return UserFunction(se.car, se.cdr, stg.fork())
 
 
 @BuiltinMacro('let')
@@ -461,7 +461,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    # For previous implementation
+    """ # For previous implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
@@ -481,7 +481,6 @@ def and_(se: SExpression, stg: LexicalVarStorage):
         if not y:
             return y
     return result
-    """
 
 
 @BuiltinMacro('or')
@@ -515,7 +514,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    # For first implementation
+    """ # For first implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
@@ -535,7 +534,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
         if y:
             return y
     return result
-    """
+
 
 @BuiltinMacro('set!')
 def setbang(se: SExpression, stg: LexicalVarStorage):

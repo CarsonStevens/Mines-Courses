@@ -49,7 +49,8 @@ def repl(interpreter, debug=False):
             expr = input("> ")
             print(interpreter.exec(expr))
         except KeyboardInterrupt:
+            print("")
             continue
         except EOFError:
-            # print(">>> EXITING <<<")
+            print("\n>>> EXITING <<<")
             exit(0)
