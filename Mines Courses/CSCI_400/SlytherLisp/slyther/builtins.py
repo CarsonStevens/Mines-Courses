@@ -472,14 +472,11 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     """
     
     # For Deliverable 5 TCO
-    result = NIL
-    for i, exp in enumerate(se):
-        if i == len(se)-1:
-            return exp
-        y = lisp_eval(exp, stg)
-        result = y
-        if not y:
-            return y
+    result = lisp_eval(se.car, stg)
+    se = se.cdr
+    while se is not NIL:
+        se = se.cdr
+        result = result and se
     return result
 
 
@@ -523,16 +520,12 @@ def or_(se: SExpression, stg: LexicalVarStorage):
         se = se.cdr
     return result
     """
-
-    # For Deliverable 5 TCO
-    result = NIL
-    for i, exp in enumerate(se):
-        if i == len(se)-1:
-            return exp
-        y = lisp_eval(exp, stg)
-        result = y
-        if y:
-            return y
+    # D5
+    result = lisp_eval(se.car, stg)
+    se = se.cdr
+    while se is not NIL:
+        se = se.cdr
+        result = result or se
     return result
 
 

@@ -134,6 +134,70 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     """ Handle each part of the types of expressions that can be passed in.
         The types are listed above. Some have additional cases once identified.
     """
+
+    while True:
+
+        # NIL Case
+        if expr is NIL:
+            return NIL
+
+        # Quoted Case
+        elif isinstance(expr, Quoted):
+            # Get the content from inside the quoted expression
+            content = expr.elem
+
+            # Case that quoted content is an SExpression
+            if isinstance(content, SExpression):
+                s_expr_content = []
+                for expr_content in content:
+                    s_expr_content.append(lisp_eval(Quoted(expr_content), stg))
+                return ConsList.from_iterable(s_expr_content)
+            else:
+                return content
+
+        # Case Symbol: return symbol key value
+        elif isinstance(expr, Symbol):
+            return stg[expr].value
+
+        # Case SExpression (not in quoted)
+        elif isinstance(expr, SExpression):
+            # evaluator = lisp_eval(expr.car, stg)
+            contents = []
+            # Handle Macro SExpression
+            if isinstance(evaluator, Macro):
+                for macro_item in expr.cdr:
+
+                    # Separate contents of Macro
+                    contents.append(macro_item)
+
+                # Convert contents using the lisp_eval object
+                expr = evaluator(expr.cdr, stg)
+
+            # Handle Function SExpression
+            elif isinstance(evaluator, Function):
+                # for func_item in expr.cdr:
+                contents = []
+                while expr.cdr is not NIL:
+                    expr = expr.cdr
+                    # use lisp_eval to evaluate each part of the Function
+                    contents.append(lisp_eval(func_item, stg))
+
+                    # Convert contents using the lisp_eval
+                    eval_contents = evaluator(*contents)
+                if isinstance(eval_contents, tuple):
+                    expr = eval_contents[0]
+                    stg = eval_contents[1]
+                else:
+                    return eval_contents
+            else:
+                # Text from prompt above
+                raise TypeError("'Symbol' object is not callable")
+
+        # No case, just return 'as is'
+        else:
+            return expr
+
+    """ # As of D$
     while True:
 
         # NIL Case
@@ -196,3 +260,4 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         # No case, just return 'as is'
         else:
             return expr
+        """
