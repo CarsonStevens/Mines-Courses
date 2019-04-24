@@ -52,5 +52,4 @@ def repl(interpreter, debug=False):
             print("")
             continue
         except EOFError:
-            print("\n>>> EXITING <<<")
             exit(0)
