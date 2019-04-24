@@ -134,6 +134,12 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     """ Handle each part of the types of expressions that can be passed in.
         The types are listed above. Some have additional cases once identified.
     """
+    # THOUGHT:  could be a list of list of contents. Evaluate the whole thing,
+    #           then process each sublist in order once the entire lisp eval
+    #           has be executed. Then update the expr and stg with the
+    #           beginning of func_contents and  func_contents holds the
+    #           contents of the function and the context(stg) in a tuple.
+
     func_contents = []
     while True:
         # NIL Case
@@ -161,39 +167,38 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         # Case SExpression (not in quoted)
         elif isinstance(expr, SExpression):
             evaluator = lisp_eval(expr.car, stg)
-
-            # TCO part (evaluate contents in order)
-            if len(func_contents) > 0:
-                expr = func_contents[0]
-                # Erase processed part of function (part that is now in expr ^)
-                func_contents.pop(0)
-                continue
+            content = []
 
             # Handle Macro SExpression
             if isinstance(evaluator, Macro):
+                # Separate contents of Macro
                 for macro_item in expr.cdr:
-                    # Separate contents of Macro
-                    func_contents.append(macro_item)
-                # Convert contents using the lisp_eval object
-                # expr = evaluator(expr.cdr, stg)
+                    content.append(macro_item)
+
+                # Save content and context to process after first expression
+                # fully parsed
+                func_contents.append(content, stg)
 
             # Handle Function SExpression
             elif isinstance(evaluator, Function):
+                # Parse up the function
                 for item in expr.cdr:
-                    func_contents.append(item)
-                stg = evaluator.stg
-                # eval_contents = evaluator(expr.cdr, stg)
-                # if isinstance(eval_contents, tuple):
-                #     expr = eval_contents[0]
-                #     stg = eval_contents[1]
-                # else:
-                #     return eval_contents
+                    content.append(item)
+
+                func_contents.append(content, stg)
+
             else:
                 # Text from prompt above
                 raise TypeError("'Symbol' object is not callable")
-
-        # No case, just return 'as is'
         else:
+            # TCO Part
+            if len(func_contents) > 0:
+                expr = func_contents[0][0]
+                stg = func_contents[0][1]
+                func_contents.pop(0)
+                continue
+
+            # No more to process, so return
             return expr
 
     """ # As of D$
