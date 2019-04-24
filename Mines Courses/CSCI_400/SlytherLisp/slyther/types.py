@@ -653,7 +653,7 @@ class UserFunction(Function):
         for value, local in zip(args, self.params):
             lex_stg.put(local, value)
 
-        return lisp_eval(self.body, lex_stg)
+        return self.body, lex_stg
 
         """ # For Deliverable 3
         # avoid circular imports

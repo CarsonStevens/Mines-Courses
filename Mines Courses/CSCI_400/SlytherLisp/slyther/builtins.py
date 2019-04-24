@@ -475,8 +475,8 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
-        se = se.cdr
         result = result and se
+        se = se.cdr
     return result
 
 
@@ -524,8 +524,8 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
-        se = se.cdr
         result = result or se
+        se = se.cdr
     return result
 
 
