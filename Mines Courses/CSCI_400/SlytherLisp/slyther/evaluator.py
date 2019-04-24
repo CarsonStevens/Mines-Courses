@@ -163,7 +163,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
             evaluator = lisp_eval(expr.car, stg)
 
             # TCO part (evaluate contents in order)
-            if len(func_contents) - 1 != 0:
+            if len(func_contents) > 0:
                 expr = func_contents[0]
                 # Erase processed part of function (part that is now in expr ^)
                 func_contents.pop(0)
