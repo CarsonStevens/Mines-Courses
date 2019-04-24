@@ -177,7 +177,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
 
                 # Save content and context to process after first expression
                 # fully parsed
-                func_contents.append(content, stg)
+                func_contents.append((content, stg))
 
             # Handle Function SExpression
             elif isinstance(evaluator, Function):
@@ -185,7 +185,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 for item in expr.cdr:
                     content.append(item)
 
-                func_contents.append(content, stg)
+                func_contents.append((content, stg))
 
             else:
                 # Text from prompt above
