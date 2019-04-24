@@ -142,6 +142,14 @@ def lisp_eval(expr, stg: LexicalVarStorage):
 
     func_contents = []
     while True:
+
+        # TCO Part
+        if len(func_contents) > 0 and expr is NIL:
+            expr = func_contents[0][0]
+            stg = func_contents[0][1]
+            func_contents.pop(0)
+            continue
+
         # NIL Case
         if expr is NIL:
             return NIL
@@ -191,12 +199,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 # Text from prompt above
                 raise TypeError("'Symbol' object is not callable")
         else:
-            # TCO Part
-            if len(func_contents) > 0:
-                expr = func_contents[0][0]
-                stg = func_contents[0][1]
-                func_contents.pop(0)
-                continue
+
 
             # No more to process, so return
             return expr
