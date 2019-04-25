@@ -134,68 +134,7 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     """ Handle each part of the types of expressions that can be passed in.
         The types are listed above. Some have additional cases once identified.
     """
-    """
-    # THOUGHT:  could be a list of list of contents. Evaluate the whole thing,
-    #           then process each sublist in order once the entire lisp eval
-    #           has be executed. Then update the expr and stg with the
-    #           beginning of func_contents and  func_contents holds the
-    #           contents of the function and the context(stg) in a tuple.
-    while True:
 
-        # NIL Case
-        if expr is NIL:
-            return NIL
-
-        # Quoted Case
-        elif isinstance(expr, Quoted):
-            # Get the content from inside the quoted expression
-            content = expr.elem
-
-            # Case that quoted content is an SExpression
-            if isinstance(content, SExpression):
-                s_expr_content = []
-                for expr_content in content:
-                    s_expr_content.append(lisp_eval(Quoted(expr_content), stg))
-                return ConsList.from_iterable(s_expr_content)
-            else:
-                return content
-
-        # Case Symbol: return symbol key value
-        elif isinstance(expr, Symbol):
-            return stg[expr].value
-
-        # Case SExpression (not in quoted)
-        elif isinstance(expr, SExpression):
-            evaluator = lisp_eval(expr.car, stg)
-            content = []
-
-            # Handle Macro SExpression
-            if isinstance(evaluator, Macro):
-                # Separate contents of Macro
-                for macro_item in expr.cdr:
-                    content.append(macro_item)
-
-                # Save content and context to process after first expression
-                # fully parsed
-                func_contents.append((content, stg))
-
-            # Handle Function SExpression
-            elif isinstance(evaluator, Function):
-                # Parse up the function
-                for item in expr.cdr:
-                    content.append(item)
-
-                func_contents.append((content, stg))
-
-            else:
-                # Text from prompt above
-                raise TypeError("'Symbol' object is not callable")
-        else:
-
-            # No more to process, so return
-            return expr
-
-    """ # As of D4
     while True:
 
         # NIL Case

@@ -641,19 +641,6 @@ class UserFunction(Function):
         not how lexical scoping works. Instead, construct a new
         ``LexicalVarStorage`` from the existing environ.
         """
-        """ # for Deliverable 5
-
-        # avoid circular imports
-        from slyther.evaluator import lisp_eval
-
-        # construct new environ from LexicalVarStorage environ
-        lex_stg = LexicalVarStorage(self.environ)
-
-        # Iterate through combine dictionary
-        for value, local in zip(args, self.params):
-            lex_stg.put(local, value)
-
-        return self.body, lex_stg
 
         """ # For Deliverable 3
         # avoid circular imports

@@ -472,15 +472,6 @@ def and_(se: SExpression, stg: LexicalVarStorage):
             return result
     return result
 
-    #
-    # # For Deliverable 5 TCO
-    # result = lisp_eval(se.car, stg)
-    # se = se.cdr
-    # while se is not NIL:
-    #     result = result and se
-    #     se = se.cdr
-    # return result
-
 
 @BuiltinMacro('or')
 def or_(se: SExpression, stg: LexicalVarStorage):
@@ -523,13 +514,6 @@ def or_(se: SExpression, stg: LexicalVarStorage):
         if result:
             return result
     return result
-    # # D5
-    # result = lisp_eval(se.car, stg)
-    # se = se.cdr
-    # while se is not NIL:
-    #     result = result or se
-    #     se = se.cdr
-    # return result
 
 
 @BuiltinMacro('set!')
