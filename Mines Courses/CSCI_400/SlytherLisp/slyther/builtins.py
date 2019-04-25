@@ -461,7 +461,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    # For previous implementation
+
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
@@ -502,7 +502,7 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    # For first implementation
+
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
