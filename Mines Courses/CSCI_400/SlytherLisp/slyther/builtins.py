@@ -460,16 +460,15 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     NIL
     """
 
-    res = NIL
-    length = len(se)
-    for index, x in enumerate(se):
-        if index == length - 1:
-            return x
-        y = lisp_eval(x, stg)
-        res = y
-        if not y:
-            return y
-    return res
+    result = NIL
+    for i, item in enumerate(se):
+        if i == len(se) - 1:
+            return item
+        next_ = lisp_eval(item, stg)
+        result = next_
+        if not next_:
+            return next_
+    return result
 
 
 @BuiltinMacro('or')
@@ -504,16 +503,15 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     NIL
     """
 
-    res = NIL
-    length = len(se)
-    for index, x in enumerate(se):
-        if index == length - 1:
-            return x
-        y = lisp_eval(x, stg)
-        res = y
-        if y:
-            return y
-    return res
+    result = NIL
+    for i, item in enumerate(se):
+        if i == len(se) - 1:
+            return item
+        next_ = lisp_eval(item, stg)
+        result = next_
+        if next_:
+            return next_
+    return result
 
 
 @BuiltinMacro('set!')
