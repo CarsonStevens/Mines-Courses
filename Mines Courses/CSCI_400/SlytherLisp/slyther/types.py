@@ -642,7 +642,6 @@ class UserFunction(Function):
         ``LexicalVarStorage`` from the existing environ.
         """
 
-        # For Deliverable 3
         # avoid circular imports
         from slyther.evaluator import lisp_eval
 
