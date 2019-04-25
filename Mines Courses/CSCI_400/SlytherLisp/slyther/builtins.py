@@ -413,11 +413,9 @@ def cond(se: SExpression, stg: LexicalVarStorage):
     (print "x >= 15")
     """
 
-    # Loop through all parts of se
     while se is not NIL:
         if lisp_eval(se.car.car, stg):
             return se.car.cdr.car
-        # Update se to next value (to break loop)
         se = se.cdr
 
 
@@ -462,13 +460,16 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     NIL
     """
 
-    result = lisp_eval(se.car, stg)
-    se = se.cdr
-    while se is not NIL:
-        # Use and here because 'and' function
-        result = result and lisp_eval(se.car, stg)
-        se = se.cdr
-    return result
+    res = NIL
+    length = len(se)
+    for index, x in enumerate(se):
+        if index == length - 1:
+            return x
+        y = lisp_eval(x, stg)
+        res = y
+        if not y:
+            return y
+    return res
 
 
 @BuiltinMacro('or')
@@ -503,13 +504,16 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     NIL
     """
 
-    result = lisp_eval(se.car, stg)
-    se = se.cdr
-    while se is not NIL:
-        # Use 'or' here because or function
-        result = result or lisp_eval(se.car, stg)
-        se = se.cdr
-    return result
+    res = NIL
+    length = len(se)
+    for index, x in enumerate(se):
+        if index == length - 1:
+            return x
+        y = lisp_eval(x, stg)
+        res = y
+        if y:
+            return y
+    return res
 
 
 @BuiltinMacro('set!')
