@@ -461,23 +461,25 @@ def and_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(and)'), stg)
     NIL
     """
-    """ # For previous implementation
+    # For previous implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
         # Use and here because 'and' function
         result = result and lisp_eval(se.car, stg)
         se = se.cdr
+        if !result:
+            return result
     return result
-    """
-    
-    # For Deliverable 5 TCO
-    result = lisp_eval(se.car, stg)
-    se = se.cdr
-    while se is not NIL:
-        result = result and se
-        se = se.cdr
-    return result
+
+    #
+    # # For Deliverable 5 TCO
+    # result = lisp_eval(se.car, stg)
+    # se = se.cdr
+    # while se is not NIL:
+    #     result = result and se
+    #     se = se.cdr
+    # return result
 
 
 @BuiltinMacro('or')
@@ -511,22 +513,23 @@ def or_(se: SExpression, stg: LexicalVarStorage):
     >>> lisp_eval(lisp('(or)'), stg)
     NIL
     """
-    """ # For first implementation
+    # For first implementation
     result = lisp_eval(se.car, stg)
     se = se.cdr
     while se is not NIL:
         # Use 'or' here because or function
         result = result or lisp_eval(se.car, stg)
         se = se.cdr
+        if result:
+            return result
     return result
-    """
-    # D5
-    result = lisp_eval(se.car, stg)
-    se = se.cdr
-    while se is not NIL:
-        result = result or se
-        se = se.cdr
-    return result
+    # # D5
+    # result = lisp_eval(se.car, stg)
+    # se = se.cdr
+    # while se is not NIL:
+    #     result = result or se
+    #     se = se.cdr
+    # return result
 
 
 @BuiltinMacro('set!')

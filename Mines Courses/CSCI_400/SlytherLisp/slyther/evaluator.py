@@ -134,21 +134,13 @@ def lisp_eval(expr, stg: LexicalVarStorage):
     """ Handle each part of the types of expressions that can be passed in.
         The types are listed above. Some have additional cases once identified.
     """
+    """
     # THOUGHT:  could be a list of list of contents. Evaluate the whole thing,
     #           then process each sublist in order once the entire lisp eval
     #           has be executed. Then update the expr and stg with the
     #           beginning of func_contents and  func_contents holds the
     #           contents of the function and the context(stg) in a tuple.
-
-    func_contents = []
     while True:
-
-        # TCO Part
-        if len(func_contents) > 0 and expr is NIL:
-            expr = func_contents[0][0]
-            stg = func_contents[0][1]
-            func_contents.pop(0)
-            continue
 
         # NIL Case
         if expr is NIL:
@@ -200,11 +192,10 @@ def lisp_eval(expr, stg: LexicalVarStorage):
                 raise TypeError("'Symbol' object is not callable")
         else:
 
-
             # No more to process, so return
             return expr
 
-    """ # As of D$
+    """ # As of D4
     while True:
 
         # NIL Case
@@ -267,4 +258,3 @@ def lisp_eval(expr, stg: LexicalVarStorage):
         # No case, just return 'as is'
         else:
             return expr
-        """
