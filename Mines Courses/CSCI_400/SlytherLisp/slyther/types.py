@@ -642,7 +642,7 @@ class UserFunction(Function):
         ``LexicalVarStorage`` from the existing environ.
         """
 
-        """ # For Deliverable 3
+        # For Deliverable 3
         # avoid circular imports
         from slyther.evaluator import lisp_eval
 
@@ -665,8 +665,6 @@ class UserFunction(Function):
 
         # Return NIL if body was empty
         return final
-
-
 
     def __repr__(self):
         """

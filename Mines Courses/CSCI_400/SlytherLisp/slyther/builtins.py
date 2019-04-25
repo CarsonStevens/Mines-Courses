@@ -468,8 +468,6 @@ def and_(se: SExpression, stg: LexicalVarStorage):
         # Use and here because 'and' function
         result = result and lisp_eval(se.car, stg)
         se = se.cdr
-        if not result:
-            return result
     return result
 
 
@@ -511,8 +509,6 @@ def or_(se: SExpression, stg: LexicalVarStorage):
         # Use 'or' here because or function
         result = result or lisp_eval(se.car, stg)
         se = se.cdr
-        if result:
-            return result
     return result
 
 
