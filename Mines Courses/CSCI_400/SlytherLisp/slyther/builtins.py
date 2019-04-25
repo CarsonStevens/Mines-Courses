@@ -468,7 +468,7 @@ def and_(se: SExpression, stg: LexicalVarStorage):
         # Use and here because 'and' function
         result = result and lisp_eval(se.car, stg)
         se = se.cdr
-        if !result:
+        if not result:
             return result
     return result
 
