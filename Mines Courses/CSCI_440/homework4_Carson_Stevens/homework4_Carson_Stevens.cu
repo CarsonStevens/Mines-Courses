@@ -9,43 +9,32 @@
 
 using namespace std;
 
-template <unsigned int blockSize>
 __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
-    extern __shared__ unsigned int sdata[];
+    extern __shared__<unsigned int> smem[];
+
+    // perform first level of reduction,
+    // reading from global memory, writing to shared memory
     unsigned int tid = threadIdx.x;
-    unsigned int i = blockIdx.x*(blockSize*2) + tid;
-    unsigned int gridSize = blockSize*2*gridDim.x;
-    sdata[tid] = 0;
-    while (i < n){
-        sdata[tid] += g_idata[i] + g_idata[i+blockSize];
-        i += gridSize;
-    }
+    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
+
+    smem[tid] = (i < n) ? g_idata[i] : 0;
+    if (i + blockDim.x < n)
+        smem[tid] += g_idata[i+blockDim.x];
+
     __syncthreads();
-    if (blockSize >= 512) {
-        if (tid < 256) {
-            sdata[tid] += sdata[tid + 256];
+
+    // do reduction in shared mem
+    for(unsigned int s=blockDim.x/2; s>0; s>>=1)
+    {
+        if (tid < s)
+        {
+            smem[tid] += smem[tid + s];
         }
         __syncthreads();
     }
-    if (blockSize >= 256) {
-        if (tid < 128) {
-            sdata[tid] += sdata[tid + 128];
-        }
-        __syncthreads();
-    } if (blockSize >= 128) {
-        if (tid <  64) {
-            sdata[tid] += sdata[tid +  64];
-        }
-        __syncthreads();
-    }
-    if (tid < 32){
-        if (blockSize >=  64) sdata[tid] += sdata[tid + 32];
-        if (blockSize >=  32) sdata[tid] += sdata[tid + 16];
-        if (blockSize >=  16) sdata[tid] += sdata[tid +  8];
-        if (blockSize >=   8) sdata[tid] += sdata[tid +  4];
-        if (blockSize >=   4) sdata[tid] += sdata[tid +  2];
-        if (blockSize >=   2) sdata[tid] += sdata[tid +  1]; }
-    if (tid == 0) g_odata[blockIdx.x] = sdata[0];
+
+    // write result for this block to global mem
+    if (tid == 0) g_odata[blockIdx.x] = smem[0];
 
 }
 /*
@@ -181,26 +170,17 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
 
-    int threads = 1;
-    if(N>=2) threads = 2;
-    if(N>=4) threads = 4;
-    if(N>=8) threads = 8;
-    if(N>=16) threads = 16;
-    if(N>=32) threads = 32;
-    if(N>=64) threads = 64;
-    if(N>=128) threads = 128;
-    if(N>=256) threads = 256;
-    if(N>=516) threads = 516;
-    int blockDim = threads;
-    int gridSize = (N+blockDim -1)/blockDim;
-
 
     // Round up according to array size
     //gridSize = (N + blockSize - 1) / blockSize;
+    int threads = 64;
+    dim3 dimBlock(threads, 1, 1);
+    dim3 dimGrid(blocks, 1, 1);
+    int smemSize = threads * sizeof(unsigned int);
 
     // Call function
     // second blockSize for shared memory
-    scan_with_addition<16><<< gridSize, blockDim, blockDim+N >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     // copy result back
