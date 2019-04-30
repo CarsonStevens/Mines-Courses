@@ -115,7 +115,7 @@ int main(int argc, char* argv[]) {
     }
     if(check){
         cout << "Tested arrays are equivalent." << endl;
-        cout << "\tSpeed up measured at " << speedup(speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
+        cout << "\tSpeed up measured at " << speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
                 (real).count()) << "the baseline." << endl;
     }
     else{
