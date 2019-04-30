@@ -37,6 +37,11 @@ __global__ void scan_with_addition(unsigned int* sum_array, unsigned int* A_gpu,
     A_gpu[tid] = temp[out*N+tid];
 }
 
+string speedup(double baseline_duration, double duration){
+    double speedup = baseline_duration/duration;
+    return to_string(speedup) + " times ";
+}
+
 
 int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
@@ -87,9 +92,6 @@ int main(int argc, char* argv[]) {
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
 
-    // Calculate speedup
-    auto speedup = baseline/real;
-
     // copy result back
     cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned int)*N, cudaMemcpyDeviceToHost);
 
@@ -113,7 +115,8 @@ int main(int argc, char* argv[]) {
     }
     if(check){
         cout << "Tested arrays are equivalent." << endl;
-        cout << "\tSpeed up measured at " << speedup << " times the baseline." << endl;
+        cout << "\tSpeed up measured at " << speedup(speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
+                (real).count()) << "the baseline." << endl;
     }
     else{
         cout << "FAILED @ INDEX: " << break_index << endl;
