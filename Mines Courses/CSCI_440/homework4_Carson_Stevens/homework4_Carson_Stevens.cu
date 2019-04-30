@@ -10,7 +10,7 @@
 using namespace std;
 
 __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
-    extern __shared__<unsigned int> smem[];
+    extern __shared__ unsigned int smem[];
 
     // perform first level of reduction,
     // reading from global memory, writing to shared memory
@@ -174,6 +174,7 @@ int main(int argc, char* argv[]) {
     // Round up according to array size
     //gridSize = (N + blockSize - 1) / blockSize;
     int threads = 64;
+    int blocks = 64;
     dim3 dimBlock(threads, 1, 1);
     dim3 dimGrid(blocks, 1, 1);
     int smemSize = threads * sizeof(unsigned int);
