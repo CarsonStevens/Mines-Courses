@@ -12,22 +12,18 @@ using namespace std;
 __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata, int n){
     extern __shared__ unsigned int smem[];
 
-    // perform first level of reduction,
-    // reading from global memory, writing to shared memory
+    // load shared mem
     unsigned int tid = threadIdx.x;
-    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
+    unsigned int i = blockIdx.x*blockDim.x + threadIdx.x;
 
     smem[tid] = (i < n) ? g_idata[i] : 0;
-    if (i + blockDim.x < n)
-        smem[tid] += g_idata[i+blockDim.x];
 
     __syncthreads();
 
     // do reduction in shared mem
-    for(unsigned int s=blockDim.x/2; s>0; s>>=1)
-    {
-        if (tid < s)
-        {
+    for(unsigned int s=1; s < blockDim.x; s *= 2) {
+        // modulo arithmetic is slow!
+        if ((tid % (2*s)) == 0) {
             smem[tid] += smem[tid + s];
         }
         __syncthreads();
@@ -36,97 +32,32 @@ __global__ void scan_with_addition(unsigned int* g_idata, unsigned int* g_odata,
     // write result for this block to global mem
     if (tid == 0) g_odata[blockIdx.x] = smem[0];
 
-}
-/*
- * Uses the cache array as a buffer to store the partial results of the last
- * 2 in shared memory. This way threads have access to the last two elements
- * and the array can be built in a hand over hand style, but with layers of depth.
- * each time a element is added, a new thread can be created to process the element
- * behind it. In this manner, it works almost like a pipeline of addition with hand
- * over hand locking on a list, but but multiple lists at an increased depth of one
- * for each new element traversed.
- */
-
-//__global__ void scan_with_addition(unsigned long long int *sum_array, unsigned long long int *A_gpu, int n){
+//    // perform first level of reduction,
+//    // reading from global memory, writing to shared memory
+//    unsigned int tid = threadIdx.x;
+//    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
 //
-//    extern __shared__ unsigned long long int cache[]; // allocated on invocation
+//    smem[tid] = (i < n) ? g_idata[i] : 0;
+//    if (i + blockDim.x < n)
+//        smem[tid] += g_idata[i+blockDim.x];
 //
-//    int thid = threadIdx.x;
-//    int pout = 0, pin = 1;
-//    // load input into shared memory.
-//    // This is exclusive scan, so shift right by one and set first elt to 0
-//    cache[pout*n + thid] = (thid > 0) ? sum_array[thid-1] : 0;
 //    __syncthreads();
-//    for (int offset = 1; offset < n; offset *= 2)
+//
+//    // do reduction in shared mem
+//    for(unsigned int s=blockDim.x/2; s>0; s>>=1)
 //    {
-//        pout = 1 - pout; // swap double buffer indices
-//        pin = 1 - pout;
-//        if (thid >= offset) {
-//            cache[pout * n + thid] += cache[pin * n + thid - offset];
-//        }
-//        else {
-//            cache[pout * n + thid] = cache[pin * n + thid];
+//        if (tid < s)
+//        {
+//            smem[tid] += smem[tid + s];
 //        }
 //        __syncthreads();
 //    }
-//    A_gpu[thid] = cache[pout*n+thid]; // write output
-//}
+//
+//    // write result for this block to global mem
+//    if (tid == 0) g_odata[blockIdx.x] = smem[0];
 
-/*
- * The idea is to build a balanced binary tree on the input data and
- * sweep it to and from the root to compute the prefix sum. The algorithm
- * consists of two phases: the reduce phase (also known as the up-sweep
- * phase) and the down-sweep phase. In the reduce phase we traverse the
- * tree from leaves to root computing partial sums at internal nodes of
- * the tree, as shown in Figure 2. This is also known as a parallel reduction,
- * because after this phase, the root node (the last node in the array)
- * holds the sum of all nodes in the array. In the down-sweep phase,
- * we traverse back up the tree from the root, using the partial sums to
- * build the scan in place on the array using the partial sums computed
- * by the reduce phase. Only works with arrays up to size 1024 on GX80;
- */
+}
 
-//__global__ void scan_with_addition(int *sum_array, int *A_gpu, int n){
-//
-//    extern __shared__ int temp[];
-//    int thIdx = threadIdx.x;
-//    int offset = 1;
-//
-//    //load input into shared memory
-//    temp[2*thIdx] = sum_array[2*thIdx];
-//    temp[2*thIdx+1] = sum_array[2*thIdx+1];
-//
-//    //build sum inplace up the tree
-//    for(int d = n>>1; d > 0; d >>= 1){
-//        __syncthreads();
-//
-//        if(thIdx < d){
-//            int ai = offset * (2*thIdx+1)-1;
-//            int bi = offset * (2*thIdx+2)-1;
-//
-//            temp[bi] += temp[ai];
-//        }
-//        offset *= 2;
-//    }
-//    // clear the last element
-//    if(thIdx == 0){ temp[n-1] = 0; }
-//    for(int d = 1; d < n; d *= 2){
-//        offset >>= 1;
-//        __syncthreads();
-//        if(thIdx < d){
-//            int ai = offset *(2*thIdx+1)-1;
-//            int bi = offset *(2*thIdx+2)-1;
-//
-//            int t = temp[ai];
-//            temp[ai] = temp[bi];
-//            temp[bi] = t;
-//        }
-//    }
-//    __syncthreads();
-//
-//    A_gpu[2*thIdx] = temp[2*thIdx];
-//    A_gpu[2*thIdx+1] = temp[2*thIdx+1];
-//}
 
 
 
