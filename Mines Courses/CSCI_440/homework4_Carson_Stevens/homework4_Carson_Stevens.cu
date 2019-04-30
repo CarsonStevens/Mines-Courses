@@ -60,11 +60,14 @@ int main(int argc, char* argv[]) {
     }
 
     // Compute A_cpu
+    auto start = chrono::high_resolution_clock::now();
     A_cpu[0] = 0;
     for(int i = 1; i < N; i++){
         A_cpu[i] = sum_array[i-1] + A_cpu[i-1];
         //cout << A_cpu[i] << endl;
     }
+    auto stop = chrono::high_resolution_clock::now();
+    auto baseline = stop = start;
 
 
     ///////////////////////////////////////////
@@ -77,8 +80,14 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
 
     // Call function
+    start = chrono::high_resolution_clock::now();
     scan_with_addition<<< 1, N, 2*N*sizeof(unsigned int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
+    stop = chrono::high_resolution_clock::now();
+    auto real = stop - start;
+
+    // Calculate speedup
+    auto speedup = baseline/real;
 
     // copy result back
     cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned int)*N, cudaMemcpyDeviceToHost);
@@ -88,21 +97,22 @@ int main(int argc, char* argv[]) {
 
 
     /////////////////////////////////////////////////
-    // TESING/VALIDITY
+    // TESTING/VALIDITY
     /////////////////////////////////////////////////
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
     int break_index = 0;
     for(int i = 0; i < N; i++){
-        cout << "GPU:\t" << A_gpu[i] << endl << "CPU:\t" << A_cpu[i] << endl << endl;
+        //cout << "GPU:\t" << A_gpu[i] << endl << "CPU:\t" << A_cpu[i] << endl << endl;
         if(A_gpu[i] != A_cpu[i]){
             check = false;
             break_index = i;
-            //break;
+            break;
         }
     }
     if(check){
         cout << "Tested arrays are equivalent." << endl;
+        cout << "\tSpeed up measured at " << speedup << " times the baseline." << endl;
     }
     else{
         cout << "FAILED @ INDEX: " << break_index << endl;
