@@ -174,7 +174,7 @@ int main(int argc, char* argv[]) {
     // Round up according to array size
     //gridSize = (N + blockSize - 1) / blockSize;
     int threads = 64;
-    int blocks = 64;
+    int blocks = 2;
     dim3 dimBlock(threads, 1, 1);
     dim3 dimGrid(blocks, 1, 1);
     int smemSize = threads * sizeof(unsigned int);
