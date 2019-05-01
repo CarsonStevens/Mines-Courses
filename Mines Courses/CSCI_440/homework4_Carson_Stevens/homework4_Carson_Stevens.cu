@@ -8,7 +8,13 @@
 #include <ctime>
 #include <chrono>
 
+
 using namespace std;
+
+
+#define thread_num 4
+#define block_num 2
+
 
 __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     int tid = threadIdx.x;
@@ -135,8 +141,7 @@ int main(int argc, char *argv[]) {
 
 //    dim3  blocksize(N);
 //    dim3 gridsize(1);
-    int thread_num = 4;
-    int block_num = 2;
+
     // Call function
     start = chrono::high_resolution_clock::now();
     //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
