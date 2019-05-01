@@ -148,10 +148,10 @@ int main(int argc, char *argv[]) {
     start = chrono::high_resolution_clock::now();
 
     // Most basic implementation (only works for N up to 1024; blocksize)
-    //scan_with_addition_naive<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition_naive<<< 1, N>>>(dev_sum_array, dev_A_gpu, N);
 
     // More parallelized version, but still only works for N up to 1024; blocksize
-    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    //scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     //Stop the clock
@@ -273,8 +273,8 @@ int main(int argc, char *argv[]) {
         }
     }
     if(check){
-        cout << "Tested arrays are equivalent." << endl;
-        cout << "\tSpeed up measured at " << speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
+        cout << "\t> Tested arrays are equivalent." << endl;
+        cout << "\t\t> Speed up measured at " << speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
                 (real).count()) << "the baseline." << endl;
     }
     else{
