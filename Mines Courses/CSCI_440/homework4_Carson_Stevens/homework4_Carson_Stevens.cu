@@ -37,34 +37,6 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
-__global__ void reduce(int *g_idata, int *g_odata) {
-
-    __shared__ int sdata[256];
-
-    // each thread loads one element from global to shared mem
-    // note use of 1D thread indices (only) in this kernel
-    int i = blockIdx.x*blockDim.x + threadIdx.x;
-
-    sdata[threadIdx.x] = g_idata[i];
-
-    __syncthreads();
-    // do reduction in shared mem
-    for (int s=1; s < blockDim.x; s *=2)
-    {
-        int index = 2 * s * threadIdx.x;;
-
-        if (index < blockDim.x)
-        {
-            sdata[index] += sdata[index + s];
-        }
-        __syncthreads();
-    }
-
-    // write result for this block to global mem
-    if (threadIdx.x == 0)
-        atomicAdd(g_odata,sdata[0]);
-}
-
 
 string speedup(double baseline_duration, double duration){
     double speedup = baseline_duration/duration;
@@ -115,12 +87,12 @@ int main(int argc, char* argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int)*N, cudaMemcpyHostToDevice);
 
-    dim3  blocksize(256);
+    dim3  blocksize(N);
     dim3 gridsize(N/blocksize.x);
     // Call function
     start = chrono::high_resolution_clock::now();
-    reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
-    //scan_with_addition_nonoptimized<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
+    scan_with_addition<<< gridsize, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
