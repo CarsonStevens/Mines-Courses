@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu" description="    cudaMemcpy(dev_sum_array, sum_array, sizeof(in..." line="142" />
+    <bookmark url="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu" description="    cudaMemcpy(dev_sum_array, sum_array, sizeof(in..." line="159" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
@@ -33,10 +33,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+            <state relative-caret-position="373">
+              <caret line="283" column="59" lean-forward="true" selection-start-line="283" selection-start-column="59" selection-end-line="283" selection-end-column="59" />
               <folding>
-                <element signature="e#41#60#0" expanded="true" />
+                <element signature="e#12#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,7 +182,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57473000" />
+    <option name="totallyTimeSpent" value="58260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
@@ -334,10 +334,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+        <state relative-caret-position="373">
+          <caret line="283" column="59" lean-forward="true" selection-start-line="283" selection-start-column="59" selection-end-line="283" selection-end-column="59" />
           <folding>
-            <element signature="e#41#60#0" expanded="true" />
+            <element signature="e#12#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

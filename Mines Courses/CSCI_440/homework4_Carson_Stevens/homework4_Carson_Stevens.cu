@@ -1,6 +1,17 @@
-//
-// Created by steve on 4/19/2019.
-//
+/*
+ * Author: Carson Stevens
+ *
+ * Date: April 30, 2019
+ *
+ * CSCI 440 HW4
+ *
+ * Description: Implement prefix sum scan for an array of size N
+ *
+ * Comments: Version only works for arrays up to size 1024, BUT
+ *           Commented out version attempts to solve this issue.
+ *           Also noted that speed up would be better shown with
+ *           the larger arrays.
+ */
 
 #include <iostream>
 #include <cstdlib>
@@ -95,12 +106,16 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
 //    }
 //}
 
+/*
+ * Helper function to help print results
+ */
 string speedup(double baseline_duration, double duration) {
     double speedup = baseline_duration / duration;
     return to_string(speedup) + " times ";
 }
 
 int main(int argc, char *argv[]) {
+
     ///////////////////////////////////////////
     //SETUP
     ///////////////////////////////////////////
@@ -116,6 +131,7 @@ int main(int argc, char *argv[]) {
     ///////////////////////////////////////////
     // Array Initialization
     ///////////////////////////////////////////
+
 
     // Initialize array to be summed
     for (int i = 0; i < N; i++) {
@@ -137,6 +153,7 @@ int main(int argc, char *argv[]) {
     // CUDA
     ///////////////////////////////////////////
 
+
     // copy data to device
     cudaMalloc((void **) &dev_sum_array, sizeof(int) * N);
     cudaMalloc((void **) &dev_A_gpu, sizeof(int) * N);
@@ -148,10 +165,10 @@ int main(int argc, char *argv[]) {
     start = chrono::high_resolution_clock::now();
 
     // Most basic implementation (only works for N up to 1024; blocksize)
-    scan_with_addition_naive<<< 1, N>>>(dev_sum_array, dev_A_gpu, N);
+    //scan_with_addition_naive<<< 1, N>>>(dev_sum_array, dev_A_gpu, N);
 
     // More parallelized version, but still only works for N up to 1024; blocksize
-    //scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     //Stop the clock
@@ -160,17 +177,21 @@ int main(int argc, char *argv[]) {
 
 
     /*
-     * Attempt to allow for arbitrary sized array (N > 1024). The problem with the examples
+     * I understand that the above ones do not work with N > 1024 because each block can only
+     * hold twice the number of threads (E.G 512 maximum block size = 1024 threads). Below is
+     * how I attempted to fix this problem.
+     *
+     * Attempt to allow for arbitrary sized array (N > 1024): The problem with the examples
      * above is that they only operate with the length of one block. To make this work for
-     * any size array. The original array needs to be parsed up into blocks and each individual
+     * any size array, the original array needs to be parsed up into blocks and each individual
      * block then goes through the reduction. Then after the reduction. The blocks then must
      * undergo their own reduction that adds all of the blocks back into the outputted array.
      *
      * The implementation I tried didn't end up working, but was supposed to take in the size N
      * and then figure out how many blocks would need to be processed. To do this, the equation
-     * (N-1)/512 gives the amount of total block iterations there will be. Since a block can
-     * have 1024 threads, the maximum block size is 1024. Arrays larger than that should be broken
-     * into their own chunks of 1024 elements.
+     * (N-1)/512 gives the amount of total block iterations there will be. (Since a block's maximum
+     * size is 512, it can have 1024 threads). Arrays larger than that should be broken
+     * into their own chunks of 1024 or less elements.
      *
      * The application of these different blocks is seen in the dimGrid feature that should be the
      * dimensions of the amount of chunks described in the paragraph above. As far as the function
@@ -255,11 +276,10 @@ int main(int argc, char *argv[]) {
     cudaFree(dev_A_gpu);
 
 
-
-
     /////////////////////////////////////////////////
     // TESTING/VALIDITY
     /////////////////////////////////////////////////
+
 
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
@@ -275,10 +295,10 @@ int main(int argc, char *argv[]) {
     if(check){
         cout << "\t> Tested arrays are equivalent." << endl;
         cout << "\t\t> Speed up measured at " << speedup(chrono::duration <double, milli> (baseline).count(), chrono::duration <double, milli>
-                (real).count()) << "the baseline." << endl;
+                (real).count()) << "the baseline." << endl << endl;
     }
     else{
-        cout << "FAILED @ INDEX: " << break_index << endl;
+        cout << "FAILED @ INDEX: " << break_index << endl << endl;
     }
 
     return 0;
