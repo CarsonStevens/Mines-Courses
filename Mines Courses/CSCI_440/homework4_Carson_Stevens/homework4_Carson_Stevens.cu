@@ -11,19 +11,30 @@
 
 using namespace std;
 
+/*
+ * Working kernel that has no manual parallelization
+ */
+__global__ void scan_with_addition_naive(int* sum_array, int* A_gpu, const int N){
+    A_gpu[0] = 0;
+    atomic{
+        for(int i = 1; i < N; i++){
+            A_gpu[i] = A_gpu[i-1] + sum_array[i-1];
+        }
+    }
+}
 
-#define thread_num 4
-#define block_num 2
-
-
+/*
+ * Kernel that parallelizes the scan/sum, but only works for N <= 1024
+ */
 __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
-    int tid = threadIdx.x;
-    extern __shared__ int temp[];
 
+    extern __shared__ int cache[];
+
+    int tid = threadIdx.x;
     int out = 0;
     int in = 1;
 
-    temp[tid] = (tid > 0) ? sum_array[tid-1] : 0;
+    cache[tid] = (tid > 0) ? sum_array[tid - 1] : 0;
     __syncthreads();
 
     for(int offset=1; offset < N; offset *= 2){
@@ -31,88 +42,60 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
         in = 1 - out;
 
         if(tid >= offset){
-            temp[out*N+tid] = temp[in*N+tid-offset] + temp[in*N+tid];
+            cache[out * N + tid] = cache[in * N + tid - offset] + cache[in * N + tid];
         }
         else{
-            temp[out*N+tid] = temp[in*N+tid];
+            cache[out * N + tid] = cache[in * N + tid];
         }
 
         __syncthreads();
     }
 
-    A_gpu[tid] = temp[out*N+tid];
+    A_gpu[tid] = cache[out * N + tid];
 }
 
-//__global__ void prescan(int *g_odata, int *g_idata, const int N){
-//    extern  __shared__  int temp[];
-//    int thid = threadIdx.x;
-//    int offset = 1;
-//    temp[2*thid] = g_idata[2*thid];
-//    temp[2*thid+1] = g_idata[2*thid+1];
+/*
+ *  Arbitrary sized array implementation (N > 1024). Discussed below in main
+ */
+
+//__global__ void reduce(int *sum_array, int *A_gpu, const int N){
+//    extern __shared__ smem[];
+//    int *block_cache = smem.getPointer();
 //
-//    for(int d = N>>1; d > 0; d >>= 1){
-//        __syncthreads();
-//        if(thid < d){
-//            int ai = offset*(2*thid+1)-1;
-//            int bi = offset*(2*thid+2)-1;
-//        }
-//        offset *= 2;
+//    // perform first level of reduction,
+//    // reading from global memory, writing to shared memory
+//    unsigned int tid = threadIdx.x;
+//    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
+//
+//    block_cache[tid] = (i < N) ? sum_array[i] : 0;
+//    if (i + blockSize < n){
+//        block_cache[tid] += sum_array[i+blockSize];
 //    }
-//    if(thid == 0){
-//        temp[N-1] = 0;
-//    }
-//    for(int d = 1; d < N; d *= 2){
-//        offset >>= 1;
-//        __syncthreads();
-//        if(thid < d){
-//            int ai = offset*(2*thid+1)-1;
-//            int bi = offset*(2*thid+2)-1;
-//            int t = temp[ai];
-//            temp[ai] = temp[bi];
-//            temp[bi] += t;
-//        }
-//    }
+//
 //    __syncthreads();
-//    g_odata[2*thid] = temp[2*thid];
-//    g_odata[2*thid+1] = temp[2*thid+1];
+//
+//    // do reduction in shared mem
+//    for(unsigned int s = blockDim.x/2; s > 32; s>>=1){
+//        if (tid < s){
+//            block_cache[tid] += block_cache[tid + s];
+//        }
+//        __syncthreads();
+//    }
+//
+//    if (tid < 32){
+//        if (blockSize >=  64) { block_cache[tid] += block_cache[tid + 32]; __syncthreads();}
+//        if (blockSize >=  32) { block_cache[tid] += block_cache[tid + 16]; __syncthreads();}
+//        if (blockSize >=  16) { block_cache[tid] += block_cache[tid +  8]; __syncthreads();}
+//        if (blockSize >=   8) { block_cache[tid] += block_cache[tid +  4]; __syncthreads();}
+//        if (blockSize >=   4) { block_cache[tid] += block_cache[tid +  2]; __syncthreads();}
+//        if (blockSize >=   2) { block_cache[tid] += block_cache[tid +  1]; __syncthreads();}
+//    }
+//
+//    // write result for this block to global mem
+//    if (tid == 0){
+//        A_gpu[blockIdx.x] = block_cache[0];
+//    }
 //}
-
-__global__ void reduce(int *g_idata, int *g_odata, const int n){
-    extern __shared__ smem[];
-    int *sdata = smem.getPointer();
-
-    // perform first level of reduction,
-    // reading from global memory, writing to shared memory
-    unsigned int tid = threadIdx.x;
-    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
-
-    sdata[tid] = (i < n) ? g_idata[i] : 0;
-    if (i + blockSize < n){
-        sdata[tid] += g_idata[i+blockSize];
-    }
-
-    __syncthreads();
-
-    // do reduction in shared mem
-    for(unsigned int s=blockDim.x/2; s>32; s>>=1){
-        if (tid < s){
-            sdata[tid] += sdata[tid + s];
-        }
-        __syncthreads();
-    }
-
-    if (tid < 32){
-        if (blockSize >=  64) { sdata[tid] += sdata[tid + 32]; EMUSYNC; }
-        if (blockSize >=  32) { sdata[tid] += sdata[tid + 16]; EMUSYNC; }
-        if (blockSize >=  16) { sdata[tid] += sdata[tid +  8]; EMUSYNC; }
-        if (blockSize >=   8) { sdata[tid] += sdata[tid +  4]; EMUSYNC; }
-        if (blockSize >=   4) { sdata[tid] += sdata[tid +  2]; EMUSYNC; }
-        if (blockSize >=   2) { sdata[tid] += sdata[tid +  1]; EMUSYNC; }
-    }
-
-    // write result for this block to global mem
-    if (tid == 0) g_odata[blockIdx.x] = sdata[0];
-}
 
 string speedup(double baseline_duration, double duration) {
     double speedup = baseline_duration / duration;
@@ -162,85 +145,109 @@ int main(int argc, char *argv[]) {
     cudaMemcpy(dev_sum_array, sum_array, sizeof(int) * N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int) * N, cudaMemcpyHostToDevice);
 
-//    dim3  blocksize(N);
-//    dim3 gridsize(1);
 
-    // Call function
+    // Call function: start clock
     start = chrono::high_resolution_clock::now();
-    //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
-    //prescan<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
-    int threads = 512;
-    int blocks = 1;
-    if (N > 512) {
-        threads = 512;
-        blocks = (N-1 / threads) + 1;
-    }
 
-    if(N > 512) {
-        threads = 512;
-    } else if (N > 256) {
-        threads = 256;
-    } else if (N > 128) {
-        threads = 128;
-    } else if (N > 64) {
-        threads = 64;
-    } else if (N > 32) {
-        threads = 32;
-    } else if (N > 16) {
-        threads = 16;
-    } else if (N > 8) {
-        threads = 8;
-    } else if (N > 4) {
-        threads = 4;
-    } else if (N > 2){
-        threads = 2;
-    } else{
-        threads = 1;
-    }
+    // Most basic implementation (only works for N up to 1024; blocksize)
+    //scan_with_addition()<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
 
-    dim3 dimBlock(threads, 1, 1);
-    dim3 dimGrid(blocks, 1, 1);
-    int smemSize = threads * sizeof(int);
-
-    switch (threads) {
-
-        case 512:
-            reduce < 512 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 256:
-            reduce < 256 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 128:
-            reduce < 128 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 64:
-            reduce < 64 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 32:
-            reduce < 32 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 16:
-            reduce < 16 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 8:
-            reduce < 8 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 4:
-            reduce < 4 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 2:
-            reduce < 2 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-        case 1:
-            reduce < 1 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
-            break;
-    }
+    // More parallelized version, but still only works for N up to 1024; blocksize
+    scan_with_addition()<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
-    //}
 
-
+    //Stop the clock
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
+
+
+    /*
+     * Attempt to allow for arbitrary sized array (N > 1024). The problem with the examples
+     * above is that they only operate with the length of one block. To make this work for
+     * any size array. The original array needs to be parsed up into blocks and each individual
+     * block then goes through the reduction. Then after the reduction. The blocks then must
+     * undergo their own reduction that adds all of the blocks back into the outputted array.
+     *
+     * The implementation I tried didn't end up working, but was supposed to take in the size N
+     * and then figure out how many blocks would need to be processed. To do this, the equation
+     * (N-1)/512 gives the amount of total block iterations there will be. Since a block can
+     * have 1024 threads, the maximum block size is 1024. Arrays larger than that should be broken
+     * into their own chunks of 1024 elements.
+     *
+     * The application of these different blocks is seen in the dimGrid feature that should be the
+     * dimensions of the amount of chunks described in the paragraph above. As far as the function
+     * goes, the getPointer allows the different blocks to share the same shared memory resolving
+     * memory issues.
+     */
+
+
+//    int threads = 512;
+//    int blocks = 1;
+//    if (N > 512) {
+//        threads = 512;
+//        blocks = (N-1 / threads);
+//    }
+//
+//    if(N > 512) {
+//        threads = 512;
+//    } else if (N > 256) {
+//        threads = 256;
+//    } else if (N > 128) {
+//        threads = 128;
+//    } else if (N > 64) {
+//        threads = 64;
+//    } else if (N > 32) {
+//        threads = 32;
+//    } else if (N > 16) {
+//        threads = 16;
+//    } else if (N > 8) {
+//        threads = 8;
+//    } else if (N > 4) {
+//        threads = 4;
+//    } else if (N > 2){
+//        threads = 2;
+//    } else{
+//        threads = 1;
+//    }
+//
+//    dim3 dimBlock(threads, 1, 1);
+//    dim3 dimGrid(blocks, 1, 1);
+//    int smemSize = threads * sizeof(int);
+//
+//    switch (threads) {
+//
+//        case 512:
+//            reduce < 512 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 256:
+//            reduce < 256 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 128:
+//            reduce < 128 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 64:
+//            reduce < 64 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 32:
+//            reduce < 32 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 16:
+//            reduce < 16 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 8:
+//            reduce < 8 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 4:
+//            reduce < 4 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 2:
+//            reduce < 2 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//        case 1:
+//            reduce < 1 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+//            break;
+//    }
+
 
     // copy result back
     cudaMemcpy(A_gpu, dev_A_gpu, sizeof(int)*N, cudaMemcpyDeviceToHost);
@@ -255,6 +262,7 @@ int main(int argc, char *argv[]) {
     /////////////////////////////////////////////////
     // TESTING/VALIDITY
     /////////////////////////////////////////////////
+
     cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
     int break_index = 0;
