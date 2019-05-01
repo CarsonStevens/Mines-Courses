@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
         //cout << A_cpu[i] << endl;
     }
     auto stop = chrono::high_resolution_clock::now();
-    auto baseline = stop = start;
+    auto baseline = stop - start;
 
 
     ///////////////////////////////////////////
