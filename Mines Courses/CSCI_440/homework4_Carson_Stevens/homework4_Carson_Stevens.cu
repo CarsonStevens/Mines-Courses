@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     start = chrono::high_resolution_clock::now();
-    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< N, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
