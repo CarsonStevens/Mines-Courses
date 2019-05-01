@@ -16,11 +16,9 @@ using namespace std;
  */
 __global__ void scan_with_addition_naive(int* sum_array, int* A_gpu, const int N){
     A_gpu[0] = 0;
-    atomic{
-        for(int i = 1; i < N; i++){
-            A_gpu[i] = A_gpu[i-1] + sum_array[i-1];
-        }
-    };
+    for(int i = 1; i < N; i++){
+        A_gpu[i] = A_gpu[i-1] + sum_array[i-1];
+    }
 }
 
 /*
