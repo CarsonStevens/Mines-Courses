@@ -41,7 +41,7 @@ __global__ void scan_with_addition_nonoptimized(int* sum_array, int* A_gpu, cons
     extern __shared__ int cache[];
 
     unsigned int tid = threadIdx.x;
-    unsigned int i = blockIdx.x*blockDim.x + threadIdx;
+    unsigned int i = blockIdx.x * blockDim.x + threadIdx.x;
     cache[tid] = sum_array[i];
     __syncthreads();
 
