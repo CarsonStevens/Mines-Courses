@@ -119,7 +119,7 @@ int main(int argc, char* argv[]) {
     dim3 gridsize(N/blocksize.x);
     // Call function
     start = chrono::high_resolution_clock::now();
-    reduce<<<gridsize, blocksize>>(dev_a,dev_b);
+    reduce<<<gridsize, blocksize>>(dev_sum_array,dev_A_gpu);
     //scan_with_addition_nonoptimized<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
