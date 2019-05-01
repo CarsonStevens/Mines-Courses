@@ -106,8 +106,8 @@ int main(int argc, char* argv[]) {
     bool check = true;
     int break_index = 0;
     for(int i = 0; i < N; i++){
-        //cout << "GPU:\t" << A_gpu[i] << endl << "CPU:\t" << A_cpu[i] << endl << endl;
         if(A_gpu[i] != A_cpu[i]){
+            cout << "GPU:\t" << A_gpu[i] << endl << "CPU:\t" << A_cpu[i] << endl << endl;
             check = false;
             break_index = i;
             break;
