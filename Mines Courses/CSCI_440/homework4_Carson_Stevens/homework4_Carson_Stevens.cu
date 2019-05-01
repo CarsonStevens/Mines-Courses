@@ -77,6 +77,42 @@ __global__ void prescan(int *g_odata, int *g_idata, const int N){
     g_odata[2*thid+1] = temp[2*thid+1];
 }
 
+__global__ void reduce(int *g_idata, int *g_odata, const int n){
+    extern __shared__ smem[];
+    int *sdata = smem.getPointer();
+
+    // perform first level of reduction,
+    // reading from global memory, writing to shared memory
+    unsigned int tid = threadIdx.x;
+    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
+
+    sdata[tid] = (i < n) ? g_idata[i] : 0;
+    if (i + blockSize < n){
+        sdata[tid] += g_idata[i+blockSize];
+    }
+
+    __syncthreads();
+
+    // do reduction in shared mem
+    for(unsigned int s=blockDim.x/2; s>32; s>>=1){
+        if (tid < s){
+            sdata[tid] += sdata[tid + s];
+        }
+        __syncthreads();
+    }
+
+    if (tid < 32){
+        if (blockSize >=  64) { sdata[tid] += sdata[tid + 32]; EMUSYNC; }
+        if (blockSize >=  32) { sdata[tid] += sdata[tid + 16]; EMUSYNC; }
+        if (blockSize >=  16) { sdata[tid] += sdata[tid +  8]; EMUSYNC; }
+        if (blockSize >=   8) { sdata[tid] += sdata[tid +  4]; EMUSYNC; }
+        if (blockSize >=   4) { sdata[tid] += sdata[tid +  2]; EMUSYNC; }
+        if (blockSize >=   2) { sdata[tid] += sdata[tid +  1]; EMUSYNC; }
+    }
+
+    // write result for this block to global mem
+    if (tid == 0) g_odata[blockIdx.x] = sdata[0];
+}
 
 string speedup(double baseline_duration, double duration) {
     double speedup = baseline_duration / duration;
@@ -123,8 +159,8 @@ int main(int argc, char *argv[]) {
     // copy data to device
     cudaMalloc((void **) &dev_sum_array, sizeof(int) * N);
     cudaMalloc((void **) &dev_A_gpu, sizeof(int) * N);
-    cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int)*N, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_sum_array, sum_array, sizeof(int) * N, cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int) * N, cudaMemcpyHostToDevice);
 
 //    dim3  blocksize(N);
 //    dim3 gridsize(1);
@@ -132,8 +168,77 @@ int main(int argc, char *argv[]) {
     // Call function
     start = chrono::high_resolution_clock::now();
     //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
-    prescan<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    //prescan<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    int threads = 512;
+    int blocks = 1;
+    if (N > 512) {
+        threads = 512;
+        blocks = (N-1 / threads) + 1;
+    }
+
+    if(N > 512) {
+        threads = 512;
+    } else if (N > 256) {
+        threads = 256;
+    } else if (N > 128) {
+        threads = 128;
+    } else if (N > 64) {
+        threads = 64;
+    } else if (N > 32) {
+        threads = 32;
+    } else if (N > 16) {
+        threads = 16;
+    } else if (N > 8) {
+        threads = 8;
+    } else if (N > 4) {
+        threads = 4;
+    } else if (N > 2){
+        threads = 2;
+    } else{
+        threads = 1;
+    }
+
+    dim3 dimBlock(threads, 1, 1);
+    dim3 dimGrid(blocks, 1, 1);
+    int smemSize = threads * sizeof(int);
+
+    switch (threads) {
+
+        case 512:
+            reduce < 512 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 256:
+            reduce < 256 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 128:
+            reduce < 128 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 64:
+            reduce < 64 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 32:
+            reduce < 32 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 16:
+            reduce < 16 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 8:
+            reduce < 8 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 4:
+            reduce < 4 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 2:
+            reduce < 2 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+        case 1:
+            reduce < 1 ><<<dimGrid, dimBlock, smemSize >>>(dev_sum_array, dev_A_gpu, N);
+            break;
+    }
     cudaDeviceSynchronize();
+    //}
+
+
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
 
