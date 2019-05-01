@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="149">
-              <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+              <caret line="110" column="34" selection-start-line="110" selection-start-column="34" selection-end-line="110" selection-end-column="34" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
@@ -179,7 +179,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45150000" />
+    <option name="totallyTimeSpent" value="45943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="30" width="709" height="761" extended-state="0" />
@@ -332,7 +332,7 @@
     <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+          <caret line="110" column="34" selection-start-line="110" selection-start-column="34" selection-end-line="110" selection-end-column="34" />
           <folding>
             <element signature="e#41#60#0" expanded="true" />
           </folding>

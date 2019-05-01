@@ -37,6 +37,25 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
+__global__ void scan_with_addition_nonoptimized(int* sum_array, int* A_gpu, const int N){
+    extern __shared__ int cache[];
+
+    unsigned int tid = threadIdx.x;
+    unsigned int i = blockIdx.x*blockDim.x + threadIdx;
+    cache[tid] = sum_array[i];
+    __sync_threads();
+
+    for(unsigned int s = 1; s < blockDim.x; s*=2){
+        if (tid % (2*s) == 0){
+            cache[tid] += cache[tid+s];
+        }
+        syncthreads();
+    }
+    if(tid == 0){
+        A_gpu[blockIdx.x] = cache[0];
+    }
+}
+
 string speedup(double baseline_duration, double duration){
     double speedup = baseline_duration/duration;
     return to_string(speedup) + " times ";
@@ -87,7 +106,7 @@ int main(int argc, char* argv[]) {
 
     // Call function
     start = chrono::high_resolution_clock::now();
-    scan_with_addition<<< N, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition_nonoptimized<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
