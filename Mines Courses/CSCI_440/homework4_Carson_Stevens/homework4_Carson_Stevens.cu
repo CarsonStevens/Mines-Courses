@@ -20,7 +20,7 @@ __global__ void scan_with_addition_naive(int* sum_array, int* A_gpu, const int N
         for(int i = 1; i < N; i++){
             A_gpu[i] = A_gpu[i-1] + sum_array[i-1];
         }
-    }
+    };
 }
 
 /*
@@ -150,10 +150,10 @@ int main(int argc, char *argv[]) {
     start = chrono::high_resolution_clock::now();
 
     // Most basic implementation (only works for N up to 1024; blocksize)
-    //scan_with_addition()<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    //scan_with_addition_naive<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
 
     // More parallelized version, but still only works for N up to 1024; blocksize
-    scan_with_addition()<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
 
     //Stop the clock
