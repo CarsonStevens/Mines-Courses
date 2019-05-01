@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu" description="    cudaMemcpy(dev_sum_array, sum_array, sizeof(in..." line="106" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Mines_Courses" targetName="Mines_Courses" />
@@ -13,6 +16,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5dd7ef4d-49c6-4cbf-ba6a-e6f216396d8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu" beforeDir="false" afterPath="$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Mines_Courses.dir/depend.internal.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Mines_Courses.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Mines_Courses.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Mines_Courses.dir/depend.make.tmp" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="95" column="28" lean-forward="true" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+            <state relative-caret-position="221">
+              <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
@@ -68,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-14" />
     <option name="y" value="82" />
     <option name="width" value="1950" />
@@ -179,10 +185,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47240000" />
+    <option name="totallyTimeSpent" value="49018000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="30" width="709" height="761" extended-state="0" />
+    <frame x="-6" y="24" width="1409" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3932003" />
@@ -199,9 +205,9 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3286385" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.18196203" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.18196203" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3286385" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" visible="true" weight="0.32394367" />
       <window_info anchor="bottom" id="CMake" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -331,8 +337,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mines Courses/CSCI_440/homework4_Carson_Stevens/homework4_Carson_Stevens.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="95" column="28" lean-forward="true" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+        <state relative-caret-position="221">
+          <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
           <folding>
             <element signature="e#41#60#0" expanded="true" />
           </folding>

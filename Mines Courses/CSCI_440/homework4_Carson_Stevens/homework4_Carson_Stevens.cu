@@ -37,14 +37,34 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
-
-string speedup(double baseline_duration, double duration){
-    double speedup = baseline_duration/duration;
-    return to_string(speedup) + " times ";
+__global__ void scan(int *g_odata, int *g_idata, const int n){
+    extern __shared__ unsigned int temp[]; // allocated on invocation
+    int thid = threadIdx.x;
+    int pout = 0, pin = 1;
+    // load input into shared memory.
+    // Exclusive scan: shift right by one and set first element to 0
+    temp[thid] = (thid > 0) ? g_idata[thid-1] : 0;
+    __syncthreads();
+    for( int offset = 1; offset < n; offset <<= 1 )
+    {
+        pout = 1 - pout; // swap double buffer indices
+        pin = 1 - pout;
+        if (thid >= offset)
+            temp[pout*n+thid] += temp[pin*n+thid - offset];
+        else
+            temp[pout*n+thid] = temp[pin*n+thid];
+        __syncthreads();
+    }
+    g_odata[thid] = temp[pout*n+thid1]; // write output
 }
 
 
-int main(int argc, char* argv[]) {
+string speedup(double baseline_duration, double duration) {
+    double speedup = baseline_duration / duration;
+    return to_string(speedup) + " times ";
+}
+
+int main(int argc, char *argv[]) {
     ///////////////////////////////////////////
     //SETUP
     ///////////////////////////////////////////
@@ -62,15 +82,15 @@ int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
 
     // Initialize array to be summed
-    for(int i = 0; i < N; i++){
-        sum_array[i] = rand()%1000 + 1;
+    for (int i = 0; i < N; i++) {
+        sum_array[i] = rand() % 1000 + 1;
     }
 
     // Compute A_cpu
     auto start = chrono::high_resolution_clock::now();
     A_cpu[0] = 0;
-    for(int i = 1; i < N; i++){
-        A_cpu[i] = sum_array[i-1] + A_cpu[i-1];
+    for (int i = 1; i < N; i++) {
+        A_cpu[i] = sum_array[i - 1] + A_cpu[i - 1];
         //cout << A_cpu[i] << endl;
     }
     auto stop = chrono::high_resolution_clock::now();
@@ -82,17 +102,17 @@ int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
 
     // copy data to device
-    cudaMalloc((void **)&dev_sum_array, sizeof(int)*N);
-    cudaMalloc((void **)&dev_A_gpu, sizeof(int)*N);
+    cudaMalloc((void **) &dev_sum_array, sizeof(int) * N);
+    cudaMalloc((void **) &dev_A_gpu, sizeof(int) * N);
     cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_A_gpu, A_gpu, sizeof(int)*N, cudaMemcpyHostToDevice);
 
     dim3  blocksize(N);
-    dim3 gridsize(N/blocksize.x);
+    dim3 gridsize(1);
     // Call function
     start = chrono::high_resolution_clock::now();
     //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
-    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< gridsize, blocksize, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
@@ -103,6 +123,8 @@ int main(int argc, char* argv[]) {
     // free memory
     cudaFree(dev_sum_array);
     cudaFree(dev_A_gpu);
+
+
 
 
     /////////////////////////////////////////////////
