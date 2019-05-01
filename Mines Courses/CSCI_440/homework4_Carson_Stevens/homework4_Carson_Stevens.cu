@@ -43,7 +43,7 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
-__global__ void prescan(float *g_odata, float *g_idata, int n){
+__global__ void prescan(int *g_odata, int *g_idata, const int n){
     extern  __shared__  int temp[];
     // allocated on invocation
     int thid = threadIdx.x;
