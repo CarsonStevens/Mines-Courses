@@ -10,9 +10,9 @@
 
 using namespace std;
 
-__global__ void scan_with_addition(unsigned int* sum_array, unsigned int* A_gpu, int N) {
+__global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     int tid = threadIdx.x;
-    extern __shared__ unsigned int temp[];
+    extern __shared__ int temp[];
 
     int out = 0;
     int in = 1;
@@ -48,12 +48,12 @@ int main(int argc, char* argv[]) {
     //SETUP
     ///////////////////////////////////////////
     srand(time(0));
-    int N = atoi(argv[1]);
-    unsigned int sum_array[N];
-    unsigned int A_cpu[N];
-    unsigned int A_gpu[N];
-    unsigned int *dev_sum_array;
-    unsigned int *dev_A_gpu;
+    const int N = atoi(argv[1]);
+    int sum_array[N];
+    int A_cpu[N];
+    int A_gpu[N];
+    int *dev_sum_array;
+    int *dev_A_gpu;
 
 
     ///////////////////////////////////////////
@@ -81,19 +81,19 @@ int main(int argc, char* argv[]) {
     ///////////////////////////////////////////
 
     // copy data to device
-    cudaMalloc((void **)&dev_sum_array, sizeof(unsigned int)*N);
-    cudaMalloc((void **)&dev_A_gpu, sizeof(unsigned int)*N);
-    cudaMemcpy(dev_sum_array, sum_array, sizeof(unsigned int)*N, cudaMemcpyHostToDevice);
+    cudaMalloc((void **)&dev_sum_array, sizeof(int)*N);
+    cudaMalloc((void **)&dev_A_gpu, sizeof(int)*N);
+    cudaMemcpy(dev_sum_array, sum_array, sizeof(int)*N, cudaMemcpyHostToDevice);
 
     // Call function
     start = chrono::high_resolution_clock::now();
-    scan_with_addition<<< 1, N, 2*N*sizeof(unsigned int) >>>(dev_sum_array, dev_A_gpu, N);
+    scan_with_addition<<< 1, N, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
 
     // copy result back
-    cudaMemcpy(A_gpu, dev_A_gpu, sizeof(unsigned int)*N, cudaMemcpyDeviceToHost);
+    cudaMemcpy(A_gpu, dev_A_gpu, sizeof(int)*N, cudaMemcpyDeviceToHost);
 
     // free memory
     cudaFree(dev_sum_array);
