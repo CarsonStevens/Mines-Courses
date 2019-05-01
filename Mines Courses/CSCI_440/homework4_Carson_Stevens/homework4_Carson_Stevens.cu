@@ -37,25 +37,47 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
-__global__ void scan(int *g_odata, int *g_idata, const int n){
-    extern __shared__ unsigned int temp[]; // allocated on invocation
+__global__ void prescan(int *g_odata, int *g_idata, int n){
+    extern __shared__ int temp[];// allocated on invocation
+
+
     int thid = threadIdx.x;
-    int pout = 0, pin = 1;
-    // load input into shared memory.
-    // Exclusive scan: shift right by one and set first element to 0
-    temp[thid] = (thid > 0) ? g_idata[thid-1] : 0;
-    __syncthreads();
-    for( int offset = 1; offset < n; offset <<= 1 )
-    {
-        pout = 1 - pout; // swap double buffer indices
-        pin = 1 - pout;
-        if (thid >= offset)
-            temp[pout*n+thid] += temp[pin*n+thid - offset];
-        else
-            temp[pout*n+thid] = temp[pin*n+thid];
+    int offset = 1;
+
+    temp[2*thid] = g_idata[2*thid]; // load input into shared memory
+    temp[2*thid+1] = g_idata[2*thid+1];
+    // build sum in place up the tree
+    for (int d = n>>1; d > 0; d >>= 1){
+
+
         __syncthreads();
+
+        if (thid < d){
+            int ai = offset*(2*thid+1)-1;
+            int bi = offset*(2*thid+2)-1;
+
+            temp[bi] += temp[ai];
+        }
+        offset *= 2;
     }
-    g_odata[thid] = temp[pout*n+thid1]; // write output
+
+    if (thid == 0) { temp[n - 1] = 0; } // clear the last element
+
+    // traverse down tree & build scan
+    for (int d = 1; d < n; d *= 2){
+        offset >>= 1;
+        __syncthreads();
+        if (thid < d){
+            int ai = offset*(2*thid+1)-1;
+            int bi = offset*(2*thid+2)-1;
+            float t = temp[ai];
+            temp[ai] = temp[bi];
+            temp[bi] += t;
+        }
+    }
+    __syncthreads();
+    g_odata[2*thid] = temp[2*thid]; // write results to device memory
+    g_odata[2*thid+1] = temp[2*thid+1];
 }
 
 
@@ -112,7 +134,7 @@ int main(int argc, char *argv[]) {
     // Call function
     start = chrono::high_resolution_clock::now();
     //reduce<<< gridsize, blocksize >>>(dev_sum_array,dev_A_gpu);
-    scan_with_addition<<< gridsize, blocksize, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
+    prescan<<< gridsize, blocksize, 2*N*sizeof(int) >>>(dev_sum_array, dev_A_gpu, N);
     cudaDeviceSynchronize();
     stop = chrono::high_resolution_clock::now();
     auto real = stop - start;
