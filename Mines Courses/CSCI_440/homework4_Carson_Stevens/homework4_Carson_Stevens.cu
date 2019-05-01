@@ -66,16 +66,14 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
 /*
  *  Arbitrary sized array implementation (N > 1024). Discussed below in main
  */
-
 //__global__ void reduce(int *sum_array, int *A_gpu, const int N){
 //    extern __shared__ smem[];
 //    int *block_cache = smem.getPointer();
 //
-//    // perform first level of reduction,
-//    // reading from global memory, writing to shared memory
 //    unsigned int tid = threadIdx.x;
 //    unsigned int i = blockIdx.x*(blockDim.x*2) + threadIdx.x;
 //
+//    // do reduction for block
 //    block_cache[tid] = (i < N) ? sum_array[i] : 0;
 //    if (i + blockSize < n){
 //        block_cache[tid] += sum_array[i+blockSize];
@@ -83,7 +81,7 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
 //
 //    __syncthreads();
 //
-//    // do reduction in shared mem
+//    // do reduction For shared block cache
 //    for(unsigned int s = blockDim.x/2; s > 32; s>>=1){
 //        if (tid < s){
 //            block_cache[tid] += block_cache[tid + s];
@@ -91,6 +89,7 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
 //        __syncthreads();
 //    }
 //
+//    // Unwrap warps
 //    if (tid < 32){
 //        if (blockSize >=  64) { block_cache[tid] += block_cache[tid + 32]; __syncthreads();}
 //        if (blockSize >=  32) { block_cache[tid] += block_cache[tid + 16]; __syncthreads();}
@@ -100,7 +99,7 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
 //        if (blockSize >=   2) { block_cache[tid] += block_cache[tid +  1]; __syncthreads();}
 //    }
 //
-//    // write result for this block to global mem
+//    // write result for this block to final
 //    if (tid == 0){
 //        A_gpu[blockIdx.x] = block_cache[0];
 //    }
@@ -281,7 +280,7 @@ int main(int argc, char *argv[]) {
     /////////////////////////////////////////////////
 
 
-    cout << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
+    cout << endl << ">>>\tTESTING RESULTS BY COMPARISION\t<<<" << endl << endl;
     bool check = true;
     int break_index = 0;
     for(int i = 0; i < N; i++){
