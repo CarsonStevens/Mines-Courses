@@ -43,39 +43,39 @@ __global__ void scan_with_addition(int* sum_array, int* A_gpu, const int N) {
     A_gpu[tid] = temp[out*N+tid];
 }
 
-__global__ void prescan(int *g_odata, int *g_idata, const int N){
-    extern  __shared__  int temp[];
-    int thid = threadIdx.x;
-    int offset = 1;
-    temp[2*thid] = g_idata[2*thid];
-    temp[2*thid+1] = g_idata[2*thid+1];
-
-    for(int d = N>>1; d > 0; d >>= 1){
-        __syncthreads();
-        if(thid < d){
-            int ai = offset*(2*thid+1)-1;
-            int bi = offset*(2*thid+2)-1;
-        }
-        offset *= 2;
-    }
-    if(thid == 0){
-        temp[N-1] = 0;
-    }
-    for(int d = 1; d < N; d *= 2){
-        offset >>= 1;
-        __syncthreads();
-        if(thid < d){
-            int ai = offset*(2*thid+1)-1;
-            int bi = offset*(2*thid+2)-1;
-            int t = temp[ai];
-            temp[ai] = temp[bi];
-            temp[bi] += t;
-        }
-    }
-    __syncthreads();
-    g_odata[2*thid] = temp[2*thid];
-    g_odata[2*thid+1] = temp[2*thid+1];
-}
+//__global__ void prescan(int *g_odata, int *g_idata, const int N){
+//    extern  __shared__  int temp[];
+//    int thid = threadIdx.x;
+//    int offset = 1;
+//    temp[2*thid] = g_idata[2*thid];
+//    temp[2*thid+1] = g_idata[2*thid+1];
+//
+//    for(int d = N>>1; d > 0; d >>= 1){
+//        __syncthreads();
+//        if(thid < d){
+//            int ai = offset*(2*thid+1)-1;
+//            int bi = offset*(2*thid+2)-1;
+//        }
+//        offset *= 2;
+//    }
+//    if(thid == 0){
+//        temp[N-1] = 0;
+//    }
+//    for(int d = 1; d < N; d *= 2){
+//        offset >>= 1;
+//        __syncthreads();
+//        if(thid < d){
+//            int ai = offset*(2*thid+1)-1;
+//            int bi = offset*(2*thid+2)-1;
+//            int t = temp[ai];
+//            temp[ai] = temp[bi];
+//            temp[bi] += t;
+//        }
+//    }
+//    __syncthreads();
+//    g_odata[2*thid] = temp[2*thid];
+//    g_odata[2*thid+1] = temp[2*thid+1];
+//}
 
 __global__ void reduce(int *g_idata, int *g_odata, const int n){
     extern __shared__ smem[];
