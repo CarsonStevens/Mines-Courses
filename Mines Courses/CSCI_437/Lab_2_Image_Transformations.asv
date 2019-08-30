@@ -48,7 +48,7 @@ H = [R translation;
 Hwc = inv(H)
 
 % 2.3 Intrinsic Camera
-K = [400 0 256/2 0; 0 400 170/2 0; 0 0 1 0]
+K = [400 0 256/2; 0 400 170/2; 0 0 1]
 
 % 2.4
 width = 256
@@ -56,5 +56,5 @@ height = 170
 blank_image = zeros(height, width);
 imshow(blank_image)
 P = [p1,p2,p3,p4,p5,p6,p7]
-P_img = K*Hwc*P
-
+P_img = Hwc*P(:,3)
+ xim = P_img(1)/P_img(3)
