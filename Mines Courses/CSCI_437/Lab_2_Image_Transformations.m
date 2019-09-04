@@ -1,60 +1,94 @@
-% Consider a rotation about the X axis of 1.1 radians, followed by a 
-% rotation about the Y axis of -0.5 radians, followed by a rotation about 
-% the Z axis by 0.1 radians (this order of rotations is called the “XYZ 
-% fixed angles” convention).
-
-% 1.1 Give the 3x3 rotation matrix corresponding to the rotations above.
-Rz = [cos(0.1) -sin(0.1) 0;
-      sin(0.1) cos(0.1) 0;
-      0 0 1]
-Ry = [1 0 0;
-      0 cos(-0.5) -sin(-0.5);
-      0 sin(-0.5) cos(-0.5)]
-Rx = [cos(1.1) 0 sin(1.1) ;
-      0 1 0;
-      -sin(1.1) 0 cos(1.1)]
-
-R = Rz * Ry * Rx
-
-% 1.2 Since the rotation matrix is “orthonormal” matrix (i.e., a square matrix 
-% whose rows and columns are orthogonal unit vectors), its inverse is equal 
-% to its transpose. Show this.
-R'
-inv(R)
-if isequal(R',inv(R))
-  disp("Because orthonormal, inverse = transpose")
+%{
+Consider a rotation about the X axis of 1.1 radians, followed by a 
+rotation about the Y axis of -0.5 radians, followed by a rotation about 
+the Z axis by 0.1 radians (this order of rotations is called the “XYZ 
+fixed angles” convention).
+%}
+%{
+Give the 3x3 rotation matrix corresponding to the rotations above.
+%}
+Rx = [1 0 0; 0 cos(1.1) -sin(1.1); 0 sin(1.1) cos(1.1)];
+Ry = [cos(-0.5) 0 sin(-0.5); 0 1 0; -sin(-0.5) 0 cos(-0.5)];
+Rz = [cos(0.1) -sin(0.1) 0; sin(0.1) cos(0.1) 0; 0 0 1];
+R1 = Rz*Ry*Rx
+%{
+Since the rotation matrix is “orthonormal” matrix (i.e., a square matrix 
+whose rows and columns are orthogonal unit vectors), its inverse is equal 
+to its transpose. Show this.
+%}
+tolerance = 0.0001;
+result = (inv(R1)-(R1')) < tolerance;
+if(result == 1)
+    "within floating point tolerance which means inverse equals transpose"
 end
 
-% 1.3
-R_opposite = Rx * Ry * Rz
+%{
+Give the 3x3 rotation matrix where the same rotations described in part 
+(a) are done in the opposite order; i.e., first a rotation about the Z 
+axis of by 0.1 radians, followed by a rotation about the Y axis of -0.5 
+radians, followed by a rotation about the X axis by 1.1 radians (this 
+convention is called “ZYX fixed angles”). The matrix should be different.
+%}
+R2 = Rx*Ry*Rz
 
-if not(isequal(R_opposite, R))
-    disp("They aren't equal")
+%{
+2 A camera observes the following 7 points, defined in WORLD coordinates 
+6.8158& 7.8493& 9.9579& 8.8219& 9.5890& 10.8082& 13.2690 \\
+-35.1954& -36.1723& -25.2799& -38.3767& -28.8402& -48.8146& -58.0988 \\
+43.0640&43.7815& 40.1151& 46.6153& 42.2858& 56.1475& 59.1422
+The pose of the camera with respect to the world is given by the following:
+- Translation of camera origin with respect to the world is (10,-25,40) 
+in meters.
+- Orientation of the camera with respect to the world is given by the
+ angles provided in problem #1.
+%}
+%{
+2.1 Compute the homogeneous transformation matrix that represents the pose of 
+the camera with respect to the world, H_c_w , assuming 
+that the convention being used is “XYZ fixed angles”.
+%}
+R_c_w = R1;
+tc_w = [10;-25;40];
+H_c_w = [R_c_w tc_w; 0 0 0 1]
+
+%{
+2.2 Compute the homogeneous transformation matrix that represents the pose of 
+the world with respect to the camera, H_w_c.
+%}
+H_w_c = inv(H_c_w)
+%{
+2.3 Assume that the size of the image is 256 columns (width) by 170 rows 
+(height), with the optical center at the image center. The effective focal 
+length is 400 pixels. Write the intrinsic camera calibration matrix K.
+%}
+K = [400 0 256/2; 0 400 170/2; 0 0 1]
+%{
+2.4 Create a blank (zeros) image, and project the 7 points to the image. 
+Write white dots into the image at those points.
+%}
+image = zeros(170, 256);
+Mext = H_w_c(1:3,:);
+P_w =  [6.8158 -35.1954 43.0640 1;
+        7.8493 -36.1723 43.7815 1;
+        9.9579 -25.2799 40.1151 1;
+        8.8219 -38.3767 46.6153 1;
+        9.5890 -28.8402 42.2858 1;
+        10.8082 -48.8146 56.1475 1;
+        13.2690 -58.0988 59.1422 1]';
+pimg = K*Mext*P_w;
+for col=1:size(pimg,2)
+    pimg(:,col) = pimg(:,col) / pimg(3,col);
+    image(round(pimg(2,col)), round(pimg(1,col))) = 255;
 end
-
-% 2.1 Camera to World
-p1 = [6.8158 -35.1954 43.0640 1]'
-p2 = [7.8493 -36.1723 43.7815 1]'
-p3 = [9.9579 -25.2799 40.1151 1]'
-p4 = [8.8219 -38.3767 46.6153 1]'
-p5 = [9.5890 -28.8402 42.2858 1]'
-p6 = [10.8082 -48.8146 56.1475 1]'
-p7 = [13.2690 -58.0988 59.1422 1]'
-translation = [10;-25;40]
-H = [R translation;
-     0 0 0 1]
-
-% 2.2 World to Camera
-Hwc = inv(H)
-
-% 2.3 Intrinsic Camera
-K = [400 0 256/2 0; 0 400 170/2 0; 0 0 1 0]
-
-% 2.4
-width = 256
-height = 170
-blank_image = zeros(height, width);
-imshow(blank_image)
-P = [p1,p2,p3,p4,p5,p6,p7]
-P_img = K*Hwc*P
-
+imshow(image)
+%{
+3 Using Matlab’s “line” function, draw lines between the points on the 
+image. Namely draw a line from point 1 to point 2, another line from point 
+2 to point 3, and so forth. Show the resulting image (hint: it should be a 
+familiar object).
+%}
+for col=2:size(pimg,2)
+    x = [round(pimg(1,col-1)) round(pimg(1,col))];
+    y = [round(pimg(2,col-1)) round(pimg(2,col))];
+    line(x, y);
+end
