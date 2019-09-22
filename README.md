@@ -8,6 +8,7 @@
 1. CSCI274: Intro to Linux
 1. CSCI303: Intro to Data Science
 1. CSCI306: Software Engineering
+1. CSCI370: Advanced Software Engineering
 1. CSCI400: Programming Languages
 1. CSCI403: Database Management
 1. CSCI406: Algorithms
