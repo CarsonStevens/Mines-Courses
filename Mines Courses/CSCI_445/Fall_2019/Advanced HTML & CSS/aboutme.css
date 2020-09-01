@@ -1,0 +1,314 @@
+/*
+Author: Carson Stevens
+Assignment: Advanced HTML and CSS
+Date: September 10, 2019
+*/
+
+
+body {
+  margin: 0 0;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+/* At least two elements with specified fonts */
+h1 {
+  margin: 10px auto -20px auto;
+  color: #993366;
+  font-family: 'Sacramento', cursive;
+  font-size: 5.625rem;
+}
+
+h1 + h2 {
+  margin-top: 100px;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.6rem;
+  color: #990066;
+  font-weight: normal;
+}
+
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #993366;
+}
+
+ul {
+  display:table;
+  margin:0 auto;
+  text-align: left;
+  font-family: 'Merriweather', serif;
+}
+
+p {
+  color: #000000;
+  line-height: 1.75;
+}
+
+/* Use at least one pseudo-element */
+p::first-letter{
+  font-size: 1.5rem;
+}
+
+hr {
+  border-style: dotted none none none;
+  height: 0px;
+  border-width: 15px;
+  border-color: #660033;
+  width: 25%;
+  margin-top: 50px;
+}
+
+/* Style one or more aspects of an element with an id selector */
+#mountzion {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  opacity: 0.45;
+  z-index: -1;
+}
+
+#nanoreef {
+  display: inline;
+  height: 1.5rem;
+  background-color:inherit;
+}
+
+/* Style one or more aspects of an element with a class selector */
+.img-small {
+  width:70%;
+}
+
+.img-medium {
+  width:80%;
+}
+
+.img-large {
+  width:90%;
+}
+
+/* Style one or more aspects of a div */
+.top-container {
+  padding-top: 100px;
+  background-color: #000000;
+  position: relative;
+  line-height: 2;
+  margin-bottom: 0;
+  height:80vh;
+  z-index: -2;
+}
+
+/* Style one or more aspects of a div */
+.middle-container {
+  background-color: #ffccff;
+  margin-top: -37px;
+  margin-bottom: 0;
+  padding-top: 20px;
+}
+
+.profile:first-of-type {
+  margin: 0 auto;
+  width: 75%;
+  line-height: 2;
+  background-color: #ffccff;
+  padding-bottom: 10px;
+}
+
+.profile {
+  margin: 0 auto;
+  width: 75%;
+  line-height: 2;
+  background-color: #ffccff;
+  margin-bottom: 50px;
+}
+
+#intro-pictures td:first-child {
+  padding: 30px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 45px;
+  border-color: #993366;
+}
+
+.pictures tr td:nth-child(even){
+  text-align: right;
+}
+
+.skills {
+  background-color: #660033;
+  margin-top: 0;
+  padding-bottom: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.skill-row {
+  margin: 0 auto;
+  width: 50%;
+  line-height: 2;
+  background-color: #ffccff;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+table {
+  padding-top: 10px;
+}
+
+/* For Mines Courses Table */
+/* The tables should be centered, with a top margin to provide space between tables. */
+#courses {
+  margin: 10px auto 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #993366;
+  width: 100%;
+}
+
+#courses td, #courses th {
+  padding: 8px;
+}
+
+/* Use a dashed bottom border for the td elements. Do not include a bottom
+border on the last row of the tbody element */
+#courses td {
+  border-bottom-style: dashed;
+  border-width: 3px;
+  border-color: #660033;
+}
+#courses tbody tr:last-of-type td {
+  border-style: none;
+}
+
+/* Use a background color for alternating rows. Use the nth-of-type pseudo-class */
+#courses tr:nth-child(even){
+  background-color: white;
+}
+
+#courses tr:hover {
+  background-color: #ddd;
+}
+
+#courses th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #993366;
+  color: white;
+}
+
+/* At least two elements with specified fonts */
+/* Use reasonable formatting for the captions.  They should stand out from the
+rest of the headers and tables on the page. */
+caption {
+  font-family: 'Montserrat', sans-serif;
+  color: #990066;
+  font-size: 1rem;
+}
+.bottom-container {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: -37px;
+  margin-bottom: 0px;
+  background-color: #000000;
+  padding-top: 50px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+.contact-me {
+  padding:50px 50px;
+}
+
+.footer-link {
+  color: #993366;
+  width: 50%;
+}
+
+
+/*
+Style each of the following pseudo-classes differently
+- link
+- visited
+- hover
+- active
+*/
+a {
+  border-style: solid;
+  border-radius: 15px;
+  border-color: inherit;
+}
+a:link {
+  background-color: #993366;
+  color: #ffccff;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+a:visited {
+  background-color: #ffccff;
+  color: #993366;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover{
+  background-color: #ffccff;
+  color: #993366;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #993366;
+}
+
+a:active {
+  background-color: #660033;
+}
+
+/* A background image */
+/* The tables should be centered, with a top margin to provide space between tables. */
+#schedule {
+  margin: 10px auto 30px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #993366;
+}
+
+#schedule caption {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+}
+
+/* Include a solid border around the table and between cells */
+#schedule td {
+  border-style: solid;
+  border-color: #ffccff;
+  border-width: 1px;
+  color: #ffccff;
+  padding: 15px 30px;
+}
+
+/* Header and footer of a single table are different colors (background & text) */
+/* Use a background color for the header with a complementary font color */
+#schedule thead {
+  background-color: #ffccff;
+  color: #993366;
+  border-color: #660033;
+}
+
+#schedule tbody {
+  background-image: url(https://hdwallsbox.com/wallpapers/l/1920x1080/80/blue-plain-background-1920x1080-79433.jpg)
+}
+
+/* Header and footer of a single table are different colors (background & text) */
+#schedule tfoot {
+  background-color: #993366;
+  color: #ffccff;
+  border-color: #ffccff;
+}
