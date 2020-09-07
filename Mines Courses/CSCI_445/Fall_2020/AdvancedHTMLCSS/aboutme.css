@@ -1,0 +1,247 @@
+/* FONT IMPORTS */
+
+:root {
+  --primary-color: #2D4059;
+  --secondary-color: #EA5455;
+  --light-color: #DECDC3;
+  --lightest-color: #E5E5E5;
+  --nav-height: 2rem;
+  --intro-height: 85vh;
+  --directory-raise: 7rem;
+  --lower-intro: 18vh;
+}
+
+[data-theme="dark"] {
+
+}
+
+[data-theme="party"] {
+
+}
+
+body {
+  width: 100%;
+  /* display: grid;
+  grid: ". intro intro intro typer typer ." 1fr
+                 ". tables tables tables tables tables ." 5fr
+                 ". . . . . . ." 1fr
+                 ". . . . . . ." 1fr
+                 ". . . . . . ." 1fr
+                / 0.1fr 1fr 1fr 1fr 1fr 1fr 0.1fr; */
+  background: linear-gradient(300deg, var(--primary-color), var(--secondary-color));
+  background-size: 400% 400%;
+  overflow-x: hidden;
+  -webkit-animation: BackgroundMove 30s ease infinite;
+  -moz-animation: BackgroundMove 30s ease infinite;
+  animation: BackgroundMove 30s ease infinite;
+  /* scroll-behavior: smooth; */
+}
+
+nav {
+  position: fixed;
+  height: var(--nav-height);
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: linear-gradient(300deg, var(--light-color), var(--lightest-color));
+  background-size: 400% 400%;
+  overflow: hidden;
+  -webkit-animation: BackgroundMove 30s ease infinite;
+  -moz-animation: BackgroundMove 30s ease infinite;
+  animation: BackgroundMove 30s ease infinite;
+}
+
+#canvas_intro_container {
+  grid-area: intro;
+  position: relative;
+  width: 100%;
+  height: calc(var(--intro-height) - var(--directory-raise));
+}
+
+#canvas_intro_container > canvas {
+  margin-top: calc(var(--nav-height)+var(--lower-intro));
+}
+
+#coding {
+  grid-area: typer;
+  width: 600px;
+  height: 900px;
+}
+
+#tables-container {
+  grid-area: tables;
+  width: 100%;
+}
+
+#language-project-container {
+  width: 100%;
+}
+
+#coding-courses-container {
+  width: 100%;
+}
+
+#corals-container {
+  width: 100%;
+}
+
+#directory {
+  width: 100%;
+  height: calc(100vh + var(--directory-raise) - var(--intro-height));
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: center;
+  margin-top: calc(0 - var(--directory-raise));
+  margin-bottom: var(--directory-raise);
+}
+
+#directory li {
+  margin: 0 1rem;
+}
+
+/* JS ANIMATION CLASSES */
+.code-operator {
+  color: rgb(210, 152, 38);
+}
+
+.code-var {
+  color: rgb(38, 139, 210);
+}
+
+.code-reserved {
+  color: rgb(100, 230, 128);
+}
+
+.code-paren {
+  color: rgb(212, 249, 9);
+}
+
+.code-string {
+  color: rgb(169, 139, 173);
+}
+.code-comment, .code-output {
+  color: rgb(169, 139, 173);
+  display: block;
+}
+.code-output-container {
+  padding-left: 10rem;
+  overflow-wrap: break-word;
+}
+
+.typewriter {
+  color: rgb(169, 139, 173);
+  text-align: left;
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-family: "Courier New";
+  word-wrap: break-word;
+  line-height: 0.95;
+  background-color: rgb(34, 34, 34);
+}
+
+.typewriter:after {
+  content: "|";
+  animation: blink 500ms linear infinite alternate;
+}
+
+
+
+/* ANIMATION CLASSES */
+.fade-in {
+  animation: blink 0.25s 1 ease;
+}
+.hide {
+  display: none;
+}
+
+/* ANIMATIONS */
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes BackgroundMove {
+    0%{background-position:50% 0}
+    50%{background-position:50% 100%}
+    100%{background-position:50% 0}
+}
+@-moz-keyframes BackgroundMove {
+    0%{background-position:50% 0}
+    50%{background-position:50% 100%}
+    100%{background-position:50% 0}
+}
+@keyframes BackgroundMove {
+    0%{background-position:50% 0}
+    50%{background-position:50% 100%}
+    100%{background-position:50% 0}
+}
+
+/* MEDIA QUERIES */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* Tablet (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+/* Styles */
+}
+
+/* Tablet (landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* Tablet (portrait) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}

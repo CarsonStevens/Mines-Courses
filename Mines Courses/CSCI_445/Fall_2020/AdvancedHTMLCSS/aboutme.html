@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta name="title" content="Carson Stevens">
+  <meta name="description" content="A short bio about Carson Stevens.">
+  <meta name="keywords" content="Carson, Stevens, Carson Stevens">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="language" content="English">
+  <meta name="author" content="Carson Stevens">
+  <title>Carson Stevens</title>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="tables.css" />
+  <link rel="stylesheet" href="aboutme.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+</head>
+
+<!--
+  Author: Carson Stevens
+  Assignment: HTML Basics
+  Date: 09/01/2020
+
+-->
+
+<body>
+  <header>
+    <nav>
+      FOR FUTURE WEBSITE NAVIGATION
+    </nav>
+    <h1 class="hide">I'm Carson,</h1>
+    <h2 class="hide">a <em>pro</em>grammer.</h2>
+    <div id="canvas_intro_container" data-wordDetails='{"content": ["I_m Carson,", "a programmer."],
+                                                        "font": "Arial"}'></div>
+    <ul id="directory">
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#pets">Pets</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#language-project-container">Recent Projects</a></li>
+      <li><a href="#coding-courses-container">Coding Courses</a></li>
+      <li><a href="#corals-container">Corals!</a></li>
+    </ul>
+  </header>
+  <section id="intro">
+    <div id="profile-container">
+      <img src="" alt="" />
+    </div>
+    <div class="typewriter-container" id="coding">
+      <pre class="typewriter" data-output="{
+          delay: 200,
+          terms: ['>>> sleeping', '>>> eating', '>>> coding','>>> sleeping', '>>> eating', '>>> coding'],
+          delay: 500,
+          timeSpacing: 1000,
+          animationClasses: 'fade-in'
+        }">
+            <span class="code-comment">// Define Me!</span>
+      <span class="code-paren">const</span> <span class="code-operator">function</span> <span class="code-reserved">Coder</span> = <span class="code-paren">()</span> <span class="code-paren">{</span>
+        <span class="code-reserved">this.</span><span class="code-var">name</span> = <span class="code-string">"Carson Stevens"</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">major</span> = <span class="code-string">"Computer Science"</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">graduationDate</span> = <span class="code-string">"December 2020"</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">hobbies</span> <span class="code-reserved">=</span> <span class="code-paren">[</span><span class="code-string">"4Wheeling"</span>,
+                         <span class="code-string">"Reef Keeping"</span>,
+                         <span class="code-string">"Photography"</span><span class="code-paren">]</span><span class="code-reserved">;</span>
+
+        <span class="code-reserved">this.</span><span class="code-var">eat</span> = <span class="code-operator">console</span>.<span class="code-reserved">log</span><span class="code-paren">(</span><span class="code-string">"eating"</span><span class="code-paren">)</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">sleep</span> = <span class="code-operator">console</span>.<span class="code-reserved">log</span><span class="code-paren">(</span><span class="code-string">"sleeping"</span><span class="code-paren">)</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">code</span> = <span class="code-operator">console</span>.<span class="code-reserved">log</span><span class="code-paren">(</span><span class="code-string">"coding"</span><span class="code-paren">)</span><span class="code-reserved">;</span>
+        <span class="code-reserved">this.</span><span class="code-var">isAlive</span> = <span class="code-reserved">true</span><span class="code-reserved">;</span>
+      <span class="code-paren">}</span>
+
+      <span class="code-paren">const</span> <span class="code-var">me</span> = <span class="code-paren">new</span> <span class="code-reserved">Coder</span><span class="code-paren">()</span><span class="code-reserved">;</span>
+            <span class="code-comment">// Coder's Life Cycle</span>
+      <span class="code-reserved">while</span> <span class="code-paren">(</span><span class="code-var">me</span><span class="code-operator">.isAlive</span><span class="code-paren">)</span> <span class="code-reserved">{</span></span>
+        <span class="code-var">me</span><span class="code-operator">.eat</span><span class="code-paren">()</span><span class="code-reserved">;</span>
+        <span class="code-var">me</span><span class="code-operator">.sleep</span><span class="code-paren">()</span><span class="code-reserved">;</span>
+        <span class="code-var">me</span><span class="code-operator">.code</span><span class="code-paren">()</span><span class="code-reserved">;</span>
+      <span class="code-paren">}</span>
+      </pre>
+    </div>
+  </section>
+  <section id="pets">
+    <section class="gallery-img-container" id="Bella">
+      <img class="gallery-img" src="images/Bella.jpeg" alt="Bella, Carson's Bunny" width="300" />
+      <p class="gallery-img-description">
+        This is my Harlequin Holland Lop named Bella. She isn't even a year old yet and loves to lay at my feet while coding.
+      </p>
+    </section>
+    <section class="gallery-img-container" id="Pax">
+      <img class="gallery-img" src="images/Pax.jpeg" alt="Pax, Carson's Bunny" width="300" />
+      <p class="gallery-img-description">
+        This is my Mini Rex/Lionhead named Pax. He is the same age as <a href="#Bella">Bella</a> &#9829;!
+      </p>
+    </section>
+    <section class="gallery-img-container">
+      <img class="gallery-img" src="images/FishTank.jpg" alt="30 gallon reef tank" width="500" />
+      <p class="gallery-img-description">
+        This was my reef tank before I went to college. I built the cabinet with my Grandfather who gave me one of my favorite engineering quotes:
+        <br />
+        <q>Measure twice, cut once.</q>
+        <br />
+        Too many times have I thought I had everything measured and marked perfectly only to find after cutting that something is a shade short!
+      </p>
+    </section>
+  </section>
+  <section id="hobbies">
+    <section class="gallery-img-container">
+      <img class="gallery-img" src="images/KingBullionLake.jpg" alt="King Bullion Lake; Silverton, CO" width="500" />
+      <p class="gallery-img-description">
+        King Bullion Lake is my favorite place in Colorado. It's just outside Silverton, Colorado in Red Mountain Pass.
+      </p>
+    </section>
+    <section class="gallery-img-container" id="golf-club">
+      <img class="gallery-img" src="images/GolfClub.jpeg" alt="Bear Creek Golf Club" width="500" />
+      <p class="gallery-img-description">
+        I've worked at the Bear Creek Golf Club for the past 6 years on the groundscrew. I was an operator and change the pin location on the putting greens most mornings. I've collected quite the amount of sunrise photos in my time while working
+        there.
+      </p>
+    </section>
+  </section>
+  <section id="tables-container">
+    <section id="language-project-container">
+      <table id="language-project-table">
+        <caption>Recent Projects</caption>
+        <colgroup>
+          <col span="1" style="background-color:red">
+          <col style="background-color:yellow">
+        </colgroup>
+        <thead>
+          <th>Language</th>
+          <th>Projects</th>
+        </thead>
+        <tr>
+          <td rowspan="6">Python</td>
+          <td>GeoGuessed</td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            NN used for geolocation of photos (find the place where a photo was taken).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Daily Vitals Generator
+          </td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            Daily autogenerated newsletter than scrapes news and games from the web every day and formats them. The purpose was to provide community engagement in places like nursing homes, hospitals, and treatment centers.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            DistoPod
+          </td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            Robot created to map the inside of caves and produce a 3D rendering the user can "walk" around in. Uses a lidar and servos to find the coordinates of walls and an MPU to align multiple readings to the same coordinate plane.
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="6">Web Development</td>
+          <td>Neo4j Graph Debugger</td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            Program that takes in a JSON linked list, plots the information in Neo4j and then uses Neo4j commands to detect loops and other faulty information.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Daily Vitals Generator
+          </td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            Daily autogenerated newsletter than scrapes news and games from the web every day and formats them. The purpose was to provide community engagement in places like nursing homes, hospitals, and treatment centers.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jQuery Style Helper UI
+          </td>
+        </tr>
+        <tr>
+          <td class="project-description">
+            Speeds up frontend UI design by giving the user an interface for adding, removing, and toggling through different styles. It includes an autocomplete that parses the css files on the page and is capable of dynamically loading Google Fonts by name. It also has the ability to export the new styles to the clipboard.
+          </td>
+        </tr>
+      </table>
+    </section>
+    <section id="coding-courses-container">
+      <table id="coding-courses-table">
+        <caption>Coding Courses Taken</caption>
+        <colgroup>
+          <col span="1" style="background-color:red">
+          <col style="background-color:yellow">
+        </colgroup>
+        <thead>
+          <th>Institute</th>
+          <th>Courses</th>
+          <th>Title</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="16"><a href="mines.edu">Colorado School of Mines</a></td>
+            <td class="coding-course">CSCI 250</td>
+            <td class="coding-course-title">Building a Sensor and Scientific Computing in Python</td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 261
+            </td>
+            <td class="coding-course-title">
+              Programming Concept
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 262
+            </td>
+            <td class="coding-course-title">
+              Data Structures
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 274
+            </td>
+            <td class="coding-course-title">
+              Intro to Linux
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 303
+            </td>
+            <td class="coding-course-title">
+              Data Science
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 358
+            </td>
+            <td class="coding-course-title">
+              Discrete Math
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 400
+            </td>
+            <td class="coding-course-title">
+              Programming Languages
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 403
+            </td>
+            <td class="coding-course-title">
+              Databases
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 406
+            </td>
+            <td class="coding-course-title">
+              Algorithms
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 423
+            </td>
+            <td class="coding-course-title">
+              Computer Simulations
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 437
+            </td>
+            <td class="coding-course-title">
+              Computer Vision
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 445
+            </td>
+            <td class="coding-course-title">
+              Web Programming
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 455
+            </td>
+            <td class="coding-course-title">
+              Game Theory and Networks
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 470
+            </td>
+            <td class="coding-course-title">
+              Machine Learning
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 475
+            </td>
+            <td class="coding-course-title">
+              Information Security
+            </td>
+          </tr>
+          <tr>
+            <td class="coding-course">
+              CSCI 477
+            </td>
+            <td class="coding-course-title">
+              Game Development
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="6"><a href="udemy.com">Udemy</a></td>
+            <td colspan="2" class="coding-course">Neo4j Graph Databases with Cypher</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="coding-course">The Modern JavaScript Bootcamp</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="coding-course">The Complete 2020 Web Development Bootcamp</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="coding-course">Scala & Functional Programming</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="coding-course">Deep Learning: Advanced Computer Vision</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="coding-course">A Beginner's Guide To Machine Learning with Unity</td>
+          </tr>
+        </tbody>
+
+
+      </table>
+    </section>
+    <section id="corals-container">
+      <table id="corals-table">
+        <caption>Types of Corals</caption>
+        <colgroup>
+          <col span="1" style="background-color:red">
+          <col style="background-color:yellow">
+        </colgroup>
+        <thead>
+          <th>Type</th>
+          <th>Abbreviation</th>
+          <th>Description</th>
+          <th>Image</th>
+        </thead>
+        <tr>
+          <td class="coral-type">
+            Soft
+          </td>
+          <td class="coral-abbr">
+            Soft
+          </td>
+          <td class="coral-description">
+            The coral has no skeletal structure and a fleshy body. These corals are typically the fastest growing and most adaptable to the ecosystem. Some are viewed as aggressive and invasive.
+          </td>
+          <td class="coral-image">
+            N/A
+          </td>
+        </tr>
+        <tr>
+          <td class="coral-type">
+            Large Polyp Stony
+          </td>
+          <td class="coral-abbr">
+            LPS
+          </td>
+          <td class="coral-description">
+            The coral has an inner skeletal body and a fleshy exterior similar to soft corals. Theses corals are known for their epic feeding displays and commonly the one of the slowest growers.
+          </td>
+          <td class="coral-image">
+            N/A
+          </td>
+        </tr>
+        <tr>
+          <td class="coral-type">
+            Small Polyp Stony
+          </td>
+          <td class="coral-abbr">
+            SPS
+          </td>
+          <td class="coral-description">
+            The coral has a calcified skeleton that is covered in a thin flesh which gives it color. Inside the branches live thousands of small polyps that protrude out of hold in the branches.
+          </td>
+          <td class="coral-image">
+            N/A
+          </td>
+        </tr>
+        <tr>
+          <td class="coral-type">
+            Non-Photosynthetic
+          </td>
+          <td class="coral-abbr">
+            NPS
+          </td>
+          <td class="coral-description">
+            These corals do not have a symbiotic relationship with zooxanthele that allow for photosynthesis. Instead, these corals get their food by filtering the water or catching copeopods. These corals are the hardest to keep due to the constant addition of food deteriorating water quality.
+          </td>
+          <td class="coral-image">
+            N/A
+          </td>
+        </tr>
+      </table>
+    </section>
+  </section>
+  <footer>
+    <hr style="border-bottom: 25px dotted red; border-top:none; border-right: none; border-left:none; width: 200px" />
+    <a href="mailto:carsonstevens@mines.com">Email Me!</a>
+    <span>&copy;</span> <span>Carson Stevens</span>
+    </footer>
+</body>
+<script type="text/javascript">
+  // Word Particle Effects
+  /**
+   * [WordParticle]: Create the interactive particle text. Parameters for
+   *                 overall drawing are at the top of the document.
+   * @param       {[double]} x [destination for x coord]
+   * @param       {[double]} y [destination for y coord]
+   */
+  function WordParticle(x, y) {
+    this.x = Math.random() * ww;
+    this.y = Math.random() * wh;
+    this.dest = {
+      x: x,
+      y: y
+    };
+    // size of word particles
+    this.r = Math.random() * maxParticleRadius + minParticleRadius;
+    this.vx = (Math.random() - 0.5) * 2000;
+    this.vy = (Math.random() - 0.5) * 2000;
+    this.accX = 0;
+    this.accY = 0;
+    this.friction = Math.random() * 0.005 + 0.93;
+
+    this.color = colors[Math.floor(Math.random() * 6)];
+  }
+
+  /**
+   * Makes each word particle move closer to its destination x and y
+   * @return {[bool]} [Should return false if the movement path is invalid and
+   *                   the particle should not be printed]
+   */
+  WordParticle.prototype.move = function() {
+    this.accX = (this.dest.x - this.x) / 700;
+    this.accY = (this.dest.y - this.y) / 700;
+    this.vx += this.accX;
+    this.vy += this.accY;
+    this.vx *= this.friction;
+    this.vy *= this.friction;
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    var a = this.x - mouse.x;
+    var b = this.y - mouse.y;
+
+    var distance = Math.sqrt(a * a + b * b);
+    if (distance < (radius * 70)) {
+      this.accX = (this.x - mouse.x) / 5;
+      this.accY = (this.y - mouse.y) / 5;
+      this.vx += this.accX;
+      this.vy += this.accY;
+    }
+
+    this.render();
+    return true;
+  };
+
+  /**
+   * Draws the word particles
+   */
+  WordParticle.prototype.render = function() {
+    canvas.fillStyle = this.color;
+    canvas.beginPath();
+    canvas.arc(this.x, this.y, this.r, Math.PI * 2, false);
+    canvas.fill();
+  };
+
+  function update() {
+    now = Date.now();
+    elapsed = now - then;
+    if (elapsed > fpsInterval) {
+      then = now - (elapsed % fpsInterval);
+      canvas.clearRect(0, 0, ww, wh);
+      word_particles = word_particles.filter(function(wp) {
+        return wp.move();
+      });
+    }
+    requestAnimationFrame(update.bind(this));
+  }
+
+
+  /**
+   * [createWordCanvas]: Creates the word particle canvas
+   * @param  {[Object]} properties [attributes for canvas size]
+   * @return {[canvas]}            [new canvas object]
+   */
+  function createWordCanvas(properties) {
+    let canvasContainer = $("#canvas_intro_container");
+    let canvasElm = document.createElement('canvas');
+    $(canvasContainer).append(canvasElm);
+
+    if (typeof(canvasElm) !== 'undefined') {
+      canvasElm.width = properties.width;
+      canvasElm.height = properties.height;
+      // canvas.id = "layer"
+      // canvas.style.zIndex = "4";
+      let context = canvasElm.getContext('2d');
+      return {
+        canvas: canvasElm,
+        context: context
+      };
+    }
+  }
+
+  // Frame rate controls
+  let fps, fpsInterval, startTime, now, then, elapsed;
+  fps = 60;
+
+  const mouse = {
+    x: 0,
+    y: 0
+  };
+  let ww = $("#canvas_intro_container").width() || window.innerWidth;
+  let wh = $("#canvas_intro_container").height() || window.innerHeight;
+  let canvas, textDetails, word_particles, font, text, wordHeight, c, maxParticleRadius, minParticleRadius, textSize, letterSpacing, colors, mouseRadius, radius, currentWord, canvasElm;
+  window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  const initScene = () => {
+    ww = $("#canvas_intro_container").width() || window.innerWidth;
+    wh = $("#canvas_intro_container").height() || window.innerHeight;
+
+
+    textDetails = JSON.parse(document.querySelector('*[data-wordDetails]').dataset.worddetails);
+    mouseRadius = textDetails.mouseRadius || ww / 750;
+    radius = mouseRadius;
+    colors = textDetails.colors || ["#E4DB77", "#EF60DD", "#1656A9", "#C31445", "#AD7FB6"];
+    text = textDetails.content || ["Add Content"];
+    text.forEach((item, i) => {
+      text[i] = item.replace(/_/g, "'");
+    });
+    currentWord = 0;
+    textSize = textDetails.textSize || ww / 12;
+    letterSpacing = ww / 100 + "px";
+    minParticleRadius = ww * 0.004;
+    maxParticleRadius = textDetails.maxSize || ww / 300;
+    textChangeInterval = textDetails.changeInterval || wh * 15.5;
+    wordHeight = textDetails.textHeight || 3.5;
+    let fontInput = textDetails.font || "Arial";
+    font = WebFont.load({
+      google: {
+        families: [fontInput]
+      }
+    }) || "Arial";
+
+    changeWordParticles();
+    setInterval(function() {
+      changeWordParticles();
+    }, textChangeInterval);
+
+    function startAnimating(fps) {
+      fpsInterval = 1000 / fps;
+      then = Date.now();
+      startTime = then;
+      update();
+    }
+    startAnimating(fps);
+  }
+
+  /**
+   * [changeWordParticles]: Gets the data for the coords for each word particle
+   */
+  function changeWordParticles() {
+    word_particles = [];
+    update();
+    canvas.clearRect(0, 0, ww, wh);
+    c.canvas.style.letterSpacing = letterSpacing;
+    canvas.font = "bold " + (textSize) + "px " + font.toLowerCase().trim();
+    canvas.textAlign = "center";
+    canvas.fillText(text[currentWord], ww / 2, wh / wordHeight);
+
+    let data = [];
+    data = canvas.getImageData(0, 0, ww, wh).data;
+    canvas.clearRect(0, 0, c.width, c.height);
+    canvas.globalCompositeOperation = "screen";
+
+    for (var i = 0; i < ww; i += Math.round(ww / 150)) {
+      for (var j = 0; j < wh; j += Math.round(ww / 150)) {
+        if (data[((i + j * ww) * 4) + 3] > 150) {
+          word_particles.push(new WordParticle(i, j));
+        }
+      }
+    }
+    currentWord++;
+    currentWord = currentWord % text.length;
+
+  }
+
+  /**
+   * [onMouseClick]: Change radius of mouse for disturbing word particles
+   */
+  function onMouseClick() {
+    radius++;
+    if (radius > 5) {
+      radius = mouseRadius;
+    }
+  }
+
+  /**
+   * [onMouseMove]: get user mouse x and y coords when mouse moves
+   * @param  {[event]} e [User input for client mouse X and Y]
+   */
+  function onMouseMove(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }
+
+  /**
+   * [onTouchMove]: gets the touch screen coords for X and Y
+   * @param  {[event]} e [User inputer for client touch X and Y]
+   */
+  function onTouchMove(e) {
+    if (e.touches.length > 0) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }
+  }
+
+  /**
+   * [onTouchEnd]: Makes sure that after the user isn't touching that the Words
+   *               aren't disturbed
+   * @param  {[event]} e [User input]
+   */
+  function onTouchEnd(e) {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  }
+
+  function resize(e) {
+    canvas.width = $("#canvas_intro_container").width();
+    canvas.height = $("#canvas_intro_container").height();
+    changeWordParticles();
+  }
+  // Add listeners for interactive particle text
+  window.addEventListener("resize", resize);
+  window.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("touchmove", onTouchMove);
+  // window.addEventListener("click", onMouseClick);
+  window.addEventListener("touchend", onTouchEnd);
+  c = createWordCanvas({
+    width: ww,
+    height: wh
+  });
+  canvas = c.context;
+  initScene();
+</script>
+<script type="text/javascript">
+  /*jshint esversion: 8 */
+
+  $(document).ready(function() {
+    let typers = [$(".typewriter")];
+    let typersOriginals = [];
+    typers.forEach((typer, i) => {
+      typersOriginals[i] = $(typer).html();
+    });
+    let currentWriter = 0;
+    let transitionTime = 2000;
+    let currentlyWriting = false;
+    rotateTypewriter();
+
+    // Observable Trigger to start typewriter
+    // $('').observe({
+    //   print: true,
+    //   listeners:  [{type : "attributes",
+    //               attribute: "class",
+    //               listeners : "flipster__item--current"}],
+    //   config: {
+    //     childList: false,
+    //     characterData: false,
+    //     subtree: false,
+    //     attributes: true
+    //   },
+    //   onListenerTrue: rotateTypewriter
+    // });
+
+    function rotateTypewriter() {
+      if (!currentlyWriting) {
+        currentlyWriting = true;
+        $(".typewriter-container").css({
+          'display': 'none'
+        });
+        $(typers[currentWriter]).parent().css({
+          'display': 'grid'
+        });
+
+        let typewriter = setupTypewriter($(typers[currentWriter]).get(0));
+        typewriter.type();
+        currentWriter++;
+        if (currentWriter >= typers.length) currentWriter = 0;
+      }
+    }
+
+    function strToObj(str) {
+      let obj = {};
+      if (str && typeof str === 'string') {
+        eval("obj =" + str);
+      }
+      return obj;
+    }
+
+    function setupTypewriter(t) {
+      $(t).children(".code-output-container").remove();
+      let HTML = typersOriginals[currentWriter];
+
+      t.innerHTML = "";
+
+      let cursorPosition = 0,
+        tag = "",
+        writingTag = false,
+        tagOpen = false,
+        typeSpeed = 15,
+        tempTypeSpeed = 0;
+
+      var output = function() {
+        let output = strToObj($(t).data("output"));
+        let outputTerms = output.terms || [];
+        let spacing = output.timeSpacing || 0;
+        let delay = output.delay || 0;
+        let animationClasses = output.animationClasses || '';
+        $(t).append("<br><span class='code-output-container'></span>");
+        setTimeout(function() {
+          for (let i = 0; i < outputTerms.length; i++) {
+            setTimeout(function() {
+              $(t).children(".code-output-container").append(`<span class="code-output ${animationClasses}"> ${outputTerms[i]}</span>`);
+            }, i * spacing);
+
+          }
+        }, delay);
+
+        setTimeout(function() {
+          currentlyWriting = false;
+          rotateTypewriter();
+        }, transitionTime+outputTerms.length*spacing);
+      };
+
+      let type = function() {
+
+        if (writingTag === true) {
+          tag += HTML[cursorPosition];
+        }
+
+        if (HTML[cursorPosition] === "<") {
+          tempTypeSpeed = 0;
+          if (tagOpen) {
+            tagOpen = false;
+            writingTag = true;
+          } else {
+            tag = "";
+            tagOpen = true;
+            writingTag = true;
+            tag += HTML[cursorPosition];
+          }
+        }
+        if (!writingTag && tagOpen) {
+          tag.innerHTML += HTML[cursorPosition];
+        }
+        if (!writingTag && !tagOpen) {
+          if (HTML[cursorPosition] === " ") {
+            tempTypeSpeed = 0;
+          } else {
+            tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+          }
+          t.innerHTML += HTML[cursorPosition];
+        }
+        if (writingTag === true && HTML[cursorPosition] === ">") {
+          tempTypeSpeed = (Math.random() * typeSpeed) + 20;
+          writingTag = false;
+          if (tagOpen) {
+            var newSpan = document.createElement("span");
+            t.appendChild(newSpan);
+            $(newSpan).html(tag);
+            tag = newSpan.firstChild;
+          }
+        }
+
+        cursorPosition += 1;
+        if (cursorPosition < HTML.length - 1) {
+          setTimeout(type, tempTypeSpeed);
+        }
+        if (cursorPosition >= HTML.length - 1) {
+          return output();
+        }
+      };
+
+      return {
+        type: type
+      };
+    }
+  });
+</script>
+
+</html>
