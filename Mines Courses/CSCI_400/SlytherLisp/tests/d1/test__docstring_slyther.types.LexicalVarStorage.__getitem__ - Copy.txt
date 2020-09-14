@@ -1,0 +1,25 @@
+>>> from slyther.types import *
+
+Return a Variable object, first checking the local
+environment, then checking the containing environment,
+otherwise raising a ``KeyError``.
+
+>>> environ = {k: Variable(v) for k, v in (('x', 10), ('y', 11))}
+>>> stg = LexicalVarStorage(environ)
+>>> stg.put('y', 12)
+>>> stg.put('z', 13)
+>>> stg['x'].value
+10
+>>> stg['y'].value
+12
+>>> stg['z'].value
+13
+>>> stg['x'].set(11)
+>>> stg['foo'].value
+Traceback (most recent call last):
+    ...
+KeyError: "Undefined variable 'foo'"
+>>> stg['bar'].set(10)
+Traceback (most recent call last):
+    ...
+KeyError: "Undefined variable 'bar'"

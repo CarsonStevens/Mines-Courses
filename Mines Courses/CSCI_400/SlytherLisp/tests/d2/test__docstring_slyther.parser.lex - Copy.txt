@@ -1,0 +1,156 @@
+>>> from slyther.parser import *
+
+IMPORTANT: read this entire docstring before implementing this function!
+Please ask for help on Piazza or come to office hours if you don't
+understand something in here.
+
+This is a *generator function* that splits a piece of code into
+lexical tokens, emitting whole tokens each time one is encountered.
+
+A lexical token is not just a string: this function should assign a
+type to each piece of data as appropriate.
+
+For a high level overview, consider this invocation:
+
+>>> toks = list(lex("(define (do-123 fun) \n (map fun '(1 2 3.0))) \n"))
+>>> toks    # doctest: +NORMALIZE_WHITESPACE
+[LParen, define, LParen, do-123, fun, RParen,
+    LParen, map, fun, Quote, LParen, 1, 2, 3.0, RParen, RParen, RParen]
+
+Let's look at the types of each piece of data here. The ``LParen``,
+``RParen``, and ``Quote`` bits are *instances of* the subclasses of
+the ``ControlToken`` class above. ``1`` and ``2`` are Python integers,
+and ``3.0`` is a Python ``float``. Finally, everything else here is a
+``Symbol``.
+
+>>> print(*(t.__class__.__name__ for t in toks))
+...                                 # doctest: +NORMALIZE_WHITESPACE
+LParen Symbol LParen Symbol Symbol RParen
+LParen Symbol Symbol Quote LParen int int float RParen RParen RParen
+
+So what goes into this process? First, we need a pretty good definition
+of each of the tokens in the language. The lexer will emit what matches
+the following:
+
+:Control Tokens:
+    Left parenthesis, right parenthesis, and single quotes.
+:String Literals:
+    A double quote (``"``) followed by any (including zero) amount of
+    characters which are not a double quote. The double quote
+    character ends a string, *unless* a backslash precedes it. These
+    string literals should be parsed by the ``parse_strlit`` function
+    before they are emitted by the lexer.
+:Integer Literals:
+    An optional negative sign, followed by 1 or more digits. There cannot
+    be a period following the digits, as it should be parsed as a floating
+    point number (see below). This should be emitted as Python's ``int``
+    type.
+:Floating Point Literals:
+    An optional negative sign, followed by zero or more digits, followed
+    by a period (decimal point), followed by zero or more digits. All
+    floating point numbers must have at least one digit. These should be
+    emitted as Python's ``float`` type.
+:Symbols:
+    These are a collection of 1 or more of **any characters**, not
+    including single/double quotes, parenthesis, semicolons, or
+    whitespace. In addition, symbols cannot start with digits or
+    periods.
+
+The following are ignored, and not omitted by the lexer:
+
+:Whitespace:
+    Groups of whitespace characters in-between tokens.
+:Comments:
+    A semicolon, followed by any amount of characters until the end
+    of a line.
+:Shebang Lines:
+    A line at the top of the file which starts with ``#!``. For example::
+
+        #!/usr/bin/env slyther
+
+    Note that it only a shebang line if it's at the top of the file.
+    Elsewhere, this would look like two symbols.
+
+Anything which does not match above should raise a ``SyntaxError``. Think
+for a second: what might not match the above?
+
+That's the end of the technical specification... what follows is examples
+which reading may give you an idea on what to do here.
+
+Strings should be parsed using ``parse_strlit``:
+
+>>> toks = list(lex(r'(print "hello \"world\"!")'))
+>>> toks
+[LParen, print, "hello \"world\"!", RParen]
+>>> type(toks[1])
+<class 'slyther.types.Symbol'>
+>>> type(toks[2])
+<class 'slyther.types.String'>
+
+Symbols are defined based on what characters cannot be in them, not which
+can. This means you can have symbols like this:
+
+>>> list(lex(r'lambda-is-λ ¯\_[ツ]_/¯'))
+[lambda-is-λ, ¯\_[ツ]_/¯]
+
+Since symbols cannot start with a digit, this function should separate the
+numerical literal from the symbol when things like this happen:
+
+>>> list(lex('(print 8-dogcows)'))
+[LParen, print, 8, -dogcows, RParen]
+>>> list(lex('(print -8.0-dogcows)'))
+[LParen, print, -8.0, -dogcows, RParen]
+
+And since symbols can have digits and dots in the middle, make sure these
+are parsed properly:
+
+>>> list(lex('(print dogcows-8.0)'))
+[LParen, print, dogcows-8.0, RParen]
+
+Quotes can't occur in the middle of symbols and numbers, so these quotes
+separate the tokens below, even without whitespace:
+
+>>> list(lex("(print'hello-world'4'8.0)"))
+[LParen, print, Quote, hello-world, Quote, 4, Quote, 8.0, RParen]
+
+Shebang lines **only at the front of the string, before any whitespace**
+should be ignored, and not emitted as a token:
+
+>>> list(lex("#!/usr/bin/env slyther\n(print 1)\n"))
+[LParen, print, 1, RParen]
+>>> list(lex("#!slyther\n(print 1)"))
+[LParen, print, 1, RParen]
+>>> list(lex(" #!/usr/bin/env slyther\n(print 1)\n"))
+[#!/usr/bin/env, slyther, LParen, print, 1, RParen]
+
+Comments start at a semicolon and go until the end of line (or,
+potentially the end of the input string). Note that string literals
+might contain semicolons: these don't start a comment, beware.
+Comments should not be emitted from the lexer.
+
+>>> list(lex('(here-comes; a comment!\n "no comment ; here";comment()\n)'))
+[LParen, here-comes, "no comment ; here", RParen]
+>>> list(lex('; commments can contain ; inside them\n'))
+[]
+
+When an error is encountered, ``SyntaxError`` should be raised:
+
+>>> list(lex(r'(print "Hello, World!\")'))        # unclosed string
+Traceback (most recent call last):
+    ...
+SyntaxError: malformed tokens in input
+>>> list(lex(r'.symbol'))        # symbols cannot start with period
+Traceback (most recent call last):
+    ...
+SyntaxError: malformed tokens in input
+
+Don't worry about handling unmatched parenthesis or single quotes in an
+invalid position. This will be the parser's job! In other words, the
+lexer should be no smarter than it needs to be to do its job.
+
+>>> list(lex("((("))
+[LParen, LParen, LParen]
+>>> list(lex("(')"))
+[LParen, Quote, RParen]
+>>> list(lex("'"))
+[Quote]

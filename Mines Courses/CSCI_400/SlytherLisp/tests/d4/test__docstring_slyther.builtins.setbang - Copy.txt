@@ -1,0 +1,28 @@
+>>> from slyther.builtins import *
+
+``set!`` is the assigment macro. Unlike ``define``, ``set!`` **does not
+create new variables.** Instead, it changes the value of existing
+variables **only**. If given a variable which has not been defined,
+it should raise a ``KeyError``.
+
+For example::
+
+    (set! <name> <value>)
+
+Should just eval ``value`` and call ``stg[name].set`` on it. Return
+``NIL``.
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> stg = LexicalVarStorage({'foo': Variable(12), 'bar': Variable(15)})
+>>> old_foo = stg['foo']
+>>> setbang(lisp('(foo 15)'), stg)
+NIL
+>>> stg['foo'].value
+15
+>>> stg['foo'] is old_foo
+True
+>>> setbang(lisp('(baz 15)'), stg)
+Traceback (most recent call last):
+    ...
+KeyError: 'Undefined variable baz'

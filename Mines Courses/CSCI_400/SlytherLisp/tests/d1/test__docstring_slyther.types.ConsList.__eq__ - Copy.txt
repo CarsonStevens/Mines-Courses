@@ -1,0 +1,28 @@
+>>> from slyther.types import *
+
+Test if two lists have the same elements in the same order.
+
+>>> l1, l2 = map(
+...     ConsList.from_iterable,
+...     ([1, 2, 10, 3, 4, 7], [1, 2, 10, 3, 4, 7]))
+>>> l1 == l2
+True
+>>> l1, l2 = map(
+...     ConsList.from_iterable,
+...     ([1, 2, 10, 4, 3, 7], [1, 2, 10, 3, 4, 7]))
+>>> l1 == l2
+False
+>>> l1, l2 = map(
+...     ConsList.from_iterable,
+...     ([1, 2, 10, 3, 4, 7], [1, 2, 10, 3, 4, 7, 1]))
+>>> l1 == l2
+False
+>>> l2 == l1
+False
+>>> l1 = NIL
+>>> l1 == l2
+False
+>>> l2 == l1
+False
+>>> SExpression.from_iterable(l2) == NIL
+False

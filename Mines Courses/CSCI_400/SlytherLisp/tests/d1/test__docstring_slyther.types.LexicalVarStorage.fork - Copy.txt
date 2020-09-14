@@ -1,0 +1,14 @@
+>>> from slyther.types import *
+
+Return the union of the ``local`` part and the ``environ``
+part. Should not modify either part.
+
+>>> environ = {k: Variable(v) for k, v in (('x', 10), ('y', 11))}
+>>> stg = LexicalVarStorage(environ)
+>>> stg.put('y', 12)
+>>> stg.put('z', 13)
+>>> for k, v in stg.fork().items():
+...     print(k, v.value)
+x 10
+y 12
+z 13

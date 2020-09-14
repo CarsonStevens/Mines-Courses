@@ -1,0 +1,3 @@
+>>> from slyther.builtins import *
+
+Get the ``car`` of a cons cell.

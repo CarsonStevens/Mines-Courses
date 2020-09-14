@@ -1,0 +1,11 @@
+>>> from slyther.types import *
+
+Type for user defined functions.
+
+* ``params`` is an s-expression of the parameters, like so:
+  (a b c)
+* ``body`` is an SExpression with the body of the function. The
+  result of the last element in the body should be returned when
+  the function is called.
+* ``environ`` is a dictionary created by calling ``.fork()`` on a
+  ``LexicalVarStorage`` when the function was created.

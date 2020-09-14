@@ -1,0 +1,34 @@
+>>> from slyther.builtins import *
+
+``cond`` is similar to ``if``, but it lists a series of predicates
+and consequents, similar to how guards work in Haskell. For
+example::
+
+    (cond
+      ((< x 5) (print "x < 5"))
+      ((< x 10) (print "5 <= x < 10"))
+      ((< x 15) (print "10 <= x < 15"))
+      (#t (print "x >= 15")))
+
+>>> from slyther.types import *
+>>> from slyther.parser import lex, parse
+>>> def test_cond(x):
+...     expr = next(parse(lex('''
+...         (cond
+...           ((< x 5) (print "x < 5"))
+...           ((< x 10) (print "5 <= x < 10"))
+...           ((< x 15) (print "10 <= x < 15"))
+...           (#t (print "x >= 15")))''')))
+...     stg = LexicalVarStorage({})
+...     stg.put('<', lt)
+...     stg.put('#t', Boolean(True))
+...     stg.put('x', x)
+...     return cond(expr.cdr, stg)
+>>> test_cond(4)
+(print "x < 5")
+>>> test_cond(5)
+(print "5 <= x < 10")
+>>> test_cond(10)
+(print "10 <= x < 15")
+>>> test_cond(15)
+(print "x >= 15")

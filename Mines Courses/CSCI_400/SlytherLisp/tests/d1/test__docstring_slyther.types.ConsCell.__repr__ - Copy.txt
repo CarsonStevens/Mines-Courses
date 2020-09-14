@@ -1,0 +1,14 @@
+>>> from slyther.types import *
+
+A cons cell should ``repr`` itself in a format that would
+be parsable and evaluable to our language.
+
+>>> ConsCell(1, 2)
+(cons 1 2)
+>>> ConsCell(ConsCell(2, 1), 1)
+(cons (cons 2 1) 1)
+
+.. hint::
+
+    The string formatting specifier ``!r`` will get you the
+    ``repr`` of an object.

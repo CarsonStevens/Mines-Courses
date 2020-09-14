@@ -1,0 +1,7 @@
+>>> from slyther.types import *
+
+If the ``cdr`` was not provided, assume to be ``NIL``.
+
+>>> cell = ConsList(1)
+>>> cell.cdr
+NIL

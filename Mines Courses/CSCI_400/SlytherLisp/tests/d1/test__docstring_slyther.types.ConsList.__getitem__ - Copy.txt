@@ -1,0 +1,8 @@
+>>> from slyther.types import *
+
+Get item at index ``idx``:
+
+>>> lst = [1, 1, 2, 3, 5, 8]
+>>> clst = ConsList.from_iterable(lst)
+>>> [lst[i] == clst[i] for i in range(len(lst))]
+[True, True, True, True, True, True]

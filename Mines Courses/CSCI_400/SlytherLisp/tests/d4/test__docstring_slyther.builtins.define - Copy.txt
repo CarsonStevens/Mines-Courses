@@ -1,0 +1,45 @@
+>>> from slyther.builtins import *
+
+Define a variable or a function to a value, calling ``put`` on
+the storage::
+
+    ; variable
+    (define var-name evaluate-me)
+
+    ; lambda function
+    (define func-name (lambda (args...) (body1) ... (bodyN)))
+
+    ; SE-named function
+    (define (func-name args...) (body1) ... (bodyN))
+
+.. note::
+
+    If defining a function (either by ``lambda`` or by SE-named
+    syntax), the definition **must** be made visible from within
+    that function's ``environ``, or recursion will not work!
+
+>>> from slyther.types import *
+>>> from slyther.parser import lisp
+>>> se = lisp('((twirl alpha beta) (print alpha) (print beta))')
+>>> name = Symbol('twirl')
+>>> args = lisp('(alpha beta)')
+>>> body = lisp('((print alpha) (print beta))')
+>>> stg = LexicalVarStorage({})
+>>> stg.put('NIL', NIL)
+>>> stg.put('define', define) # so that you can return a define if you want
+>>> stg.put('lambda', lambda_func)
+>>> from slyther.evaluator import lisp_eval
+>>> lisp_eval(define(cons(cons(name, args), body), stg), stg)
+NIL
+>>> lisp_eval(define(lisp('(x 10)'), stg), stg)
+NIL
+>>> stg[name].value
+(lambda (alpha beta) (print alpha) (print beta))
+>>> stg[name].value.environ['twirl'].value
+(lambda (alpha beta) (print alpha) (print beta))
+>>> stg['x'].value
+10
+>>> stg[name].value.environ['x'].value
+Traceback (most recent call last):
+    ...
+KeyError: 'x'

@@ -1,0 +1,4 @@
+>>> from slyther.types import *
+
+Put a **new** variable in the local environment, giving
+it a value ``value``.

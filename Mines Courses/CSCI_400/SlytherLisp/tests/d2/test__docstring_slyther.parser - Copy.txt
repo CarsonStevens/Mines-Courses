@@ -1,0 +1,10 @@
+>>> from slyther.parser import *
+
+This module defines parsing utilities in SlytherLisp.
+
+>>> parser = parse(lex('(print "Hello, World!")'))
+>>> se = next(parser)
+>>> se
+(print "Hello, World!")
+>>> type(se)
+<class 'slyther.types.SExpression'>

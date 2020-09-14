@@ -1,0 +1,12 @@
+>>> from slyther.types import *
+
+Return the number of elements in the list:
+
+>>> lst = [1, 1, 2, 3, 5, 8]
+>>> len(ConsList.from_iterable(lst))
+6
+
+Note: Your implementation is subject to the following constraints:
+
+:Time complexity: O(n), where n is the length of the list.
+:Space complexity: O(1)

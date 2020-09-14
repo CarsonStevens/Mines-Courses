@@ -1,0 +1,16 @@
+>>> from slyther.types import *
+
+Create an instance of ``cls`` from an iterable (anything that can go
+on the right hand side of a ``for`` loop).
+
+>>> lst = ConsList.from_iterable(iter(range(3)))
+>>> [lst.car, lst.cdr.car, lst.cdr.cdr.car, lst.cdr.cdr.cdr]
+[0, 1, 2, NIL]
+>>> ConsList.from_iterable([])
+NIL
+
+Note: Your implementation is subject to the following constraints:
+
+:Time complexity: O(n), where n is length of ``it``
+:Space complexity: O(n) ``ConsList`` objects,
+                   O(1) everything else (including stack frames!)

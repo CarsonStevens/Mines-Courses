@@ -1,0 +1,115 @@
+>>> from slyther.parser import *
+
+This *generator function* takes a generator object from the ``lex``
+function and generates AST elements.
+
+These are some convenient constants to make the examples more readable.
+Make a note of them while you read the examples.
+
+>>> from slyther.types import (Symbol as s, Quoted, SExpression)
+>>> lp = LParen()
+>>> rp = RParen()
+>>> q = Quote()
+
+Here is a simple example:
+
+>>> tokens = [lp, s('define'), lp, s('do-123'), s('fun'), rp,
+...             lp, s('map'), s('fun'), q, lp, 1, 2, 3, rp, rp, rp]
+>>> parser = parse(iter(tokens))
+>>> se = next(parser)
+>>> se                  # what you see below is from __repr__
+(define (do-123 fun) (map fun '(1 2 3)))
+>>> type(se)
+<class 'slyther.types.SExpression'>
+>>> type(se.car)
+<class 'slyther.types.Symbol'>
+
+Let's grab out that quoted list and take a look at it.
+
+>>> quoted_list = se.cdr.cdr.car.cdr.cdr.car
+>>> quoted_list
+'(1 2 3)
+>>> type(quoted_list)
+<class 'slyther.types.Quoted'>
+>>> type(quoted_list.elem)
+<class 'slyther.types.SExpression'>
+
+It was a quoted s-expression. Those can be constructed like this:
+
+>>> Quoted(SExpression.from_iterable([1, 2, 3]))
+'(1 2 3)
+
+Not only can s-expressions be quoted, but practically anything can. In
+addition, things can be quoted multiple times.
+
+>>> tokens = [q, lp, s('print'), 1, q, -2, q, q, 3.0, rp]
+>>> parser = parse(iter(tokens))
+>>> qse = next(parser)
+>>> qse
+'(print 1 '-2 ''3.0)
+>>> numbers = qse.elem.cdr
+>>> numbers
+(1 '-2 ''3.0)
+
+See that doubly-quoted three? It was constructed like this:
+
+>>> three = Quoted(Quoted(3.0))
+>>> three
+''3.0
+>>> three.elem
+'3.0
+>>> three.elem.elem
+3.0
+
+You could imagine something similar for triply-quoted, quad-quoted, or
+even n-quoted. Your parser should be able to handle any amount of quotes.
+
+When the input token stream is starting to form a valid parse, but ends
+before the parse is complete, a ``SyntaxError`` should be raised:
+
+>>> tokens = [lp, rp, lp, s('print')]
+>>> parser = parse(iter(tokens))
+>>> next(parser)
+NIL
+>>> next(parser)
+Traceback (most recent call last):
+    ...
+SyntaxError: incomplete parse
+
+>>> tokens = [lp, rp, q]
+>>> parser = parse(iter(tokens))
+>>> next(parser)
+NIL
+>>> next(parser)
+Traceback (most recent call last):
+    ...
+SyntaxError: incomplete parse
+
+Notice in both of the previous examples, we got complete elements as soon
+as they were fully formed, and the syntax error did not come until there
+was an error.
+
+When there's too many closing parens, you should raise another error:
+
+>>> tokens = [lp, rp, s('print'), rp]
+>>> parser = parse(iter(tokens))
+>>> next(parser)
+NIL
+>>> next(parser)
+print
+>>> next(parser)
+Traceback (most recent call last):
+    ...
+SyntaxError: too many closing parens
+
+Finally, right parenthesis cannot be quoted. We have one more type of
+error this can raise:
+
+>>> tokens = [q, 1, lp, s('print'), q, rp]
+>>> parser = parse(iter(tokens))
+>>> next(parser)
+'1
+>>> next(parser)
+Traceback (most recent call last):
+    ...
+SyntaxError: invalid quotation

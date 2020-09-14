@@ -1,0 +1,12 @@
+>>> from slyther.types import *
+
+A simple cons cell data structure:
+
+>>> cell = ConsCell(1, 2)
+>>> cell.car
+1
+>>> cell.cdr
+2
+>>> cell.car = 4
+>>> cell.car
+4

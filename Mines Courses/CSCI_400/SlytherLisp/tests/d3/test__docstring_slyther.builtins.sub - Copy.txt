@@ -1,0 +1,17 @@
+>>> from slyther.builtins import *
+
+``(- x y z)`` computes ``x - y - z``, but with only one argument,
+``(- x)`` computes ``-x``.
+
+>>> sub(10, 1, 2)
+7
+>>> sub(10, 1)
+9
+>>> sub(10)
+-10
+>>> sub()
+0
+
+.. hint::
+
+    Use ``reduce``.

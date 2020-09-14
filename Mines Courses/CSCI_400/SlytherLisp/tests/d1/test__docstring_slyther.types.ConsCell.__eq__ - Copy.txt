@@ -1,0 +1,22 @@
+>>> from slyther.types import *
+
+Two cons cells are equal if each of their ``car`` and
+``cdr`` are equal:
+
+>>> a = ConsCell(1, 2)
+>>> b = ConsCell(2, 1)
+>>> c = ConsCell(1, 1)
+>>> d = ConsCell(1, 2)
+>>> a == a
+True
+>>> a == b
+False
+>>> b == c
+False
+>>> b == d
+False
+>>> a == d
+True
+
+Should return ``False`` if ``other`` is not an instance of a
+``ConsCell``.
