@@ -1,66 +1,205 @@
 /*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
+*  Author: Carson Stevens
+*  Assignment: Advanced HTML and CSS
+*
+*  Notes: CSS fails validation for all variables and anywhere I've use -webkit, -o, -ms, etc. for adaptability. Javascript/jQuery used for animations/dark toggle created by myself.
+*
+* 1. At least two elements with specified fonts
+*     : Alegreya, Niccone, Pacific, etc.
+* 2. A background image (may be repeated, doesn't have to be for the entire page)
+*     See coral table in tables.css
+*
+* 7. Style each of the following pseudo-classes differently
+      link: line 183
+      visited: line 497
+      hover: line 245
+      active: line 506
 */
 
-
-
 :root {
-  --primary-color: rgba(45, 64, 89, 0.7);
-  --secondary-color: rgba(235, 84, 85, 1);
-  --light-color: rgba(222, 205, 195, 1);
-  --lightest-color: #E5E5E5;
+
+  /* Shared Theme Variables  */
   --nav-height: 4rem;
   --intro-height: 85vh;
-  --directory-raise: 7rem;
+  --directory-raise: 4rem;
   --lower-intro: 18vh;
-  --pointer: url('pointer.cur'), auto;
+  --pointer: pointer;   /* url('images/pointer.cur') */
+  --drop-shadow-alpha: rgba(0, 0, 0, 0.8);
+  --lighten-hover-color: rgba(255,255,255,0.5);
+
+  /* NEON SHADOWS */
+  --box-shadow-color: rgba(162, 0, 250, 0.2);
+  --box-shadow-highlight: rgba(255, 255, 255, 1);
+  --box-shadow-color-hover: rgba(120, 161, 255, 0.7);
+  --box-shadow-highlight-hover: rgba(255, 255, 255, 1);
+  --text-shadow-color: rgba(162, 0, 250, 1);
+  --text-shadow-highlight: rgba(255, 255, 255, 1);
+  --text-shadow-color-hover: rgba(45, 105, 242, 0.1);
+  --text-shadow-highlight-hover: rgba(120, 161, 255, 1);
+
+  /* Light Theme Colors */
+  --primary-color: rgba(45, 64, 89, 1);
+  --primary-color-alpha: rgba(45, 64, 89, 0.6);
+  --secondary-color: rgba(235, 84, 85, 1);
+  --secondary-color-alpha: rgba(235, 84, 85, 0.8);
+  --light-color: rgba(252, 237, 216, 1);  /* rgba(222, 205, 195, 1); */
+  --lightest-color: #E5E5E5;
+  --background-primary: rgba(80, 163, 162,1);
+  --background-primary-alpha: rgba(80, 163, 162,0.65);
+  --background-secondary: rgba(181, 95, 164, 1);
+  --background-secondary-alpha: rgba(181, 95, 164, 0.65);
+
+  --primary-btn-color: rgba(252, 237, 216, 1);
+  --secondary-btn-color: rgba(45, 64, 89, 1);
+  --primary-btn-hover-color: rgba(235, 84, 85, 1);
+  --secondary-btn-hover-color: rgba(252, 237, 216, 1);
+
+  /* Table Themes */
+  --project-table-bg1: rgba(0, 0, 0, 0.3);
+  --project-table-bg2: rgba(23, 88, 87, 0.65);
+  --project-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --project-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --coding-table-bg1: rgba(0, 0, 0, 0.3);
+  --coding-table-bg2: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --corals-table-bg1: rgba(69, 121, 226, 0.65);
+  --corals-table-bg2: rgba(52, 97, 193, 0.65);
+  --corals-table-hover-bg1: rgb(45, 85, 170);
+  --corals-table-hover-bg2: rgb(43, 78, 153);
+
+
 }
 
-[data-theme="dark"] {}
+[data-theme="dark"] {
+  --primary-color: rgba(32, 37, 42, 1);
+  --primary-color-alpha: rgba(32, 37, 42, 0.8);
+  --secondary-color: rgba(235, 84, 85, 1);
+  --secondary-color-alpha: rgba(235, 84, 85, 0.8);
+  --light-color: rgba(252, 237, 216, 1);  /* rgba(222, 205, 195, 1); */
+  --lightest-color: #E5E5E5;
+  --background-primary: rgba(0, 0, 0, 1);
+  --background-primary-alpha: rgba(0, 0, 0, 0.9);
+  --background-secondary: rgba(79, 47, 73, 1);
+  --background-secondary-alpha: rgba(51, 31, 47, 0.9);
 
-[data-theme="party"] {}
 
-html {
+  /* Dark Table Themes */
+  --project-table-bg1: rgba(0, 0, 0, 0.3);
+  --project-table-bg2: rgba(0, 0, 0, 0.4);
+  --project-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --project-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --coding-table-bg1: rgba(0, 0, 0, 0.3);
+  --coding-table-bg2: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --corals-table-bg1: rgba(0, 35, 105, 0.65);
+  --corals-table-bg2: rgba(0, 23, 70, 0.65);
+  --corals-table-hover-bg1: rgb(30, 55, 107);
+  --corals-table-hover-bg2: rgb(18, 37, 75);
+
+  /* Dark Button Themes */
+  --primary-btn-color: rgba(235, 84, 85, 0.7);
+  --secondary-btn-color: rgba(252, 237, 216, 1);
+  --primary-btn-hover-color: rgba(235, 84, 85, 1);
+  --secondary-btn-hover-color: rgba(252, 237, 216, 1);
+}
+
+[data-theme="party"] {
+  --primary-color: rgba(34, 34, 34, 1);
+  --primary-color-alpha: rgba(34, 34, 34, 0.8);
+  --secondary-color: rgba(235, 84, 85, 1);
+  --secondary-color-alpha: rgba(235, 84, 85, 0.8);
+  --light-color: rgba(252, 237, 216, 1);  /* rgba(222, 205, 195, 1); */
+  --lightest-color: #E5E5E5;
+  --background-primary: rgba(0, 0, 0, 1);
+  --background-primary-alpha: rgba(34, 34, 34, 0.95);
+  --background-secondary: rgb(31, 18, 45);
+  --background-secondary-alpha: rgba(31, 18, 45, 0.95);
+
+  /* Party Table Themes */
+  --project-table-bg1: rgba(0, 0, 0, 0.3);
+  --project-table-bg2: rgba(23, 88, 87, 0.65);
+  --project-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --project-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --coding-table-bg1: rgba(0, 0, 0, 0.3);
+  --coding-table-bg2: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg1: rgba(0, 0, 0, 0.6);
+  --coding-table-hover-bg2: rgba(0, 0, 0, 0.3);
+
+  --corals-table-bg1: rgba(69, 121, 226, 0.65);
+  --corals-table-bg2: rgba(52, 97, 193, 0.65);
+  --corals-table-hover-bg1: rgb(45, 85, 170);
+  --corals-table-hover-bg2: rgb(43, 78, 153);
+
+  /* Party Button Themes */
+  --primary-btn-color: rgba(235, 84, 85, 0.7);
+  --secondary-btn-color: rgba(252, 237, 216, 1);
+  --primary-btn-hover-color: rgba(235, 84, 85, 1);
+  --secondary-btn-hover-color: rgba(252, 237, 216, 1);
+}
+
+html, body {
+  width: 100%;
   margin: 0 auto;
+  padding: 0;
+  overflow-x: hidden;
 }
+
 
 body {
   width: 100%;
   min-width: 750px;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  @include perspective(1000px);
-  background: -webkit-gradient(linear, left top, right bottom, from(#50a3a2), to(rgba(181, 95, 164, 1)));
-  background: -o-linear-gradient(top left, #50a3a2 0%, rgba(181, 95, 164, 1) 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, rgba(181, 95, 164, 1) 100%);
+  transform-style: perspective(1000px);
+  background: -o-linear-gradient(150deg, var(--background-primary-alpha) 0%, var(--background-secondary-alpha) 100%);
+  background: linear-gradient(300deg, var(--background-primary-alpha) 0%, var(--background-secondary-alpha) 100%);
   background-size: 400% 400%;
-  overflow-x: hidden;
   -webkit-animation: BackgroundMove 30s ease infinite;
   animation: BackgroundMove 30s ease infinite;
-  /* scroll-behavior: smooth; */
-  cursor:
-    url('data:image/x-icon;base64,AAACAAEAICAAAAAAAACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6Qzw/+kO7f/pEer/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOkO7f/pEur/6xLo/+wV5f/sFeX/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6hPn/+oU5v//////7Bjg/+wc3f/tHNz/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrFuL/7Bjg////////////7h7Y/+4g1v/uItX/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO0b3f/uHdr/////////////////7ybQ//Am0P/wKM3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7iDY/+0i1v//////9fT0////////////8SrK//EsyP/yLcj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADtItb/8CbQ///////v7+//7+/v////////////8jDC//IwxP/zMML/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAm0P/wKM3//////+np6f/p6en/6enp////////////9Da8//Q2vP/0NL3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8CjN//EsyP//////4+Tj/+Tj4///////4+Pj////////////9jq2//U6uP/0Orj/8ze8//M0wP/zMsD/8y7F//Eqyv/vJs//7iPT/+4g2P/sHN3/6xbi/+oU5v8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxLMj/8jDE///////d3d3/////////////////3d3d////////////9z6y//Y8tP/1Orb/9Ti5//M0vv/zMML/8i7F//AqzP/vJtD/7iLV/+4d2v/sGt7/7BXl/+kS6v8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPIuxf/zMsD//////9fX1///////7Bfi////////////19fX///////////////////////////////////////////////////////////////////////rFuL/6xLo/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8zLA//Q2vP//////0NDQ///////vIdX/8CjN////////////0dDQ/9DQ0P/Q0ND/0dDQ/9HQ0P/Q0ND/0NDQ/9DQ0P/R0ND/0dDQ////////////7R7Z/+wY4P/qFOb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADzNMD/9jm4///////Kysr///////EsyP/yMMT/8ze8///////////////////////////////////////Kysr/ysrK/8rKyv///////////+8j1P/uHtj/6xve/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPQ2vP/1Orj//////8PDw///////9Da8//Y8tP/4Qa//+EKt//c+sv/0OLn/8jDE//Ak0v/sGt7////////////DxMP////////////wKM3/8CTS/+4e2P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9Da8//U6uP//////vby8///////1Orj/+EWr///////7T57/+Uim//Y+sv/zNL7/8SnM////////////vby8////////////8S/G//Eqyv/vJNH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADzN7z/9Tq2//////+1tbX///////Y8tP/6SaX//////7+/v/+/v7//+EKt//U3u////////////7W1tf////////////M0wP/yMMT/8irL/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPQ2vP/2PLT/////////////////9jy0//lIpv+/v7////////pNoP/4Qq3////////////////////////////1Orj/8zTA//Iuxf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9Da8//U6tv/////////////////1OLn/90Gu/7+/v//5SqT/+Eaq////////////////////////////9j6y//Q4uf/zNL7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAb0Nrz/9jm4//////////////////IwxP/1N7v/9jy0//Y+sv////////////////////////////dAsP/1Orb/9Ta8/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAvMywP/zN7z/////////////////8CjN//Iuxf/zMML////////////////////////////2Qa7/9j6y//U4uf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8jDE//Q2vP/////////////////tHtn/7yPU////////////////////////////+EGv//Y+sv/1Orb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAADxL8b/8zLA/////////////////+sT5/////////////////////////////dAsP/3PrL/9jq2/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPEsyP/yLsX////////////////////////////////////////////3PLT/9jq2//U6uP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8CfP//EsyP//////////////////////////////////////9Di5//Q4uf/0OLn/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvJtD/8CjN//////////////////////////////////Q0vf/zN7z/8zS+/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8j1P/vJtD////////////////////////////yMMT/8jDE//Muxf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7Rzc/+4g2P//////////////////////8CrM//Aryv/xKsr/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsGt7/7Rzc/////////////////+8m0P/vJNH/7ybP/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOwV5f/sGOD////////////tHtn/7iDW/+8k0f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6xLo/+sU5f//////7Bjg/+wa3v/sGt7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpDe7/6RHq/+kS6v/rFOX/6xTl/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoC/D/6Q3u/+oP7P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAj////wf///8D////Af///wD///8Af///AD///wAf//8AAAH/AAAA/wAAAP8AAAD/AAAB/wAAA/8AAAf/AAAP/wAAH/8AAD//AAB//wAA//8AAf//AAP//wAH//8AD///AB///wA///8Af///AP///wH///8D////B////4////8='), auto;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
 }
 
 header {
   height: 100vh;
 }
 
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 5vh;
+  color: var(--light-color);
+}
+
+a, a:link {
+  color: var(--light-color);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 nav {
+  font-family: 'Alegreya', serif;
   position: fixed;
   height: var(--nav-height);
   width: 100%;
   top: 0;
   left: 0;
   z-index: 9999;
-  -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.8));
-          filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.8));
-  background-size: 400% 400%;
-  -webkit-animation: BackgroundMove 30s ease infinite;
-  animation: BackgroundMove 30s ease infinite;
+  -webkit-filter: drop-shadow(0px 0px 3px var(--drop-shadow-alpha));
+          filter: drop-shadow(0px 0px 3px var(--drop-shadow-alpha));
 }
 
 #navbar-menu-container {
@@ -101,22 +240,42 @@ nav {
   margin: 0;
   padding: 0 1rem;
   height: 100%;
-  transform: skew(-15deg);
+  -webkit-transform: skew(-15deg);
+      -ms-transform: skew(-15deg);
+          transform: skew(-15deg);
 }
 
 #navbar-menu li:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: var(--lighten-hover-color);
   position: relative;
+  border-bottom: 1px solid var(--primary-color);
+  -webkit-filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
+          filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
 }
 
-#navbar-menu li ul {
+#navbar-menu li a {
+  -webkit-transition: all 0.45s;
+  -o-transition: all 0.45s;
+  transition: all 0.45s;
+}
+#navbar-menu li:hover a {
+  color: var(--primary-color);
+}
+
+#navbar-menu li ul,
+#navbar-menu li ul li ul {
   z-index: 99999;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   display: none;
   list-style-type: none;
   position: absolute;
-  width: 100%;
+  width: 7rem;
   height: auto;
   padding: 0;
   margin:0;
@@ -127,56 +286,158 @@ nav {
   /* transform: skew(15deg); */
 
 }
-#navbar-menu li:hover ul {
+#navbar-menu li:hover ul,
+#navbar-menu li ul li a:hover ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  background-color: rgba(255,255,255,0.1);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: var(--lighten-hover-color);
 }
 
-#navbar-menu li ul li {
+#navbar-menu li ul li ul {
+  top: 0;
+  left: 100%;
+  display: none;
+}
+
+#navbar-menu li ul li,
+#navbar-menu li ul li ul li {
   /* transform: skew(15deg); */
-  width: 100%;
-  height: 100%;
+  width: 7rem;
+  height: 2rem;
   position: relative;
   text-align: center;
+  border-bottom: 1px solid var(--primary-color-alpha);
+}
+#navbar-menu li ul li ul li {
+  display: none;
 }
 
-#navbar-menu li ul li a {
-  margin-top: 0;
-  margin-left: -0.25rem;
+#navbar-menu li ul li:hover ul li {
+  display: block;
+}
+
+#navbar-menu li ul li a,
+#navbar-menu li ul li ul li a {
   padding: 0.25rem 0 0.75rem 0;
 }
 
-#navbar-menu li a,
-#navbar-menu li ul li a {
-  transform: skew(15deg);
+
+#navbar-menu li ul li a,
+#navbar-menu li ul li ul li a {
+  -webkit-transform: skew(15deg);
+      -ms-transform: skew(15deg);
+          transform: skew(15deg);
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 0.5rem;
+  padding-left: 0;
+  position: relative;
+
+}
+
+#navbar-menu li a {
+  -webkit-transform: skew(15deg);
+      -ms-transform: skew(15deg);
+          transform: skew(15deg);
   display: block;
   height: 100%;
   width: 100%;
   margin: 0 auto;
   text-decoration: none;
   padding-top: 1.5rem;
+  position: relative;
 }
+
+
+
+
 
 #theme-type-text {
   color: var(--light-color);
 }
 
+#experience-design-container {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 6rem;
+  line-height: 1em;
+  font-size: 5rem;
+  width: 40%;
+  padding: 0 29%;
+  text-align: center;
+  margin: 2rem auto;
+  -webkit-transform: skewY(5deg);
+      -ms-transform: skewY(5deg);
+          transform: skewY(5deg);
+  font-family: 'Pacifico', cursive;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0);
+  letter-spacing: 0.11em;
+  -webkit-font-kerning: none;
+          font-kerning: none;
+  display: none;
+  z-index: 3;
+}
+
+#experience-heading {
+  -webkit-animation: flicker 6s infinite step-end;
+          animation: flicker 6s infinite step-end;
+}
+
+#design-heading {
+  -webkit-animation: flicker 5s infinite 3s step-end;
+          animation: flicker 5s infinite 3s step-end;
+}
+
 #canvas_intro_container {
   width: 100%;
   height: calc(var(--intro-height) - var(--directory-raise));
+  position:relative;
+  z-index: 99;
+}
+
+#intro-message-container {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left: 100%;
+  top: calc(var(--nav-height) + 7vh);
+  background: var(--secondary-color);
+  background: -webkit-gradient(from(var(--primary-color-alpha)), to(var(--secondary-color-alpha)));
+  background: -o-linear-gradient(var(--primary-color-alpha) 0%, var(--secondary-color-alpha) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--primary-color)), to(var(--secondary-color-alpha)));
+  background: -o-linear-gradient(var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
+  background: linear-gradient(var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
+  color: var(--light-color);
+  border-radius: 0.1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  opacity: 1;
 }
 
 #canvas_intro_container>canvas {
+  position: absolute;
   top: var(--nav-height);
   left: 0;
-  z-index: 999;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
   text-align: center;
+  width: 100%;
+
 }
 
 #directory {
   width: 80%;
-  /* height: calc(100vh + var(--directory-raise) - var(--intro-height)); */
   height: auto;
   margin: 5vh auto 30vh;
   display: -webkit-box;
@@ -192,7 +453,7 @@ nav {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   position: relative;
-  z-index: 9999;
+  z-index: 999;
 }
 
 #directory li {
@@ -201,13 +462,13 @@ nav {
   position: relative;
 }
 
-#directory li a:link {
+#directory li a {
   text-decoration: none;
   text-align: center;
-  color: var(--primary-color);
-  background-color: var(--light-color);
+  color: var(--secondary-btn-color);
+  background-color: var(--primary-btn-color);
   padding: 0.25rem 0.5rem;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--secondary-btn-color);;
   border-radius: 0.25rem;
   -webkit-transform: scale(1);
       -ms-transform: scale(1);
@@ -226,9 +487,9 @@ nav {
   -webkit-transform: scale(1.1);
       -ms-transform: scale(1.1);
           transform: scale(1.1);
-  background: var(--secondary-color);
-  color: var(--light-color);
-  text-shadow: 1.6px 2.2px 3px rgba(45, 64, 89, 0.8);
+  background: var(--primary-btn-hover-color);
+  color: var(--secondary-btn-hover-color);
+  text-shadow: 1.6px 2.2px 3px var(--primary-color-alpha);
   -webkit-box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
                       -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
                       0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
@@ -237,7 +498,7 @@ nav {
                       0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
 }
 
-#directory li a:visited {
+#directory li a:visited, a:visited {
   -webkit-box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
                       -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
                       0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
@@ -246,7 +507,7 @@ nav {
                       0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
 }
 
-#directory li a:active {
+#directory li a:active, a:active {
   opacity: 0.8;
 }
 
@@ -261,8 +522,8 @@ nav {
   font-size: 0.8rem;
   line-height: 1.1;
   background: rgb(34, 34, 34);
-  color: white;
-  border: 1px solid white;
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
   border-radius: 0.1rem;
 }
 
@@ -284,7 +545,7 @@ nav {
     20px 20px 0px #017e7f,
     25px 25px 0px #052939;
   overflow: hidden;
-  border: 1px solid rgba(235, 84, 85, 0.5);
+  border: 1px solid var(--secondary-color-alpha);
   border-radius: 0.25rem;
   -webkit-filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
           filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
@@ -405,14 +666,14 @@ nav {
   height: 650px;
   min-height: 650px;
   background-color: rgb(18, 18, 18);
-  -webkit-filter: drop-shadow(2px 5px 5px black);
-          filter: drop-shadow(2px 5px 5px black);
+  -webkit-filter: drop-shadow(2px 5px 5px var(--drop-shadow-alpha));
+          filter: drop-shadow(2px 5px 5px var(--drop-shadow-alpha));
 }
 
 .frame {
   width: 100%;
   height: 650px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-alpha);
   overflow: hidden;
 }
 
@@ -422,8 +683,8 @@ nav {
   height: auto;
   position: relative;
   overflow: hidden;
-  -webkit-filter: drop-shadow(2px 5px 10px black);
-          filter: drop-shadow(2px 5px 10px black);
+  -webkit-filter: drop-shadow(2px 5px 10px var(--drop-shadow-alpha));
+          filter: drop-shadow(2px 5px 10px var(--drop-shadow-alpha));
 }
 
 #profile-description {
@@ -431,14 +692,16 @@ nav {
   margin-bottom: 0.5rem;
   width: 95%;
   color: var(--light-color);
-  hypens: auto;
+  hyphens: auto;
   line-height: 1.25;
   text-align: right;
 }
 
 #profile-description::first-letter {
+  font-family: 'Alegreya', serif;
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
+  font-weight: 400;
 }
 
 #profile-description::first-line {
@@ -503,9 +766,9 @@ nav {
   max-width: 450px;
   margin: 2rem;
   padding: 0 0 1rem;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-alpha);
   color: var(--light-color);
-  border: 1px solid rgba(235, 84, 85, 0.5);
+  border: 1px solid var(--secondary-color-alpha);
   border-radius: 0.25rem;
   overflow: hidden;
   -webkit-filter: drop-shadow(0px 6px 4px rgba(0, 0, 0, 1));
@@ -531,7 +794,7 @@ nav {
 .gallery-img {
   width: 100%;
   min-width: 350px;
-  border-bottom: solid 1px rgba(235, 84, 85, 0.5);
+  border-bottom: solid 1px var(--secondary-color-alpha);
 }
 
 .gallery-img-description {
@@ -579,8 +842,8 @@ q {
   position: absolute;
   top: -0.5rem;
   right: calc(-100% + 1rem);
-  border: 2px solid var(--primary-color);
-  background-color: var(--secondary-color);
+  border: 2px solid var(--light-color);
+  background-color: var(--corals-table-bg1);
   border-radius: 2rem;
   padding: 0.25rem 0.6rem;
   z-index: 9999;
@@ -588,8 +851,8 @@ q {
 }
 
 .info-i>i {
-  -webkit-text-stroke: 0.5px var(--light-color);
-  color: rgb(77, 87, 136);
+  -webkit-text-stroke: 0.5px var(--corals-table-bg2);;
+  color: var(--light-color);
 }
 
 .info-i:hover {
@@ -599,7 +862,7 @@ q {
 .item-info:hover {
   -webkit-clip-path: circle(80%);
           clip-path: circle(80%);
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--drop-shadow-alpha);
   background-size: 600% 600%;
   border: 1px solid var(--light-color);
   border-radius: 0.1rem;
@@ -657,7 +920,7 @@ input[type=range].slider::-webkit-slider-thumb {
   margin-top: 4px;
   width: 25px;
   height: 25px;
-  background: rgba(122, 0, 147, 0.57);
+  background: var(--primary-color); /* rgba(122, 0, 147, 0.57); */
   border: 1px solid var(--light-color);
   border-radius: 24px;
   cursor: pointer;
@@ -667,12 +930,12 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 
 input[type=range].slider:focus::-webkit-slider-runnable-track {
-  background: #ff75a7;
+  background: var(--secondary-color-alpha);
 }
 
 input[type=range].slider::-moz-range-track {
-  background: #ff75a7;
-  border: 1px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 1px solid var(--primary-color);
   border-radius: 25px;
   width: 100%;
   height: 25px;
@@ -684,7 +947,7 @@ input[type=range].slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   background: #9d71a9;
-  border: 1px solid rgba(122, 0, 147, 0.57);
+  border: 1px solid var(--light-color); /* rgba(122, 0, 147, 0.57); */
   border-radius: 24px;
   cursor: pointer;
 }
@@ -700,14 +963,14 @@ input[type=range].slider::-ms-track {
 }
 
 input[type=range].slider::-ms-fill-lower {
-  background: #ff75a7;
-  border: 2.6px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 2.6px solid var(--color-light);
   border-radius: 50px;
 }
 
 input[type=range].slider::-ms-fill-upper {
-  background: #ff75a7;
-  border: 2.6px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 2.6px solid var(--color-light);
   border-radius: 50px;
 }
 
@@ -723,21 +986,16 @@ input[type=range].slider::-ms-thumb {
 }
 
 input[type=range].slider:focus::-ms-fill-lower {
-  background: #ff75a7;
+  background: var(--secondary-color-alpha);
 }
 
 input[type=range].slider:focus::-ms-fill-upper {
-  background: #ff75a7;
+  background: var(--secondary-color-alpha);
 }
 
-/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
-how to remove the virtical space around the range input in IE*/
 @supports (-ms-ime-align:auto) {
-
-  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
   input[type=range].slider {
     margin: 0;
-    /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
 
@@ -753,15 +1011,15 @@ input[type=range].slider:focus {
 }
 
 input[type=range].slider::-webkit-slider-runnable-track {
-  background: #ff75a7;
-  border: 1px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 1px solid var(--primary-color);
   border-radius: 25px;
   width: 100%;
   height: 25px;
   cursor: pointer;
   margin-top: 25px;
-  -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
-          filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
+  -webkit-filter: drop-shadow(0px 0px 2px var(--drop-shadow-alpha));
+          filter: drop-shadow(0px 0px 2px var(--drop-shadow-alpha));
 }
 
 input[type=range].slider::-webkit-slider-thumb {
@@ -769,19 +1027,19 @@ input[type=range].slider::-webkit-slider-thumb {
   width: 25px;
   height: 25px;
   background: #9d71a9;
-  border: 1px solid rgba(122, 0, 147, 0.57);
+  border: 1px solid var(--primary-color-alpha);
   border-radius: 24px;
   cursor: pointer;
   -webkit-appearance: none;
 }
 
 input[type=range].slider:focus::-webkit-slider-runnable-track {
-  background: #ff75a7;
+  background: var(--secondary-color-alpha);
 }
 
 input[type=range].slider::-moz-range-track {
-  background: #ff75a7;
-  border: 2.6px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 1px solid var(--primary-color);
   border-radius: 25px;
   width: 100%;
   height: 25px;
@@ -792,7 +1050,7 @@ input[type=range].slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   background: #9d71a9;
-  border: 1px solid rgba(122, 0, 147, 0.57);
+  border: 1px solid var(--primary-color);
   border-radius: 24px;
   cursor: pointer;
 }
@@ -808,14 +1066,14 @@ input[type=range].slider::-ms-track {
 }
 
 input[type=range].slider::-ms-fill-lower {
-  background: #ff75a7;
-  border: 2.6px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 1px solid var(--primary-color);
   border-radius: 50px;
 }
 
 input[type=range].slider::-ms-fill-upper {
-  background: #ff75a7;
-  border: 2.6px solid #363e5b;
+  background: var(--secondary-color-alpha);
+  border: 1px solid var(--primary-color);
   border-radius: 50px;
 }
 
@@ -823,7 +1081,7 @@ input[type=range].slider::-ms-thumb {
   width: 25px;
   height: 25px;
   background: #9d71a9;
-  border: 1px solid rgba(122, 0, 147, 0.57);
+  border: 1px solid var(--primary-color);
   border-radius: 24px;
   cursor: pointer;
   margin-top: 0px;
@@ -831,22 +1089,11 @@ input[type=range].slider::-ms-thumb {
 }
 
 input[type=range].slider:focus::-ms-fill-lower {
-  background: #ff75a7;
+  background: var(--secondary-color-alpha);
 }
 
 input[type=range].slider:focus::-ms-fill-upper {
-  background: #ff75a7;
-}
-
-/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
-how to remove the virtical space around the range input in IE*/
-@supports (-ms-ime-align:auto) {
-
-  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
-  input[type=range].slider {
-    margin: 0;
-    /*Edge starts the margin from the thumb, not the track as other browsers do*/
-  }
+  background: var(--secondary-color-alpha);
 }
 
 /* Scroll Bar styling */
@@ -861,22 +1108,22 @@ how to remove the virtical space around the range input in IE*/
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
-  border: 6px dotted #ffffff;
+  background: var(--light-color);
+  border: 6px dotted var(--lightest-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+  background: var(--primary-color);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: #000000;
+  background: var(--primary-color);
 }
 
 ::-webkit-scrollbar-track {
   background: #666666;
-  border: 20px solid rgba(4, 4, 4, 0.4);
+  border: 20px solid var(--drop-shadow-alpha);
   border-radius: 24px;
 }
 
@@ -939,6 +1186,11 @@ how to remove the virtical space around the range input in IE*/
   overflow-x: visible;
 }
 
+.messageSlideIn {
+  -webkit-animation: messageSlideIn 1s 1 forwards 1s ease-out;
+          animation: messageSlideIn 1s 1 forwards 1s ease-out;
+}
+
 .parallax>use {
   -webkit-animation: move-forever 30s linear infinite;
           animation: move-forever 30s linear infinite;
@@ -979,19 +1231,19 @@ how to remove the virtical space around the range input in IE*/
   width: 40px;
   height: 40px;
   background-color: rgba(255, 255, 255, 0.15);
-  bottom: -160px;
-  -webkit-animation: square 25s infinite;
-  animation: square 25s infinite;
+  bottom: -150px;
+  -webkit-animation: float 25s infinite;
+  animation: float 25s infinite;
   -webkit-transition-timing-function: linear;
   -o-transition-timing-function: linear;
      transition-timing-function: linear;
 }
 
-.bg-bubbles li:nth-child(1) {
+.bg-bubbles li:nth-child(1n) {
   left: 10%;
 }
 
-.bg-bubbles li:nth-child(2) {
+.bg-bubbles li:nth-child(2n) {
   left: 20%;
   width: 80px;
   height: 80px;
@@ -1001,13 +1253,13 @@ how to remove the virtical space around the range input in IE*/
   animation-duration: 17s;
 }
 
-.bg-bubbles li:nth-child(3) {
+.bg-bubbles li:nth-child(3n) {
   left: 25%;
   -webkit-animation-delay: 4s;
   animation-delay: 4s;
 }
 
-.bg-bubbles li:nth-child(4) {
+.bg-bubbles li:nth-child(4n) {
   left: 40%;
   width: 60px;
   height: 60px;
@@ -1016,11 +1268,11 @@ how to remove the virtical space around the range input in IE*/
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.bg-bubbles li:nth-child(5) {
+.bg-bubbles li:nth-child(5n) {
   left: 70%;
 }
 
-.bg-bubbles li:nth-child(6) {
+.bg-bubbles li:nth-child(6n) {
   left: 80%;
   width: 120px;
   height: 120px;
@@ -1029,7 +1281,7 @@ how to remove the virtical space around the range input in IE*/
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.bg-bubbles li:nth-child(7) {
+.bg-bubbles li:nth-child(7n) {
   left: 32%;
   width: 160px;
   height: 160px;
@@ -1037,7 +1289,7 @@ how to remove the virtical space around the range input in IE*/
   animation-delay: 7s;
 }
 
-.bg-bubbles li:nth-child(8) {
+.bg-bubbles li:nth-child(8n) {
   left: 55%;
   width: 20px;
   height: 20px;
@@ -1047,7 +1299,7 @@ how to remove the virtical space around the range input in IE*/
   animation-duration: 40s;
 }
 
-.bg-bubbles li:nth-child(9) {
+.bg-bubbles li:nth-child(9n) {
   left: 25%;
   width: 10px;
   height: 10px;
@@ -1058,7 +1310,7 @@ how to remove the virtical space around the range input in IE*/
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.bg-bubbles li:nth-child(10) {
+.bg-bubbles li:nth-child(10n) {
   left: 90%;
   width: 160px;
   height: 160px;
@@ -1066,11 +1318,12 @@ how to remove the virtical space around the range input in IE*/
   animation-delay: 11s;
 }
 
-.wrapper {
-  background: #50a3a2;
-  background: -webkit-gradient(linear, left top, right bottom, from(#50a3a2), to(#53e3a6));
-  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+.floating-shape-wrapper {
+  background: var(--secondary-color);
+  background: -o-linear-gradient(top left, var(--primary-color-alpha) 0%, var(--secondary-color-alpha) 100%);
+  background: -webkit-gradient(linear, left top, right bottom, from(var(--primary-color)), to(var(--secondary-color-alpha)));
+  background: -o-linear-gradient(top left, var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
+  background: linear-gradient(to bottom right, var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -1081,7 +1334,39 @@ how to remove the virtical space around the range input in IE*/
   opacity: 0.7;
 }
 
-@-webkit-keyframes square {
+/* Clip Path Shapes */
+
+.triangle {
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.star, .bg-bubbles li {
+  -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+          clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.cross {
+  -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+          clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
+
+.pentagon {
+  -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+          clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.hexagon {
+  -webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+          clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.message {
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+          clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
+
+@-webkit-keyframes float {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -1093,7 +1378,7 @@ how to remove the virtical space around the range input in IE*/
   }
 }
 
-@keyframes square {
+@keyframes float {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -1367,6 +1652,146 @@ how to remove the virtical space around the range input in IE*/
   }
 }
 
+@-webkit-keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+
+  3% {
+    opacity: 0.4;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  7% {
+    opacity: 0.4;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  9% {
+    opacity: 0.4;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  89% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+
+  3% {
+    opacity: 0.4;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  7% {
+    opacity: 0.4;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  9% {
+    opacity: 0.4;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  89% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@-webkit-keyframes messageSlideIn{
+  0%{
+      -webkit-transform: rotate(15deg) scale(0.5) translateX(0);
+              transform: rotate(15deg) scale(0.5) translateX(0);
+      opacity: 0.5;
+      }
+  50%{
+      -webkit-transform: rotate(-8deg) scale(1) translateX(-500px);
+              transform: rotate(-8deg) scale(1) translateX(-500px);
+      opacity: 1;
+      }
+  65%{
+      -webkit-transform: rotate(3deg) scale(1) translateX(-450px);
+              transform: rotate(3deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+  90%{
+      -webkit-transform: rotate(-1deg) scale(1) translateX(-450px);
+              transform: rotate(-1deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+  100%{
+      -webkit-transform: rotate(0deg) scale(1) translateX(-450px);
+              transform: rotate(0deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+}
+
+@keyframes messageSlideIn{
+  0%{
+      -webkit-transform: rotate(15deg) scale(0.5) translateX(0);
+              transform: rotate(15deg) scale(0.5) translateX(0);
+      opacity: 0.5;
+      }
+  50%{
+      -webkit-transform: rotate(-8deg) scale(1) translateX(-500px);
+              transform: rotate(-8deg) scale(1) translateX(-500px);
+      opacity: 1;
+      }
+  65%{
+      -webkit-transform: rotate(3deg) scale(1) translateX(-450px);
+              transform: rotate(3deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+  90%{
+      -webkit-transform: rotate(-1deg) scale(1) translateX(-450px);
+              transform: rotate(-1deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+  100%{
+      -webkit-transform: rotate(0deg) scale(1) translateX(-450px);
+              transform: rotate(0deg) scale(1) translateX(-450px);
+      opacity: 1;
+      }
+}
+
 /* MEDIA QUERIES */
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width : 320px) and (max-width : 480px) {
@@ -1409,7 +1834,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 /* CSS GEMS */
-@media (print) {
+@media print {
   a[href]::after {
     content: " ("attr(href) " )";
   }

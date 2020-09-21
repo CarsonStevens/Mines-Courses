@@ -1,168 +1,47 @@
 /*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
+*  Author: Carson Stevens
+*  Assignment: Advanced HTML and CSS
 */
 
+/* General Table Styling */
 table, th, td {
   padding: 0.25rem 0.75rem;
+}
+
+/* 7. Tables should be centered, with a top margin to provide space between tables. */
+#tables-container {
+  width: 80%;
+  margin: 10vh auto 10vh;
+}
+
+th,footer {
+  font-family: 'Alegreya', serif;
 }
 
 table {
   border: none;
   border-radius: 0.5rem;
   margin: 0 auto 10rem;
-  background-color: rgba(18, 18, 18, 0.2);
   color: var(--light-color);
   border-collapse: collapse;
   border-spacing: 0;
   position: relative;
 }
 
-#tables-container {
-  width: 80%;
-  margin: 10vh auto 10vh;
-}
-
-#language-project-container {
-  margin: 0 auto;
-  width: 100%;
-  height: 900px;
-}
-
-.skew-text {
-  font-size: 2rem;
-  padding: 0;
-  margin: 0 auto;
-  margin-top: 7rem;
-  margin-bottom: -2.5rem;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-  text-align: center;
-  -webkit-transition: -webkit-transform .3s ease-in-out;
-  transition: -webkit-transform .3s ease-in-out;
-  -o-transition: transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
-  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
-}
-
-#language-project-caption>.skew-text {
-  width: 725px;
-  margin-bottom: -5rem;
-}
-
-#coding-courses-caption>.skew-text {
-  width: 700px;
-  margin-bottom: -5rem;
-}
-
-#corals-caption>.skew-text {
-  width: 725px;
-}
-
-.skew-text:hover {
-  -webkit-transform: rotateX(35deg), translateY(-50%);
-  transform: rotateX(35deg), translateY(-50%);
-}
-
-.skew-text:hover span {
-  color: #ccc;
-}
-
-.skew-text:hover span:nth-child(odd) {
-  -webkit-transform: skewY(15deg);
-  -ms-transform: skewY(15deg);
-      transform: skewY(15deg);
-  text-shadow: 1px -1px 1px #020202;
-}
-
-.skew-text:hover span:nth-child(even) {
-  -webkit-transform: skewY(-15deg);
-  -ms-transform: skewY(-15deg);
-      transform: skewY(-15deg);
-  background-color: #f9f9f9;
-  color: #a6a6a6;
-  text-shadow: -1px -1px 1px #020202;
-}
-
-.skew-text>span {
-  display: block;
-  background-color: #fff;
-  width: 1.5rem;
-  height: 5rem;
-  min-width: 1.4rem;
-  line-height: 5rem;
-  padding: 0.1rem 0.25rem;
-  margin-top: 0.35rem;
-  -webkit-transition: color .3s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
-  transition: color .3s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
-  -o-transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .1s ease-in-out;
-  transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .1s ease-in-out;
-  transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
-  -webkit-box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
-}
-
-#coding-courses-container {
-  width: 100%;
-  counter-reset: course;
-}
-
-.coding-course {
-  counter-increment: course;
-}
-
-#course-total::before {
-  content: counter(course);
-  position: absolute;
-  font-size: 1.5rem;
-  top: 0.5rem;
-  left: 100px;
-}
-
-.institute {
-  width: 90%;
-  margin: auto;
-}
-
-#coding-courses-table tbody tr td:first-child>.institute {
-  position: absolute;
-  top: 50%;
-}
-
-#coding-courses-table tbody tr th:first-child>span>a {
-  font-size: 1.1rem;
-  color: var(--light-color);
-  text-decoration: none;
-}
-
 caption {
   width: 100%;
-  color: rgba(34, 34, 34, 0.5);
-  /*  #0f0f0f; */
   margin-bottom: 2rem;
+}
+
+td > span {
+  width: 100%;
 }
 
 td {
   position: relative;
 }
 
-th {
+th, tfoot {
   border-top: none;
   border: 1px solid var(--light-color);
 }
@@ -183,29 +62,85 @@ thead th:last-of-type {
   border-top-right-radius: 0.25rem;
 }
 
-/* Use a background color for alternating rows. Use the nth-of-type pseudo-class */
-tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.3);
+.new-table-row, .coral-type {
+  border-right: 1px solid var(--light-color);
 }
 
-tr:nth-child(even):hover td:not(.institute) {
-  background-color: rgba(0, 0, 0, 0.6);
+.new-table-row:first-child {
+  border-top: 1px solid var(--light-color);
+}
+
+tfoot tr {
+  border-top: 1px solid var(--light-color);
+}
+
+
+/* Coding Courses Table Styling */
+#coding-courses-container {
+  width: 100%;
+  counter-reset: course;
+}
+
+.coding-course {
+  counter-increment: course;
+}
+
+.course-total::before {
+  content: counter(course);
+  position: absolute;
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: 100px;
+}
+
+.institute {
+  width: 90%;
+  margin: auto;
+}
+
+#coding-courses-table tbody tr td:first-child>.institute {
+  position: absolute;
+  top: 50%;
+}
+
+/* 2. Background color for the header with a complementary font color */
+#coding-courses-table tbody tr th:first-child>span>a {
+  font-size: 1.1rem;
+  color: var(--light-color);
+  text-decoration: none;
 }
 
 .coding-course-course {
   background-color: rgba(221, 221, 221, 0.2);
 }
 
-tfoot {
-  background-color: rgba(221, 221, 221, 0.4);
+#coding-courses-table tr:nth-child(even) {
+  background-color: var(--project-table-bg1);
 }
 
-tr:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.6);
+#coding-courses-table tr:nth-child(odd) {
+  background-color: var(--coding-table-bg2);
+}
+
+#coding-courses-table tr:nth-child(even):hover td:not(.institute) {
+  background-color: var(--coding-table-hover-bg1);
+}
+#coding-courses-table tr:nth-child(odd):hover td:not(.institute) {
+  background-color: var(--coding-table-hover-bg2);
+}
+
+/* Header and footer of a single table are different colors (background & text) */
+#coding-courses-table tfoot th, #coding-courses-table thead th{
+  background-color: rgba(221, 221, 221, 0.2);
+  color: var(--lightest-color);
+}
+
+#coding-courses-table tfoot td {
+  color: var(--secondary-color);
 }
 
 /* Usage:  <div class=".concentric-circle2"></div><div class="concentric-circle"></div> */
-/* .concentric-circle {
+.concentric-circle {
     width: 95vw;
     height: 95vh;
     top:0;
@@ -239,10 +174,28 @@ tr:nth-child(odd) {
   width:100vw;
   height:100vh;
   margin:-10px;
+}
 
-} */
-td>span {
+#language-project-container {
+  margin: 0 auto;
   width: 100%;
+  height: 900px;
+}
+
+/* 6. Background color for alternating rows (hint: nth-of-type pseudo-class) */
+#language-project-table tr:nth-child(even) {
+  background-color: var(--project-table-bg1);
+}
+
+#language-project-table tr:nth-child(odd) {
+  background-color: var(--project-table-bg2);
+}
+
+#language-project-table tr:nth-child(even):hover td {
+  background-color: var(--project-table-hover-bg1);
+}
+#language-project-table tr:nth-child(odd):hover td {
+  background-color: var(--project-table-hover-bg2);
 }
 
 .project-description {
@@ -251,6 +204,7 @@ td>span {
   border-top: none;
 }
 
+/* 5. Special styling for either first or last element */
 #language-project-table tbody tr:last-of-type {
   border-bottom: 1px solid var(--light-color);
   border-right: 1px solid var(--light-color);
@@ -261,22 +215,12 @@ td>span {
   border-right: 1px solid var(--light-color);
 }
 
+/* 4. Dashed bottom border for some td element (do not overlap other borders) */
 #language-project-table tr td.project {
   border-bottom: dashed 2px rgba(222, 205, 195, 0.5);
 }
 
-.new-table-row, .coral-type {
-  border-right: 1px solid var(--light-color);
-}
-
-.new-table-row:first-child {
-  border-top: 1px solid var(--light-color);
-}
-
-tfoot tr {
-  border-top: 1px solid var(--light-color);
-}
-
+/* Corals table Styling */
 #corals-container {
   width: 100%;
   margin: 20vh auto;
@@ -286,6 +230,14 @@ tfoot tr {
 #corals-table {
   width: 100%;
   table-layout: fixed;
+}
+
+/* 1. Solid border around the table and between cells */
+#corals-table tbody tr td {
+  border: 1px solid var(--light-color);
+}
+#corals-table tbody tr {
+  border-bottom: 1px solid var(--light-color);
 }
 
 #corals-table tbody tr td:not(.coral-type) {
@@ -304,6 +256,27 @@ tfoot tr {
   opacity: 1;
   color: var(--light-color);
 }
+
+#corals-table tr:nth-child(even) {
+  background-color: var(--corals-table-bg1);
+}
+
+#corals-table tr:nth-child(odd) {
+  background-color: var(--corals-table-bg2);
+}
+
+#corals-table tr:nth-child(even):hover td {
+  background-color: var(--corals-table-hover-bg1);
+}
+#corals-table tr:nth-child(odd):hover td {
+  background-color: var(--corals-table-hover-bg2);
+}
+
+#corals-table thead th {
+  background-color: var(--corals-table-hover-bg1);
+}
+
+/* 2. A background image (may be repeated, doesn't have to be for the entire page) */
 
 .lps:before {
   content: "";
@@ -343,8 +316,8 @@ tfoot tr {
 
 .nps:before {
   content: "";
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.2))), radial-gradient(circle at top right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%), url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Coral-Sol-.jpg");
   background-image: -o-linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), -o-radial-gradient(top right, circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%), url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Coral-Sol-.jpg");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.2))), radial-gradient(circle at top right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%), url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Coral-Sol-.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(circle at top right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%), url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Coral-Sol-.jpg");
   background-size: cover;
   position: absolute;
@@ -352,4 +325,100 @@ tfoot tr {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+/* 8. Use reasonable formatting for the captions.  They should stand out from the rest of the headers and tables on the page. */
+/* Table Captions */
+.skew-text {
+  font-size: 2rem;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 7rem;
+  margin-bottom: -2.5rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+  text-align: center;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out, -webkit-transform .3s ease-in-out;
+}
+
+#language-project-caption>.skew-text {
+  width: 725px;
+  margin-bottom: -5rem;
+}
+
+#coding-courses-caption>.skew-text {
+  width: 700px;
+  margin-bottom: -5rem;
+}
+
+#corals-caption>.skew-text {
+  width: 725px;
+}
+
+.skew-text span {
+  -webkit-text-stroke: 0.25px var(--drop-shadow-alpha);
+  color: #ccc;
+}
+
+.skew-text:hover {
+  -webkit-transform: rotateX(35deg), translateY(-50%);
+  transform: rotateX(35deg), translateY(-50%);
+}
+
+.skew-text:hover span {
+  color: #ccc;
+}
+
+.skew-text:hover span:nth-child(odd) {
+  -webkit-transform: skewY(15deg);
+  -ms-transform: skewY(15deg);
+      transform: skewY(15deg);
+  text-shadow: 1px -1px 1px var(--drop-shadow-alpha);
+}
+
+.skew-text:hover span:nth-child(even) {
+  -webkit-transform: skewY(-15deg);
+  -ms-transform: skewY(-15deg);
+      transform: skewY(-15deg);
+  background-color: #f9f9f9;
+  color: #a6a6a6;
+  text-shadow: -1px -1px 1px var(--drop-shadow-alpha);
+}
+
+.skew-text>span {
+  display: block;
+  font-family: 'Alegreya', serif;
+  background-color: #fff;
+  width: 1.5rem;
+  height: 5rem;
+  min-width: 1.4rem;
+  line-height: 5rem;
+  padding: 0.1rem 0.25rem;
+  margin-top: 0.35rem;
+  -webkit-transition: color 1s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
+  transition: color 1s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
+  -o-transition: transform .3s ease-in-out, color 1s ease-in-out, background-color .1s ease-in-out;
+  transition: transform .3s ease-in-out, color 1s ease-in-out, background-color .1s ease-in-out;
+  transition: transform .3s ease-in-out, color 1s ease-in-out, background-color .1s ease-in-out, -webkit-transform .3s ease-in-out;
+  -webkit-box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
 }
