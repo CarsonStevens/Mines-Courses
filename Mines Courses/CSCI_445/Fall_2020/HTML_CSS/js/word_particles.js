@@ -118,7 +118,6 @@ $(document).ready(function() {
 
 
   const initScene = () => {
-    console.log("starting");
     ww = window.innerWidth;
     wh = $("#canvas_intro_container").height() || window.innerHeight;
     textDetails = JSON.parse(document.querySelector('*[data-wordDetails]').dataset.worddetails);
@@ -198,11 +197,10 @@ $(document).ready(function() {
    * [onMouseClick]: Change radius of mouse for disturbing word particles
    */
   function onMouseClick() {
-    radius += 0.5
+    radius += 0.5;
     if (radius > 3) {
       radius = mouseRadius;
     }
-    console.log(radius, mouseRadius);
   }
 
   /**

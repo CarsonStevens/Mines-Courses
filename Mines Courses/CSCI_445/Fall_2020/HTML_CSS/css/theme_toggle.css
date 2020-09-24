@@ -17,7 +17,7 @@
 }
 
 .range-field::before {
-  color: var(--light-color);
+  color: rgba(255,255,255,0.65);
   content: "Theme";
   position: absolute;
   display: block;

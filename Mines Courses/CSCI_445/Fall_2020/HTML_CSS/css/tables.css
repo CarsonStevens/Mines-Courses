@@ -381,7 +381,7 @@ tfoot tr {
 
 .skew-text:hover {
   -webkit-transform: rotateX(35deg), translateY(-50%);
-  transform: rotateX(35deg), translateY(-50%);
+  transform: rotateX(35deg) translateY(-50%);
 }
 
 .skew-text:hover span {

@@ -66,33 +66,35 @@
 
 .bg-bubbles {
   position: absolute;
-  top: 0;
+  top: -1rem;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: -1;
+  overflow: hidden;
 }
 
-.bg-bubbles li {
+.bg-bubbles li:not(.page) {
   position: absolute;
   list-style: none;
   display: block;
   width: 40px;
   height: 40px;
   background-color: rgba(255, 255, 255, 0.15);
-  bottom: -150px;
+  bottom: -200%;
   -webkit-animation: float 25s infinite;
   animation: float 25s infinite;
   -webkit-transition-timing-function: linear;
   -o-transition-timing-function: linear;
      transition-timing-function: linear;
+  overflow: hidden;
 }
 
-.bg-bubbles li:nth-child(1n) {
+.bg-bubbles li:not(.page):nth-child(1n) {
   left: 10%;
 }
 
-.bg-bubbles li:nth-child(2n) {
+.bg-bubbles li:not(.page):nth-child(2n) {
   left: 20%;
   width: 80px;
   height: 80px;
@@ -102,13 +104,13 @@
   animation-duration: 17s;
 }
 
-.bg-bubbles li:nth-child(3n) {
+.bg-bubbles li:not(.page):nth-child(3n) {
   left: 25%;
   -webkit-animation-delay: 4s;
   animation-delay: 4s;
 }
 
-.bg-bubbles li:nth-child(4n) {
+.bg-bubbles li:not(.page):nth-child(4n) {
   left: 40%;
   width: 60px;
   height: 60px;
@@ -117,11 +119,11 @@
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.bg-bubbles li:nth-child(5n) {
+.bg-bubbles li:not(.page):nth-child(5n) {
   left: 70%;
 }
 
-.bg-bubbles li:nth-child(6n) {
+.bg-bubbles li:not(.page):nth-child(6n) {
   left: 80%;
   width: 120px;
   height: 120px;
@@ -130,15 +132,15 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.bg-bubbles li:nth-child(7n) {
+.bg-bubbles li:not(.page):nth-child(7n) {
   left: 32%;
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
   -webkit-animation-delay: 7s;
   animation-delay: 7s;
 }
 
-.bg-bubbles li:nth-child(8n) {
+.bg-bubbles li:not(.page):nth-child(8n) {
   left: 55%;
   width: 20px;
   height: 20px;
@@ -148,7 +150,7 @@
   animation-duration: 40s;
 }
 
-.bg-bubbles li:nth-child(9n) {
+.bg-bubbles li:not(.page):nth-child(9n) {
   left: 25%;
   width: 10px;
   height: 10px;
@@ -159,7 +161,7 @@
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.bg-bubbles li:nth-child(10n) {
+.bg-bubbles li:not(.page):nth-child(10n) {
   left: 90%;
   width: 160px;
   height: 160px;
@@ -173,11 +175,8 @@
   background: -webkit-gradient(linear, left top, right bottom, from(var(--primary-color)), to(var(--secondary-color-alpha)));
   background: -o-linear-gradient(top left, var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
   background: linear-gradient(to bottom right, var(--primary-color) 0%, var(--secondary-color-alpha) 100%);
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   z-index: 0;
   opacity: 0.7;
@@ -190,7 +189,7 @@
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-.star, .bg-bubbles li {
+.star, .bg-bubbles li:not(.page) {
   -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
@@ -213,6 +212,51 @@
 .message {
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
           clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
+
+
+.rainbow-cursive-title {
+  z-index: 999;
+  position: relative;
+  font-size: 3rem;
+  letter-spacing: 0.25rem;
+  width: 80%;
+  padding: 1rem;
+  margin: 0.5rem auto;
+  text-align: center;
+  color: #fcedd8;
+  font-family: 'Niconne', cursive;
+  font-weight: 700;
+  text-shadow: 5px 5px 0px #eb452b,
+    10px 10px 0px #efa032,
+    15px 15px 0px #46b59b,
+    20px 20px 0px #017e7f,
+    25px 25px 0px #052939;
+  overflow: hidden;
+  border: 1px solid var(--secondary-color-alpha);
+  border-radius: 0.25rem;
+  -webkit-filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
+          filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 1));
+}
+
+.rainbow-cursive-title:before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: rotate(0) translateX(-50%) translateY(-50%);
+  -ms-transform: rotate(0) translateX(-50%) translateY(-50%);
+      transform: rotate(0) translateX(-50%) translateY(-50%);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+      transform-origin: 0 0;
+  width: 1000%;
+  height: 1000%;
+  background: repeating-conic-gradient(#993333, #bf4040 1%);
+  content: '';
+  -webkit-animation: rotation 40s infinite linear;
+  animation: rotation 40s infinite linear;
+  z-index: -1;
+  overflow: hidden;
 }
 
 @-webkit-keyframes float {

@@ -42,7 +42,7 @@
   -webkit-font-kerning: none;
           font-kerning: none;
   display: none;
-  z-index: 3;
+  z-index: 4;
 }
 
 #experience-heading {
@@ -59,7 +59,7 @@
   width: 100%;
   height: calc(var(--intro-height) - var(--directory-raise));
   position:relative;
-  z-index: 99;
+  z-index: 3;
 }
 
 #intro-message-container {
@@ -87,7 +87,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 99;
+  z-index: 3;
   text-align: center;
   width: 100%;
 
@@ -110,7 +110,7 @@
   -ms-flex-pack: distribute;
       justify-content: space-around;
   position: relative;
-  z-index: 999;
+  z-index: 5;
 }
 
 #directory li {
@@ -182,10 +182,11 @@
   color: var(--light-color);
   border: 1px solid var(--light-color);
   border-radius: 0.1rem;
+  z-index: 6;
 }
 
 .rainbow-cursive-title {
-  z-index: 999;
+  z-index: 5;
   position: relative;
   font-size: 5rem;
   letter-spacing: 0.25rem;
@@ -276,7 +277,7 @@
   overflow-wrap: break-word;
   border: 0.5px solid var(--light-color);
   border-radius: 0.15rem;
-  z-index: 9;
+  z-index: 1;
   padding-top: 1.05rem;
 }
 
@@ -294,7 +295,7 @@
   background-color: rgb(18, 18, 18);
   border-bottom: 1px solid var(--light-color);
   content: "Console";
-  z-index: 10;
+  z-index: 2;
 }
 
 #intro {
@@ -503,7 +504,7 @@ q {
   background-color: var(--corals-table-bg1);
   border-radius: 2rem;
   padding: 0.25rem 0.6rem;
-  z-index: 9999;
+  z-index: 6;
   opacity: 1;
 }
 

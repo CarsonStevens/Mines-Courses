@@ -30,6 +30,7 @@
   --background-primary-alpha: rgba(80, 163, 162,0.65);
   --background-secondary: rgba(181, 95, 164, 1);
   --background-secondary-alpha: rgba(181, 95, 164, 0.65);
+  --text-on-bg: rgba(45, 64, 89, 1);
 
   --primary-btn-color: rgba(252, 237, 216, 1);
   --secondary-btn-color: rgba(45, 64, 89, 1);
@@ -66,7 +67,7 @@
   --background-primary-alpha: rgba(0, 0, 0, 0.9);
   --background-secondary: rgba(79, 47, 73, 1);
   --background-secondary-alpha: rgba(51, 31, 47, 0.9);
-
+  --text-on-bg: rgba(252, 237, 216, 1);
 
   /* Dark Table Themes */
   --project-table-bg1: rgba(0, 0, 0, 0.3);
@@ -102,6 +103,7 @@
   --background-primary-alpha: rgba(34, 34, 34, 0.95);
   --background-secondary: rgb(31, 18, 45);
   --background-secondary-alpha: rgba(31, 18, 45, 0.95);
+  --text-on-bg: rgba(235, 84, 85, 1);
 
   /* Party Table Themes */
   --project-table-bg1: rgba(0, 0, 0, 0.3);
@@ -137,7 +139,7 @@ html, body {
 body {
   width: 100%;
   min-width: 750px;
-  transform-style: perspective(1000px);
+  /* transform-style: perspective(1000px); */
   background: -o-linear-gradient(150deg, var(--background-primary-alpha) 0%, var(--background-secondary-alpha) 100%);
   background: linear-gradient(300deg, var(--background-primary-alpha) 0%, var(--background-secondary-alpha) 100%);
   background-size: 400% 400%;
@@ -162,16 +164,21 @@ footer {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin: 5vh;
-  color: var(--light-color);
+  color: var(--text-on-bg);
 }
 
+
+
 a, a:link {
-  color: var(--light-color);
+  color: var(--primary-color);
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
+footer > a:link {
+  color: var(--text-on-bg);
+}
 
 /* Scroll Bar styling */
 ::-webkit-scrollbar {

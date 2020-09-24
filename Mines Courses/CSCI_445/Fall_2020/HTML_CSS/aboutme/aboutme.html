@@ -13,11 +13,11 @@
     <title>Carson Stevens</title>
 
     <!-- Style Sheets -->
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/nav.css" />
-    <link rel="stylesheet" href="../css/tables.css" />
-    <link rel="stylesheet" href="../css/theme_toggle.css" />
-    <link rel="stylesheet" href="../css/animation.css" />
+    <link rel="stylesheet" href="./../css/animation.css" />
+    <link rel="stylesheet" href="./../css/theme_toggle.css" />
+    <link rel="stylesheet" href="./../css/main.css" />
+    <link rel="stylesheet" href="./../css/nav.css" />
+    <link rel="stylesheet" href="./../css/tables.css" />
     <link rel="stylesheet" href="aboutme.css" />
 
 
@@ -33,14 +33,23 @@
 
   <body>
     <header>
+      <div id="hamburger">
+        <svg class="ham hamRotate ham4" viewBox="0 0 100 100" width="80" onclick="">
+          <path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
+          <path class="line middle" d="m 70,50 h -40" />
+          <path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
+        </svg>
+      </div>
       <nav id="navbar">
-        <span class="range-field">
-          <input type="range" id="range-filter" name="theme" min="1" class="rangeAll slider" max="3" value="2">
-          <label for="range-filter" style="font-size: 0;">Theme</label>
-        </span>
+        <div id="theme-container">
+          <span class="range-field">
+            <input type="range" id="range-filter" name="theme" min="1" class="rangeAll slider" max="3" value="2">
+            <label for="range-filter" style="font-size: 0;">Theme</label>
+          </span>
+          <span id="theme-type-text">Light</span>
+        </div>
 
-        <span id="theme-type-text">Light</span>
-        <div class="floating-shape-wrapper">
+        <div id="navbar-menu-container">
           <ul class="bg-bubbles">
             <li></li>
             <li></li>
@@ -52,12 +61,20 @@
             <li></li>
             <li></li>
             <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           </ul>
-        </div>
-        <div id="navbar-menu-container">
-          <ul id="navbar-menu">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="#canvas_intro_container">About Me</a>
+          <ul id="navbar-menu" class="floating-shape-wrapper">
+            <li class="page"><a href="../index.html">Home</a></li>
+            <li class="page" id="current-page"><a href="#canvas_intro_container">About Me</a>
               <ul>
                 <li>
                   <a href="#intro-title">Introduction</a>
@@ -81,7 +98,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="../tutorials/tutorials.html">CSS Tutorials</a>
+            <li class="page"><a href="../tutorials/tutorials.html">CSS Tutorials</a>
               <ul>
                 <li>
                   <a href="../csstutorials/turtlecoders.html">Turtle Coders</a>
@@ -181,19 +198,19 @@
       <h2 id="pets-title" class="rainbow-cursive-title">
         <span class="sprial-background"></span>Pets
       </h2>
-      <section class="gallery-img-container" id="Bella">
+      <div class="gallery-img-container" id="Bella">
         <img class="gallery-img" src=".././images/Bella.jpeg" alt="Bella, Carson's Bunny" width="300" />
         <p class="gallery-img-description">
           This is my Harlequin Holland Lop named Bella. She isn't even a year old yet and loves to lay at my feet while coding.
         </p>
-      </section>
-      <section class="gallery-img-container" id="Pax">
+      </div>
+      <div class="gallery-img-container" id="Pax">
         <img class="gallery-img" src=".././images/Pax.jpeg" alt="Pax, Carson's Bunny" width="300" />
         <p class="gallery-img-description">
           This is my Mini Rex/Lionhead named Pax. He is the same age as Bella! &#9829;
         </p>
-      </section>
-      <section class="gallery-img-container">
+      </div>
+      <div class="gallery-img-container">
         <img class="gallery-img" src=".././images/FishTank.jpg" alt="30 gallon reef tank" width="500" />
         <p class="gallery-img-description">
           This was my reef tank before I went to college. I built the cabinet with my Grandfather who gave me one of my favorite engineering quotes:
@@ -201,28 +218,28 @@
           <q>Measure twice, cut once.</q>
           Too many times have I thought I had everything measured and marked perfectly only to find after cutting that something is a shade too short!
         </p>
-      </section>
+      </div>
     </section>
     <section id="hobbies">
       <h2 class="rainbow-cursive-title">
         <span id="hobbies-title" class="sprial-background"></span>Hobbies
       </h2>
-      <section class="gallery-img-container">
+      <div class="gallery-img-container">
         <img class="gallery-img" src=".././images/KingBullionLake.jpg" alt="King Bullion Lake; Silverton, CO" width="500" />
         <p class="gallery-img-description">
           King Bullion Lake is my favorite place in Colorado. It's just outside Silverton, Colorado in Red Mountain Pass.
         </p>
-      </section>
-      <section class="gallery-img-container" id="golf-club">
+      </div>
+      <div class="gallery-img-container" id="golf-club">
         <img class="gallery-img" src=".././images/GolfClub.jpeg" alt="Bear Creek Golf Club" width="500" />
         <p class="gallery-img-description">
           I've worked at the Bear Creek Golf Club for the past 6 years on the groundscrew. I was an operator and change the pin location on the putting greens most mornings. I've collected quite the amount of sunrise photos in my time while working
           there.
         </p>
-      </section>
+      </div>
     </section>
-    <section id="tables-container">
-      <section id="language-project-container">
+    <div id="tables-container">
+      <div id="language-project-container">
         <hr style="border-bottom: 40px dotted rgba(99, 99, 99, 0.7); border-top:none; border-right: none; border-left:none; width: 85%;" />
         <table id="language-project-table" aria-label="Languages and Projects">
           <caption id="language-project-caption">
@@ -264,7 +281,7 @@
           <thead>
             <tr>
               <th id="language" class="language" scope="col">Language</th>
-              <th id="projects" class="project" scope="col">Projects</th>
+              <th id="project" class="project" scope="col">Projects</th>
             </tr>
           </thead>
           <tbody>
@@ -322,8 +339,8 @@
             </tr>
           </tbody>
         </table>
-      </section>
-      <section id="coding-courses-container">
+      </div>
+      <div id="coding-courses-container">
         <hr style="border-bottom: 40px dotted rgba(99, 99, 99, 0.7); border-top:none; border-right: none; border-left:none; width: 85%;" />
         <table id="coding-courses-table" aria-label="Coding Courses Taken">
           <caption id="coding-courses-caption">
@@ -462,8 +479,8 @@
             </tr>
           </tfoot>
         </table>
-      </section>
-      <section id="corals-container">
+      </div>
+      <div id="corals-container">
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
           <defs>
             <path id="gentle-wave" d="M-160 44c30 0
@@ -571,8 +588,8 @@
             </tr>
           </tbody>
         </table>
-      </section>
-    </section>
+      </div>
+    </div>
     <footer>
       <a id="contact-me" href="mailto:carsonstevens@mines.com">Email Me!</a>
       <span><span>&copy;</span> <span>Carson Stevens</span></span>
