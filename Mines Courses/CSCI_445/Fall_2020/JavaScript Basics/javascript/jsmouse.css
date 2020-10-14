@@ -1,0 +1,57 @@
+#jsmouse, #jskeyboard {
+  background-color: rgba(255,255,255, 0.3);
+  margin: 1rem auto;
+  z-index: 15;
+  position: relative;
+  margin: 1rem;
+}
+
+#tutorials-container {
+  position: relative;
+  margin: 5rem auto;
+  background-color: rgba(255,255,255, 0.1);
+  margin-top: 6rem;
+  padding: 1rem;
+  width: 550px;
+}
+
+#smiley {
+  position: absolute;
+  width: 550px;
+  height: 2rem;
+  z-index: 16;
+  margin: 1rem auto;
+  bottom: 0;
+  left: 25%;
+}
+
+#smiley:after {
+  background-color: var(--secondary-color-alpha);
+  color: var(--text-on-bg);
+  position: absolute;
+  width: 300px;
+  content: attr(data-phrase);
+  z-index: 16;
+  border: 1px solid var(--light-color);
+  text-shadow: 0.2px 0.7px 0.5px rgba(0, 0, 0, 0.3),
+    0.0px -0.4px 1.0px rgba(255, 255, 255, 0.3);
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+#smiley:hover:after {
+    border: 0.5px;
+    cursor: var(--pointer);
+    background: var(--primary-btn-hover-color);
+    color: var(--primary-color);
+    text-shadow: 1.6px 2.2px 3px var(--primary-color-alpha);
+    -webkit-box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
+                        -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
+                        0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
+            box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
+                        -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
+                        0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
+}

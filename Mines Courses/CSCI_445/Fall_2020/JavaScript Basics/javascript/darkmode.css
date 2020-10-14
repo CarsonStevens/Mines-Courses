@@ -1,0 +1,120 @@
+body, html {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+header {
+  height: 10vh;
+}
+
+
+.tutorials-directory {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 0;
+  padding: 0;
+  background-color: var(--secondary-color-alpha);
+  color: var(--text-on-bg);
+}
+
+.tutorials-directory:first-of-type {
+  margin-top: -0.25rem;
+  border-bottom: 0.5px solid rgba(255,255,255,0.2);
+}
+
+.tutorial {
+  z-index: 5;
+  background-color: transparent;
+  display: block;
+  width: 7rem;
+  height: 100%;
+  margin: 0;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  border-left: 1px solid var(--light-color);
+  text-shadow: 0.2px 0.7px 0.5px rgba(0, 0, 0, 0.3),
+    0.0px -0.4px 1.0px rgba(255, 255, 255, 0.3);
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.tutorial:hover {
+  border: 0.5px;
+  cursor: var(--pointer);
+  background: var(--primary-btn-hover-color);
+  color: var(--primary-color);
+  text-shadow: 1.6px 2.2px 3px var(--primary-color-alpha);
+  -webkit-box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
+                      -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
+                      0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
+          box-shadow: 1px 1px 3px 0.5px rgba(0, 0, 0, 0.8) inset,
+                      -0.1px -0.1px 3px 0.1px rgba(0, 0, 0, 0.5) inset,
+                      0.9px 0.9px 1px 0.1px rgba(255, 255, 255, 0.3);
+}
+
+.tutorial:hover > a {
+  var(--primary-color);
+}
+
+.tutorial > a {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height:100%;
+  color: var(--text-on-bg);
+}
+
+#tutorial-title {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 20vh;
+  color: var(--text-on-bg);
+  width: 100%;
+  text-align: center;
+}
+
+/* Tablet (portrait and landscape) ----------- */
+@media only screen and (max-width : 1000px) {
+  #tutorials-directory {
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    top: 10vh;
+  }
+
+  .tutorial {
+    margin: 1rem 1rem;
+    width: 10rem;
+    border: 1px solid var(--light-color);
+    border-radius: 0.15rem;
+  }
+
+  .tutorial > a {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 0.75rem;
+    color: var(--text-on-bg);
+  }
+
+  #tutorial-title {
+    top: 30vh;
+  }
+
+}

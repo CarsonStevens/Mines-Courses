@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0049)http://pi.math.cornell.edu/~lipa/mec/lesson6.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="mec, mathematics, math, explorers, club, lipa, chris, cornell, chaos, fractals, dynamical systems, chris lipa, math explorers club, christopher lipa">
+<meta name="author" content="Chris Lipa">
+<meta name="contact" contents="lipa@math.cornell.edu">
+<title>Conway's Game of Life'</title>
+<link rel="stylesheet" type="text/css" href="./Conway&#39;s Game of Life&#39; Patterns_files/style.css">
+</head>
+
+<body>
+<table width="950" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody><tr>
+    <td background="./Conway&#39;s Game of Life&#39; Patterns_files/header.png" width="950" height="168">
+	<table width="950" border="0" cellspacing="0" cellpadding="0" height="168">
+      <tbody><tr>
+        <td width="29">&nbsp;</td>
+        <td width="921" height="140" align="center">
+				<font class="top-title"><!-- 
+
+
+
+
+
+				HEADER TITLE COMES HERE  -->
+
+
+
+				Cornell Math Explorers' Club 
+
+				<br>
+				</font>
+				<font class="bottom-title">
+				Chaos and Fractals
+				<!-- 
+
+
+
+
+
+
+				HEADER TITLE END
+
+
+
+
+
+				 --></font></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table></td>
+  </tr>
+  <tr>
+    <td><table width="950" border="0" cellspacing="0" cellpadding="0">
+      <tbody><tr>
+        <td background="./Conway&#39;s Game of Life&#39; Patterns_files/navi_bg.jpg" width="200" valign="top">
+		
+		
+		<!-- NAVIGATION BAR START -->
+		<table width="200" border="0" cellspacing="0" cellpadding="0" background="./Conway&#39;s Game of Life&#39; Patterns_files/naviitem_bg.jpg">
+          <tbody><tr>
+            <td height="25"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/index.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">Math Explorers' Club</a></td>
+          </tr>
+          <tr>
+            <td height="25"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson1.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">Introduction to Chaos</a></td>
+          </tr>
+          <tr>
+            <td height="25"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson2.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">One-Dimensional Maps</a></td>
+          </tr>
+          <tr>
+            <td height="25" valign="middle"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson3.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">The Feigenbaum Map</a></td>
+          </tr>
+          <tr>
+            <td height="25" valign="middle"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson4.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">The Chaos Game</a></td>
+          </tr>
+          <tr>
+            <td height="25" valign="middle"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson5.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">The Mandelbrot Set</a></td>
+          </tr>
+          <tr>
+            <td height="25" valign="middle"><a class="mouseover" href="http://pi.math.cornell.edu/~lipa/mec/lesson6.html"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/spacer.gif" height="1" width="40" border="0">Conway's Game of Life</a></td>
+          </tr>
+          <tr height="35">
+            <td height="35" background="./Conway&#39;s Game of Life&#39; Patterns_files/navi_unten.jpg"></td>
+          </tr>
+        </tbody></table></td>
+        <td background="./Conway&#39;s Game of Life&#39; Patterns_files/content_bg.jpg" width="550" valign="top"><table width="550" border="0" cellspacing="0" cellpadding="0">
+          <tbody><tr>
+            <td colspan="3"><img src="./Conway&#39;s Game of Life&#39; Patterns_files/6_header.png" width="550" height="37"></td>
+          </tr>
+          <tr>
+            <td width="10">&nbsp;</td>
+            <td width="530"><!--
+			
+			
+			SITE CONTENT GOES HERE
+			
+			-->
+			
+			<div id="cont">
+			
+			<center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/banner.png"></center>
+			
+			
+		<h1>	Conway's Game of Life</h1>
+
+
+
+			<p>The Game of Life (an example of a <it>cellular automaton</it>) is played on an infinite two-dimensional rectangular grid of cells. Each cell can be either alive or dead. The status of each cell changes each turn of the game (also called a generation) depending on the statuses of that cell's 8 neighbors. Neighbors of a cell are cells that touch that cell, either horizontal, vertical, or diagonal from that cell.
+
+			</p><p>The initial pattern is the first generation. The second generation evolves from applying the rules simultaneously to every cell on the game board, i.e. births and deaths happen simultaneously. Afterwards, the rules are iteratively applied to create future generations. For each generation of the game, a cell's status in the next generation is determined by a set of rules. These simple rules are as follows:
+
+			    </p><ul><p></p><li>If the cell is alive, then it stays alive if it has either 2 or 3 live neighbors</li>
+			   <p> </p><li> If the cell is dead, then it springs to life only in the case that it has 3 live neighbors</li></ul>
+
+		<p>	There are, of course, as many variations to these rules as there are different combinations of numbers to use for determining when cells live or die.  Conway tried many of these different variants before settling on these specific rules.  Some of these variations cause the populations to quickly die out, and others expand without limit to fill up the entire universe, or some large portion thereof.  The rules above are very close to the boundary between these two regions of rules, and knowing what we know about other chaotic systems, you might expect to find the most complex and interesting patterns at this boundary, where the opposing forces of runaway expansion and death carefully balance each other.  Conway carefully examined various rule combinations according to the following three criteria:
+
+			</p><ul><p></p><li>
+			   There should be no initial pattern for which there is a simple proof that the population can grow without limit.</li>
+			   <p></p><li> There should be initial patterns that apparently do grow without limit.</li>
+			   <p></p><li> There should be simple initial patterns that grow and change for a considerable period of time before coming to an end in the following possible ways: <ol>
+			        <p> </p><li> Fading away completely (from overcrowding or from becoming too sparse) </li>
+			         <p></p><li>Settling into a stable configuration that remains unchanged thereafter, or entering an oscillating phase in which they repeat an endless cycle of two or more periods.</li></ol></li></ul>
+			
+			<h1>		Example Patterns</h1>
+
+
+
+				<p>	Using the provided game board(s) and rules as outline above, the students can investigate the evolution of the simplest patterns. They should verify that any single living cell or any pair of living cells will die during the next iteration.
+
+
+
+
+
+				
+			
+			
+			
+				</p><p>		Some possible triomino patterns (and their evolution) to check:
+					
+	</p><center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/lifep.png"> </center>
+	
+	
+<p>	Here are some tetromino patterns (NOTE: The students can do maybe one or two of these on the game board and the rest on the computer):
+	
+					</p><center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/4life2.png"></center>
+			
+					<p>Some example still lifes:
+
+			</p><p>		</p><center> Square : <img src="./Conway&#39;s Game of Life&#39; Patterns_files/sq.png"></center>
+			
+			
+				<p>		</p><center> Boat : <img src="./Conway&#39;s Game of Life&#39; Patterns_files/boat.png"></center>
+						<p>		</p><center> Loaf : <img src="./Conway&#39;s Game of Life&#39; Patterns_files/loaf.png"></center>
+							
+					<p>		</p><center> Ship : <img src="./Conway&#39;s Game of Life&#39; Patterns_files/ship.png"></center>
+						
+						
+						<p>The following pattern is called a "glider." The students should follow its evolution on the game board to see that the pattern repeats every 4 generations, but translated up and to the left one square.  A glider will keep on moving forever across the plane.
+							</p><center> <img src="./Conway&#39;s Game of Life&#39; Patterns_files/glider.png"></center>
+				
+				<p>Another pattern similar to the glider is called the "lightweight space ship."  It too slowly and steadily moves across the grid.			
+					</p><center>	<img src="./Conway&#39;s Game of Life&#39; Patterns_files/lwss.png">	</center>
+							
+							<p>Early on (without the use of computers), Conway found that the F-pentomino (or R-pentomino) did not evolve into a stable pattern after a few iterations.   In fact, it doesn't stabilize until generation 1103.
+								
+								</p><center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/f.png"></center>
+								
+						<p>The F-pentomino stabilizes (meaning future iterations are easy to predict) after 1,103 iterations.  The class of patterns which start off small but take a very long time to become periodic and predictable are called Methuselahs.   The students should use the computer programs to view the evolution of this pattern and see how/where it becomes stable.  The "acorn" is another example of a Methuselah that becomes predictable only after 5206 generations. 
+								
+					</p><center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/meth.png"></center>
+					
+					<p>Alan Hensel compiled a fairly large list of other common patterns and names for them, available at <a href="http://www.radicaleye.com/lifepage/picgloss/picgloss.html">radicaleye.com/lifepage/picgloss/picgloss.html</a>.
+						
+						
+						
+						</p><h1>Programs</h1>
+
+
+
+					<p>	Life32 is a full-featured and fast Game of Life simulator for Windows.  You can download the Life32 program <a href="http://psoup.math.wisc.edu/Life32.html">here</a>.  There are initial patterns that can be used only with Life32 that you can download <a href="ftp://sunsite.unc.edu/pub/Linux/games/amusements/life/dblifelib-2.tgz">here</a>.  Another extraordinarily fast program that can be installed on Windows, OS X, and Linux is Golly, which uses hashing for truly amazing speedups. Golly can be found at <a href="http://sourceforge.net/project/showfiles.php?group_id=139354">http://sourceforge.net/project/showfiles.php?group_id=139354</a>. There is a brief description of how Golly achieves such amazing speed <a href="http://www.ddj.com/dept/ai/184406478">here</a>.  There are also many Java implementations of The Game that can be run under in most modern web browsers, though they are usually slower.  One of these can be found at <a href="http://www.ibiblio.org/lifepatterns/">http://www.ibiblio.org/lifepatterns/</a>.   Jason Summers has compiled a very interesting collection of life patterns that can be run with either Life32 or Golly, which can be downloaded <a href="file:///Users/lipa/Desktop/archive/lesson6/jslife.zip">here</a>.
+
+
+
+				</p><p>		If you're using Life32, then after installing, the students should navigate to the directory containing the initial patterns linked to above. In this directory are files with standard Life patterns predefined in them.  The following patterns are provided (and the students should run the files in this order): a standard glider, a Queen shuttle bee, a lasting Queen shuttle bee, a Gosper glider gun (first example of a pattern growing indefinitely, won the creator $50), a LWSS (light-weight space ship), a pulsar, and a pentadecathlon.  After looking at (and trying to understand) the easier examples, the students can play around with some of the files in this compilation by Jason Summers of popular and look at other interesting patterns. Some of the better files are located in the "applications" and "guns" directories.
+
+
+
+				</p><p>		If you're using Golly, then another list of initial patterns is prominently located on the left-hand side of the window.
+						</p><div id="activity"><div id="activity-title">
+							Activity - Two-Player Game of Life
+							</div><div id="activity-body">
+
+									<p> To call Conway's Game of Life a game is to stretch the meaning of the word "game", but there is an fun adaptation that can produce a competitive and strategic activity for multiple players.
+
+										</p><p>The modification made is that now the live cells come in two colors (one associated with each player).  When a new cell comes to life, the cell takes on the color of the majority of its neighbors.  (Since there must be three neighbors in order for a cell to come to life, there cannot be a tie.  There must be a majority)
+
+											</p><p>Players alternate turns.  On a player's turn, he or she <b>must</b> kill one enemy cell and <b>must</b> change one empty cell to a cell of their own color.  They are allowed to create a new cell at the location in which they killed an enemy cell.  
+
+												</p><p>After a player's turn, the Life cells go through one generation, and the play moves to the next player.  There is always exactly one generation of evolution between separate players' actions.
+													</p><p> The initial board configuration should be decided beforehand and be symmetric.  A player is eliminated when they have no cells remaining of their color.
+
+													</p><p>This variant of life can well be adapted to multiple players.  However, with more than two players, it is possible that a newborn cell will have three neighbors belonging to three separate players.  In that case, the newborn cell is neutral, and does not belong to anyone.
+								</p></div>
+									</div>	
+					
+
+					<h1>Computation</h1>
+
+				
+
+				<p>	It's possible even, to create patterns which emulate logic gates (and, not, or, etc.) and counters.  Building up from these, it was proved that the Game of Life is Turing Complete, which means that with a suitable initial pattern, one can do any computation that can be done on any computer.  Later, Paul Rendell actually constructed a simple Turing Machine as a proof of concept, which can be found <a href="http://www.cs.ualberta.ca/~bulitko/F02/papers/tm_words.pdf">here</a>.  Although Rendell's Turing Machine is fairly small, it contains all of the ideas necessary to create larger machines that could actually do meaningful calculations. One of the patterns in Jason Summers' collection will compute prime numbers, and another will compute twin primes (two primes that only differ by adding or subtracting 2).
+
+
+
+				</p><p>	A very far zoom out of Paul Rendell's Turing Machine:	
+
+</p><center><img src="./Conway&#39;s Game of Life&#39; Patterns_files/image036.gif"></center>
+					
+			</div>
+			<!-- SITE CONTENT END --></td>
+            <td width="10">&nbsp;</td>
+          </tr>
+        </tbody></table></td>
+        <td background="./Conway&#39;s Game of Life&#39; Patterns_files/panel_bg.jpg" width="200" valign="top">
+		<table width="200" border="0" cellspacing="0" cellpadding="0" background="./Conway&#39;s Game of Life&#39; Patterns_files/panelitem_bg.jpg">
+          <tbody><tr>
+            <td width="10">&nbsp;</td>
+            <td width="170"><!--
+			
+			THE LINKS ARE HERE
+			
+			-->
+			
+			
+		
+			<div id="links">
+				
+				
+					<a href="http://sourceforge.net/project/showfiles.php?group_id=139354" style="text-decoration:none"><div id="source" class="mover">Golly - A good cross-platform Game of Life Simulator</div></a>
+			<a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" style="text-decoration:none"><div id="source" class="mover">Wikipedia article on Conway's Game of Life</div></a>
+				
+				<a href="http://www.math.com/students/wonders/life/life.html" style="text-decoration:none"><div id="source" class="mover">Wonders of Math - The Game of Life</div></a>
+				
+				
+				<a href="http://www.radicaleye.com/lifepage/" style="text-decoration:none"><div id="source" class="mover"> Patterns, Programs, and Links for Conway's Game of Life</div></a>
+			</div>
+			
+			
+			
+			<!-- LINKS END --></td>
+            <td width="20">&nbsp;</td>
+          </tr>
+          
+          <tr height="41">
+            <td colspan="3" height="41" background="./Conway&#39;s Game of Life&#39; Patterns_files/panel_unten.jpg"></td>
+          </tr>
+        </tbody></table></td>
+      </tr>
+    </tbody></table></td>
+  </tr>
+  <tr>
+    <td><img src="./Conway&#39;s Game of Life&#39; Patterns_files/unten.jpg" width="950" height="46"></td>
+  </tr>
+</tbody></table>
+
+<div id="contact">
+Cornell University - Chris Lipa - <a href="mailto:lipa@math.cornell.edu" id="contact">lipa@math.cornell.edu</a>
+</div>
+
+
+
+<script type="text/javascript">
+var sc_project=3872665; 
+var sc_invisible=1; 
+var sc_partition=34; 
+var sc_click_stat=1; 
+var sc_security="bc835c42"; 
+</script>
+
+<script type="text/javascript" src="./Conway&#39;s Game of Life&#39; Patterns_files/counter.js.download"></script><noscript><div class="statcounter"><a href="http://www.statcounter.com/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/3872665/0/bc835c42/1/" alt="stats count" ></a></div></noscript>
+
+
+</body></html>

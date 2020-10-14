@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/5a2116b0b2da2531bc7bde5dcd2d8556 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>make_move.py – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body data-new-gr-c-s-loaded="true"><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./41ea446288a5d5a0ce4a91068d737aba.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-00e78e58c090554178aab653e8643d5e.css"><div id="gist94483006" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-make_move-py" class="file my-2">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python  ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-make_move-py-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-make_move-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-v">M</span> <span class="pl-c1">=</span> ((<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>), (<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">0</span>), (<span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">1</span>), (<span class="pl-c1">0</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>), (<span class="pl-c1">0</span>, <span class="pl-c1">1</span>), (<span class="pl-c1">1</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>), (<span class="pl-c1">1</span>, <span class="pl-c1">0</span>), (<span class="pl-c1">1</span>, <span class="pl-c1">1</span>))</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-make_move-py-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-make_move-py-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">calc_neighs</span>(<span class="pl-s1">field</span>, <span class="pl-s1">i</span>, <span class="pl-s1">j</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-make_move-py-LC4" class="blob-code blob-code-inner js-file-line">    <span class="pl-s">""" Calculate number of neighbors alive (assuming square field) """</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-make_move-py-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">neighs</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-make_move-py-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">n</span> <span class="pl-c1">=</span> <span class="pl-en">len</span>(<span class="pl-s1">field</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-make_move-py-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">for</span> <span class="pl-s1">m</span> <span class="pl-c1">in</span> <span class="pl-v">M</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-make_move-py-LC8" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">row_idx</span> <span class="pl-c1">=</span> <span class="pl-s1">m</span>[<span class="pl-c1">0</span>] <span class="pl-c1">+</span> <span class="pl-s1">i</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-make_move-py-LC9" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">col_idx</span> <span class="pl-c1">=</span> <span class="pl-s1">m</span>[<span class="pl-c1">1</span>] <span class="pl-c1">+</span> <span class="pl-s1">j</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-make_move-py-LC10" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-c1">0</span> <span class="pl-c1">&lt;=</span> <span class="pl-s1">row_idx</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span> <span class="pl-c1">and</span> <span class="pl-c1">0</span> <span class="pl-c1">&lt;=</span> <span class="pl-s1">col_idx</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-make_move-py-LC11" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">field</span>[<span class="pl-s1">row_idx</span>][<span class="pl-s1">col_idx</span>]:</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-make_move-py-LC12" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">neighs</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-make_move-py-LC13" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-s1">neighs</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-make_move-py-LC14" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-make_move-py-LC15" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">make_move</span>(<span class="pl-s1">field</span>, <span class="pl-s1">moves</span><span class="pl-c1">=</span><span class="pl-c1">1</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-make_move-py-LC16" class="blob-code blob-code-inner js-file-line">    <span class="pl-s">""" Make a move forward according to Game of Life rules """</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-make_move-py-LC17" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">n</span> <span class="pl-c1">=</span> <span class="pl-en">len</span>(<span class="pl-s1">field</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-make_move-py-LC18" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">cur_field</span> <span class="pl-c1">=</span> <span class="pl-s1">field</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-make_move-py-LC19" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">for</span> <span class="pl-s1">_</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">moves</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-make_move-py-LC20" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">new_field</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-en">zeros</span>((<span class="pl-s1">n</span>, <span class="pl-s1">n</span>), <span class="pl-s1">dtype</span><span class="pl-c1">=</span><span class="pl-s">'uint8'</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-make_move-py-LC21" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-make_move-py-LC22" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">n</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-make_move-py-LC23" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">neighs</span> <span class="pl-c1">=</span> <span class="pl-en">calc_neighs</span>(<span class="pl-s1">cur_field</span>, <span class="pl-s1">i</span>, <span class="pl-s1">j</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-make_move-py-LC24" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">cur_field</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>] <span class="pl-c1">and</span> <span class="pl-s1">neighs</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-make_move-py-LC25" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">new_field</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-make_move-py-LC26" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">neighs</span> <span class="pl-c1">==</span> <span class="pl-c1">3</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-make_move-py-LC27" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">new_field</span>[<span class="pl-s1">i</span>][<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-make_move-py-LC28" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">cur_field</span> <span class="pl-c1">=</span> <span class="pl-s1">new_field</span></td>
+      </tr>
+      <tr>
+        <td id="file-make_move-py-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-make_move-py-LC29" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-s1">cur_field</span></td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/ptyshevs/41ea446288a5d5a0ce4a91068d737aba/raw/49f94e6617dfca70ea1551b92b3281d806596ba0/make_move.py" style="float:right">view raw</a>
+        <a href="https://gist.github.com/ptyshevs/41ea446288a5d5a0ce4a91068d737aba#file-make_move-py">make_move.py</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>

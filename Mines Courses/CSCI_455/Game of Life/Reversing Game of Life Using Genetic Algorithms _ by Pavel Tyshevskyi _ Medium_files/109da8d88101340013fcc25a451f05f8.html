@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/109da8d88101340013fcc25a451f05f8 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>fitness.py – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body data-new-gr-c-s-loaded="true"><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./36f421244f499f585da4ff10434ec803.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-00e78e58c090554178aab653e8643d5e.css"><div id="gist94484034" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-fitness-py" class="file my-2">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python  ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-fitness-py-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-fitness-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">fitness</span>(<span class="pl-s1">start_field</span>, <span class="pl-s1">end_field</span>, <span class="pl-s1">delta</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-fitness-py-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-s">"""</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-fitness-py-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    Calculate fitness for particular candidate (start configuration of the field)</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-fitness-py-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param start_field: candidate (start configuration)</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-fitness-py-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param end_field: target (stop configuration)</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-fitness-py-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param delta: number of steps to proceed before comparing to stop configuration</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-fitness-py-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :return: value in range [0, 1] that indicates fractions of cells that match their state</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-fitness-py-LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    """</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-fitness-py-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">candidate</span> <span class="pl-c1">=</span> <span class="pl-en">make_move</span>(<span class="pl-s1">start_field</span>, <span class="pl-s1">moves</span><span class="pl-c1">=</span><span class="pl-s1">delta</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-fitness-py-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> (<span class="pl-s1">candidate</span> <span class="pl-c1">==</span> <span class="pl-s1">end_field</span>).<span class="pl-en">sum</span>() <span class="pl-c1">/</span> <span class="pl-c1">400</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-fitness-py-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-fitness-py-LC12" class="blob-code blob-code-inner js-file-line">      </td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-fitness-py-LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">score_population</span>(<span class="pl-s1">population</span>, <span class="pl-s1">target</span>, <span class="pl-s1">delta</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-fitness-py-LC14" class="blob-code blob-code-inner js-file-line">    <span class="pl-s">"""</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-fitness-py-LC15" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    Apply fitness function for each gene in a population</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-fitness-py-LC16" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param population: list of candidate solutions</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-fitness-py-LC17" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param target: 20x20 array that represents field in stopping condition</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-fitness-py-LC18" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param delta: number of steps to revert</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-fitness-py-LC19" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :return: list of scores for each solution</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-fitness-py-LC20" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    """</span></td>
+      </tr>
+      <tr>
+        <td id="file-fitness-py-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-fitness-py-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> [<span class="pl-en">fitness</span>(<span class="pl-s1">gene</span>, <span class="pl-s1">target</span>, <span class="pl-s1">delta</span>) <span class="pl-k">for</span> <span class="pl-s1">gene</span> <span class="pl-c1">in</span> <span class="pl-s1">population</span>]</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/ptyshevs/36f421244f499f585da4ff10434ec803/raw/a85aa203140a2b837bb5cfcdd6f6a3b56b38fdff/fitness.py" style="float:right">view raw</a>
+        <a href="https://gist.github.com/ptyshevs/36f421244f499f585da4ff10434ec803#file-fitness-py">fitness.py</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>

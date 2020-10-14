@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/9913dbbb2815af1a422254852f790884 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>evolve.py – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body data-new-gr-c-s-loaded="true"><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./553127dbfc10b1af2d42f0fbddfd257e.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-00e78e58c090554178aab653e8643d5e.css"><div id="gist94485899" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-evolve-py" class="file my-2">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python  ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-evolve-py-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-evolve-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">evolve</span>(<span class="pl-s1">population</span>, <span class="pl-s1">target</span>, <span class="pl-s1">delta</span>, <span class="pl-s1">retain_frac</span><span class="pl-c1">=</span><span class="pl-c1">0.8</span>, <span class="pl-s1">retain_random</span><span class="pl-c1">=</span><span class="pl-c1">0.05</span>, <span class="pl-s1">mutate_chance</span><span class="pl-c1">=</span><span class="pl-c1">0.05</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-evolve-py-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-s">"""</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-evolve-py-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    Evolution step</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-evolve-py-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param population: list or candidate solutions</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-evolve-py-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param target: 20x20 array that represents field in stopping condition</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-evolve-py-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param delta: number of steps to revert</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-evolve-py-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param retain_frac: percent of top individuals to proceed into the next genetation</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-evolve-py-LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param retain_random: chance of retaining sub-optimal individual</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-evolve-py-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :param mutate_chance: chance of mutating the particular individual</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-evolve-py-LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    :return: new generation of the same size</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-evolve-py-LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    """</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-evolve-py-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">score_population</span>(<span class="pl-s1">population</span>, <span class="pl-s1">target</span>, <span class="pl-s1">delta</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-evolve-py-LC13" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">next_population</span> <span class="pl-c1">=</span> <span class="pl-en">selection</span>(<span class="pl-s1">population</span>, <span class="pl-s1">scores</span>, <span class="pl-s1">retain_frac</span><span class="pl-c1">=</span><span class="pl-s1">retain_frac</span>, <span class="pl-s1">retain_random</span><span class="pl-c1">=</span><span class="pl-s1">retain_random</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-evolve-py-LC14" class="blob-code blob-code-inner js-file-line">    </td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-evolve-py-LC15" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"># mutate everyone expecting for the best candidate</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-evolve-py-LC16" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">for</span> <span class="pl-s1">gene</span> <span class="pl-c1">in</span> <span class="pl-s1">next_population</span>[<span class="pl-c1">1</span>:]:</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-evolve-py-LC17" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">rand</span>() <span class="pl-c1">&lt;</span> <span class="pl-s1">mutate_chance</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-evolve-py-LC18" class="blob-code blob-code-inner js-file-line">            <span class="pl-en">mutate</span>(<span class="pl-s1">gene</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-evolve-py-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-evolve-py-LC20" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">places_left</span> <span class="pl-c1">=</span> <span class="pl-en">len</span>(<span class="pl-s1">population</span>) <span class="pl-c1">-</span> <span class="pl-en">len</span>(<span class="pl-s1">next_population</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-evolve-py-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">children</span> <span class="pl-c1">=</span> []</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-evolve-py-LC22" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">parent_max_idx</span> <span class="pl-c1">=</span> <span class="pl-en">len</span>(<span class="pl-s1">next_population</span>) <span class="pl-c1">-</span> <span class="pl-c1">1</span></td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-evolve-py-LC23" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">while</span> <span class="pl-en">len</span>(<span class="pl-s1">children</span>) <span class="pl-c1">&lt;</span> <span class="pl-s1">places_left</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-evolve-py-LC24" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">mom_idx</span>, <span class="pl-s1">dad_idx</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-s1">random</span>.<span class="pl-en">randint</span>(<span class="pl-c1">0</span>, <span class="pl-s1">parent_max_idx</span>, <span class="pl-c1">2</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-evolve-py-LC25" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-s1">mom_idx</span> <span class="pl-c1">!=</span> <span class="pl-s1">dad_idx</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-evolve-py-LC26" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">child1</span>, <span class="pl-s1">child2</span> <span class="pl-c1">=</span> <span class="pl-en">crossover</span>(<span class="pl-s1">next_population</span>[<span class="pl-s1">mom_idx</span>], <span class="pl-s1">next_population</span>[<span class="pl-s1">dad_idx</span>])</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-evolve-py-LC27" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">children</span>.<span class="pl-en">append</span>(<span class="pl-s1">child1</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-evolve-py-LC28" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">children</span>) <span class="pl-c1">&lt;</span> <span class="pl-s1">places_left</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-evolve-py-LC29" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">children</span>.<span class="pl-en">append</span>(<span class="pl-s1">child2</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-evolve-py-LC30" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">next_population</span>.<span class="pl-en">extend</span>(<span class="pl-s1">children</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-evolve-py-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-evolve-py-LC31" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-s1">next_population</span></td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/ptyshevs/553127dbfc10b1af2d42f0fbddfd257e/raw/49d00df4915eae85b9b1cc419b4aca2b27ed82d4/evolve.py" style="float:right">view raw</a>
+        <a href="https://gist.github.com/ptyshevs/553127dbfc10b1af2d42f0fbddfd257e#file-evolve-py">evolve.py</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>

@@ -1,0 +1,229 @@
+h1 {text-align:center;
+	 font-size: 160%;
+
+	 }
+
+body {
+	text-align: justify;
+	background-color: #e7e7e7;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+p {
+
+
+
+
+
+
+
+} 
+
+
+
+
+a.mouseover:link, a.mouseover:visited {
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+color:#363636;
+background-image:url(images/button_off.jpg);
+display:block;
+text-decoration:none;
+font-weight:bold;
+height:20px;
+padding-top:5px;
+}
+
+a.mouseover:hover {
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+color:#000000;
+background-image:url(images/button_on.jpg);
+display:block;
+text-decoration:none;
+font-weight:bold;
+height:20px;
+padding-top:5px;
+}
+
+
+a.link:link, a.link:active, a.link:visited {
+font:Arial, Helvetica, sans-serif;
+font-size:12px;
+text-decoration:underline;
+color:#FF6600;
+}
+
+
+a.link:hover {
+font:Arial, Helvetica, sans-serif;
+font-size:12px;
+text-decoration:none;
+color:#FF6600;
+}
+
+#cont {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-width: 0px;
+	border-style: dashed;
+	border-color: #006400;
+	clear: both;
+	background-color: #e7e7e7;
+	
+	font-family: Verdana,Arial, Helvetica, sans-serif; 
+	font-size:110%;
+}
+
+#links {
+	text-align:left;
+	font-family:Arial, Helvetica, sans-serif;
+
+	text-decoration:none;
+}
+
+#source {
+	margin-bottom:5px;
+	margin-right:5px;
+	padding: 5px;
+	background-color: #ffc038;
+	color: #363636;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #888;
+	clear: both;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	text-decoration: none;
+	font-size:80%;
+	
+}
+
+source.link, source:active, source.link:visited {
+		text-decoration:none;
+}
+
+#source.mover {
+	text-decoration:none;
+
+}
+
+#source.mover:hover  {
+	color: #000000;
+	background-color: #e8a810;
+		border-color: #000;
+		text-decoration:none;
+}
+
+.rtop, .rbottom{display:block}
+.rtop *, .rbottom *{display: block; height: 1px; overflow: hidden}
+.r1{margin: 0 5px}
+.r2{margin: 0 3px}
+.r3{margin: 0 2px}
+.r4{margin: 0 1px; height: 2px}
+
+#navigation {
+
+	
+	
+}
+
+.top-title {
+
+	font-family:cursive, serif;
+	font-size:20px;
+	color:#704800;
+	
+}
+
+.bottom-title {
+
+	font-family:cursive, sans-serif;
+	font-size:65px;
+	color:#303030;
+	
+}
+
+#quote {
+	margin:0px;
+	padding-right: 25px;
+	padding-left: 25px;
+	margin-right:20px;
+		margin-left:20px;
+	border: 1px;
+	background: #f0e068;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-style: solid;
+	border-color: #555;
+	clear: both;
+}
+
+#activity {
+	margin:0px;
+	padding: 5px;
+	border: 0px;
+		background: #e7d058;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-style: solid;
+	border-color: #555;
+	
+}
+
+#activity-title {
+	border-style: solid;
+	border-color: #555;
+	clear: both;
+	border: 0px;
+	background-repeat:no-repeat; 
+	text-align:center;
+	vertical-align:middle;
+	font-size:20px;
+	color:#000;
+	background: #d7a028;
+	padding:15px;
+	font-family:monospace;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+#activity-body {
+	padding:10px;
+	background: #e7d058;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+#contact{
+	
+	font-family: monospace;
+	font-size:12px;
+	color:#906000;
+	text-align: center; margin-top: 1.0em; margin-bottom: 1.0em;
+
+}
+
+#surround{	background: #ffc038;margin-left: 0px; 	margin-right: 10px;}
+
+#surround.mover:hover  {
+	
+	background-color: #e8a810;
+	
+}
+
+.b1, .b2, .b3, .b4{font-size:1px; overflow:hidden; display:block;}
+.b1 {height:1px; background:#888; margin:0 5px;}
+.b2 {height:1px; background:#ffc038; border-right:2px solid #888; border-left:2px solid #888; margin:0 3px;}
+.b3 {height:1px; background:#ffc038; border-right:1px solid #888; border-left:1px solid #888; margin:0 2px;}
+.b4 {height:2px; background:#ffc038; border-right:1px solid #888; border-left:1px solid #888; margin:0 1px;}
+.contentb { border-right:1px solid #888; border-left:1px solid #888;}
+.contentb div {margin-left: 5px;}
