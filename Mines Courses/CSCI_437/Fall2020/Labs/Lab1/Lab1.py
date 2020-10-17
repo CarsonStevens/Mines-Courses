@@ -1,2 +1,0 @@
-# %% test cells
-print("hello")
