@@ -17,6 +17,7 @@
 1. CSCI440: Parallel Computing
 1. CSCI442: Operating Systems
 1. CSCI445: Web Programming
+1. CSCI455: Game Theory and Networks
 1. CSCI470: Machine Learning
 1. CSCI475: Information and Security
 1. CSCI477: Game Development
