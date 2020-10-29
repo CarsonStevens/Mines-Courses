@@ -10,3 +10,12 @@
 [submodule "Mines Courses/CSCI_477/MinerConflict"]
 	path = Mines Courses/CSCI_477/MinerConflict
 	url = https://github.com/danielpersonius/csci-477.git
+[submodule "Mines Courses/CSCI_437/Fall2020/cv_final_project"]
+	path = Mines Courses/CSCI_437/Fall2020/cv_final_project
+	url = https://github.com/benbrokaw/cv_final_project.git
+[submodule "Mines Courses/CSCI_445/Fall_2020/Fronend/slingshot-js"]
+	path = Mines Courses/CSCI_445/Fall_2020/Fronend/slingshot-js
+	url = https://github.com/CarsonStevens/slingshot-js.git
+[submodule "Mines Courses/CSCI_470/Projects/Epic/Epic"]
+	path = Mines Courses/CSCI_470/Projects/Epic/Epic
+	url = https://github.com/CarsonStevens/Epic.git
