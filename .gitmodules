@@ -19,3 +19,6 @@
 [submodule "Mines Courses/CSCI_470/Projects/Epic/Epic"]
 	path = Mines Courses/CSCI_470/Projects/Epic/Epic
 	url = https://github.com/CarsonStevens/Epic.git
+[submodule "Mines"]
+	path = Mines
+	url = https://github.com/CarsonStevens/slingshot-js.git
